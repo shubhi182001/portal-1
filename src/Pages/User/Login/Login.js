@@ -1,34 +1,32 @@
 import React, { useState } from 'react'
-import "./Login.css"
+import './Login.css'
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Login = () => {
-    // const  [login,setLogin]=
-    // useState({
-    //     username:"",
-    //     password:''
-    // })
+    const [studentNo,setStudentNo] = useState("");
+    const [password,setPassword] = useState("");
 
-    // const value = (event)=>{
-    //     let event=e.target;
-    //  setLogin(...login,({}))
-    // }
   return (
-    <div className='body'>
-        <form action="submit">
-        <div className='login'>
-            <h3>Login</h3>
-            <input className='inlog' type="text" placeholder='USERNAME' />
-        </div>
-        <div className='password'>
-            <h3>Password</h3>
-            <input className='inpass' type="Password" placeholder='PASSWORD'/>
-        </div>
-        <div className='button'>
-            <button>Login</button>
-        </div>
-        </form>  
+    <div className="form_body">
+<form className='form_container' >
+ <TextField label="Student No." variant='standard' size='large' className='input_field'
+ type='text' value={studentNo}
+//  InputProps={
+//      {startAdornment:<InputAdornment position='start'><AccountCircleIcon/></InputAdornment>}   
+//  }
+ />
+ <TextField label="password" variant='standard' size='large' className='input_field'
+ type='password' value={password}
+//  InputProps={
+//      {startAdornment:<InputAdornment position='start'></InputAdornment>}
+     
+//  }
+/>
+</form>
 
-    </div>
+      </div>
   )
 }
 
