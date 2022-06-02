@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+    background-color: gainsboro;
+}
+
+.body{
+    margin-top: 18%;
+    margin-left: 40%;
+}
+
+h3{
+    letter-spacing: 2px;
+    font-family: sans-serif;
+}
+
+.login{
+    margin-bottom: 10px;
+}
+.password{
+    margin-bottom: 30px;
+}
+
+.inlog{
+    height: 30px;
+    width: 240px;
+    border-radius: 5px;
+    
+}
+
+
+.inpass{
+    height: 30px;
+    width: 240px;
+    border-radius: 5px;
+}
+
+button{
+    height: 30px;
+    width: 160px;
+    border-radius: 5px;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
