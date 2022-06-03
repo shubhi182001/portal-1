@@ -1,0 +1,6 @@
+Write here all the dependencies and packages that you might be installing
+
+//
+npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
+//
+

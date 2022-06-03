@@ -1,33 +1,23 @@
 .navbar{
     display: flex;
-    justify-content: center;
-    text-align: center;
+    justify-content: space-between;
+    background-color: rgb(36, 103, 162);
     height: 70px;
     width: 100vw;
-    background-color: rgb(36, 103, 162);
 }
-.navbarLeft{
-    /* margin-left: 1%; */
-    display: flex;
-    justify-content: center;
-    text-align: center;
+.left{
+   margin: 0px 10px;
 }
-.navbarRight{
-    /* padding: 20px; */
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin-left: 50%;
+.right{
+   display: flex;
 }
+
 .buttonWrapper{
-    display: flex;
-    justify-content: center;
-    text-align: center;
+    display: block;
 }
+
 .but{
-    /* margin-left: 80px; */
-    padding-right:71px;
-    border: none;
+   margin: 0px 40px -10px 40px;
     background-color: rgb(36, 103, 162);
 }
 .buttonText{
