@@ -10,10 +10,7 @@ function App() {
       <Feedback />
       {/* <Login/> */}
       {/* <Admin/> */}
-<<<<<<< HEAD
-=======
-      <Instructions/>
->>>>>>> 642c9316907188d05f40b0bd4056279a3553863a
+      {/* <Instructions/> */}
     </div>
   );
 }
