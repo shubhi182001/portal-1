@@ -1,12 +1,18 @@
 import React from 'react'
 import Navbar from './navbar/Navbar'
-import Add from './add/Add'
+import "./Admin.css"
+import { Card } from '@mui/material'
 
 function Admin() {
   return (
     <>
     <Navbar/>
-    <Add/>
+    <div className='card'>
+    <Card className='card-content'>
+      hello
+    </Card>
+    </div>
+    
     </>
   )
 }
