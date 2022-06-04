@@ -1,8 +1,10 @@
 .instructions{
     display: flex;
     justify-content: space-between;
-    margin:20px;
+    padding:20px;
     gap: 10px;
+    background: no-repeat url(../../../Images/User/background.svg);
+    background-size: cover;
 }
 .inst_container{
     /* max-width:1024px;

@@ -1,16 +1,52 @@
-import React, {useState} from "react"; 
+import React, {useEffect, useRef, useState} from "react"; 
 import { Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import instlogo from "../../../Assets/inst_csilogo.png"
+import instlogo from "../../../Images/User/inst_csilogo.png"
 import "./Instruction.css";
 const Instruction = () => {
 
+  const [timerDays, setTimerDays] = useState('0');
+  const [timerHours, setTimerHours] = useState('0');
+  const [timerMinutes, setTimerMinutes] = useState('0');
+  const [timerSeconds, setTimerSeconds] = useState('0');
   const [chosenlang, setChosenlang] = useState("");
   const[agree,setAgree] = useState(false);
   console.log(chosenlang);
   const checkboxHandler = () => {
     setAgree(!agree);
   }
+
+  let interval = useRef();
+
+  const startTimer = () => {
+    const countdownDate = new Date('June 5, 2022 12:00:00').getTime();
+    interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+      const days = Math.floor(distance/(1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance%(1000 * 60 * 60 * 24))/(1000 * 60 *60));
+      const minutes = Math.floor((distance%(1000 * 60 * 60))/ (1000 * 60));
+      const seconds = Math.floor((distance%(1000 * 60))/ 1000);
+
+      if(distance<0){
+        clearInterval(interval.current);
+      }
+      else{
+        setTimerDays(days);
+        setTimerHours(hours);
+        setTimerMinutes(minutes);
+        setTimerSeconds(seconds);
+      }
+    }, 1000)
+  };
+
+  useEffect(() =>{
+    startTimer();
+    return () => {
+      clearInterval(interval.current);
+    };
+  });
+
   return (
     <div className="instructions">
       <div className="inst_container">
@@ -49,13 +85,13 @@ const Instruction = () => {
           <h2>Agree to the terms & conditions</h2>
         </div>
         <div className="start_exam">
-          <Button disabled={!agree || chosenlang===""} endIcon={<ArrowForwardIcon/>} sx={{fontSize:20,width:250,marginBottom:5, height:50}} color="success" variant='contained'>Save & Next</Button>
+          <Button disabled={!agree || chosenlang=="" || timerDays != "0" || timerHours != "0" || timerMinutes != "0" || timerSeconds != "0"} endIcon={<ArrowForwardIcon/>} sx={{fontSize:20,width:250,marginBottom:5, height:50}} color="success" variant='contained'>Save & Next</Button>
         </div>
        </div>
       <div className="lang_selection">
           <div className="timer">
             <h2>Exam will start in:</h2>
-            <span className="time">15:00 min</span>
+            <span className="time">{timerDays}Days {timerHours}Hours <br/> {timerMinutes} min {timerSeconds} sec </span>
           </div>
           <div className="lang">
           <select className="select" defaultValue={"DEFAULT"}style={{color:"white"}} onChange={e => setChosenlang(e.target.value)} name="lang" id="options" >
