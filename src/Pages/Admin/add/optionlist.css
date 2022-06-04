@@ -1,0 +1,36 @@
+
+
+/* contains css of Option.js and OptionList.js */
+
+.option{
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0px;
+    width: 90vw;
+    background-color:rgb(210, 231, 248);
+}
+
+.option-list{
+   
+    
+}
+.s-class{
+    padding: 0px 10px;
+
+}
+.item-1{
+  flex:1;
+}
+.item-2{
+  flex: 16;
+ 
+}
+.item-3{
+  flex: 1;
+}
+.option-item{
+   
+}
+li{
+    list-style: none;
+}
