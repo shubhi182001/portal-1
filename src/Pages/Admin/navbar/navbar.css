@@ -6,7 +6,7 @@
     width: 100vw;
 }
 .left{
-   margin: 0px 10px;
+   margin: 0px 4%;
 }
 .right{
    display: flex;
@@ -17,7 +17,9 @@
 }
 
 .but{
-   margin: 0px 40px -10px 40px;
+    border: none;
+    cursor: pointer;
+   margin: 0px 40px 0px 30px;
     background-color: rgb(36, 103, 162);
 }
 .buttonText{
@@ -25,3 +27,40 @@
     color: white;
     font-weight: 700;
 }
+
+.dropbtn {
+  background-color: rgb(36, 103, 162);
+  color: white;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgb(36, 103, 162);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color:white;
+  font-weight: 500;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
