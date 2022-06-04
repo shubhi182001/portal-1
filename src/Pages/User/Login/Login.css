@@ -3,6 +3,9 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background: url("../../../Images/User/background.svg");
+  background-size: 100% 100%;
+
 }
 
 .form_container {
@@ -11,21 +14,25 @@
   align-items: center;
   flex-direction: column;
   height: 50vh;
-  width: 60%;
+  width: 45%;
+  border: 1px gray solid;
+  /* box-sizing: border-box; */
+  box-shadow: 2px 3px gray;
+  border-radius: 5px;
 }
 .icon_container {
   /* border: 1px solid red; */
   display: flex;
   /* justify-content: space-be; */
-  gap: 2rem;
-  margin-bottom: 2rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
   align-items: center;
   width: 30%;
 }
 .icon {
-  padding-top: 1.5rem;
+  padding-top: 1rem;
   transform: scale(1.8);
-  /* border:1px solid red; */
+  /* border:0.5px solid gray; */
 }
 .input_field {
   width: 80%;
@@ -34,5 +41,22 @@
   /* gap:4rem; */
 }
 .button_container{
-    width: 50%;
+  width: 1px;
+  margin-top: 20px;  
+}
+button{
+  height: 20px;
+  border-radius: 2px;
+  
+}
+
+img{
+  border: 2px  red solid;
+  width: 20vw;
+  height: 35vh;
+  margin-top: 0;
+  margin-left: 5rem;
+  padding: 20px;
+  /* width: 20%; */
+
 }

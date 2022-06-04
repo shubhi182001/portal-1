@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css";
+import computers from "../../../Images/User/computers.svg"
 import TextField from "@mui/material/TextField";
 import {Button} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -92,6 +93,9 @@ const Login = () => {
           </div>
         </div>
       </form>
+      <div className="img">
+        <img src= {computers} alt="none"  height="300px"/>
+      </div>
     </div>
   );
 };
