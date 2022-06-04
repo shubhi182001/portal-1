@@ -1,5 +1,6 @@
 .navbar{
     display: flex;
+    align-items: center;
     justify-content: space-between;
     background-color: rgb(36, 103, 162);
     height: 70px;
@@ -13,7 +14,9 @@
 }
 
 .buttonWrapper{
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .but{
@@ -31,7 +34,7 @@
 .dropbtn {
   background-color: rgb(36, 103, 162);
   color: white;
-  padding: 16px;
+  /* padding: 16px; */
   font-size: 18px;
   font-weight: 700;
   border: none;
