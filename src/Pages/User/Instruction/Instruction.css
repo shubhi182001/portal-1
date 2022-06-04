@@ -7,22 +7,26 @@
 .inst_container{
     /* max-width:1024px;
     width:100%; */
+    background-color: #fff;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
     border-radius:10px 0px 0px 10px;
 }
-.csilogo{
+.instcsilogo{
     height:40px;
-    margin-right: 15px;
+    width: 40px;
+    margin: 15px;
+    border: none;
 }
-.nav{
+.nav_inst{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height:60px;
     border-radius:10px 0px 0px 0px;
     font-family: 'Secular One', sans-serif;
     background: linear-gradient(180deg, #B4B7FC 0%, rgba(180, 183, 252, 0) 100%);
 }
-.nav h1{
+.nav_inst h1{
     letter-spacing: 0.1em;
     font-style: normal;
     font-size: 26px;
@@ -32,6 +36,7 @@
 .inst_container h2{
     font-weight: normal;
     font-size:20px;
+    margin-bottom: 10px;
 }
 .ins{
     padding:40px;
@@ -54,6 +59,7 @@
     border-radius: 5px;
 }
 .lang_selection{
+    background-color: #fff;
     width:100%;
     max-width:400px;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);

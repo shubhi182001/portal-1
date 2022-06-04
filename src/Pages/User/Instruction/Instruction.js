@@ -1,7 +1,7 @@
 import React, {useState} from "react"; 
 import { Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import logo from "../../../Assets/csilogo.png"
+import instlogo from "../../../Assets/inst_csilogo.png"
 import "./Instruction.css";
 const Instruction = () => {
 
@@ -14,9 +14,9 @@ const Instruction = () => {
   return (
     <div className="instructions">
       <div className="inst_container">
-        <div className="nav">
+        <div className="nav_inst">
         <h1>Instructions</h1>
-        <img className="csilogo" src={logo} alt="logoimg" />
+        <img className="instcsilogo" src={instlogo} alt="logoimg" />
         </div>
         <div className="ins">
         <h2>1.This exam contains 4 mandatory categories: HTML, CSS, APTITUDE, and SQL. </h2>
