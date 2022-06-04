@@ -1,12 +1,21 @@
 import React from 'react'
 import Option from '../add/Option'
+import './optionlist.css'
 
-const OptionsList = () => {
+const OptionsList = ({options,setOptions}) => {
+  console.log(options);
   return (
    <>
    <div className="option-container">
        <ul className="option-list">
-           <Option/>
+           {options.map(option=>(
+             <Option 
+             setOptions={setOptions}
+             options={options}
+             text={option.text}
+             option={option} 
+             key={option.id}/>
+           ))}
        </ul>
    </div>
    </>

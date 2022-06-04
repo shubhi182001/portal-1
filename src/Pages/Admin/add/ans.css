@@ -1,0 +1,30 @@
+.answers-and-options{
+    display: flex;
+    flex-direction: column;
+    /* border:2px solid black; */
+    width: 85vw;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+}
+.answers-section{
+    display: flex;
+    align-items: center;
+    padding: 2px 3px;
+    color: rgb(28, 97, 153);
+}
+.answer-input-field{
+    
+}
+.answer-input-field>input{
+     background-color:rgb(229,243,254);
+     margin: 0 6px;
+      padding:6px 10px;
+      border:none;
+      width: 70vw;
+      border-radius: none;
+}
+
+.options-section{
+
+}
