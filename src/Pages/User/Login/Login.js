@@ -12,7 +12,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 const Login = () => {
   const [studentNo, setStudentNo] = useState("");
   const [password, setPassword] = useState("");
-   const [type,setType] = useState("password");
+   
    const [eye,setEye] = useState(false);
    const [visibleIcon,setVisibleIcon] = useState(false);
    
