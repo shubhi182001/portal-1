@@ -9,7 +9,6 @@ function App() {
   return (
     <div className="App">
       {/* <Feedback /> */}
-      <Login/>
       {/* <Admin/> */}
     </div>
   );
