@@ -9,7 +9,7 @@
 }
 
 .form_container {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,7 +78,7 @@
 }
 
 img{
-  border: 2px  red solid;
+  /* border: 2px  red solid; */
   width: 20vw;
   margin: 0%;
   height: 50vh;

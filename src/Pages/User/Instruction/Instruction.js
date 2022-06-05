@@ -85,7 +85,7 @@ const Instruction = () => {
           <h2>Agree to the terms & conditions</h2>
         </div>
         <div className="start_exam">
-          <Button disabled={!agree || chosenlang=="" || timerDays != "0" || timerHours != "0" || timerMinutes != "0" || timerSeconds != "0"} endIcon={<ArrowForwardIcon/>} sx={{fontSize:20,width:250,marginBottom:5, height:50}} color="success" variant='contained'>Save & Next</Button>
+          <Button disabled={!agree || chosenlang==="" || timerDays !== "0" || timerHours !== "0" || timerMinutes !== "0" || timerSeconds !== "0"} endIcon={<ArrowForwardIcon/>} sx={{fontSize:20,width:250,marginBottom:5, height:50}} color="success" variant='contained'>Save & Next</Button>
         </div>
        </div>
       <div className="lang_selection">
