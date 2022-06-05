@@ -35,7 +35,7 @@
   display: flex;
   /* justify-content: space-be; */
   /* gap: 1rem; */
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   align-items: center;
   width: 60%;
 
@@ -72,7 +72,7 @@
   background: linear-gradient(90.13deg, #61F3F3 -29.51%, #DB9CFF 120.59%);
   height: 40px;
   border-radius: 2px;
-  width: 110px;
+  width: 170px;
   text-shadow: 2px black;
 
 }
@@ -87,4 +87,18 @@ img{
   /* padding: 20px; */
   width: 90%;
 
+}
+.errormsg_container{
+  margin-top: 0;
+  width: 60%;
+  /* border:1px solid blue; */
+  margin-bottom: 1rem;
+
+  
+}
+.errormsg > span{
+  /* border:1px solid red; */
+  text-align:left;
+  font-size: 13px;
+  color:red;
 }
