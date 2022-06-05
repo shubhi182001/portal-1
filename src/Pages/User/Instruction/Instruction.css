@@ -1,0 +1,102 @@
+.instructions{
+    display: flex;
+    justify-content: space-between;
+    padding:20px;
+    gap: 10px;
+    background: no-repeat url(../../../Images/User/background.svg);
+    background-size: cover;
+}
+.inst_container{
+    /* max-width:1024px;
+    width:100%; */
+    background-color: #fff;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
+    border-radius:10px 0px 0px 10px;
+}
+.instcsilogo{
+    height:40px;
+    width: 40px;
+    margin: 15px;
+    border: none;
+}
+.nav_inst{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height:60px;
+    border-radius:10px 0px 0px 0px;
+    font-family: 'Secular One', sans-serif;
+    background: linear-gradient(180deg, #B4B7FC 0%, rgba(180, 183, 252, 0) 100%);
+}
+.nav_inst h1{
+    letter-spacing: 0.1em;
+    font-style: normal;
+    font-size: 26px;
+    margin-left: 30px;
+    font:Montserrat;
+}
+.inst_container h2{
+    font-weight: normal;
+    font-size:20px;
+    margin-bottom: 10px;
+}
+.ins{
+    padding:40px;
+}
+.terms{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    gap:10px;
+}
+.start_exam{
+    display: flex;
+    justify-content: center;
+}
+.terms input{
+    width:20px;
+    height:20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+.lang_selection{
+    background-color: #fff;
+    width:100%;
+    max-width:400px;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 0px 10px 10px 0px;
+}
+.timer{
+    margin: 50px;
+}
+.timer h2{
+    font-size: 25px;
+    font-family: 'Secular One', sans-serif;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+}
+.time{
+    font-size: 25px;
+    color:red;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+
+}
+.lang{
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+}
+.select{
+    width: 250px;
+    height: 50px;
+    background: #7ACFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px 5px 0px 0px;
+    font-size: 25px;
+    border: none;
+    outline: none;
+    padding:10px;
+}

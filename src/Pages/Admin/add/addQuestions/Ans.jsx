@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import Form from './Form'
-import OptionsList from './OptionsList'
+import OptionsList from '../addQuestions/OptionsList'
 import './ans.css'
 
 const Ans = () => {
@@ -10,7 +10,7 @@ const Ans = () => {
     <>
     <div className="answers-and-options">
       <div className="answers-section">
-      <h4>Answer</h4>
+      <p>Answer</p>
     <Form  options={options} inputText={inputText} setOptions={setOptions} setInputText={setInputText}/>
     </div>
     <div className="options-section">

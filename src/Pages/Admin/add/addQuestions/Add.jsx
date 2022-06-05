@@ -1,23 +1,25 @@
 import React, { useState } from 'react'
-import Ans from './Ans'
+import Ans from '../addQuestions/Ans'
 import './add.css'
+import Question from '../addQuestions/Question'
 
 const Add = () => {
     
   return (
     <>
     <div className="add-questions-answers">
-        <h1>Add a Question </h1>
+       <div className="ques-and-ans">
+          <h3>Add a Question </h3>
         <div className="questions">
-            <h4>questions section </h4>
+            <Question/>
         </div>
         <div className="dropdown">
             languages dropdown here
         </div>
         <div className="answers">
-            <h4>answers section</h4>
             <Ans/>
         </div>
+       </div>
     </div>
     </>
   )
