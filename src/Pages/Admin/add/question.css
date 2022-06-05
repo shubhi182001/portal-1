@@ -1,0 +1,27 @@
+.question{
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    justify-content: center;
+
+}
+.question>p{
+    color: #075594;
+    font-weight: 500;
+    margin:0px 20px;
+}
+#question-here{
+  border: none;
+  border-style: none;
+  width:50vw;
+  height: 35vh;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  /* background-color: #e5f3fe; */
+   background-color: #deeffc;
+  font-size: 16px;
+  resize: none;
+  color: #075594;
+}
