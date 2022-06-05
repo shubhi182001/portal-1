@@ -16,9 +16,7 @@
     color: #075594;
     font-weight: 500;
 }
-.answer-input-field{
-    
-}
+
 .answer-input-field>input{
      background-color: #cee7fa;
      margin: 0 6px;
@@ -29,6 +27,4 @@
        color: #215783;
 }
 
-.options-section{
 
-}

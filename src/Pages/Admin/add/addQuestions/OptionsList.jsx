@@ -1,5 +1,5 @@
 import React from 'react'
-import Option from '../add/Option'
+import Option from '../addQuestions/Option'
 import './optionlist.css'
 
 const OptionsList = ({options,setOptions}) => {

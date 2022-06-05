@@ -7,9 +7,9 @@ import Instructions from './Pages/User/Instruction/Instruction'
 function App() {
   return (
     <div className="App">
-      <Feedback />
+      {/* <Feedback /> */}
       {/* <Login/> */}
-      {/* <Admin/> */}
+      <Admin/>
       {/* <Instructions/> */}
     </div>
   );

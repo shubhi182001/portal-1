@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import Form from './Form'
-import OptionsList from './OptionsList'
+import OptionsList from '../addQuestions/OptionsList'
 import './ans.css'
 
 const Ans = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Ans from './Ans'
+import Ans from '../addQuestions/Ans'
 import './add.css'
-import Question from './Question'
+import Question from '../addQuestions/Question'
 
 const Add = () => {
     
