@@ -1,9 +1,8 @@
 import React from 'react'
 import Navbar from './navbar/Navbar'
 import "./Admin.css"
-import { Card } from '@mui/material'
 import Add from './add/addQuestions/Add'
-import Homebox from '../Admin/homeBox/Homebox'
+import Homepage from './homepage/Homepage'
 import FeedbackQ from '../Admin/add/addFeedbackQ/FeedbackQ'
 import AddCandidate from '../Admin/add/addCandidate/AddCandidate'
 import {
@@ -20,13 +19,12 @@ import GetFeedbackQ from './get/GetFeedbackQ'
 function Admin() {
   return (
     <>
+    {/* <Homepage/> */}
+    
     <BrowserRouter>
-    {/* <div className='card'>
-    <Card className='card-content'>
-    </Card>
-    </div> */}
     <Navbar/>
     <Routes>
+      <Route path="/" element={<Homepage/>} />
       <Route path ='/getques' element={<GetQ/>} />
       <Route path ='/getfeedbackques' element={<GetFeedbackQ/>} />
       <Route path ='/getcandidate' element={<GetCandidate/>} />
