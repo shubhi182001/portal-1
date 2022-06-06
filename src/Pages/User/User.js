@@ -10,11 +10,14 @@ import Instructions from './Instruction/Instruction'
 // import Confirmation from './Confirmationpage/Confirmation';
 import Feedback from './Feedback/Feedback';
 import Thankyou from './Thankyoupage/Thankyou';
+import TestWindow from './Testwindow/Test';
+
 function App() {
   return (   
     <BrowserRouter>    
     <Routes>
       <Route path ='/' element={<Login/>} />
+      <Route path ='/TestWindow' element={<TestWindow/>} />
       <Route path ='/instructions' element={<Instructions/>} />
       <Route path ='/feedback' element={<Feedback/>} />
       <Route path='/thankyou' element={<Thankyou/>} />
