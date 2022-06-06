@@ -1,0 +1,22 @@
+
+.card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 40vh;
+}
+
+.table{
+    width: 50%;
+}
+
+.field{
+    font-weight: 600;
+    text-align: left;
+}
+.value{
+    text-align: right;
+}
+
+
