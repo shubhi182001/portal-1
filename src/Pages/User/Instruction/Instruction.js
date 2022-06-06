@@ -19,7 +19,7 @@ const Instruction = () => {
   let interval = useRef();
 
   const startTimer = () => {
-    const countdownDate = new Date('June 5, 2022 12:00:00').getTime();
+    const countdownDate = new Date('June 5, 2022 13:55:00').getTime();
     interval = setInterval(() => {
       const now = new Date().getTime();
       const distance = countdownDate - now;
@@ -46,6 +46,19 @@ const Instruction = () => {
       clearInterval(interval.current);
     };
   });
+
+  const chkvalidate = (e) =>{
+    e.preventDefault();
+    if(!agree && chosenlang === ""){
+      window.alert("Check the box and select any language first");
+    }
+    else if(!agree){
+      window.alert("Check the terms and condition box first");
+    }
+    else if(chosenlang === ""){
+      window.alert("Select any language first");
+    }
+  }
 
   return (
     <div className="instructions">
@@ -85,7 +98,7 @@ const Instruction = () => {
           <h2>Agree to the terms & conditions</h2>
         </div>
         <div className="start_exam">
-          <Button disabled={!agree || chosenlang==="" || timerDays !== "0" || timerHours !== "0" || timerMinutes !== "0" || timerSeconds !== "0"} endIcon={<ArrowForwardIcon/>} sx={{fontSize:20,width:250,marginBottom:5, height:50}} color="success" variant='contained'>Save & Next</Button>
+          <Button disabled={timerDays != "0" || timerHours != "0" || timerMinutes != "0" || timerSeconds != "0"} onClick={chkvalidate} endIcon={<ArrowForwardIcon/>} sx={{fontSize:20,width:250,marginBottom:5, height:50}} color="success" variant='contained'>Save & Next</Button>
         </div>
        </div>
       <div className="lang_selection">

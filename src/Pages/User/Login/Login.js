@@ -75,7 +75,7 @@ const Login = () => {
   };
   return (
     <div className="form_body">
-      <AccountCircleIcon className="admin_icon" />
+      {/* <AccountCircleIcon className="admin_icon" /> */}
       <form className="form_container">
         <div className="icon_container">
           <div className="icon">
@@ -150,7 +150,7 @@ const Login = () => {
         </div>
       </form>
       <div className="img">
-        <img src={computers} alt="none" height="300px" />
+        <img src={computers} alt="none" />
       </div>
     </div>
   );
