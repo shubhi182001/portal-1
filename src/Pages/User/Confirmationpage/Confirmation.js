@@ -2,8 +2,7 @@ import React from 'react'
 import './Confirmation.css'
 import {Button} from "@mui/material";
 import Logocsi from "../../../Images/User/Logocsi.svg"
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
+
 
 const Confirmation = () => {
     const Yes =(e)=>{

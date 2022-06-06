@@ -43,7 +43,6 @@ const Feedback = () => {
       console.log("d")
     }
     else{
-    
       console.log("send")
     }
 
@@ -64,7 +63,7 @@ const Feedback = () => {
     <div className="feedback_form">
       <div className='appbar'>Feedback</div>
       <div className="questions_container">
-        <FormControl className="questions">
+        {<FormControl className="questions">
           <FormLabel ><strong>{que[0]}</strong></FormLabel>
           <RadioGroup className='radio' onChange={(e) => setValueq1(e.target.value)}
             row
@@ -76,7 +75,7 @@ const Feedback = () => {
             <FormControlLabel value="5" control={<Radio />} label="5" />
 
           </RadioGroup>
-        </FormControl>
+        </FormControl>}
         <FormControl className="questions">
           <FormLabel ><strong>{que[1]}</strong></FormLabel>
           <RadioGroup className='radio' onChange={(e) => setValueq2(e.target.value)}
