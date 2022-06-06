@@ -13,13 +13,18 @@ body{
     -o-background-size: cover; 
      background-size: cover;
      text-align: center; 
+     /* justify-content: center;
+     align-items: center; */
+
     
 }
 body div img{
-    margin-left: auto;
+    
     margin-right: auto;
+    margin-left: auto;
+    margin-top: 15%;
+    /* margin-bottom: auto; */
     display: block;
-    margin-top: 20%;
     animation: enlarge  ease 7s  ;
             animation-iteration-count: 1;
             animation-fill-mode: forwards;
@@ -30,16 +35,88 @@ body div img{
     0% {
         transform: scale(0,0);
     }
-    50% {
-        transform: scale(2.5,2.5)  translate(0,0);
+    70% {
+        transform: scale(1.7,1.7)  translate(0,0);
     }
-    70%{
-        transform: scale(1.8,1.8);
-    }
+    
     100% {
-        transform: scale(0.8,0.8)  translate(-770px,-330px);
+        transform: scale(0.8,0.8)  translate(-770px,-270px);
+       
     }
 }
+/* @media screen and (min-width: 1920px),(min-height:1080px) {
+    body div img{
+        margin-top: 18%;
+    }
+    @keyframes enlarge {
+        0% {
+            transform: scale(0,0);
+        }
+        60% {
+            transform: scale(1.8,1.8)  translate(0,0);
+        }
+        
+        100% {
+             
+            transform: scale(0.8,0.8)  translate(-270%,-170%);
+        }
+    }
+  } */
+@media screen and (min-width: 1600px),(min-height:900px) {
+    body div img{
+        margin-top: 18%;
+    }
+    @keyframes enlarge {
+        0% {
+            transform: scale(0,0);
+        }
+        60% {
+            transform: scale(1.8,1.8)  translate(0,0);
+        }
+        
+        100% {
+            transform: scale(0.8,0.8)  translate(-270%,-150%);
+           
+        }
+    }
+  }
+/* @media screen and (min-width: 1366px),(min-height:768px) {
+    body div img{
+        margin-top: 18%;
+    }
+    @keyframes enlarge {
+        0% {
+            transform: scale(0,0);
+        }
+        60% {
+            transform: scale(1.8,1.8)  translate(0,0);
+        }
+        
+        100% {
+            transform: scale(0.8,0.8)  translate(-270% , -150%);
+           
+        }
+    }
+  }
+
+@media screen and (min-height:700px),(min-width:900px) {
+    body div img{
+        margin-top: 18%;
+    }
+    @keyframes enlarge {
+        0% {
+            transform: scale(0,0);
+        }
+        60% {
+            transform: scale(1.8,1.8)  translate(0,0);
+        }
+        
+        100% {
+            transform: scale(0.8,0.8)  translate(-270% , -150%);
+           
+        }
+    }
+  } */
 
 
 
