@@ -71,10 +71,15 @@ const Feedback = () => {
                 </FormControl>
               )
             })}
+            <div className='text-container'>
+              <textarea placeholder="Write something..." className='text'/>
+
+            </div>
             <div className="button">
 
               <Button id='btn' size="large" type="submit" variant="contained" onClick={Submit}><b className='btncolor'>Submit</b></Button>
             </div>
+            
           </div>
 
         </div>

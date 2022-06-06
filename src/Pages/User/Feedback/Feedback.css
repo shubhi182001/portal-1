@@ -42,9 +42,9 @@ border-radius: 10px;
 .questions_container {
     display: flex;
     flex-direction: column;
-    margin: 6rem 25% 0rem 25%;
+    margin: 2rem 25% 0rem 25%;
     font-size: large;
-    /* align-items: center; */
+    
     overflow-y: hidden;
 }
 
@@ -55,8 +55,8 @@ border-radius: 10px;
 .button{
     display: flex;
     justify-content: center;
-    margin-top: 12%;
-    margin-bottom: 8%; 
+    
+    margin-bottom: 4%; 
     
 
 }
@@ -73,3 +73,20 @@ border-radius: 10px;
     display: flex;
     justify-content: space-between;
 }
+ .text-container{
+    
+    margin: 14px auto 14px auto;
+} 
+.text{
+    
+    height: 6rem;
+    width:20rem;
+    font-size: 1rem;
+    /* margin-left: auto; */
+    /* padding-left: 500px; */
+    
+}  
+textarea{
+    padding:2px 5px 0px 5px
+} 
+   
