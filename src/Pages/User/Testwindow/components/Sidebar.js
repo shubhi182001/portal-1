@@ -6,7 +6,7 @@ const Sidebar = () => {
      <div className="time_left">Time left</div>
      <div className="time_section">11 : 00 : 00</div>
      <div className="heading">Questions</div>
-     <div className="button_container">
+     <div className="buttons_container">
        <div className="buttons">
          <button>1</button>
          <button>1</button>
