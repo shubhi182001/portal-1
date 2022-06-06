@@ -1,4 +1,4 @@
-.form_body {
+.form_body{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,16 +18,17 @@
   width: 30%;
   box-shadow: 2px 2px 15px gray;
   border-radius: 10px;
+  /* position: fixed; */
 }
 
-.admin_icon{
-  border: 3px solid red;
-  margin-bottom: 4px;
+/* .admin_icon{
+  margin-bottom: 370px;
+  margin-left: 250px;
   height: 80px;
   width: 60px;
-  
-
-}
+  font-size: 400px;
+  transform: scale(5); 
+}*/
 
 .icon_container {
   /* border: 1px solid lightgray; */
@@ -77,10 +78,10 @@
 
 }
 
-img{
+.img img{
   /* border: 2px  red solid; */
-  width: 20vw;
-  margin: 0%;
+  width: 50%;
+  /* margin: 0%; */
   height: 50vh;
   margin-bottom: 16rem;
   margin-left: 14rem;
