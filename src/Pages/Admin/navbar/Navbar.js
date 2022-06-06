@@ -1,6 +1,7 @@
 import React from 'react'
 import "./navbar.css"
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import {Link} from "react-router-dom"
 
 function Navbar() {
   return (
@@ -12,31 +13,32 @@ function Navbar() {
         </div>
 
       </div>
-       
        <div className='right'>
           <div className="navbarRight">
           <div className="buttonWrapper">
             <div class="but dropdown">
               <button class="dropbtn">GET</button>
               <div class="dropdown-content">
-                <a href="/">Get Questions</a>
+                <a href="/getques">Get Questions</a>
                 <hr style={{color:"white"}}/>
-                <a href="/">Get Feedback Questions</a>
+                <a href="/getfeedbackques">Get Feedback Questions</a>
                 <hr style={{color:"white"}}/>
-                <a href="/">Get Candidates</a>
+                <a href="/getcandidate">Get Candidates</a>
               </div>
             </div>
             <div class="but dropdown">
               <button class="dropbtn">ADD</button>
               <div class="dropdown-content">
-                <a href="/">Add Questions</a>
+                <a href="/addques">Add Questions</a>
                 <hr style={{color:"white"}}/>
-                <a href="/">Add Feedback Questions</a>
+                <a href="/addfeedbackques">Add Feedback Questions</a>
                 <hr style={{color:"white"}}/>
-                <a href="/">Add Candidates</a>
+                <Link to="/addcandidate">Add Candidates</Link>
               </div>
             </div>
-            <button className="but leaderboard"><p className='buttonText'>LEADERBOARD</p></button>
+            <Link to="/leaderboard">
+            <button  className="but leaderboard"><p className='buttonText'>LEADERBOARD</p></button>
+            </Link>
             <PowerSettingsNewIcon className="but logoutBtn" style={{color:'white',  fontSize:23 }}/>
           </div>
        </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from './compo/navbar/Navbar'
+import Navbar from './navbar/Navbar'
 import "./Admin.css"
 import Add from './add/addQuestions/Add'
 import Homepage from './homepage/Homepage'
@@ -19,9 +19,12 @@ import GetFeedbackQ from './get/GetFeedbackQ'
 function Admin() {
   return (
     <>
-    <Homepage/>
+    {/* <Homepage/> */}
+    
     <BrowserRouter>
+    <Navbar/>
     <Routes>
+      <Route path="/" element={<Homepage/>} />
       <Route path ='/getques' element={<GetQ/>} />
       <Route path ='/getfeedbackques' element={<GetFeedbackQ/>} />
       <Route path ='/getcandidate' element={<GetCandidate/>} />
