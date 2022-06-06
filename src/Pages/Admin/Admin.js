@@ -22,7 +22,7 @@ function Admin() {
     {/* <Homepage/> */}
     
     <BrowserRouter>
-    <Navbar/>
+    {/* <Navbar/> */}
     <Routes>
       <Route path="/homepage" element={<Homepage/>} />
       <Route path ='/getques' element={<GetQ/>} />

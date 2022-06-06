@@ -8,7 +8,7 @@ function Homepage() {
   return (
       <>
       <div className="homepage">
-        {/* <Navbar/> */}
+        <Navbar/>
         <div className="box">
           <Card className='card'>
             <table className="table">
