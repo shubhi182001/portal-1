@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const Protectedroutes = (props) => {
@@ -8,11 +8,15 @@ const Protectedroutes = (props) => {
     {
         let login = localStorage.getItem('login');
         let instruct = localStorage.getItem('instruct');
+        let feedback = localStorage.getItem('feedback');
         if(!login){
            navigate('/')
         }
         else if(!instruct){
             navigate('/instructions')
+        }
+        else if(!feedback){
+            navigate('/feedback')
         }
     
     },[])
