@@ -13,6 +13,7 @@ import Leaderboard from './leaderboard/Leaderboard'
 import GetQ from './get/GetQ'
 import GetCandidate from './get/GetCandidate'
 import GetFeedbackQ from './get/GetFeedbackQ'
+import EditQ from './editQ/EditQ'
 
 
 function Admin() {
@@ -23,6 +24,7 @@ function Admin() {
     <Routes>
       <Route path="/homepage" element={<Homepage/>} />
       <Route path ='/getques' element={<GetQ/>} />
+      <Route path='/editq' element={<EditQ/>} />
       <Route path ='/getfeedbackques' element={<GetFeedbackQ/>} />
       <Route path ='/getcandidate' element={<GetCandidate/>} />
       <Route path='/addques' element={<Add/>} />
