@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Feedback.css'
-import {Button} from "@mui/material";
+import { Button } from "@mui/material";
 // import AppBar from '@mui/material/AppBar';
 // import Toolbar from '@mui/material/Toolbar';
 // import {Grid} from "@mui/material";
@@ -12,11 +12,8 @@ import FormLabel from '@mui/material/FormLabel';
 // import { SignalCellularNull } from '@mui/icons-material';
 
 const Feedback = () => {
-  const [valueq1,setValueq1]=useState(null);
-  const [valueq2,setValueq2]=useState(null);
-  const [valueq3,setValueq3]=useState(null);
-  const [valueq4,setValueq4]=useState(null);
-  
+  let data=[];
+  const [ans, setAns] = useState([]);
   let que = [
     "How easy was to navigate through the website?",
     "How would you rate the questions based on their difficulty level?",
@@ -24,105 +21,73 @@ const Feedback = () => {
     "Rate your overall experience.",
 
   ]
-  const validateRadio = (valueq1,valueq2,valueq3,valueq4) => {
-    
-    if( valueq1===null){
-      window.alert("Select all the fields")
-      console.log("a")
+  const validateRadio = (data) => {
+    if(data.length == 0){
+      alert("Complete all fields");
+      return;
     }
-    else if (valueq2===null){
-      window.alert("Select all the fields")
-      console.log("b")
+    let count = 0;
+    for (let element of data) {
+      if (parseInt(element) > 0) {
+        count = count + 1;
+      }
     }
-    else if (valueq3===null){
-      window.alert("Select all the fields")
-      console.log("c")
+    if (count == 4) {
+      console.log("Send");
     }
-    else if (valueq4===null){
-      window.alert("Select all the fields")
-      console.log("d")
-    }
-    else{
-      console.log("send")
+    else {
+      alert("Complete all fields");
     }
 
-    
-  } 
-  
-  
-  const Submit =async (e)=>{
-    e.preventDefault();
-    validateRadio(valueq1,valueq2,valueq3,valueq4);
-    
+
   }
-  
-  
+  const handle = (e) => {
+    data = ans;
+    data[e.target.name] = e.target.value;
+    console.log(data);
+  }
+  const Submit = async (e) => {
+    e.preventDefault();
+    validateRadio(data);
+  }
   return (
     <>
-    <div className='main'>
-    <div className="feedback_form">
-      <div className='appbar'>Feedback</div>
-      <div className="questions_container">
-        {<FormControl className="questions">
-          <FormLabel ><strong>{que[0]}</strong></FormLabel>
-          <RadioGroup className='radio' onChange={(e) => setValueq1(e.target.value)}
-            row
-          >
-            <FormControlLabel value="1" control={<Radio />} label="1"  />
-            <FormControlLabel value="2" control={<Radio />} label="2" />
-            <FormControlLabel value="3" control={<Radio />} label="3" />
-            <FormControlLabel value="4" control={<Radio />} label="4" />
-            <FormControlLabel value="5" control={<Radio />} label="5" />
+      <div className='main'>
+        <div className="feedback_form">
+          <div className='appbar'>Feedback</div>
 
-          </RadioGroup>
-        </FormControl>}
-        <FormControl className="questions">
-          <FormLabel ><strong>{que[1]}</strong></FormLabel>
-          <RadioGroup className='radio' onChange={(e) => setValueq2(e.target.value)}
-            row
-          >
-            <FormControlLabel value="1" control={<Radio />} label="1" />
-            <FormControlLabel value="2" control={<Radio />} label="2" />
-            <FormControlLabel value="3" control={<Radio />} label="3" />
-            <FormControlLabel value="4" control={<Radio />} label="4" />
-            <FormControlLabel value="5" control={<Radio />} label="5" />
+          <div className="questions_container">
+            {que.map((element, index) => {
+              return (
+                <FormControl className="questions">
+                  <FormLabel ><strong>{element}</strong></FormLabel>
+                  <RadioGroup className='radio' name={index} onChange={handle}
+                    row
+                  >
+                    <FormControlLabel value="1" control={<Radio />} label="1" />
+                    <FormControlLabel value="2" control={<Radio />} label="2" />
+                    <FormControlLabel value="3" control={<Radio />} label="3" />
+                    <FormControlLabel value="4" control={<Radio />} label="4" />
+                    <FormControlLabel value="5" control={<Radio />} label="5" />
 
-          </RadioGroup>
-        </FormControl>
-        <FormControl className="questions">
-          <FormLabel ><strong>{que[2]}</strong></FormLabel>
-          <RadioGroup className='radio' onChange={(e) => setValueq3(e.target.value)}
-            row
-          >
-            <FormControlLabel value="1" control={<Radio />} label="1" />
-            <FormControlLabel value="2" control={<Radio />} label="2" />
-            <FormControlLabel value="3" control={<Radio />} label="3" />
-            <FormControlLabel value="4" control={<Radio />} label="4" />
-            <FormControlLabel value="5" control={<Radio />} label="5" />
+                  </RadioGroup>
 
-          </RadioGroup>
-        </FormControl>
-        <FormControl className="questions">
-          <FormLabel ><strong>{que[3]}</strong></FormLabel>
-          <RadioGroup className='radio'   onChange={(e) => setValueq4(e.target.value)}
-            row
-          >
-            <FormControlLabel value="1" control={<Radio />} label="1" />
-            <FormControlLabel value="2" control={<Radio />} label="2" />
-            <FormControlLabel value="3" control={<Radio />} label="3" />
-            <FormControlLabel value="4" control={<Radio />} label="4" />
-            <FormControlLabel value="5" control={<Radio />} label="5" />
+                </FormControl>
+              )
+            })}
+            <div className='text-container'>
+              <textarea placeholder="Write something..." className='text'/>
 
-          </RadioGroup>
-        </FormControl>
-        <div className= "button">
+            </div>
+            <div className="button">
 
-        <Button id='btn'  size="large" type="submit" variant="contained" onClick={Submit}><b className='btncolor'>Submit</b></Button>
+              <Button id='btn' size="large" type="submit" variant="contained" onClick={Submit}><b className='btncolor'>Submit</b></Button>
+            </div>
+            
+          </div>
+
         </div>
       </div>
-      
-    </div>
-    </div>
     </>
   )
 }
