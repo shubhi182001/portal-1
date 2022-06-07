@@ -2,4 +2,8 @@
     margin: 0;
     padding: 0;
 }
-
+.admin_body{
+    height: 100vh;
+    background: url("../../Images/User/background.svg");
+    background-size: 100% 100%;
+}

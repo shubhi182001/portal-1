@@ -1,5 +1,4 @@
 import React from 'react'
-import Navbar from './navbar/Navbar'
 import "./Admin.css"
 import Add from './add/addQuestions/Add'
 import Homepage from './homepage/Homepage'
@@ -19,10 +18,8 @@ import GetFeedbackQ from './get/GetFeedbackQ'
 function Admin() {
   return (
     <>
-    {/* <Homepage/> */}
-    
+    <div className="admin_body">
     <BrowserRouter>
-    {/* <Navbar/> */}
     <Routes>
       <Route path="/homepage" element={<Homepage/>} />
       <Route path ='/getques' element={<GetQ/>} />
@@ -34,6 +31,7 @@ function Admin() {
       <Route path='/leaderboard' element={<Leaderboard/>}/>
     </Routes>
     </BrowserRouter>
+    </div>
     </>
   )
 }

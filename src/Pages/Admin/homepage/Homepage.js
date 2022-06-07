@@ -12,6 +12,7 @@ function Homepage() {
         <div className="box">
           <Card className='card'>
             <table className="table">
+              <tbody>
               <tr>
                 <td className='field'>Total Registerations</td>
                 <td className='value' value="Registerations">4</td>
@@ -32,6 +33,7 @@ function Homepage() {
                 <td className='field'>Currently Active Users</td>
                 <td className='value' value="ActiveUsers">4</td>
               </tr>
+              </tbody>
             </table>
           </Card>
         </div>
