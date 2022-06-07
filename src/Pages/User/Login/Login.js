@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Login.css";
 // import HiOutlineHashtag from "react-icons"
+import Logocsi from "../../../Images/User/Logocsi.svg"
 import computers from "../../../Images/User/computers.png";
+import Ellipse from "../../../Images/User/Ellipse.svg"
+import Group from "../../../Images/User/Group.svg"
+import Login_Page_start from "../../../Images/User/Login_Page_start.svg"
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -11,7 +15,6 @@ import InputAdornment from "@mui/material/InputAdornment";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [studentNo, setStudentNo] = useState("");
   const [password, setPassword] = useState("");
@@ -73,31 +76,24 @@ const Login = () => {
     e.preventDefault();
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
-    localStorage.setItem('login', true);
-    navigate('/instructions')
-  }
-  const navigate = useNavigate();
-  useEffect(()=>
-    {
-        let login = localStorage.getItem('login');
-  
-        if(login){
-           navigate('/instructions')
-        }
-        
-    },[]);
+  };
   return (
     <div className="form_body">
-      {/* <AccountCircleIcon className="admin_icon" /> */}
+      <div className="logo">
+        <img src={Logocsi} alt="none" className="logocsi"/>
+      </div>
       <form className="form_container">
+      <img src={Ellipse} className="admin_icon" />
+      <img src={Group} className="admin_group" />
         <div className="icon_container">
           <div className="icon">
+            <p className="bars"></p>
             <TagIcon />
           </div>
           <TextField
             label="Student No."
             variant="outlined"
-            size="Normal"
+            size="small"
             className="input_field"
             type="text"
             error={errorStudentType ? true : false}
@@ -116,13 +112,14 @@ const Login = () => {
         </div>
         <div className="icon_container">
           <div className="icon">
+            <p className="bars"></p>
             <LockOutlinedIcon />
           </div>
           <TextField
             my={10}
             label="password"
             variant="outlined"
-            size="large"
+            size="small"
             className="input_field"
             error={PasswordErrorType ? true : ""}
             onBlur={passwordFocus}
@@ -163,7 +160,7 @@ const Login = () => {
         </div>
       </form>
       <div className="img">
-        <img src={computers} alt="none" />
+        <img src={computers} alt="none" className="computers"/>
       </div>
     </div>
   );
