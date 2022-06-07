@@ -12,6 +12,7 @@ import FormLabel from '@mui/material/FormLabel';
 // import { SignalCellularNull } from '@mui/icons-material';
 
 const Feedback = () => {
+  let data=[];
   const [ans, setAns] = useState([]);
   let que = [
     "How easy was to navigate through the website?",
@@ -21,6 +22,10 @@ const Feedback = () => {
 
   ]
   const validateRadio = (data) => {
+    if(data.length == 0){
+      alert("Complete all fields");
+      return;
+    }
     let count = 0;
     for (let element of data) {
       if (parseInt(element) > 0) {
@@ -36,7 +41,6 @@ const Feedback = () => {
 
 
   }
-  let data;
   const handle = (e) => {
     data = ans;
     data[e.target.name] = e.target.value;
