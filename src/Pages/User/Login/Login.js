@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.css";
 // import HiOutlineHashtag from "react-icons"
 import Logocsi from "../../../Images/User/Logocsi.svg"
@@ -15,6 +15,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [studentNo, setStudentNo] = useState("");
   const [password, setPassword] = useState("");
@@ -76,7 +77,20 @@ const Login = () => {
     e.preventDefault();
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
-  };
+    localStorage.setItem('login', true);
+
+    navigate('/instructions')
+  }
+  const navigate = useNavigate();
+  useEffect(()=>
+    {
+        let login = localStorage.getItem('login');
+  
+        if(login){
+           navigate('/instructions')
+        }
+        
+    },[]);
   return (
     <div className="form_body">
       <div className="logo">

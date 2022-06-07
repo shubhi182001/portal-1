@@ -18,6 +18,9 @@ const Protectedroutes = (props) => {
         else if(!feedback){
             navigate('/feedback')
         }
+        else{
+            navigate('/testwindow')
+        }
     
     },[])
   return (

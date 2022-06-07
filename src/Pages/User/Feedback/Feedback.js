@@ -52,6 +52,9 @@ const Feedback = () => {
     
       localStorage.setItem('feedback', true);
       navigate('/thankyou')
+      localStorage.removeItem('login', true);
+      localStorage.removeItem('instruct', true);
+      localStorage.removeItem('feedback', true);
     }
   }
   const handle = (e) => {

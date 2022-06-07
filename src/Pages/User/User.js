@@ -22,7 +22,7 @@ function App() {
      <BrowserRouter>    
     <Routes>
       <Route path ='/' element={<Login/>} />
-      <Route path ='/testwindow'  Component ={TestWindow} />
+      <Route path ='/testwindow'  element={<Protectedroutes Component ={TestWindow}/>} />
       <Route path ='/instructions' element={<Protectedroutes Component ={Instructions}/>} />
       <Route path ='/feedback' element={<Protectedroutes Component ={Feedback}/>} />
       <Route path='/thankyou' element={<Protectedroutes Component ={Thankyou}/>} />
