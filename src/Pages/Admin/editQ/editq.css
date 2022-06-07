@@ -1,0 +1,16 @@
+.edit{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.edit_text{
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    margin-top: 4%;
+    width: fit-content;
+    border: 3px solid black;
+    background-color: rgba(139, 143, 255, 1);
+}

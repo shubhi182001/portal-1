@@ -2,13 +2,8 @@
     margin: 0;
     padding: 0;
 }
-body{
-    background-color: rgb(213, 249, 249);
-}
-
-.card{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* width: 30%; */
+.admin_body{
+    height: 100vh;
+    background: url("../../Images/User/background.svg");
+    background-size: 100% 100%;
 }

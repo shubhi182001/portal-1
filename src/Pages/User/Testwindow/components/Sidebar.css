@@ -1,0 +1,25 @@
+.Sidebar_body{
+    height: 100vh;
+    width: 30%;
+  overflow: auto;
+  
+}
+.submit_button,.buttons_container,.heading,.time_section,.time_left{
+    border: 1px solid blue;
+}
+.time_left,.heading,.time_section{
+    width: 100%;
+}
+.buttons_container{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:30rem;
+}
+.buttons{
+    display: flex;
+    flex-wrap: wrap;
+    gap:2rem;
+}

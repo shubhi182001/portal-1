@@ -1,9 +1,15 @@
+import Navbar from '../navbar/Navbar'
+import {Link} from "react-router-dom"
 import React from 'react'
 
-const GetQ = () => {
+function GetQ() {
   return (
-    <div>GetQ</div>
+    <>
+    <Navbar/>
+    <Link to="/editq"><button> Edit </button></Link>
+    </>
   )
 }
 
 export default GetQ
+
