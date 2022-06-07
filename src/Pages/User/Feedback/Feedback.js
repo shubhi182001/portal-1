@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Feedback.css'
 import { Button } from "@mui/material";
 // import AppBar from '@mui/material/AppBar';
@@ -9,6 +9,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { useNavigate } from "react-router-dom";
 // import { SignalCellularNull } from '@mui/icons-material';
 
 const Feedback = () => {
@@ -22,7 +23,7 @@ const Feedback = () => {
 
   ]
   const validateRadio = (data) => {
-    if(data.length == 0){
+    if(data.length === 0){
       alert("Complete all fields");
       return;
     }
@@ -32,7 +33,7 @@ const Feedback = () => {
         count = count + 1;
       }
     }
-    if (count == 4) {
+    if (count === 4) {
       console.log("Send");
     }
     else {
@@ -49,7 +50,19 @@ const Feedback = () => {
   const Submit = async (e) => {
     e.preventDefault();
     validateRadio(data);
+    localStorage.setItem('feedback', true);
+    navigate('/thankyou')
   }
+  const navigate = useNavigate();
+  useEffect(()=>
+    {
+        let login = localStorage.getItem('feedback');
+  
+        if(login){
+           navigate('/thankyou')
+        }
+        
+    },[]);
   return (
     <>
       <div className='main'>
