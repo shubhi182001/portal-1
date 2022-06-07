@@ -4,20 +4,20 @@
   align-items: center;
   width:100vw;
   height: 100vh;
-    background: url("../../../Images/User/updt_background.svg");
-    background-size: 100% 100%;
-
+  background: url("../../../Images/User/updt_background.svg");
+  background-size: 100% 100%;
 }
 
-.logo{
-  display: flex;
+.logocsi{
+  top: -18rem;
+  margin-left: -15rem;
   /* border: 1px solid red; */
   height: 90px;
-  width: 100px;
-  margin-bottom: 40%;
-  margin-left: -13%;
-
+  width: 66px;
+  position: relative;
+  
 }
+
 
 
 .form_container {
@@ -26,44 +26,48 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 45vh;
+  height: 40vh;
   width: 25%;
-  box-shadow: 5px 5px 15px 0 gray;
+  box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.15);
   border-radius: 10px;
-  margin-top: 70px;
-  /* position: absolute; */
+  margin-top: 50px;
+  margin-left: -16rem;
+  column-gap: 2rem;
 }
 
 .admin_icon{
-  top:-1%;
+  top:29%;
   height: 70px;
   width: 60px;
   /* font-size: 400px; */
-  transform: scale(2);
+  transform: scale(1.5);
   /* border: 1px solid red; */
-  position: relative;
+  position: absolute;
 }
 
 .admin_group{
-  top:-22%;
+  top:28%;
   height: 80px;
   width: 60px;
-  transform: scale(1);
+  transform: scale(0.8);
   /* border: 1px solid red; */
-  position: relative;
+  position: absolute;
 }
 
 .icon_container {
   display: flex;
-  width: 60%;
+  width: 70%;
 
 }
 .icon {
   border:0.5px solid lightgray;
+  /* border: 1px red solid; */
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  width: 40px;
-  height: 37px;
+  /* border-bottom-right-radius: 5px; */
+  /* border-top-right-radius: 5px; */
+  width: 80px;
+  height: 39px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,7 +80,7 @@
   /* border-bottom-left-radius: 5px; */
   /* position: absolute; */
 width: 4px;
-margin-left: -1px;
+margin-left: 2px;
 margin-right: 1px;
 height: 33px;
 /* left: 250px; */
@@ -85,20 +89,24 @@ height: 33px;
 background: #00A3FF;
 border-radius: 5px;
 }
+
 .input_field {
-  width: 100%;
+  width: 200%;
   /* height: 50px; */
   font-size: 4rem;
+  /* margin-top: 6rem; */
   border-top-right-radius: 0px;
   border-bottom-left-radius: 0px;
 
 }
 
 .button_container{
+  /* border: 1px red solid; */
   display: flex;
-  margin-left: 50px;
-  margin-bottom:90px ;
-  margin-top: 30px;
+  margin-left: 4rem;
+  /* margin-bottom:1rem ; */
+  margin-top: 2px;
+  position: relative;
 }
 
 .btn{
@@ -107,7 +115,6 @@ border-radius: 5px;
   border-radius: 2px;
   width: 140px;
   display: flex;
-  margin-bottom: 30px;
 }
 
 .img{

@@ -13,17 +13,26 @@ import Thankyou from './Thankyoupage/Thankyou';
 import TestWindow from './Testwindow/Test';
 import Protectedroutes from './Protectedroutes';
 
+// import Test from './Testwindow/Test';
+
 function App() {
   return (   
-    <BrowserRouter>    
+    <> 
+   
+     <BrowserRouter>    
     <Routes>
       <Route path ='/' element={<Login/>} />
-      <Route path ='/testwindow' element={<Protectedroutes Component ={TestWindow}/>} />
+      <Route path ='/testwindow'  Component ={TestWindow} />
       <Route path ='/instructions' element={<Protectedroutes Component ={Instructions}/>} />
       <Route path ='/feedback' element={<Protectedroutes Component ={Feedback}/>} />
       <Route path='/thankyou' element={<Protectedroutes Component ={Thankyou}/>} />
     </Routes>
-    </BrowserRouter>
+    </BrowserRouter> 
+
+    </>
+ 
+   
+    
   );
 }
 
