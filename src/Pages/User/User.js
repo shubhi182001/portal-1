@@ -11,16 +11,17 @@ import Instructions from './Instruction/Instruction'
 import Feedback from './Feedback/Feedback';
 import Thankyou from './Thankyoupage/Thankyou';
 import TestWindow from './Testwindow/Test';
+import Protectedroutes from './Protectedroutes';
 
 function App() {
   return (   
     <BrowserRouter>    
     <Routes>
       <Route path ='/' element={<Login/>} />
-      <Route path ='/TestWindow' element={<TestWindow/>} />
-      <Route path ='/instructions' element={<Instructions/>} />
-      <Route path ='/feedback' element={<Feedback/>} />
-      <Route path='/thankyou' element={<Thankyou/>} />
+      <Route path ='/testwindow' element={<Protectedroutes Component ={TestWindow}/>} />
+      <Route path ='/instructions' element={<Protectedroutes Component ={Instructions}/>} />
+      <Route path ='/feedback' element={<Protectedroutes Component ={Feedback}/>} />
+      <Route path='/thankyou' element={<Protectedroutes Component ={Thankyou}/>} />
     </Routes>
     </BrowserRouter>
   );

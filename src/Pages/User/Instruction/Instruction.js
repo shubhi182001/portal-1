@@ -3,6 +3,7 @@ import { Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import instlogo from "../../../Images/User/inst_csilogo.png"
 import "./Instruction.css";
+import { useNavigate } from "react-router-dom";
 const Instruction = () => {
 
   const [chosenlang, setChosenlang] = useState("");
@@ -13,7 +14,22 @@ const Instruction = () => {
     if(chosenlang === ""){
       window.alert("Select any language first");
     }
+    else{
+    localStorage.setItem('instruct', true);
+
+    navigate('/testwindow')
+    }
   }
+  const navigate = useNavigate();
+  useEffect(()=>
+    {
+        let instruct = localStorage.getItem('instruct');
+  
+        if(instruct){
+           navigate('/testwindow')
+        }
+        
+    },[]);
 
   return (
     <div className="instructions">
