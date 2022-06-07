@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 const Feedback = () => {
   let data=[];
   const [ans, setAns] = useState([]);
+  const [sugg, setSugg] = useState("");
   let que = [
     "How easy was to navigate through the website?",
     "How would you rate the questions based on their difficulty level?",
@@ -42,6 +43,17 @@ const Feedback = () => {
 
 
   }
+  const validateSugg = (value)=>{
+    if (value===""){
+      window.alert("Please provide your valuable suggestion")
+
+    }
+    else{
+    
+      localStorage.setItem('feedback', true);
+      navigate('/thankyou')
+    }
+  }
   const handle = (e) => {
     data = ans;
     data[e.target.name] = e.target.value;
@@ -50,8 +62,9 @@ const Feedback = () => {
   const Submit = async (e) => {
     e.preventDefault();
     validateRadio(data);
-    localStorage.setItem('feedback', true);
-    navigate('/thankyou')
+    validateSugg(sugg);
+    // localStorage.setItem('feedback', true);
+    // navigate('/thankyou')
   }
   const navigate = useNavigate();
   useEffect(()=>
@@ -88,8 +101,12 @@ const Feedback = () => {
                 </FormControl>
               )
             })}
-            <div className='text-container'>
-              <textarea placeholder="Write something..." className='text'/>
+            <div className='text-container' >
+              <textarea placeholder="Write something..."
+               className='text' 
+               type="text" 
+               value = {sugg} 
+               onChange={(e) => setSugg(e.target.value)}/>
 
             </div>
             <div className="button">

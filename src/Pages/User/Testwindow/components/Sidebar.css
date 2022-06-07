@@ -23,3 +23,11 @@
     flex-wrap: wrap;
     gap:2rem;
 }
+.sidebar_button{
+    height: 50px;
+    width: 50px;
+    clip-path: polygon(50% 0%, 100% 0, 100% 99%, 0 99%, 0% 38%);
+    outline: none;
+    border: none;
+    background-color: green;
+}
