@@ -26,6 +26,8 @@ const Login = () => {
   const [focused, setFocused] = useState(false);
   const [studentNumberError, setStudentNumberError] = useState("");
   const [studentPasswordError, setStudentPasswordError] = useState("");
+  const [routepass,setRoutepass] = useState(false);
+  const [routename,setRoutename] = useState(false);
 
   const validateStudentNo = (value) => {
     let error;
@@ -33,11 +35,14 @@ const Login = () => {
     if (!value) {
       error = "Student Number is required";
       setErrorStudentType(true);
+      setRoutename(false);
     } else if (!regex.test(value)) {
       error = "Student number is not matched";
       setErrorStudentType(true);
+      setRoutename(false);
     } else {
       setErrorStudentType(false);
+      setRoutename(true);
     }
     return error;
   };
@@ -47,14 +52,25 @@ const Login = () => {
     if (!value) {
       error = "password is required";
       setPasswordErrorType(true);
+      setRoutepass(false);
     } else if (!regex.test(value)) {
       error = "Your password is firstname@studentno.";
       setPasswordErrorType(true);
+      setRoutepass(false);
     } else {
       setPasswordErrorType(false);
+      setRoutepass(true);
+
     }
     return error;
   };
+  const validateroute = (routepass,routename) =>{
+    if(routepass===true && routename===true){
+      localStorage.setItem('login', true);
+
+    navigate('/instructions')
+    }
+  }
   const studentFocus = (e) => {
     setFocused(true);
     setStudentNumberError(validateStudentNo(studentNo));
@@ -77,9 +93,11 @@ const Login = () => {
     e.preventDefault();
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
-    localStorage.setItem('login', true);
+    validateroute(routepass,routename);
+    console.log(routepass,routename);
+    // localStorage.setItem('login', true);
 
-    navigate('/instructions')
+    // navigate('/instructions')
   }
   const navigate = useNavigate();
   useEffect(()=>

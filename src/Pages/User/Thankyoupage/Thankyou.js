@@ -13,7 +13,7 @@ const Thankyou = () => {
            <div className='txt'>
            THANK YOU FOR PARTICIPATING
            <br></br>
-           You have been succesfully logged out.
+           You have been successfully logged out.
            </div>
         </div>
     </div>
