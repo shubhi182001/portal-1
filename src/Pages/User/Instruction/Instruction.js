@@ -2,8 +2,11 @@ import React, {useEffect,useState} from "react";
 import { Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import instlogo from "../../../Images/User/inst_csilogo.png"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./Instruction.css";
 import { useNavigate } from "react-router-dom";
+import { ColorizeRounded } from "@mui/icons-material";
 const Instruction = () => {
 
   const [chosenlang, setChosenlang] = useState("");
@@ -12,7 +15,9 @@ const Instruction = () => {
   const chkvalidate = (e) =>{
     e.preventDefault();
     if(chosenlang === ""){
-      window.alert("Select any language first");
+      toast.error("Select any language first",{
+        backgroundColor: "red"
+      });
     }
     else{
     localStorage.setItem('instruct', true);
@@ -79,6 +84,7 @@ const Instruction = () => {
           <Button  onClick={chkvalidate} endIcon={<ArrowForwardIcon/>} sx={{fontSize:20,width:250,marginBottom:5, height:50}} color="success" variant='contained'>Save & Next</Button>
         </div>
       </div>
+      <ToastContainer/>
     </div>
   );
 };
