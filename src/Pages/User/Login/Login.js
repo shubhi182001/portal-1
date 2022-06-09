@@ -149,7 +149,7 @@ const Login = () => {
           </div>
           <TextField
             my={10}
-            label="password"
+            label="Password"
             variant="outlined"
             size="small"
             className="input_field"
@@ -178,7 +178,7 @@ const Login = () => {
             <span>{studentPasswordError}</span>
           </div>
         </div>
-        <div className="icon_container">
+        <div className="icon_container2">
           <div className="button_container">
             <Button
               className="btn"
