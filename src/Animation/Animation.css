@@ -5,20 +5,23 @@
 }
 .body-i{
     /* background: url(./images/updt_background.svg) no-repeat center center fixed; */
-    background: url(./new-bg.svg) no-repeat ;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-     background-size: cover;
-     text-align: center;
+    /* background: url(./new-bg.svg) no-repeat ; */
+    
+    background: url(./new-bg2.svg)  ;
+    
+     text-align: center; 
+     width:100vw;
+  height: 100vh;
+  background-size: 100% 100%;
+
     
 }
 .body-i .anime-2 .logo-new{
     margin-left: auto;
     margin-right: auto;
     /* display: ; */
-    margin-top: 20%;
-    animation: enlarge  ease 7s  ;
+    margin-top: 0%;
+    animation: enlarge  ease 3s  ;
             animation-iteration-count: 1;
             animation-fill-mode: forwards;
            
@@ -26,23 +29,24 @@
 }
 @keyframes enlarge {
     0% {
-        transform: scale(0,0);
+        transform: scale(0,0)  ;
     }
     50% {
-        transform: scale(3,3)  translate(0,0);
+        transform: scale(2,2)  translate(0,140px);
     }
-    70%{
+    /* 70%{
         transform: scale(2,2);
-    }
+    } */
     100% {
-        transform: scale(1,1)  translate(-640px,-265px);
+        /* transform: scale(1,0.9)  translate(-644px,-9px); */
+        transform: scale(1,1)  translate(-982%,-1%);
         
     }
     
 }
-@-webkit-keyframes enlarge {
+/* @-webkit-keyframes enlarge {
     0% {
-        transform: scale(0,0);
+        transform: scale(0,0) ;
     }
     50% {
         transform: scale(3,3)  translate(0,0);
@@ -56,7 +60,7 @@
         
     }
     
-}
+} */
 
 
 

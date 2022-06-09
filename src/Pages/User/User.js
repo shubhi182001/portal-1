@@ -22,13 +22,13 @@ function App() {
   useEffect(()=>{
   setInterval(()=>{
   setShowComponent(!showComponent)
-  },7000);
+  },4000);
 },[]);
 
   useEffect(()=>{
     setInterval(()=>{
     setShowComponent2(!showComponent2)
-    },7000);
+    },4000);
   },[]);
 
 
