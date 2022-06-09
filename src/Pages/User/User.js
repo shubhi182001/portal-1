@@ -1,5 +1,5 @@
 import './User.css';
-import React from 'react';
+import React, { useEffect, useState }  from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -12,22 +12,41 @@ import Feedback from './Feedback/Feedback';
 import Thankyou from './Thankyoupage/Thankyou';
 import TestWindow from './Testwindow/Test';
 import Protectedroutes from './Protectedroutes';
+import Animation from '../../Animation/Animation';
 
-// import Test from './Testwindow/Test';
+import Test from './Testwindow/Test';
 
 function App() {
+  const[showComponent , setShowComponent] = useState(true);
+  const[showComponent2 , setShowComponent2] = useState(false);
+  useEffect(()=>{
+  setInterval(()=>{
+  setShowComponent(!showComponent)
+  },7000);
+},[]);
+
+  useEffect(()=>{
+    setInterval(()=>{
+    setShowComponent2(!showComponent2)
+    },7000);
+  },[]);
+
+
   return (   
     <> 
-   
-     <BrowserRouter>    
+   {/*<Test/> */} 
+
+  {showComponent && < Animation/>}
+   <BrowserRouter>    
     <Routes>
-      <Route path ='/' element={<Login/>} />
-      <Route path ='/testwindow'  element={<Protectedroutes Component ={TestWindow}/>} />
+     {showComponent2 && <Route path ='/' element={<Login/>} />} 
+    <Route path ='/testwindow'  element={<Protectedroutes Component ={TestWindow}/>} /> 
+      <Route path ='/testwindow'   Component ={TestWindow} />
       <Route path ='/instructions' element={<Protectedroutes Component ={Instructions}/>} />
-      <Route path ='/feedback' element={<Protectedroutes Component ={Feedback}/>} />
+     <Route path ='/feedback' element={<Protectedroutes Component ={Feedback}/>} /> 
       <Route path='/thankyou' element={<Protectedroutes Component ={Thankyou}/>} />
     </Routes>
-    </BrowserRouter> 
+    </BrowserRouter>   
 
     </>
  

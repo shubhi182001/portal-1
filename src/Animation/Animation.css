@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+.body-i{
+    /* background: url(./images/updt_background.svg) no-repeat center center fixed; */
+    background: url(./new-bg.svg) no-repeat ;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+     background-size: cover;
+     text-align: center;
+    
+}
+.body-i .anime-2 .logo-new{
+    margin-left: auto;
+    margin-right: auto;
+    /* display: ; */
+    margin-top: 20%;
+    animation: enlarge  ease 7s  ;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+           
+               
+}
+@keyframes enlarge {
+    0% {
+        transform: scale(0,0);
+    }
+    50% {
+        transform: scale(3,3)  translate(0,0);
+    }
+    70%{
+        transform: scale(2,2);
+    }
+    100% {
+        transform: scale(1,1)  translate(-640px,-265px);
+        
+    }
+    
+}
+@-webkit-keyframes enlarge {
+    0% {
+        transform: scale(0,0);
+    }
+    50% {
+        transform: scale(3,3)  translate(0,0);
+    }
+    70%{
+        transform: scale(2,2);
+    }
+    100% {
+        transform: scale(1,1)  translate(-640px,-265px);
+        display: none;
+        
+    }
+    
+}
+
+
+
+
+ 
