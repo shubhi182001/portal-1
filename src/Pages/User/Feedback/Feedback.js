@@ -11,10 +11,15 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { useNavigate } from "react-router-dom";
 // import { SignalCellularNull } from '@mui/icons-material';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Feedback = () => {
   let data=[];
   const [ans, setAns] = useState([]);
+  // const [sugg, setSugg] = useState("");
+  // const [route, setRoute] = useState(false);
+
   let que = [
     "How easy was to navigate through the website?",
     "How would you rate the questions based on their difficulty level?",
@@ -24,24 +29,72 @@ const Feedback = () => {
   ]
   const validateRadio = (data) => {
     if(data.length === 0){
-      alert("Complete all fields");
+      // alert("Complete all fields");
+      toast.error('Complete all fields', {
+        position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: true,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+        });
       return;
     }
     let count = 0;
-    for (let element of data) {
+    for (let element of data) {    //for of loop : loops through the values of an iterable object
       if (parseInt(element) > 0) {
         count = count + 1;
       }
     }
-    if (count === 4) {
+    if (count === que.length && (data[data.length-1].length!=0)) {
       console.log("Send");
+      // setRoute(true);
+      // console.log(route);
+      localStorage.setItem('feedback', true);
+      navigate('/thankyou')
+      localStorage.removeItem('login', true);
+      localStorage.removeItem('instruct', true);
+      localStorage.removeItem('feedback', true);
     }
     else {
-      alert("Complete all fields");
+      // alert("Complete all fields");
+      toast.error('Complete all fields', {
+        position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: true,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+        });
+      navigate('/thankyou')
+
     }
 
 
   }
+  // const validateSugg = (value)=>{
+  //   if (value===""){
+  //     window.alert("Please provide your valuable suggestion")
+  //     setRoute(false);
+
+  //   }
+  //   else{
+  //     setRoute(true);
+  //     console.log(route);
+      
+  //   }
+  // }
+  // const validateroutes = (route)=>{
+  //   if(route===true){
+  //     localStorage.setItem('feedback', true);
+  //     navigate('/thankyou')
+  //     localStorage.removeItem('login', true);
+  //     localStorage.removeItem('instruct', true);
+  //     localStorage.removeItem('feedback', true);
+  //   }
+  // }
   const handle = (e) => {
     data = ans;
     data[e.target.name] = e.target.value;
@@ -50,8 +103,10 @@ const Feedback = () => {
   const Submit = async (e) => {
     e.preventDefault();
     validateRadio(data);
-    localStorage.setItem('feedback', true);
-    navigate('/thankyou')
+    // validateSugg(sugg);
+    // validateroutes(route);
+    // localStorage.setItem('feedback', true);
+    // navigate('/thankyou')
   }
   const navigate = useNavigate();
   useEffect(()=>
@@ -88,8 +143,13 @@ const Feedback = () => {
                 </FormControl>
               )
             })}
-            <div className='text-container'>
-              <textarea placeholder="Write something..." className='text'/>
+            <div className='text-container' >
+              <textarea placeholder="Write something..."
+               className='text' 
+              //  type="text" 
+               name = {que.length}
+              //  value = {sugg} 
+               onChange={handle}></textarea>
 
             </div>
             <div className="button">
@@ -101,6 +161,16 @@ const Feedback = () => {
 
         </div>
       </div>
+      <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover />
     </>
   )
 }

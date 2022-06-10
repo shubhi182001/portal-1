@@ -24,4 +24,8 @@
   font-size: 16px;
   resize: none;
   color: #075594;
+  
+}
+#question-here:hover{
+  border: none;
 }

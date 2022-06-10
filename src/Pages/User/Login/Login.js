@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Login.css";
 // import HiOutlineHashtag from "react-icons"
+import Logocsi from "../../../Images/User/Logocsi.svg"
 import computers from "../../../Images/User/computers.png";
+import Ellipse from "../../../Images/User/Ellipse.svg"
+import Group from "../../../Images/User/Group.svg"
+import Login_Page_start from "../../../Images/User/Login_Page_start.svg"
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -12,6 +16,8 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toHaveFormValues } from "@testing-library/jest-dom/dist/matchers";
 const Login = () => {
   const [studentNo, setStudentNo] = useState("");
   const [password, setPassword] = useState("");
@@ -22,6 +28,8 @@ const Login = () => {
   const [focused, setFocused] = useState(false);
   const [studentNumberError, setStudentNumberError] = useState("");
   const [studentPasswordError, setStudentPasswordError] = useState("");
+  const [routepass,setRoutepass] = useState(false);
+  const [routename,setRoutename] = useState(false);
 
   const validateStudentNo = (value) => {
     let error;
@@ -29,11 +37,14 @@ const Login = () => {
     if (!value) {
       error = "Student Number is required";
       setErrorStudentType(true);
+      setRoutename(false);
     } else if (!regex.test(value)) {
       error = "Student number is not matched";
       setErrorStudentType(true);
+      setRoutename(false);
     } else {
       setErrorStudentType(false);
+      setRoutename(true);
     }
     return error;
   };
@@ -43,14 +54,25 @@ const Login = () => {
     if (!value) {
       error = "password is required";
       setPasswordErrorType(true);
+      setRoutepass(false);
     } else if (!regex.test(value)) {
       error = "Your password is firstname@studentno.";
       setPasswordErrorType(true);
+      setRoutepass(false);
     } else {
       setPasswordErrorType(false);
+      setRoutepass(true);
+
     }
     return error;
   };
+  const validateroute = (routepass,routename) =>{
+    if(routepass===true && routename===true){
+      localStorage.setItem('login', true);
+
+    navigate('/instructions')
+    }
+  }
   const studentFocus = (e) => {
     setFocused(true);
     setStudentNumberError(validateStudentNo(studentNo));
@@ -73,8 +95,27 @@ const Login = () => {
     e.preventDefault();
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
-    localStorage.setItem('login', true);
-    navigate('/instructions')
+    validateroute(routepass,routename);
+    console.log(routepass,routename);
+    axios
+        .post(
+          "https://csiportal.herokuapp.com/login",
+          {
+            // Email: values.Email,
+          data: { studentNum : studentNo,
+            password : password,
+          }
+}
+
+        )
+        .then((res) => {
+          console.log(res.data);
+        }).catch((err)=>{
+          console.log(err)
+        });
+    // localStorage.setItem('login', true);
+
+    // navigate('/instructions')
   }
   const navigate = useNavigate();
   useEffect(()=>
@@ -88,18 +129,24 @@ const Login = () => {
     },[]);
   return (
     <div className="form_body">
-      {/* <AccountCircleIcon className="admin_icon" /> */}
+      <div className="logo">
+        <img src={Logocsi} alt="none" className="logocsi"/>
+      </div>
       <form className="form_container">
+      <img src={Ellipse} className="admin_icon" />
+      <img src={Group} className="admin_group" />
         <div className="icon_container">
           <div className="icon">
+            <p className="bars"></p>
             <TagIcon />
           </div>
           <TextField
             label="Student No."
             variant="outlined"
-            size="Normal"
+            size="small"
             className="input_field"
             type="text"
+            name="studentNum"
             error={errorStudentType ? true : false}
             onBlur={studentFocus}
             focused={focused.tostring}
@@ -116,13 +163,15 @@ const Login = () => {
         </div>
         <div className="icon_container">
           <div className="icon">
+            <p className="bars"></p>
             <LockOutlinedIcon />
           </div>
           <TextField
             my={10}
-            label="password"
+            label="Password"
+            name="password"
             variant="outlined"
-            size="large"
+            size="small"
             className="input_field"
             error={PasswordErrorType ? true : ""}
             onBlur={passwordFocus}
@@ -149,7 +198,7 @@ const Login = () => {
             <span>{studentPasswordError}</span>
           </div>
         </div>
-        <div className="icon_container">
+        <div className="icon_container2">
           <div className="button_container">
             <Button
               className="btn"
@@ -163,7 +212,7 @@ const Login = () => {
         </div>
       </form>
       <div className="img">
-        <img src={computers} alt="none" />
+        <img src={computers} alt="none" className="computers"/>
       </div>
     </div>
   );
