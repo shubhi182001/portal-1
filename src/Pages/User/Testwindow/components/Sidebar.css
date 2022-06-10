@@ -9,6 +9,9 @@
 }
 .time_left,.heading,.time_section{
     width: 100%;
+    display:flex;
+    justify-content: center;
+    background: #DBDBDB;
 }
 .buttons_container{
     width: 100%;

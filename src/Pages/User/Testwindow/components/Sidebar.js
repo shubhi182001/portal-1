@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Sidebar.css'
 const Sidebar = () => {
+  const [hours,setHours]= useState();
+  const [minutes,setMinutes]= useState();
+  const [seconds,setSeconds]= useState();
   return (
     <div className='Sidebar_body'>
+      <div></div>
      <div className="time_left">Time left</div>
      <div className="time_section">11 : 00 : 00</div>
      <div className="heading">Questions</div>
