@@ -1,36 +1,116 @@
-.Sidebar_body{
-    height: 100vh;
-    width: 30%;
-  overflow: auto;
-  
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
 }
-.submit_button,.buttons_container,.heading,.time_section,.time_left{
-    border: 1px solid blue;
+.Sidebar_body {
+  width: 30%;
 }
+<<<<<<< HEAD
 .time_left,.heading,.time_section{
     width: 100%;
     display:flex;
     justify-content: center;
     background: #DBDBDB;
+=======
+.time_left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #dbdbdb;
+  height: 56px;
+>>>>>>> 9b98a66294853178af39770bfd736be415e2a9d7
 }
-.buttons_container{
-    width: 100%;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap:30rem;
+.time_left h1 {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: 0.1em;
 }
-.buttons{
-    display: flex;
-    flex-wrap: wrap;
-    gap:2rem;
+.time_measure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
-.sidebar_button{
-    height: 50px;
-    width: 50px;
-    clip-path: polygon(50% 0%, 100% 0, 100% 99%, 0 99%, 0% 38%);
-    outline: none;
-    border: none;
-    background-color: green;
+.time_counting2 {
+  display: flex;
+  flex-direction: column;
 }
+.time_num {
+  margin-top: 22px;
+  width: 71px;
+  height: 60px;
+  border-radius: 10px;
+  background: #9facff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: 0.1em;
+}
+.time_text {
+  margin-top: 7px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.time_head {
+  margin-top: 43px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 56px;
+  background: #dbdbdb;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: 0.1em;
+}
+
+/* 
+.Sidebar_body {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid red;
+  width: 30%;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+}
+.text-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border:1px solid red; */
+/* width:100%;
+} */
+/* 
+.time_left {
+  height: 3.5rem;
+  background-color: #e5e5e5;
+  width: 100%;
+}
+.sidebar_button {
+  height: 50px;
+  width: 50px;
+  clip-path: polygon(50% 0%, 100% 0, 100% 99%, 0 99%, 0% 38%);
+  outline: none;
+  border: none;
+  background-color: green;
+} */

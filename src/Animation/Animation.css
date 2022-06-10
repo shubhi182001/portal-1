@@ -35,10 +35,14 @@
         left:45%;
     }
     50% {
+<<<<<<< HEAD
         transform: scale(1,1);
         position:fixed;
         top:45%;
         left:45%;
+=======
+        transform: scale(2,2)  translate(0,8rem);
+>>>>>>> 9b98a66294853178af39770bfd736be415e2a9d7
     }
     75%{
         transform: scale(2,2);

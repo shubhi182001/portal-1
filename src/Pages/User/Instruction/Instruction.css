@@ -9,6 +9,9 @@
     height: 100vh;
     overflow:auto;
 }
+html{
+    /* font-size: ; */
+}
 .inst_container{
     background-color: #fff;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
