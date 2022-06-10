@@ -1,10 +1,12 @@
 import React from 'react'
 import Navbar from '../../navbar/Navbar'
+import { Link } from 'react-router-dom'
+
 const GetQ = () => {
   return (
     <>
     <Navbar/>
-    <div>getQ</div>
+    <Link to="/editq"> <button>getQ</button> </Link>
     </>
   )
 }
