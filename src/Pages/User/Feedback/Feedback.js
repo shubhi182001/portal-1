@@ -42,7 +42,7 @@ progress: undefined,
       return;
     }
     let count = 0;
-    for (let element of data) {
+    for (let element of data) {    //for of loop : loops through the values of an iterable object
       if (parseInt(element) > 0) {
         count = count + 1;
       }
@@ -68,6 +68,8 @@ pauseOnHover: true,
 draggable: true,
 progress: undefined,
         });
+      navigate('/thankyou')
+
     }
 
 
