@@ -15,9 +15,7 @@ const Instruction = () => {
   const chkvalidate = (e) =>{
     e.preventDefault();
     if(chosenlang === ""){
-      toast.error("Select any language first",{
-        backgroundColor: "red"
-      });
+      toast.error("Select any language first");
     }
     else{
     localStorage.setItem('instruct', true);
