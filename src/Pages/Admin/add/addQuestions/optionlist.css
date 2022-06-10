@@ -10,10 +10,6 @@
     background-color:rgb(210, 231, 248);
 }
 
-.option-list{
-   
-    
-}
 .s-class{
     padding: 0px 10px;
 
@@ -28,9 +24,7 @@
 .item-3{
   flex: 1;
 }
-.option-item{
-   
-}
+
 li{
     list-style: none;
 }

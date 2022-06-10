@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import "./Sidebar.css";
 const Sidebar = () => {
   const [hours,setHours]= useState(2);
