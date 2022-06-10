@@ -9,20 +9,12 @@
 .Sidebar_body {
   width: 30%;
 }
-<<<<<<< HEAD
-.time_left,.heading,.time_section{
-    width: 100%;
-    display:flex;
-    justify-content: center;
-    background: #DBDBDB;
-=======
 .time_left {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #dbdbdb;
   height: 56px;
->>>>>>> 9b98a66294853178af39770bfd736be415e2a9d7
 }
 .time_left h1 {
   font-family: "Montserrat";
