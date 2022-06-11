@@ -16,6 +16,8 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+// import { toHaveFormValues } from "@testing-library/jest-dom/dist/matchers";
 const Login = () => {
   const [studentNo, setStudentNo] = useState("");
   const [password, setPassword] = useState("");
@@ -95,6 +97,23 @@ const Login = () => {
     setStudentNumberError(validateStudentNo(studentNo));
     validateroute(routepass,routename);
     console.log(routepass,routename);
+    axios
+        .post(
+          "https://csiportal.herokuapp.com/instruction",
+          {
+          
+            Headers: "application/json",
+          data: { studentNum : studentNo,
+            password : password,
+          }
+}
+
+        )
+        .then((res) => {
+          console.log(res.data);
+        }).catch((err)=>{
+          console.log(err)
+        });
     // localStorage.setItem('login', true);
 
     // navigate('/instructions')
@@ -128,6 +147,7 @@ const Login = () => {
             size="small"
             className="input_field"
             type="text"
+            name="studentNum"
             error={errorStudentType ? true : false}
             onBlur={studentFocus}
             focused={focused.tostring}
@@ -149,7 +169,8 @@ const Login = () => {
           </div>
           <TextField
             my={10}
-            label="password"
+            label="Password"
+            name="password"
             variant="outlined"
             size="small"
             className="input_field"
@@ -178,7 +199,7 @@ const Login = () => {
             <span>{studentPasswordError}</span>
           </div>
         </div>
-        <div className="icon_container">
+        <div className="icon_container2">
           <div className="button_container">
             <Button
               className="btn"

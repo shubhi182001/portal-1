@@ -10,9 +10,9 @@ import {
   Route,
 } from "react-router-dom";
 import Leaderboard from './leaderboard/Leaderboard'
-import GetQ from './get/GetQ'
-import GetCandidate from './get/GetCandidate'
-import GetFeedbackQ from './get/GetFeedbackQ'
+import GetQ from "./Get/GetQuestions/GetQ"
+import GetCandidate from "./Get/GetCandidate/GetCandidate"
+import GetFeedbackQ from "./Get/GetFeedback/Getfeedback"
 import EditQ from './editQ/EditQ'
 
 
@@ -22,7 +22,7 @@ function Admin() {
     <div className="admin_body">
     <BrowserRouter>
     <Routes>
-      <Route path="/homepage" element={<Homepage/>} />
+      <Route path='/homepage' element={<Homepage/>} />
       <Route path ='/getques' element={<GetQ/>} />
       <Route path='/editq' element={<EditQ/>} />
       <Route path ='/getfeedbackques' element={<GetFeedbackQ/>} />

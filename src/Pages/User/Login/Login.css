@@ -9,12 +9,13 @@
 }
 
 .logocsi{
-  top: -18rem;
-  margin-left: -15rem;
+  /* top: -22rem; */
+  top: 1rem;
+  left: 1rem;
   /* border: 1px solid red; */
   height: 90px;
   width: 66px;
-  position: relative;
+  position: fixed;
   
 }
 
@@ -33,7 +34,7 @@
   margin-top: 50px;
   margin-left: -16rem;
   column-gap: 2rem;
-  animation: fadein  2s ;
+  animation: fadein 2s ease;
   animation-iteration-count: 1;
 }
 
@@ -105,7 +106,7 @@ border-radius: 5px;
 .button_container{
   /* border: 1px red solid; */
   display: flex;
-  margin-left: 4rem;
+  /* margin-left: 4rem; */
   /* margin-bottom:1rem ; */
   margin-top: 2px;
   position: relative;
@@ -123,7 +124,7 @@ border-radius: 5px;
   /* border: 1px solid blue; */
   margin-right: -7rem;
   margin-bottom: 14rem;
-  animation: fadein  2s ;
+  animation: fadein 2s ease;
   animation-iteration-count: 1;
 }
 .computers{

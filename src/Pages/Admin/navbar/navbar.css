@@ -37,7 +37,6 @@
   margin: 0px 40px 0px 30px;
   font-family: 'Montserrat';
   font-weight: 600;
-  
   /* background: linear-gradient(180deg, #B4B7FC 0%, rgba(180, 183, 252, 0.22) 100%); */
   background-color: transparent;
   /* font-size: 15px; */
@@ -50,8 +49,8 @@
 
 .admin_text{
   text-decoration: none;
-  font-weight: 800;
-  color: rgb(245, 242, 242);
+  font-weight: 3000;
+  color: rgb(241, 232, 232);
   font-size: 20px;
   font-family: 'Montserrat';
   cursor: pointer;

@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./Instruction.css";
 import { useNavigate } from "react-router-dom";
 import { ColorizeRounded } from "@mui/icons-material";
+import axios from "axios";
 const Instruction = () => {
 
   const [chosenlang, setChosenlang] = useState("");
@@ -14,20 +15,36 @@ const Instruction = () => {
 
   const chkvalidate = (e) =>{
     e.preventDefault();
+    axios
+        .post(
+          "https://csi-examportal.herokuapp.com/",
+          {
+          
+          data: { lang : chosenlang,
+          }
+}
+
+        )
+        .then((res) => {
+          console.log(res.data);
+        }).catch((err)=>{
+          console.log(err)
+        });
     if(chosenlang === ""){
-      toast.error("Select any language first",{
-        backgroundColor: "red"
-      });
+      toast.error("Select any language first");
     }
     else{
     localStorage.setItem('instruct', true);
 
     navigate('/testwindow')
     }
+
+    
   }
   const navigate = useNavigate();
   useEffect(()=>
     {
+      
         let instruct = localStorage.getItem('instruct');
   
         if(instruct){
