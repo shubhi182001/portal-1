@@ -39,6 +39,7 @@ function App() {
   
    <BrowserRouter>    
     <Routes>
+      
     {showComponent && <Route path ='/' element={< Animation/>} />} 
      {showComponent2 && <Route path ='/' element={<Login/>} />} 
     <Route path ='/testwindow'  element={<Protectedroutes Component ={TestWindow}/>} /> 

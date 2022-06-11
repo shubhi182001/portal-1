@@ -17,7 +17,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { toHaveFormValues } from "@testing-library/jest-dom/dist/matchers";
+// import { toHaveFormValues } from "@testing-library/jest-dom/dist/matchers";
 const Login = () => {
   const [studentNo, setStudentNo] = useState("");
   const [password, setPassword] = useState("");
@@ -99,9 +99,10 @@ const Login = () => {
     console.log(routepass,routename);
     axios
         .post(
-          "https://csiportal.herokuapp.com/login",
+          "https://csiportal.herokuapp.com/instruction",
           {
-            // Email: values.Email,
+          
+            Headers: "application/json",
           data: { studentNum : studentNo,
             password : password,
           }
