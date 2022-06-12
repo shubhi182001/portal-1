@@ -10,9 +10,7 @@ import {
   Route,
 } from "react-router-dom";
 import Leaderboard from './leaderboard/Leaderboard'
-// import GetQ from "./Get/GetQuestions/GetQ"
 import GetQ from "./Get/GetQuestions/GetQ"
-// import GetCandidate from "./Get/GetCandidate/GetCandidate"
 import GetCandidate from "./Get/GetCandidate/GetCandidate"
 import GetFeedbackQ from "./Get/GetFeedback/Getfeedback"
 import EditQ from './editQ/EditQ'
