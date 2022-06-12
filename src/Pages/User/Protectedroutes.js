@@ -20,7 +20,7 @@ const Protectedroutes = (props) => {
     // else{
     //     navigate('/testwindow')
     // }
-    navigate("/testwindow");
+    navigate("/instructions");
   }, []);
   return (
     <div>

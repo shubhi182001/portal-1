@@ -99,11 +99,9 @@ const Login = () => {
     console.log(routepass,routename);
     axios
         .post(
-          "https://csiportal.herokuapp.com/instruction",
+          "https://csiportal.herokuapp.com/login",
           {
-          
-            Headers: "application/json",
-          data: { studentNum : studentNo,
+            data: { studentNum : studentNo,
             password : password,
           }
 }

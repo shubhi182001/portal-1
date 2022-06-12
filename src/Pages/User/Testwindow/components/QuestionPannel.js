@@ -28,19 +28,19 @@ const QuestionPannel = () => {
           <h2>What is your tech?</h2>
           <div className="que_options">
             <input type="radio" name="ans" value="" /> {" "}
-            <label for="">React</label>
+            <label htmlFor="">React</label>
           </div>
           <div className="que_options">
             <input type="radio" name="ans" value="" /> {" "}
-            <label for="">Flutter</label>
+            <label htmlFor="">Flutter</label>
           </div>
           <div className="que_options">
             <input type="radio" name="ans" value="" /> {" "}
-            <label for="">Kotlin</label>
+            <label htmlFor="">Kotlin</label>
           </div>
           <div className="que_options">
             <input type="radio" name="ans" value="" /> {" "}
-            <label for="">Ai & Ml</label>
+            <label htmlFor="">Ai & Ml</label>
           </div>
         </div>
       </div>
