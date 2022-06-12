@@ -2,9 +2,21 @@ import React, { useEffect } from "react";
 import Sidebar from "./components/Sidebar";
 import QuestionPannel from "./components/QuestionPannel";
 import axios from "axios";
+import Modal from "./.././Modal/Modal";
 import "./Test.css";
 import { useState } from "react";
 const Test = () => {
+  function modalalert(res)
+  {
+    console.log(res);
+    if(res===true){
+      <Modal/>
+    }
+    else{
+      
+    }
+     
+  }
   const [questions, setQuestions] = useState("no");
   useEffect(() => {
     fetchQuestion();
@@ -18,8 +30,9 @@ const Test = () => {
   }
   return (
     <div className="test_body">
+      
       <QuestionPannel questions={questions} />
-      <Sidebar />
+      <Sidebar data={modalalert} />
     </div>
   );
 };

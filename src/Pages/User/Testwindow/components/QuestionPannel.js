@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./QuestionPannel.css";
 import instlogo from "../../../../Images/User/inst_csilogo.png";
 
-const QuestionPannel = ({questions}) => {
+const QuestionPannel = ({questions}) => 
+{
   const [currentQuestion,setCurrentQuestion] = useState(0);
- 
- 
-  
+  const [select,setSelect] = useState("");
+  const button = [" 1"," 2"," 3"," 4"]
   
   return (
     <div className="Question_body">
@@ -30,23 +30,34 @@ const QuestionPannel = ({questions}) => {
         <div className="question_sec">
           <h1>Question {currentQuestion + 1}.</h1>
           <hr />
-          <h2>{questions[currentQuestion].question}</h2>
-          <div className="que_options">
+          <h2>Question</h2>
+          {/* <div className="que_options">
             <input type="radio" name="ans" value="" />
-            <label htmlFor="">React</label>
+            <label htmlFor="">s</label>
           </div>
           <div className="que_options">
             <input type="radio" name="ans" value="" />
-            <label htmlFor="">Flutter</label>
+            <label htmlFor="">s</label>
           </div>
           <div className="que_options">
             <input type="radio" name="ans" value="" />
-            <label htmlFor="">Kotlin</label>
+            <label htmlFor="">s</label>
           </div>
           <div className="que_options">
             <input type="radio" name="ans" value="" />
-            <label htmlFor="">Ai & Ml</label>
+            <label htmlFor="">f</label>
+          </div> */}
+          <div className="que_options">
+            {button.map(result =>(
+              <>
+              <input type="radio" className="que_options" value={result} name="btn" onChange={(e)=>setSelect(e.target.value)}/>
+              
+              <b>{result}</b>
+              <br></br>
+              </>
+            ))}
           </div>
+
         </div>
       </div>
       <div className="footer">
