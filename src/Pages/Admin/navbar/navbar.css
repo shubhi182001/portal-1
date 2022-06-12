@@ -49,10 +49,10 @@
 
 .admin_text{
   text-decoration: none;
-  font-weight: 3000;
+  font-weight: 2000 !important;
   color: rgb(241, 232, 232);
-  font-size: 20px;
-  font-family: 'Montserrat';
+  font-size: 25px;
+  font-family: 'Montserrat' !important;
   cursor: pointer;
 }
 
