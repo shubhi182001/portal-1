@@ -91,21 +91,21 @@ const Login = () => {
       setVisibleIcon(false);
     }, 1000);
   };
-  const Submit = (e) => {
+  const Submit = async (e) => {
     e.preventDefault();
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
+    console.log(studentNo,password)
     validateroute(routepass,routename);
     console.log(routepass,routename);
+    const data = {
+       studentNum : +(studentNo),
+      password : password,
+    }
     axios
         .post(
           "https://csiportal.herokuapp.com/login",
-          {
-            data: { studentNum : studentNo,
-            password : password,
-          }
-}
-
+        data
         )
         .then((res) => {
           console.log(res.data);

@@ -47,6 +47,14 @@ function EditQ() {
             <div>
                 <OptionList optionL={optionL} setOptionL={setOptionL}/>
             </div>
+            <div className='upload-cancel'>
+                <div className="upload">
+                    <button className='upload-btn'>Uplaod</button>
+                </div>
+                <div className="cancel">
+                    <button className='cancel-btn'>Cancel</button>
+                </div>
+            </div>
         </Card>
     </div>
     </>

@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./QuestionPannel.css";
 import instlogo from "../../../../Images/User/inst_csilogo.png";
 
-const QuestionPannel = () => {
+const QuestionPannel = ({questions}) => {
+  const [currentQuestion,setCurrentQuestion] = useState(0);
+  const [options,setOptions] = useState([]);
+ 
+  const Options = () => {
+    console.log(questions);
+    // setOptions([questions[currentQuestion].correct_answer,...questions[currentQuestion].incorrect_answers])
+  }
+  useEffect(() => {
+  
+    options();
+    
+  }, []);
+  
+  
   return (
     <div className="Question_body">
       <div className="wrap1">
@@ -23,23 +37,23 @@ const QuestionPannel = () => {
           <span id="divide5">C</span>
         </div>
         <div className="question_sec">
-          <h1>Question 1.</h1>
+          <h1>Question {currentQuestion + 1}.</h1>
           <hr />
-          <h2>What is your tech?</h2>
+          <h2>{questions[currentQuestion].question}</h2>
           <div className="que_options">
-            <input type="radio" name="ans" value="" /> {" "}
+            <input type="radio" name="ans" value="" />
             <label htmlFor="">React</label>
           </div>
           <div className="que_options">
-            <input type="radio" name="ans" value="" /> {" "}
+            <input type="radio" name="ans" value="" />
             <label htmlFor="">Flutter</label>
           </div>
           <div className="que_options">
-            <input type="radio" name="ans" value="" /> {" "}
+            <input type="radio" name="ans" value="" />
             <label htmlFor="">Kotlin</label>
           </div>
           <div className="que_options">
-            <input type="radio" name="ans" value="" /> {" "}
+            <input type="radio" name="ans" value="" />
             <label htmlFor="">Ai & Ml</label>
           </div>
         </div>
