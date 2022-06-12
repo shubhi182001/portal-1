@@ -16,14 +16,8 @@ const Instruction = () => {
   const chkvalidate = (e) =>{
     e.preventDefault();
     axios
-        .post(
-          "https://csi-examportal.herokuapp.com/",
-          {
-          
-          data: { lang : chosenlang,
-          }
-}
-
+        .patch(
+          "https://csiportal.herokuapp.com/instruction",chosenlang
         )
         .then((res) => {
           console.log(res.data);
