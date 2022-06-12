@@ -16,6 +16,7 @@ import GetQ from "./Get/GetQuestions/GetQ"
 import GetCandidate from "./Get/GetCandidate/GetCandidate"
 import GetFeedbackQ from "./Get/GetFeedback/Getfeedback"
 import EditQ from './editQ/EditQ'
+import Responses from './leaderboard/Responses'
 
 
 function Admin() {
@@ -33,6 +34,7 @@ function Admin() {
       <Route path='/addfeedbackques' element={<FeedbackQ/>} />
       <Route path='/addcandidate' element={<AddCandidate/>} /> 
       <Route path='/leaderboard' element={<Leaderboard/>}/>
+      <Route path='/responses' element={<Responses/>} />
     </Routes>
     </BrowserRouter>
     </div>
