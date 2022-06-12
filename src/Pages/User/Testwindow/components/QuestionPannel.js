@@ -4,17 +4,8 @@ import instlogo from "../../../../Images/User/inst_csilogo.png";
 
 const QuestionPannel = ({questions}) => {
   const [currentQuestion,setCurrentQuestion] = useState(0);
-  const [options,setOptions] = useState([]);
  
-  const Options = () => {
-    console.log(questions);
-    // setOptions([questions[currentQuestion].correct_answer,...questions[currentQuestion].incorrect_answers])
-  }
-  useEffect(() => {
-  
-    options();
-    
-  }, []);
+ 
   
   
   return (
