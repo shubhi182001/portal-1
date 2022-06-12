@@ -21,7 +21,7 @@ const Sidebar = () => {
 
     },1000)
     return ()=> clearInterval(timer);
-  })
+  },[])
   return (
     <div className="Sidebar_body">
       <div className="time_left">
