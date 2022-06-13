@@ -37,14 +37,14 @@ const Login = () => {
     if (!value) {
       error = "Student Number is required";
       setErrorStudentType(true);
-    //   setRoutename(false);
+      setRoutename(false);
     } else if (!regex.test(value)) {
       error = "Student number is not matched";
       setErrorStudentType(true);
-    //   setRoutename(false);
+      setRoutename(false);
     } else {
       setErrorStudentType(false);
-    //   setRoutename(true);
+      setRoutename(true);
     }
     return error;
   };
@@ -54,25 +54,25 @@ const Login = () => {
     if (!value) {
       error = "password is required";
       setPasswordErrorType(true);
-    //   setRoutepass(false);
+      setRoutepass(false);
     } else if (!regex.test(value)) {
       error = "Your password is firstname@studentno.";
       setPasswordErrorType(true);
-    //   setRoutepass(false);
+      setRoutepass(false);
     } else {
       setPasswordErrorType(false);
-    //   setRoutepass(true);
+      setRoutepass(true);
 
     }
     return error;
   };
-//   const validateroute = (routepass,routename) =>{
-//     if(routepass===true && routename===true){
-//       localStorage.setItem('login', true);
+  const validateroute = (routepass,routename) =>{
+    if(routepass===true && routename===true){
+      localStorage.setItem('login', true);
 
-//     navigate('/instructions')
-//     }
-//   }
+    navigate('/instructions')
+    }
+  }
   const studentFocus = (e) => {
     setFocused(true);
     setStudentNumberError(validateStudentNo(studentNo));
@@ -96,8 +96,8 @@ const Login = () => {
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
     console.log(studentNo,password)
-    // validateroute(routepass,routename);
-    // console.log(routepass,routename);
+    validateroute(routepass,routename);
+    console.log(routepass,routename);
     const data = {
        studentNum : +(studentNo),
       password : password,
@@ -116,16 +116,16 @@ const Login = () => {
 
     // navigate('/instructions')
   }
-//   const navigate = useNavigate();
-//   useEffect(()=>
-//     {
-//         let login = localStorage.getItem('login');
+  const navigate = useNavigate();
+  useEffect(()=>
+    {
+        let login = localStorage.getItem('login');
   
-//         if(login){
-//            navigate('/instructions')
-//         }
+        if(login){
+           navigate('/instructions')
+        }
         
-//     },[]);
+    },[]);
   return (
     <div className="form_body">
       <div className="logo">
