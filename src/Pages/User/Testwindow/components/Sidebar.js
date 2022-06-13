@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import "./Sidebar.css";
-const Sidebar = () => {
+import Modal from "./../../Modal/Modal";
+const Sidebar = ({questions}) => {
   // const [hours,setHours]= useState(2);
   // const [minutes,setMinutes]= useState(59);
   // const [seconds,setSeconds]= useState(59);
@@ -30,9 +31,10 @@ const Sidebar = () => {
   // },)
 
 
- const [hours,setHours]= useState(2);
+  const [hours,setHours]= useState(2);
   const [minutes,setMinutes]= useState(59);
   const [seconds,setSeconds]= useState(59);
+  const [show,setShow] =useState(false);
   
 
   let interval = useRef();
@@ -58,44 +60,51 @@ const Sidebar = () => {
     return () => {
       clearInterval(interval.current);
     };
-  });
+  },[]);
+
+  const Submit = (e) => {
+    e.preventDefault();
+    setShow(true);
+    // console.log("modal");
+  console.log(questions);
+    // {show && <Modal />}
+  }
 
 
    
-  return (
-    <div className="Sidebar_body">
-      <div className="part1">
-      <div className="time_left">
-        <h1>Time left</h1>
-      </div>
-      <div className="time_measure">
-        <div className="time_counting2">
-          <span className="time_num">{hours}</span>
-          <span className="time_text">hours</span>
-        </div>
-        <div className="time_counting2">
-          <span className="time_num">{minutes}</span>
-          <span className="time_text">min</span>
-        </div>
-        <div className="time_counting2">
-          <span className="time_num">{seconds}</span>
-          <span className="time_text">sec</span>
-        </div>
-      </div>
-        <div className="time_head">Questions</div>
+  return (<div className="Sidebar_body">
+  <div className="part1">
+  <div className="time_left">
+    <h1>Time left</h1>
+  </div>
+  <div className="time_measure">
+    <div className="time_counting2">
+      <span className="time_num">{hours}</span>
+      <span className="time_text">hours</span>
+    </div>
+    <div className="time_counting2">
+      <span className="time_num">{minutes}</span>
+      <span className="time_text">min</span>
+    </div>
+    <div className="time_counting2">
+      <span className="time_num">{seconds}</span>
+      <span className="time_text">sec</span>
+    </div>
+  </div>
+    <div className="time_head">Questions</div>
 
-        <div className="test_btn">
-          <button className="sidebar_button">1</button>
-          <button className="sidebar_button">1</button>
-          <button className="sidebar_button">1</button>
-          <button className="sidebar_button">1</button>
-          
-        </div>
-        </div>
-        <div className="side_footer">
-        <button className="submit_button">Submit Test</button>
-        </div>
-      </div>
+    <div className="test_btn">
+      <button className="sidebar_button">1</button>
+      <button className="sidebar_button">1</button>
+      <button className="sidebar_button">1</button>
+      <button className="sidebar_button">1</button>
+      
+    </div>
+    </div>
+    <div className="side_footer">
+    <button className="submit_button" onClick={Submit}>Submit Test</button>
+    </div>
+  </div>
   );
 };
 

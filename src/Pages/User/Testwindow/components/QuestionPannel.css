@@ -97,8 +97,11 @@
     margin-top: 20px; 
 }
 .que_options{
-    margin-left: 25px;
-    margin-top: 30px;
+    margin-left: 15px;
+    margin-top: 30px; 
+    vertical-align: bottom;
+     
+       
 }
 .que_options input{
     height: 20px;
