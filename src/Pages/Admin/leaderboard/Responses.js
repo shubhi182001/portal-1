@@ -44,6 +44,60 @@ function Responses() {
             <h5>status</h5>
             <p>Marked for review</p>
             <hr></hr>
+            <h5>Question 1</h5>
+            <p>Which tag is used for inserting image</p>
+            <h5>Answer 1</h5>
+            <p>img tag</p>
+            <h5>Correct</h5>
+            <p>Yes</p>
+            <h5>status</h5>
+            <p>Marked for review</p>
+            <hr></hr>
+            <h5>Question 1</h5>
+            <p>Which tag is used for inserting image</p>
+            <h5>Answer 1</h5>
+            <p>img tag</p>
+            <h5>Correct</h5>
+            <p>Yes</p>
+            <h5>status</h5>
+            <p>Marked for review</p>
+            <hr></hr>
+            <h5>Question 1</h5>
+            <p>Which tag is used for inserting image</p>
+            <h5>Answer 1</h5>
+            <p>img tag</p>
+            <h5>Correct</h5>
+            <p>Yes</p>
+            <h5>status</h5>
+            <p>Marked for review</p>
+            <hr></hr>
+            <h5>Question 1</h5>
+            <p>Which tag is used for inserting image</p>
+            <h5>Answer 1</h5>
+            <p>img tag</p>
+            <h5>Correct</h5>
+            <p>Yes</p>
+            <h5>status</h5>
+            <p>Marked for review</p>
+            <hr></hr>
+            <h5>Question 1</h5>
+            <p>Which tag is used for inserting image</p>
+            <h5>Answer 1</h5>
+            <p>img tag</p>
+            <h5>Correct</h5>
+            <p>Yes</p>
+            <h5>status</h5>
+            <p>Marked for review</p>
+            <hr></hr>
+            <h5>Question 1</h5>
+            <p>Which tag is used for inserting image</p>
+            <h5>Answer 1</h5>
+            <p>img tag</p>
+            <h5>Correct</h5>
+            <p>Yes</p>
+            <h5>status</h5>
+            <p>Marked for review</p>
+            <hr></hr>
         </div>
         {/* </Card> */}
     </div>
