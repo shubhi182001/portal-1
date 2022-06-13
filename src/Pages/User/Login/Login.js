@@ -31,6 +31,7 @@ const Login = () => {
   const [routepass,setRoutepass] = useState(false);
   const [routename,setRoutename] = useState(false);
 
+
   const validateStudentNo = (value) => {
     let error;
     const regex = /^[0-9]{7}$/;
@@ -66,11 +67,26 @@ const Login = () => {
     }
     return error;
   };
-  const validateroute = (routepass,routename) =>{
+  const validateroute1 = (routepass,routename) =>{
     if(routepass===true && routename===true){
-      localStorage.setItem('login', true);
+      localStorage.setItem('login1', true);
+      navigate('/homepage')
+      // setAdmin(true)
+      // console.log(admin)
+      
+      
 
-    navigate('/instructions')
+    }
+  }
+  const validateroute2 = (routepass,routename) =>{
+    if(routepass===true && routename===true){
+      localStorage.setItem('login2', true);
+      // setAdmin(false)
+      
+        navigate('/instructions')
+        // console.log(admin)
+      
+
     }
   }
   const studentFocus = (e) => {
@@ -96,8 +112,7 @@ const Login = () => {
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
     console.log(studentNo,password)
-    validateroute(routepass,routename);
-    console.log(routepass,routename);
+    // console.log(routepass,routename);
     const data = {
        studentNum : +(studentNo),
       password : password,
@@ -109,9 +124,29 @@ const Login = () => {
         )
         .then((res) => {
           console.log(res.data);
+          // console.log(res.data.cookie_token);
+          if(res.data.isAdmin==="true")
+          {
+
+          
+            validateroute1(routepass,routename);
+
+            // console.log("x")
+          }
+          else{
+          
+            validateroute2(routepass,routename);
+            // console.log("y")
+
+
+          }
+          // const cookie = res.data.cookie_token;
         }).catch((err)=>{
           console.log(err)
         });
+        
+        
+
     // localStorage.setItem('login', true);
 
     // navigate('/instructions')
@@ -119,10 +154,15 @@ const Login = () => {
   const navigate = useNavigate();
   useEffect(()=>
     {
-        let login = localStorage.getItem('login');
+        let login1 = localStorage.getItem('login1');
+        let login2 = localStorage.getItem('login2');
   
-        if(login){
-           navigate('/instructions')
+        if(login1){
+          navigate('/homepage')
+        }
+        else if (login2)
+        {
+          navigate('/instructions')
         }
         
     },[]);
