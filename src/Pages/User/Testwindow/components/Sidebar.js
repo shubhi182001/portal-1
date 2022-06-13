@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import "./Sidebar.css";
 import Modal from "./../../Modal/Modal";
-const Sidebar = (props) => {
+const Sidebar = ({questions}) => {
   // const [hours,setHours]= useState(2);
   // const [minutes,setMinutes]= useState(59);
   // const [seconds,setSeconds]= useState(59);
@@ -66,7 +66,7 @@ const Sidebar = (props) => {
     e.preventDefault();
     setShow(true);
     // console.log("modal");
-    props.data(show);
+  console.log(questions);
     // {show && <Modal />}
   }
 

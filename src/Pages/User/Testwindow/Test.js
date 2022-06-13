@@ -25,14 +25,13 @@ const Test = () => {
     let {data} = await axios.get("https://opentdb.com/api.php?amount=10");
     let question = data.results;
    setQuestions(question);
-
   // console.log(questions);
   }
   return (
     <div className="test_body">
       
       <QuestionPannel questions={questions} />
-      <Sidebar data={modalalert} />
+      <Sidebar questions={questions} />
     </div>
   );
 };
