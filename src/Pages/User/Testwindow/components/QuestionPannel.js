@@ -4,9 +4,29 @@ import instlogo from "../../../../Images/User/inst_csilogo.png";
 
 const QuestionPannel = ({questions}) => 
 {
-  const [currentQuestion,setCurrentQuestion] = useState(0);
+  const [currentQuestion,setCurrentQuestion] = useState(1);
   const [select,setSelect] = useState("");
-  const button = [" 1"," 2"," 3"," 4"]
+  // let button =[]
+  let button = [...questions[currentQuestion].incorrect_answers];
+  button.unshift(questions[currentQuestion].correct_answer);
+  // button.sort(()=>{
+  //  return (Math.random()-0.5);
+  // };
+  const [options,setOptions] = useState([]);
+
+  const Submit =()=>{
+    if(currentQuestion <11){
+      console.log(currentQuestion)
+      setCurrentQuestion(currentQuestion + 1);
+      // console.log(button)
+      console.log(questions[currentQuestion].correct_answer);
+    }
+    else{
+      setCurrentQuestion(0)
+      questions.length = 0
+    }
+ 
+  }
   
   return (
     <div className="Question_body">
@@ -28,9 +48,9 @@ const QuestionPannel = ({questions}) =>
           <span id="divide5">C</span>
         </div>
         <div className="question_sec">
-          <h1>Question {currentQuestion + 1}.</h1>
+          <h1>Question {currentQuestion}.</h1>
           <hr />
-          <h2>Question</h2>
+          <h2>{questions[currentQuestion].question}</h2>
           {/* <div className="que_options">
             <input type="radio" name="ans" value="" />
             <label htmlFor="">s</label>
@@ -48,7 +68,7 @@ const QuestionPannel = ({questions}) =>
             <label htmlFor="">f</label>
           </div> */}
           <div className="que_options">
-            {button.map(result =>(
+            {button.map((result) =>(
               <>
               <input type="radio" className="que_options" value={result} name="btn" onChange={(e)=>setSelect(e.target.value)}/>
               
@@ -63,7 +83,7 @@ const QuestionPannel = ({questions}) =>
       <div className="footer">
         <div className="foot_btn">
           <button id="mfr">Mark for Review</button>
-          <button id="s_n">Save & Next</button>
+          <button id="s_n" onClick={Submit}>Save & Next</button>
         </div>
         <div className="colors">
           <div className="color_sel">

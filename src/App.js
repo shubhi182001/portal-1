@@ -10,7 +10,7 @@ import Modal from './Pages/User/Modal/Modal';
 function App() {
   return (
     <div className="App">
-      {/* <Login/> */}
+      {/* < Login/> */}
       {/* <User/> */}
       {/* <Modal/> */}
       {/* <Admin/> */}
