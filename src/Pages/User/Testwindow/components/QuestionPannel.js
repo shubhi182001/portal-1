@@ -19,7 +19,7 @@ const QuestionPannel = ({questions}) =>
       console.log(currentQuestion)
       setCurrentQuestion(currentQuestion + 1);
       // console.log(button)
-      console.log(questions[currentQuestion].correct_answer);
+      // console.log(questions[currentQuestion].correct_answer);
     }
     else{
       setCurrentQuestion(0)
