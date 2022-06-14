@@ -8,10 +8,14 @@ import "./Instruction.css";
 import { useNavigate } from "react-router-dom";
 import { ColorizeRounded } from "@mui/icons-material";
 import axios from "axios";
+
+
 const Instruction = () => {
+
 
   const [chosenlang, setChosenlang] = useState("");
   console.log(chosenlang);
+ 
 
   const chkvalidate = (e) =>{
     e.preventDefault();
