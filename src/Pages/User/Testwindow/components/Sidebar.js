@@ -1,7 +1,9 @@
 import React, {useEffect, useRef, useState} from "react";
 import "./Sidebar.css";
 import Modal from "./../../Modal/Modal";
-const Sidebar = ({questions}) => {
+import { contextapi } from "../../../../components/Context";
+import { useContext } from "react";
+const Sidebar = () => {
   // const [hours,setHours]= useState(2);
   // const [minutes,setMinutes]= useState(59);
   // const [seconds,setSeconds]= useState(59);
@@ -30,7 +32,7 @@ const Sidebar = ({questions}) => {
   //   return ()=> clearInterval(timer);
   // },)
 
-
+const questions = useContext(contextapi);
   const [hours,setHours]= useState(2);
   const [minutes,setMinutes]= useState(59);
   const [seconds,setSeconds]= useState(59);
@@ -98,6 +100,11 @@ const Sidebar = ({questions}) => {
       <button className="sidebar_button">1</button>
       <button className="sidebar_button">1</button>
       <button className="sidebar_button">1</button>
+      {/* {
+        questions.map((x)=>{
+          return(<button className="sidebar_button" key={x}>{x}</button>)
+        })
+      } */}
       
     </div>
     </div>

@@ -13,8 +13,8 @@
   top: 1rem;
   left: 1rem;
   /* border: 1px solid red; */
-  height: 90px;
-  width: 66px;
+  height: 91px;
+  width: 67px;
   position: fixed;
   
 }
@@ -130,6 +130,7 @@ border-radius: 5px;
 .computers{
   height: 480px;
   width: 456px;
+  filter: drop-shadow(15px 15px 4px grey);
 }
 .errormsg_container{
   width: 60%;

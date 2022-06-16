@@ -5,10 +5,11 @@ const Protectedroutes = (props) => {
   const { Component } = props;
   const navigate = useNavigate();
   useEffect(() => {
-    let login = localStorage.getItem('login');
+    let login1 = localStorage.getItem('login1');
+    let login2 = localStorage.getItem('login2');
     let instruct = localStorage.getItem('instruct');
     let feedback = localStorage.getItem('feedback');
-    if(!login){
+    if(!login1 && !login2){
        navigate('/')
     }
     else if(!instruct){
