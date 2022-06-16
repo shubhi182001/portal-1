@@ -69,7 +69,7 @@ const QuestionPannel = () =>
             {button.map((result) =>(
               <>
               <input type="radio" className="que_options" value={result} name="btn" onChange={(e)=>setSelect(e.target.value)}/>
-              
+
               <b>{result}</b>
               <br></br>
               </>
