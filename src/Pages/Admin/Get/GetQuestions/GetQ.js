@@ -37,9 +37,11 @@ const GetQ = () => {
     <div className="get">
         <h1 className='get_text'>Questions</h1>
     </div>
+    <div className="searchWrap">
     <div className="searchbar">
       <input className='search' type="text" placeholder='Search' onChange={e => {setSearch(e.target.value)}} />
-      <SearchOutlinedIcon className='search-icon' style={{fontSize:"2.9rem", marginRight:"20px"}}/>
+      <SearchOutlinedIcon style={{fontSize:"38px", opacity:"45%"}}/>
+    </div>
     </div>
     <div className="getq">
       {getq.data && getq.data.length ?

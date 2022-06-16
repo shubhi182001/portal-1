@@ -2,6 +2,7 @@ import React from 'react'
 // import {Card} from "@mui/material"
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import { Checkbox } from '@mui/material';
 
 function Cardc({ques, reload}) {
     console.log(ques);
@@ -30,9 +31,12 @@ function Cardc({ques, reload}) {
                 {ques.options && ques.options.length?
                     ques.options.map((o)=>(
                         <>
-                        <input type="radio" className="option_box_radio" value={o.value} name='opt' />
-                        <b>{o.value}{o.Oid}</b>
-                        <br></br>
+                        <li>
+                        <div className="Gopt-list">
+                        <input type="Checkbox" className="Ginput" value={o.value} name='opt' />
+                        <span className="Ginputval">{o.value}</span>
+                        </div>
+                        </li>
                         </>
                     )): null
                 }

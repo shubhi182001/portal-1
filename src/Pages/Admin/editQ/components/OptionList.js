@@ -17,11 +17,6 @@ function OptionList({optionL, setOptionL}) {
                 <input type="text" value={option.title} className="opt-list" onChange={(e) => e.preventDefault()} />
                 <DeleteIcon style={{color:"#DE5947", marginLeft :"60%", cursor:"pointer"}}/>
               </div>
-                {/* <div>
-                <FormGroup>
-                  <FormControlLabel  control={<Checkbox /> }  className="opt-list" onChange={(e) => e.preventDefault()}   label={option.title}  />
-                </FormGroup>
-                </div> */}
             </li>
         ))}
     </div>

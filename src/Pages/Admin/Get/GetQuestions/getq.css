@@ -19,36 +19,60 @@
     background-color: rgba(139, 143, 255, 1);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-
-.searchbar{
+.searchWrap{
     width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
+    /* border: 2px solid; */
+}
+
+.searchbar{
+    border: 1px solid #C5C5C5;
+    box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    background: white;
+    height: 46px;
+    width: 40vw;
 }
 .search{
     font-size: large;
     padding: 10px;
     font-family: 'Montserrat';
-    margin-top: 20px;
-    margin-left: 20px;
-    /* margin: 20px; */
-    width: 40vw;
-    height: 46px;
+    width: 38vw;
+    border: none;
 }
+
+.getq{
+    margin: 2% 25%;
+    width: 50%;
+    height: 75vh;
+    
+    display: block;
+    overflow-y: scroll;
+    border: 0.5px solid #C5C5C5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.edit-Card{
+    padding: 20px;
+    border: none;
+}
+
+
 
 .question-field{
     margin: 12px;
     color: #000000;
     font-family: 'Roboto';
     font-weight: 200;
-    font-size: 17px;
+    font-size: large;
     /* text-align: center; */
 }
 .category{
     margin: 12px;
     color: #000000;
-    font-size: 17px;
+    font-size: large;
     font-family: 'Roboto';
     font-weight: 300;
 }
@@ -103,19 +127,16 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.search-icon{
-    cursor: pointer;
-    margin-left: 0.5px;
-    margin-top: 20px;
-    color: rgb(156, 156, 154);
-    border: 1px solid #7f7c7c;
-    border-left: none;
+.cardHr{
+    margin: 3% 9%;
+    width: 80%;
 }
-.option_box_radio{
+
+/* .option_box_radio{
     color: #5AD047;
     margin: 0px 10px;
-}
-input[type=radio] {
+} */
+/* input[type=radio] {
     border: 1px solid rgb(148, 110, 110);
     padding: 0.5em;
     -webkit-appearance: none;
@@ -123,30 +144,26 @@ input[type=radio] {
   input[type=radio]:checked {
     background: green;
     background-size: 9px 9px;
-  }
+  } */
 
-.getq{
-
+.Gopt-list{ 
     /* border: 2px solid; */
-    margin: 2% 25%;
-    width: 50%;
-    height: 75vh;
-    
-    display: block;
-    overflow-y: scroll;
-    border: 0.5px solid #C5C5C5;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 43vw;
+    background: rgba(241, 218, 254, 0.5);
+    border-radius: 100px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    margin: 15px 2px;
+}
+.Ginput{
+    /* border: 4px solid; */
+    width: 30px;
+    height: 17px;
+}
+.Ginputval{
+    font-size: large;
 }
 
-.cardHr{
-    margin: 3% 9%;
-    width: 80%;
-}
 
-.edit-Card{
-    /* margin-top: 20px; */
-    /* display: flex; */
-    /* align-items: center; */
-    padding: 20px;
-    border: none;
-}
+
