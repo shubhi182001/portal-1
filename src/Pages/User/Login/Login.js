@@ -124,7 +124,8 @@ const Login = () => {
         )
         .then((res) => {
           console.log(res.data);
-          // console.log(res.data.cookie_token);
+          console.log(res.data.cookie_token);
+          localStorage.setItem('cookie', res.data.cookie_token);
           if(res.data.isAdmin==="true")
           {
 
