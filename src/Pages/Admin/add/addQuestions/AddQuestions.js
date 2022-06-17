@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
-import OptionsList from './OptionsList'
 import './addquestions.css'
+
+
 
 const AddQuestions = () => {
     const [inputText, setInputText] = useState('');
     const [options, setOptions] = useState([]);
 
 
+
     const inputTextHandler = (e) => {
-        console.log(e.target.value);
         setInputText(e.target.value);
     }
 
@@ -19,6 +20,10 @@ const AddQuestions = () => {
         );
         setInputText(' ');
     }
+
+
+
+    console.log(options);
     return (
         <>
             <div className="add-questions-answers">
@@ -37,20 +42,42 @@ const AddQuestions = () => {
                         <div className="answers-and-options">
                             <div className="answers-section">
                                 <p>Answer</p>
-                                {/* <Form options={options} inputText={inputText} setOptions={setOptions} setInputText={setInputText} /> */}
                                 <form action="" onSubmit={submitHandler}>
                                     <div className="answer-input-field">
                                         <input value={inputText}
                                             onChange={inputTextHandler} type="text" name="" id="" placeholder='Press enter to add an option' />
-                                        {/* <button onClick={submitHandler} type="submit" >
-                                                       Answer
-                                          </button> */}
+
                                     </div>
 
                                 </form>
                             </div>
                             <div className="options-section">
-                                <OptionsList setOptions={setOptions} options={options} />
+                                <div className="option-container">
+                                    <ul className="option-list">
+                                        {options.map(option => (
+                                            <div className="option">
+                                                {/* <input type="checkbox" name="" id="" /> */}
+                                                <button className="s-class item-1 check" onClick={() => {
+                                                    setOptions(options.map((el) => {
+                                                        if (el.id === option.id) {
+                                                            return {
+                                                                ...el, isRight: !el.isRight
+                                                            }
+                                                        }
+                                                        return el;
+                                                    }))
+
+                                                }}>?</button>
+                                                <li className="s-class item-2 option-item">{option.text}</li>
+                                                <button className="s-class item-3  delete" onClick={() => {
+                                                    setOptions(options.filter(el => el.id !== option.id))
+                                                    console.log(options);
+                                                }}>*</button>
+
+                                            </div>
+                                        ))}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
 
@@ -62,3 +89,4 @@ const AddQuestions = () => {
 }
 
 export default AddQuestions
+
