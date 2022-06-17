@@ -9,15 +9,25 @@ import { useNavigate } from "react-router-dom";
 import { ColorizeRounded } from "@mui/icons-material";
 import axios from "axios";
 const Instruction = () => {
-
+  
+  const cook= localStorage.getItem('cookie')
   const [chosenlang, setChosenlang] = useState("");
   console.log(chosenlang);
+  // console.log(cook);
 
-  const chkvalidate = (e) =>{
+  const chkvalidate = async(e) =>{
     e.preventDefault();
-    axios
+    await axios
         .patch(
-          "https://csiportal.herokuapp.com/instruction",chosenlang
+          "https://csiportal.herokuapp.com/instruction",
+                
+              {
+              cookie_token:cook,
+              lang :chosenlang,
+              },
+              
+              
+            
         )
         .then((res) => {
           console.log(res.data);

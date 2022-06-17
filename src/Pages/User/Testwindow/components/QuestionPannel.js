@@ -7,8 +7,8 @@ const QuestionPannel = ({questions}) =>
   const [currentQuestion,setCurrentQuestion] = useState(1);
   const [select,setSelect] = useState("");
   // let button =[]
-  let button = [...questions[currentQuestion].incorrect_answers];
-  button.unshift(questions[currentQuestion].correct_answer);
+  let button = ['1','2','3','4'];
+  // button.unshift(questions[currentQuestion].correct_answer);
   // button.sort(()=>{
   //  return (Math.random()-0.5);
   // };
@@ -16,13 +16,13 @@ const QuestionPannel = ({questions}) =>
 
   const Submit =()=>{
     if(currentQuestion <11){
-      console.log(currentQuestion)
+      console.log(currentQuestion+1)
       setCurrentQuestion(currentQuestion + 1);
       // console.log(button)
       // console.log(questions[currentQuestion].correct_answer);
     }
     else{
-      setCurrentQuestion(0)
+      setCurrentQuestion(1)
       questions.length = 0
     }
  
@@ -50,7 +50,7 @@ const QuestionPannel = ({questions}) =>
         <div className="question_sec">
           <h1>Question {currentQuestion}.</h1>
           <hr />
-          <h2>{questions[currentQuestion].question}</h2>
+          <h2>sdifjsldkfjsdkfj</h2>
           {/* <div className="que_options">
             <input type="radio" name="ans" value="" />
             <label htmlFor="">s</label>
