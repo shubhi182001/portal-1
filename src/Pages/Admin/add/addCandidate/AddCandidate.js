@@ -4,15 +4,16 @@ import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 function AddCandidate() {
 
-    const [Name, setName] = useState("");
-    const [Studentno, setStudentno] = useState("");
-    const [Rollno, setRollno] = useState("");
-    const [Contactno, setContactno] = useState("");
-    const [Email, setEmail] = useState("");
+    const [name, setname] = useState("");
+    const [studentNum, setstudentNum] = useState("");
+    const [rollNum, setrollNum] = useState("");
+    const [mobileNum, setmobileNum] = useState("");
+    const [email, setemail] = useState("");
     const [OTP, setOTP] = useState("");
-    const [Branch, setBranch] = useState("");
-    const [Year, setYear] = useState("");
-    const [Residence, setResidence] = useState("");
+    const [branch, setbranch] = useState("");
+    const [year, setyear] = useState("");
+    const [gender, setgender] = useState("");
+    const [isHosteler, setisHosteler] = useState("");
     const [flag, setFlag] = useState(0);
     // const Navigate = useNavigate();
     var checkStatus = false;
@@ -20,15 +21,17 @@ function AddCandidate() {
 
     
     const [formErrors, setFormErrors] = useState({});
-    const [formErrorsEmail, setFormErrorsEmail] = useState({});
+    const [formErrorsemail, setFormErrorsemail] = useState({});
     const [formErrorsName, setformErrorsName] = useState({});
     const [formErrorsOTP, setformErrorsOTP] = useState({});
     
     const [formErrorsRoll, setformErrorsRoll] = useState({});
     
-    const [formErrorsStudentno, setformErrorsStudentno] = useState({});
-
-    const [formErrorsContactno, setformErrorsContactno] = useState({});
+    const [formErrorsstudentNum, setformErrorsstudentNum] = useState({});
+    const [formErrorsyear, setformErrorsyear] = useState({});
+    const [formErrorsbranch, setformErrorsbranch] = useState({});
+    const [formErrorsmobileNum, setformErrorsmobileNum] = useState({});
+    const [formErrorsgender, setformErrorsgender] = useState({});
     
     const [isSubmit, setIsSubmit] = useState(false);
     const [focused, setFocused] = useState(false);
@@ -42,36 +45,36 @@ function AddCandidate() {
       }
     }, [
       formErrors,
-      formErrorsContactno,
+      formErrorsmobileNum,
       formErrorsRoll,
-      formErrorsEmail,
+      formErrorsemail,
       isSubmit,
-      formErrorsStudentno,
+      formErrorsstudentNum,
       formErrorsOTP,
     ]);
   
-    const handleFocusEmail = (e) => {
+    const handleFocusemail = (e) => {
       setFocused(true);
-      setFormErrorsEmail(validateEmail(Email));
+      setFormErrorsemail(validateemail(email));
     };
   
     const handleFocusName = (e) => {
       setFocused(true);
-      setformErrorsName(validateName(Name));
+      setformErrorsName(validateName(name));
     };
   
-    const handleFocusRollNo = (e) => {
+    const handleFocusrollNum = (e) => {
       setFocused(true);
-      setformErrorsRoll(validateRoll(Rollno));
+      setformErrorsRoll(validateRoll(rollNum));
     };
   
-    const handleFocusContactno = (e) => {
+    const handleFocusmobileNum = (e) => {
       setFocused(true);
-      setformErrorsContactno(validateContactno(Contactno));
+      setformErrorsmobileNum(validatemobileNum(mobileNum));
     };
-    const handleFocusStudentno =(e)=>{
+    const handleFocusstudentNum =(e)=>{
         setFocused(true);
-        setformErrorsStudentno(validateStudentno(Studentno));
+        setformErrorsstudentNum(validatestudentNum(studentNum));
     };
     const handleFocusOTP=(e)=>{
         setOTP(true);
@@ -79,28 +82,34 @@ function AddCandidate() {
     };
     const submit = async (e) => {
       e.preventDefault();
-      setformErrorsName(validateName(Name));
-      setFormErrorsEmail(validateEmail(Email));
-      setformErrorsContactno(validateContactno(Contactno));
-      setformErrorsRoll(validateRoll(Rollno));
-      setformErrorsStudentno(validateStudentno(Studentno));
-      setformErrorsRoll(validateRoll(Rollno));
+      setformErrorsName(validateName(name));
+      setFormErrorsemail(validateemail(email));
+      setformErrorsmobileNum(validatemobileNum(mobileNum));
+      setformErrorsRoll(validateRoll(rollNum));
+      setformErrorsstudentNum(validatestudentNum(studentNum));
+      setformErrorsRoll(validateRoll(rollNum));
       setformErrorsOTP(validateOTP(OTP));
       setIsSubmit(true);
 
       console.log(flag);
       if (
-        Name &&
-        Rollno &&
-        Contactno &&
-        Email
+        name &&
+        rollNum &&
+        mobileNum &&
+        email
         // ReCAPTCHA
       ) {
         const newEntry = {
-          Name: Name,
-          Rollno: String(Rollno),
-          Contactno: Number(Contactno),
-          Email: Email,
+          name: name,
+          rollNum: String(rollNum),
+          mobileNum: Number(mobileNum),
+          email: email,
+          studentNum: Number(studentNum),
+          year: Number(year),
+          branch:branch,
+          gender:gender,
+          isHosteler: Boolean(isHosteler),
+
   
           // ReCAPTCHA
         };
@@ -136,20 +145,20 @@ function AddCandidate() {
         //     console.log(resp.data);
         //   })
       } 
-      else if ( !( Name &&
-      Rollno &&
-        Contactno &&
-        Email) ){
+      else if ( !( name &&
+      rollNum &&
+        mobileNum &&
+        email) ){
         window.alert("Enter Data in all Fields!!!");
       } 
-      else if ( !( Name &&
-        Rollno &&
-          Contactno &&
-          Email &&
-          Branch &&
-          Year &&
-          OTP &&
-          Residence) &&
+      else if ( !( name &&
+        rollNum &&
+          mobileNum &&
+          email &&
+          branch &&
+          year &&
+          studentNum &&
+          isHosteler) &&
           flag === 1) {
             window.alert("Enter Data in all Fields")
           }
@@ -166,14 +175,14 @@ function AddCandidate() {
 
 
 
-    const validateEmail = (value) => {
+    const validateemail = (value) => {
         const errors = {};
         let regex = new RegExp("[a-z0-9]+@akgec.ac.in");
     
         if (!value) {
-          errors.Email = "Email is required!";
+          errors.email = "email is required!";
         } else if (!regex.test(value)) {
-          errors.Email = "This is not a valid email format!";
+          errors.email = "This is not a valid email format!";
         } else {
           checkStatus = true;
         }
@@ -201,12 +210,12 @@ function AddCandidate() {
         let regex = new RegExp("^[0-9D-d]+$");
         let regexi = new RegExp("^[0-9D-d]{7,7}$");
         if (!value) {
-          errors.Rollno = "Student number is required!";
+          errors.rollNum = "Student number is required!";
         } else if (!regex.test(value)) {
-          errors.Rollno =
+          errors.rollNum =
             "Student number should be numeric or can contain a letter D";
         } else if (!regexi.test(value)) {
-          errors.Rollno = "Length of student should be of 7 digits";
+          errors.rollNum = "Length of student should be of 7 digits";
         } else {
           checkStatusAll = true;
         }
@@ -215,14 +224,14 @@ function AddCandidate() {
     
       // contact number validation
     
-      const validateContactno = (value) => {
+      const validatemobileNum = (value) => {
         const errors = {};
         // let regex = new RegExp("^[0-9]$");
         let regexi = new RegExp("^[0-9]{10}$");
         if (!value) {
-          errors.Contactno = "Contact  number is required!";
+          errors.mobileNum = "Contact  number is required!";
         } else if (!regexi.test(value)) {
-          errors.Contactno =
+          errors.mobileNum =
             "Contact  number should only be numeric and of 10 digits";
         }
      
@@ -231,17 +240,17 @@ function AddCandidate() {
         }
         return errors;
       };
-      const validateStudentno =(value)=>
+      const validatestudentNum =(value)=>
       {
           const errors={};
         let regexi = new RegExp("^[0-9]{7,8}$");
         if(!value)
         {
-            errors.Studentno ="Studnent number is required!!";
+            errors.studentNum ="Studnent number is required!!";
         }
         else if (!regexi.test(value))
         {
-            errors.Studentno="Student number should be of 7 or 8 digits long ";
+            errors.studentNum="Student number should be of 7 or 8 digits long ";
         }
         return errors;
       };
@@ -258,173 +267,209 @@ return errors;
   return (
 
 <>
-<div className="container mw-100" >
-    <div className="card regcard">
-<div className="row">
-    <h1 className='TextRegister'>Register</h1>
+<div className="containerzz">
+  <div className="row">
+<div className="headertext">
+  <h1 className="headertxtCandidate">Register</h1>
 </div>
-<form action="" className='Input'>
-<div className="row">
-    <div className="col-lg-6 inputtag">
 
-    <input
-                required="required"
-                type="text"
-                className="input_field"
-                placeholder="Name"
+  <form action="" className="CandidadateAdd">
+<div className="row">
+  <div className="col-lg-6">
+
+{/* NAMe */}
+
+<div className="inputCandidate">
+<input 
+required="required"
+type="text" 
+className="inputcandAdd"
+placeholder="Name"
                 name="Name"
-                value={Name}
-                onChange={(e) => setName(e.target.value)}
+                value={name}
+                onChange={(e) => setname(e.target.value)}
                 onBlur={handleFocusName}
                 focused={focused.toString()}
-              />
+/>
+</div>
 <span className="error_msg">{formErrorsName.Name}</span>
-    </div>
-    <div className="col-lg-6 inputtag">
-    <input
-                required="required"
-                type="text"
-                className="input_field"
-                placeholder="StudentNumber"
-                name="Studentno"
-                value={Studentno}
-                onChange={(e) => setStudentno(e.target.value)}
-                onBlur={handleFocusStudentno}
-                focused={focused.toString()}
-              />
-<span className="error_msg">{formErrorsStudentno.Studentno}</span>
-    </div>
 </div>
+
+<div className="col-lg-6">
+<div className="inputCandidate">
+<input 
+  required="required"
+  type="text" 
+ className="inputcandAdd"
+  placeholder="StudentNumber"
+  name="studentNum"
+  value={studentNum}
+  onChange={(e) => setstudentNum(e.target.value)}
+  onBlur={handleFocusstudentNum}
+  focused={focused.toString()}
+
+/>
+</div>
+<span className="error_msg">{formErrorsstudentNum.studentNum}</span>
+</div>
+
+</div>
+
+
+
+
 <div className="row">
-    <div className="col-lg-6 inputtag">
-        
-    <input
-                required="required"
-                type="text"
-                className="input_field"
-                placeholder="RollNo"
-                name="RollNo"
-                value={Rollno}
-                onChange={(e) => setRollno(e.target.value)}
-                onBlur={handleFocusRollNo}
-                focused={focused.toString()}
-              />
-              <span className="error_msg">{formErrorsRoll.Rollno}</span>
-    </div>
-    <div className="col-lg-6 inputtag">    <input
-                required="required"
-                type="text"
-                className="input_field"
-                placeholder="Email"
-                name="Email"
-                value={Email}
-                onChange={(e) => setEmail(e.target.value)}
-                onBlur={handleFocusEmail}
-                focused={focused.toString()}
-              />
-              <span className="error_msg">{formErrorsEmail.Email}</span>
-              </div>
 
+<div className="col-lg-6">
+<div className="inputCandidate">
+<input 
+required="required"
+type="text" 
+className="inputcandAdd"
+placeholder="rollNum"
+name="rollNum"
+value={rollNum}
+onChange={(e) => setrollNum(e.target.value)}
+onBlur={handleFocusrollNum}
+focused={focused.toString()}
+/>
 </div>
+<span className="error_msg">{formErrorsRoll.rollNum}</span>
+</div>
+
+<div className="col-lg-6">
+<div className="inputCandidate">
+<input 
+  required="required"
+  type="text" 
+ className="inputcandAdd"
+ placeholder="email"
+ name="email"
+ value={email}
+ onChange={(e) => setemail(e.target.value)}
+ onBlur={handleFocusemail}
+ focused={focused.toString()}
+
+/>
+</div>
+<span className="error_msg">{formErrorsemail.email}</span>
+</div>
+</div>
+
+
+
+
 <div className="row">
-    <div className="col-lg-6 inputtag">
-    <input
-                required="required"
-                type="text"
-                className="input_field"
-                placeholder="Contactno"
-                name="Contactno"
-                value={Contactno}
-                onChange={(e) => setContactno(e.target.value)}
-                onBlur={handleFocusContactno}
+
+<div className="col-lg-6">
+<div className="inputCandidate">
+<input 
+required="required"
+type="text" 
+className="inputcandAdd"
+placeholder="gender"
+name="gender"
+value={gender}
+onChange={(e) => setgender(e.target.value)}
+// onBlur={handleFocusmobileNum}
+// focused={focused.toString()}
+/>
+</div>
+<span className="error_msg">{formErrorsgender.gender}</span>
+</div>
+
+<div className="col-lg-6">
+<div className="inputCandidate">
+<input 
+  required="required"
+  type="text" 
+ className="inputcandAdd"
+ placeholder="mobileNum"
+                name="mobileNum"
+                value={mobileNum}
+                onChange={(e) => setmobileNum(e.target.value)}
+                onBlur={handleFocusmobileNum}
                 focused={focused.toString()}
-              />
-              <span className="error_msg">{formErrorsContactno.Contactno}</span>
-    </div>
-    <div className="col-lg-6 inputtag">    <input
-                required="required"
-                type="text"
-                className="input_field"
-                placeholder="OTP"
-                name="OTP"
-                value={OTP}
-                onChange={(e) => setOTP(e.target.value)}
-                onBlur={handleFocusOTP}
-                focused={focused.toString()}
-              />
-              <span className="error_msg">{formErrorsOTP.OTP}</span>
-              </div>
+
+/>
 </div>
+<span className="error_msg">{formErrorsmobileNum.mobileNum}</span>
+</div>
+</div>
+
+
+
+
 <div className="row">
-    <div className="col-lg-6 inputtag">  
-      <input
-                required="required"
-                type="text"
-                className="input_field"
-                placeholder="Name"
-                name="Name"
-                // value={Name}
-                // onChange={(e) => setName(e.target.value)}
-                // onBlur={handleFocusName}
-                // focused={focused.toString()}
-              /></div>
-    <div className="col-lg-6 inputtag">
-    <input
-                required="required"
-                type="text"
-                className="input_field"
-                placeholder="Name"
-                name="Name"
-                // value={Name}
-                // onChange={(e) => setName(e.target.value)}
-                // onBlur={handleFocusName}
-                // focused={focused.toString()}
-              />
-    </div>
+
+<div className="col-lg-6">
+<div className="inputCandidate">
+<input 
+required="required"
+type="text" 
+className="inputcandAdd"
+placeholder="year"
+name="year"
+value={year}
+onChange={(e) => setyear(e.target.value)}
+// onBlur={handleFocusyear}
+// focused={focused.toString()}
+/>
 </div>
+<span className="error_msg">{formErrorsRoll.rollNum}</span>
+</div>
+
+<div className="col-lg-6">
+<div className="inputCandidate">
+<input 
+  required="required"
+  type="text" 
+ className="inputcandAdd"
+ placeholder="branch"
+ name="branch"
+ value={branch}
+ onChange={(e) => setbranch(e.target.value)}
+//  onBlur={handleFocusemail}
+//  focused={focused.toString()}
+
+/>
+</div>
+<span className="error_msg">{formErrorsbranch.branch}</span>
+</div>
+</div>
+
 <div className="row">
-    <div className="col-lg-6 inputtag">
-    <input
-                required="required"
-                type="text"
-                className="input_field"
-                placeholder="Name"
-                name="Name"
-                // value={Name}
-                // onChange={(e) => setName(e.target.value)}
-                // onBlur={handleFocusName}
-                // focused={focused.toString()}
-              />
-    </div>
-    <div className="col-lg-6 inputtag">
+  <div className="col-lg-6">
 
+  </div>
+<div className="col-lg-6">
+<div className="inputCandidate">
+<input 
+  required="required"
+  type="boolean" 
+ className="inputcandAdd"
+ placeholder="isHosteler"
+ name="isHosteler"
+ value={isHosteler}
+ onChange={(e) => setisHosteler(e.target.value)}
+//  onBlur={handleFocusemail}
+//  focused={focused.toString()}
 
-    <input
-                required="required"
-                type="text"
-                className="input_field"
-                placeholder="Name"
-                name="Name"
-                // value={Name}
-                // onChange={(e) => setName(e.target.value)}
-                // onBlur={handleFocusName}
-                // focused={focused.toString()}
-              />
-    </div>
-
+/>
 </div>
-
-
+</div>
+  
+</div>
 <button
                 type="button"
-                className="btn btnregx input_field"
+                className="btn btnregx buttonPositon"
                 onClick={submit}
               >
                 Register
               </button>
-</form>
-    </div>
-    
+
+  </form>
+</div>
 </div>
 </>
   );
