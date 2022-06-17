@@ -47,8 +47,7 @@ let button =['1','2','3','4']
         <div className="question_sec">
           <h1>Question {currentQuestion  + 1}.</h1>
           <hr />
-          {/* <h2>{questions[currentQuestion].question}</h2> */}
-          <h2>{questions[currentQuestion]}</h2>
+          <h2>sdifjsldkfjsdkfj</h2>
           {/* <div className="que_options">
             <input type="radio" name="ans" value="" />
             <label htmlFor="">s</label>
@@ -69,7 +68,7 @@ let button =['1','2','3','4']
             {button.map((result) =>(
               <>
               <input type="radio" className="que_options" value={result} name="btn" onChange={(e)=>setSelect(e.target.value)}/>
-              
+
               <b>{result}</b>
               <br></br>
               </>
