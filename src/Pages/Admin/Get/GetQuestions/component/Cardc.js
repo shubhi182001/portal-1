@@ -2,21 +2,37 @@ import React from 'react'
 // import {Card} from "@mui/material"
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import { Checkbox } from '@mui/material';
+// import { Checkbox } from '@mui/material';
 
 function Cardc({ques, reload}) {
-    console.log(ques);
+
+    // const[isChecked, setIsChecked] = useState(false);
+    
+  // console.log(ques.options[3].isCorrect);
+    
+    // const check = ((value)=>{
+    //     for(let i=0; i<ques.options.length; i++){
+    //       if(value[i]===true){
+    //         setIsChecked(true);
+    //       }
+    //       else{
+    //         setIsChecked(false);
+    //       }
+    //   }
+    // }
+// )
+    
+
+    // console.log(ques);
     const url = `https://csiportal.herokuapp.com/question/${ques._id}`;
     const deleteQuestion = () => (
         axios.delete(url)
         .then(()=>{
             reload();
+            window.alert("Question will be deleted !!!");
             console.log("deleted");            
         })
     )
-
-    console.log(ques.options)
-    
 
   return (
     <div className="cardContainer">
@@ -31,9 +47,9 @@ function Cardc({ques, reload}) {
                 {ques.options && ques.options.length?
                     ques.options.map((o)=>(
                         <>
-                        <li>
+                        <li key={o.Oid}>
                         <div className="Gopt-list">
-                        <input type="Checkbox" className="Ginput" value={o.value} name='opt' />
+                        <input type="Checkbox" checked={o.isCorrect} className="Ginput" value={o.value} readOnly name='opt'   />
                         <span className="Ginputval">{o.value}</span>
                         </div>
                         </li>
@@ -41,11 +57,9 @@ function Cardc({ques, reload}) {
                     )): null
                 }
                 
-                
-
               <div className='edit-delete'>
                   <div className="edit">
-                  <Link to="/editq"><button className='edit-btn'>Edit</button></Link>
+                  <Link to="/editq" state={[ques.question, ques.category]}><button className='edit-btn'>Edit</button></Link>
                   </div>
                   <div className="delete">
                       <button className='delete-btn' onClick={deleteQuestion} >Delete</button>

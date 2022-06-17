@@ -21,10 +21,11 @@ const GetQ = () => {
     .catch(error => console.log(error));
   }
   useEffect(()=>{
+    
     getAllQuestions();
   },[])
   
-  console.log(getq.data);
+  // console.log(getq.data);
 
   // for(let i=0;i<7;i++){
   // console.log(getq.data[i].question);

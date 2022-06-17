@@ -15,11 +15,11 @@ const Context = ({ children }) => {
     );
     let length = data.results.length;
     
-    console.log(length);
+    // console.log(length);
     for(let i = 0;i < length;i++){
         questions.push(data.results[i].question)
     }
-    console.log(questions);
+    // console.log(questions);
   };
   return (
     <contextapi.Provider value={{ questions,name }}>{children}</contextapi.Provider>

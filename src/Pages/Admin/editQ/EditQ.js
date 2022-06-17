@@ -5,7 +5,10 @@ import {Card} from "@mui/material"
 import Form from './components/Form'
 import OptionList from './components/OptionList'
 
-function EditQ() {
+function EditQ({state}) {
+
+    // console.log(state);
+
 
     const [question, setQuestion] = useState(" ")
     const [option, setOption] = useState(" ");
