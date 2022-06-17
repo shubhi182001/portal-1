@@ -1,88 +1,65 @@
-*{
+* {
     margin: 0;
     padding: 0;
-}
-
-.dabba{
-    width: 135px;
-    border: 1px solid rgb(49, 158, 212);
-    padding: 8px;
-    padding-right: 1px;
-    padding-left: 30px;
-    margin: 40px;
-    margin-left: 700px;
-    cursor: pointer;
-    background-color: rgb(81, 121, 158);
-}
-.top{
-    flex-wrap: wrap;
+  }
+  
+  .leader {
+  display: flex;
+    justify-content: center;
+  }
+  .top {
     color: white;
-    font-size: large;
-}
-.wrap {
-    display: flex;
-    height: 100vh;
-    width: 100%;
-    align-items: center;
-    flex-direction: column;
-    row-gap: 20px;
-}
-
-h1 {
-    margin: 10px;
-    font-size: 40px;
-    color: rgb(1, 1, 59);
-}
-
-.search {
-    width: 50%;
-}
-
-
-*{
-    margin: 0;
-    padding: 0;
-}
-
-.dabba{
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 500;
-font-size: 35px;
-line-height: 43px;
-text-align: center;
-letter-spacing: 0.1em;
-    width: 21.688rem;
-    border: 1px solid rgb(49, 158, 212);
-    padding: 8px;
-    margin: 56px;
-    background-color: rgb(81, 121, 158);
-    color: #FFFFFF;
-    text-align: center;
-    background: #8B8FFF;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-}
-.outer_box{
+    font-weight: 500;
+    font-size: 35px;
+    font-family: 'Montserrat';
+  font-style: normal;
+  width: 18rem;
+  padding: 8px;
+  background: #8b8fff;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+  text-align: center;
+  margin: 56px;
+  color: #FFFFFF;
+  }
+  
+  .outer_box {
     display: flex;
     justify-content: center;
-}
-
-.wrap {
+  }
+  
+  .inputwrap {
     display: flex;
-    width: 50%;
-    margin-left: 25%;
-    margin-right: 25%;
-
-    align-items: center;
-    flex-direction: column;
-    row-gap: 20px;
-}
-
-h1 {
-    margin: 10px;
-    font-size: 40px;
-    color: rgb(1, 1, 59);
-}
-
-
+    justify-content: center;
+  }
+  .inputwrap input {
+    height: 75px;
+    width: 972px;
+    padding: 30px;
+    font-weight: 300;
+    font-size: 30px;
+    color: #c7c7c7;
+  }
+  
+  .box3 {
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+  }
+  .content {
+    box-sizing: border-box;
+    width: 972px;
+    height: 894px;
+    background: #fffcfc;
+    border: 0.5px solid #c5c5c5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  .details {
+    width: 924px;
+    height: 385px;
+    left: 294px;
+    top: 473px;
+    background: rgba(241, 218, 254, 0.5);
+    border-radius: 10px;
+    margin-top: 2rem;
+    margin-left: 1.5rem;
+  }
