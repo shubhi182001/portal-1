@@ -6,13 +6,13 @@ import {contextapi} from "../../../../components/Context";
 const QuestionPannel = () => 
 {
 
-  const {questions,name} = useContext(contextapi);
+  const {questions,random_questions} = useContext(contextapi);
   const [currentQuestion,setCurrentQuestion] = useState(0);
   const [select,setSelect] = useState("");
- console.log(questions,name);
-  let button =["1","2","3","4"]
- 
- 
+// console.log(questions);
+let button =['1','2','3','4']
+  // let button =[random_questions[currentQuestion].option1,random_questions[currentQuestion].option2,random_questions[currentQuestion].option3,random_questions[currentQuestion].option4]
+// console.log(questions) 
   // const [options,setOptions] = useState([]);
 
   const Next =()=>{
@@ -47,8 +47,7 @@ const QuestionPannel = () =>
         <div className="question_sec">
           <h1>Question {currentQuestion  + 1}.</h1>
           <hr />
-          {/* <h2>{questions[currentQuestion].question}</h2> */}
-          <h2>{questions[currentQuestion]}</h2>
+          <h2>sdifjsldkfjsdkfj</h2>
           {/* <div className="que_options">
             <input type="radio" name="ans" value="" />
             <label htmlFor="">s</label>

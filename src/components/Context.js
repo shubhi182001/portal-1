@@ -4,25 +4,26 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 export const contextapi = createContext();
 const Context = ({ children }) => {
-    let name = "portal"
   useEffect(() => {
     fetchQuestion();
   }, []);
-  let questions = [];
+  let questions = [],random_questions=[];
   const fetchQuestion = async () => {
-    let { data } = await axios.get(
-      "https://opentdb.com/api.php?amount=10&type=multiple"
+    let  data  = await axios.get(
+      `https://csiportal.herokuapp.com/question/seequestion`
     );
-    let length = data.results.length;
-    
-    // console.log(length);
-    for(let i = 0;i < length;i++){
-        questions.push(data.results[i].question)
+    console.log(data)
+    let panel = data.data
+    for(let i = 0;i < random_questions.length; i++)
+    {
+     questions.push(random_questions[i].question);
+
     }
-    // console.log(questions);
-  };
+  
+
+  }
   return (
-    <contextapi.Provider value={{ questions,name }}>{children}</contextapi.Provider>
+    <contextapi.Provider value={{ questions ,random_questions}}>{children}</contextapi.Provider>
   );
 };
 
