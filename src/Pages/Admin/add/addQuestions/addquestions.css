@@ -1,0 +1,119 @@
+
+/* add  */
+
+.add-questions-answers{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction: column;
+    width: 100vw;
+    background-color: #deeffc;
+}
+.ques-and-ans{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95vw;
+    background-color: white;
+}
+
+/* question  */
+
+.question{
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    justify-content: center;
+
+}
+.question>p{
+    color: #075594;
+    font-weight: 500;
+    margin:0px 20px;
+}
+#question-here{
+  border: none;
+  border-style: none;
+  width:50vw;
+  height: 35vh;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+ 
+   background-color: #deeffc;
+  font-size: 16px;
+  resize: none;
+  color: #075594;
+  
+}
+#question-here:hover{
+  border: none;
+}
+
+
+
+
+/* contains css of Option.js and OptionList.js */
+
+.option{
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 0px;
+    width: 75vw;
+    background-color:rgb(210, 231, 248);
+}
+
+.s-class{
+    padding: 0px 10px;
+
+}
+.item-1{
+  flex:1;
+}
+.item-2{
+  flex: 16;
+ 
+}
+.item-3{
+  flex: 1;
+}
+
+li{
+    list-style: none;
+}
+
+
+/* ans*/
+
+.answers-and-options{
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+}
+.answers-section{
+    display: flex;
+    align-items: center;
+    padding: 2px 3px;
+    color: rgb(28, 97, 153);
+}
+.answers-section>p{
+    color: #075594;
+    font-weight: 500;
+}
+
+.answer-input-field>input{
+     background-color: #cee7fa;
+     margin: 0 6px;
+      padding:6px 10px;
+      border:none;
+      width: 60vw;
+      border-radius: none;
+       color: #215783;
+}
+
+
