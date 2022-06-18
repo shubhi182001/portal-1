@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './addquestions.css'
 import axios from "axios";
+import Navbar from '../../navbar/Navbar'
 
 
 
@@ -18,7 +19,7 @@ const AddQuestions = () => {
     const submitHandler = (e) => {
         e.preventDefault();
         setOptions(
-            [...options, { value: inputText, Oid: Math.random() * 1000, isCorrect: false }]
+            [...options, { value: inputText, Oid: Math.floor(Math.random() * 1000), isCorrect: false }]
         );
         setInputText(' ');
     }
@@ -26,30 +27,30 @@ const AddQuestions = () => {
     const handleLanguage = (e) => {
         e.preventDefault();
         setChosenlang(e.target.value)
-        // console.log(e.target.value)
     }
 
     const handleQuestion = (e) => {
         e.preventDefault();
         setQuestion(e.target.value)
-        // console.log(e.target.value)
     }
     const handleUpload = (e) => {
         e.preventDefault();
         console.log('Uploaded')
-        const questionData = [
-            {
+        const questionData = {
 
                 "question": question,
                 "category": String(chosenlang),
                 "options": options
 
-            },
-        ]
+            }
+        
         console.log(questionData)
-        axios.post('https://csiportal.herokuapp.com/question/addquestion', questionData)
+        axios.post(
+            'https://csiportal.herokuapp.com/question/addquestion', questionData)
             .then((res) => {
                 console.log(res);
+                console.log(res.data)
+
             })
             .catch((err) => {
                 console.log(err);
@@ -59,18 +60,19 @@ const AddQuestions = () => {
     console.log(options);
     return (
         <>
-            <div className="add-questions-answers">
-                <div className="ques-and-ans">
-                    <h3>Add a Question </h3>
-                    <div className="questions">
+        <Navbar/>
+            <div className='add-question-body'>
+                    <h5 className='heading-question'>Add Question </h5>
+                    <div className='white-container'>
                         <div className="question">
                             <p>Question</p>
-                            <textarea name="ques" id="question-here" onChange={handleQuestion}>the question comes here </textarea>
+                            <textarea name="ques" required id="question-here" onChange={handleQuestion}>the question comes here </textarea>
                         </div>
-                    </div>
+                
                     <div className="dropdown">
-                        <div className="lang">
-                            <select className="select" defaultValue={"DEFAULT"} style={{ color: "white" }} onChange={handleLanguage} name="lang" id="options" >
+                        <h5>Category</h5>
+                        <div className="addques-lang">
+                            <select className="addques-select" defaultValue={"DEFAULT"} style={{ color: "white" }} onChange={handleLanguage} name="lang" id="options" >
                                 <option value="DEFAULT" disabled hidden>Language</option>
                                 <option value="C" style={{ color: "black", backgroundColor: "#F6FCFF" }}>C</option>
                                 <option value="C++" style={{ color: "black", backgroundColor: "#F6FCFF" }}>C++</option>
@@ -79,21 +81,18 @@ const AddQuestions = () => {
                             </select>
                         </div>
                     </div>
-                    <div className="answers">
+                   
                         <div className="answers-and-options">
                             <div className="answers-section">
-                                <p>Answer</p>
+                                <p>Options</p>
                                 <form action="" onSubmit={submitHandler}>
                                     <div className="answer-input-field">
                                         <input value={inputText}
-                                            onChange={inputTextHandler} type="text" name="" id="" placeholder='Press enter to add an option' />
-
+                                            onChange={inputTextHandler} type="text" name="" id="" placeholder='Add Options' />
                                     </div>
-
                                 </form>
                             </div>
                             <div className="options-section">
-                                <div className="option-container">
                                     <ul className="option-list">
                                         {options.map(option => (
                                             <div className="option">
@@ -111,25 +110,24 @@ const AddQuestions = () => {
                                                 <li className="s-class item-2 option-item">{option.value}</li>
                                                 <button className="s-class item-3  delete" onClick={() => {
                                                     setOptions(options.filter(el => el.Oid !== option.Oid))
-                                                    console.log(options);
+                                                    // console.log(options)
                                                 }}>*</button>
 
                                             </div>
                                         ))}
                                     </ul>
                                 </div>
-                            </div>
+                        </div>       
+                    <div className='add-questions-buttons'>
+                        <div className="upload-button">
+                            <button onClick={handleUpload}>Upload</button>
                         </div>
-
+                        <div className='reset-button'>
+                            <button>Reset</button>
+                        </div>
                     </div>
-                    <div className="upload-button">
-                        <button onClick={handleUpload}>Upload</button>
-                    </div>
-                </div>
-
-
             </div>
-
+            </div>         
         </>
     )
 }
