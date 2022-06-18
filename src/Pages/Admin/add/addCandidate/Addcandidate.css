@@ -1,11 +1,11 @@
 /* @import 'bootstrap/dist/css/bootstrap.min.css'; */
 
 .containerzz{
-    height: 50vh;
+    height: 55vh;
     width: 60vw;
-    background-color: blanchedalmond;
+    background-color:  rgb(167, 222, 222);
     position: absolute;
-    top: 25%;
+    top: 22.5%;
     left: 20%;
     box-shadow: 4px 4px 8px 8px grey;
     border-radius:20px ;
@@ -36,7 +36,8 @@
   .inputcandAdd{
     border: none;
     border-bottom: 2px solid grey;
-    background-color: blanchedalmond;
+    background-color:  rgb(167, 222, 222);
+    color: #fff;
   }
   .buttonPositon{
     position: relative;
