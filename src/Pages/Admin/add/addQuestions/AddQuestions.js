@@ -33,15 +33,14 @@ const AddQuestions = () => {
         e.preventDefault();
         setQuestion(e.target.value)
     }
+    
     const handleUpload = (e) => {
         e.preventDefault();
         console.log('Uploaded')
         const questionData = {
-
                 "question": question,
                 "category": String(chosenlang),
                 "options": options
-
             }
         
         console.log(questionData)

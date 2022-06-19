@@ -17,6 +17,7 @@ const GetQ = () => {
     axios.get(url)
     .then((res)=> {
       setGetq(res);
+      console.log(res);
     })
     .catch(error => console.log(error));
   }
@@ -25,12 +26,6 @@ const GetQ = () => {
     getAllQuestions();
   },[])
   
-  // console.log(getq.data);
-
-  // for(let i=0;i<7;i++){
-  // console.log(getq.data[i].question);
-  // console.log(getq.data[i].category);
-  // }
 
   return (
     <>
@@ -47,7 +42,7 @@ const GetQ = () => {
     <div className="getq">
       {getq.data && getq.data.length ?
         getq.data.filter((p)=>{
-          if(search === ""){
+          if(search === " "){
             return p
           }else if (p.question.toLowerCase().includes(search.toLowerCase()) || p.category.toLowerCase().includes(search.toLowerCase())){
             return p
