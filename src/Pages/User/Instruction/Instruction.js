@@ -1,12 +1,13 @@
 import React, {useEffect,useState} from "react"; 
 import { Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import instlogo from "../../../Images/User/inst_csilogo.png"
+import whitelogo from "../../../Images/User/csiwhitelogo.svg"
+import backgroundInst from "../../../Images/User/background.svg";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./Instruction.css";
 import { useNavigate } from "react-router-dom";
-import { ColorizeRounded } from "@mui/icons-material";
+// import { ColorizeRounded } from "@mui/icons-material";
 import axios from "axios";
 
 
@@ -26,9 +27,7 @@ const Instruction = () => {
               {
               cookie_token:cook,
               lang :chosenlang,
-              },
-              
-              
+              },     
             
         )
         .then((res) => {
@@ -61,36 +60,39 @@ const Instruction = () => {
 
   return (
     <div className="instructions">
+       <img className="bginst" src={backgroundInst} alt="logoimg" />
       <div className="inst_container">
         <div className="nav_inst">
         <h1>Instructions</h1>
-        <img className="instcsilogo" src={instlogo} alt="logoimg" />
+        <img className="instcsilogo" src={whitelogo} alt="logoimg" />
         </div>
         <div className="ins">
-        <h2>1.This exam contains 4 mandatory categories: HTML, CSS, APTITUDE, and SQL. </h2>
-        <h2>2. However, the candidate can select a choice of language(category)
-        from the dropdown below. </h2>
-        <h2> 3. This exam will be of 60 minutes in duration.
+          <ol>
+        <li>This exam contains 4 mandatory categories: HTML, CSS, APTITUDE, and SQL. </li>
+        <li>However, the candidate can select a choice of language(category)
+        from the dropdown below. </li>
+        <li>This exam will be of 60 minutes in duration.
         When you submit the test/run out of time all your marked responses
-        whether saved or not will be submitted.</h2>
-        <h2> 4. For every correct answer, the
-        candidate will be awarded 1 mark.</h2>
-        <h2> 5. For every question, you can either
-        SAVE or MARK FOR REVIEW for the response.</h2>
-        <h2> 6. A question once attempted
-        cannot be left unanswered as there is <b> NO NEGATIVE MARKING</b> in this test.</h2>
-        <h2>7. You can end the test anytime by clicking on the submit button. Make
-        sure you submit only when you are done.</h2>
-        <h2> 8. Once done submitting the test
+        whether saved or not will be submitted.</li>
+        <li>For every correct answer, the
+        candidate will be awarded 1 mark.</li>
+        <li>For every question, you can either
+        SAVE or MARK FOR REVIEW for the response.</li>
+        <li>A question once attempted
+        cannot be left unanswered as there is  NO NEGATIVE MARKING in this test.</li>
+        <li>You can end the test anytime by clicking on the submit button. Make
+        sure you submit only when you are done.</li>
+        <li>Once done submitting the test
         you'll be redirected to a feedback form. Your participation will only be
-        considered once you submit your feedback. </h2>
-        <h2>9.<b>If the candidate tries to
-        do any malicious activity, he/she shall be automatically disqualified.</b></h2>
-        <h2> 10. Before starting the test please make sure you have a stable internet
-        connection.</h2> 
-        <h2>11.<b>Kindly take note that this test allows only a single
+        considered once you submit your feedback. </li>
+        <li>If the candidate tries to
+        do any malicious activity, he/she shall be automatically disqualified.</li>
+        <li>Before starting the test please make sure you have a stable internet
+        connection.</li> 
+        <li>Kindly take note that this test allows only a single
         login for a user, so any kind of disconnection or reloading of the page
-        might log you out of the test.</b></h2>
+        might log you out of the test.</li>
+        </ol>
         </div>
        </div>
       <div className="lang_selection">

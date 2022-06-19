@@ -49,7 +49,7 @@
     align-items: center;
     
 }
-.divider span{
+.dividerbtn{
     width: 175px;
     height: 41px;
     background: #FFFFFF;
@@ -57,16 +57,36 @@
     margin: 20px 0px;
     font-family: 'Montserrat';
     font-style: normal;
+    font-weight: bold;
     font-size: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    outline:none;
+    border:none;
 }
-.divider span:active, .divider span:hover{
+.selectedbtn{
+    width: 175px;
+    height: 41px;
+    margin: 20px 0px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    outline:none;
+    border:none;
+    background: rgba(180, 183, 252, 0.22);
+    box-shadow: none;  
+}
+ /* .divider button:hover{
     background: rgba(180, 183, 252, 0.22);
     box-shadow: none;
-}
+} */
 #divide1{
     border-radius:15px 0px 0px 5px;
 }
