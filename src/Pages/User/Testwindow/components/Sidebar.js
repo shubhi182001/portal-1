@@ -3,34 +3,7 @@ import "./Sidebar.css";
 import Modal from "./../../Modal/Modal";
 import { contextapi } from "../../../../components/Context";
 import { useContext } from "react";
-const Sidebar = () => {
-  // const [hours,setHours]= useState(2);
-  // const [minutes,setMinutes]= useState(59);
-  // const [seconds,setSeconds]= useState(59);
-  
-
-  // var timer;
-  // useEffect(()=>{
-    
-  //   timer= setInterval(()=>{
-  //     localStorage.setItem("hours",hours);
-  //     localStorage.setItem("minutes",minutes);
-  //     localStorage.setItem("seconds",seconds);
-  //          setSeconds(seconds-1);
-  //          if(seconds===0){
-  //            setMinutes(minutes-1);
-  //            setSeconds(59);
-  //          }
-  //          if(minutes===0){
-  //            setHours(hours-1);
-  //            setMinutes(59);
-  //            setSeconds(59);
-  //          }
-           
-
-  //   },1000)
-  //   return ()=> clearInterval(timer);
-  // },)
+const Sidebar = ({choice,testques}) => {
 
 const questions = useContext(contextapi);
   const [hours,setHours]= useState(2);
@@ -38,6 +11,12 @@ const questions = useContext(contextapi);
   const [seconds,setSeconds]= useState(59);
   const [show,setShow] =useState(false);
   
+
+  let sidebarbtn = []
+  for(let i = 1;i <= testques.length; i++)
+  {
+   sidebarbtn.push(i);
+  }
 
   let interval = useRef();
 
@@ -95,11 +74,13 @@ const questions = useContext(contextapi);
   </div>
     <div className="time_head">Questions</div>
 
+
     <div className="test_btn">
-      <button className="sidebar_button">1</button>
-      <button className="sidebar_button">1</button>
-      <button className="sidebar_button">1</button>
-      <button className="sidebar_button">1</button>
+      {
+        sidebarbtn.map((i) => (
+          <button className="sidebar_button">{i}</button>
+        ))
+      }
       {/* {
         questions.map((x)=>{
           return(<button className="sidebar_button" key={x}>{x}</button>)

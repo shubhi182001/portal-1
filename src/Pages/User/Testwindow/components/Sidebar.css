@@ -80,18 +80,19 @@
 }
 .test_btn{
   padding: 10px;
-  display: flex;
-  justify-content: space-evenly;
-
+  display: grid;
+  grid-template-columns: repeat(4,auto);
+  margin-left:3rem;
 }
 .test_btn button{
+color: white;
   cursor: pointer;
-  width: 40px;
-height: 40px;
-background: #3B8039;
+  width: 50px;
+height: 50px;
+background: #363291;
 border: 1px solid #3B8039;
 /* clip-path: polygon(50% 0%, 100% 0, 100% 99%, 0 99%, 0% 38%); */
-margin-top:0.5rem;
+margin-top:1rem;
 }
 
 .side_footer{

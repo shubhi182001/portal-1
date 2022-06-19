@@ -3,12 +3,16 @@ import "./QuestionPannel.css";
 import instlogo from "../../../../Images/User/inst_csilogo.png";
 import { useContext } from "react";
 import {contextapi} from "../../../../components/Context";
-const QuestionPannel = () => 
+const QuestionPannel = ({setChoice, choice}) => 
 {
-
   const {questions,random_questions} = useContext(contextapi);
   const [currentQuestion,setCurrentQuestion] = useState(0);
   const [select,setSelect] = useState("");
+  
+
+  const handleactive =(val) =>{
+    setChoice(val);
+  }
 // console.log(questions);
 let button =['1','2','3','4']
   // let button =[random_questions[currentQuestion].option1,random_questions[currentQuestion].option2,random_questions[currentQuestion].option3,random_questions[currentQuestion].option4]
@@ -38,11 +42,11 @@ let button =['1','2','3','4']
         </div>
 
         <div className="divider">
-          <span id="divide1">HTML</span>
-          <span>CSS</span>
-          <span>SQL</span>
-          <span>APTITUDE</span>
-          <span id="divide5">C</span>
+          <button className={choice === "HTML" ? "selectedbtn" : "dividerbtn"} onClick={() =>  handleactive("HTML")}id="divide1">HTML</button>
+          <button className={choice === "SQL" ? "selectedbtn" : "dividerbtn"} onClick={() =>  handleactive("SQL")} >SQL</button>
+          <button className={choice === "CSS" ? "selectedbtn" : "dividerbtn"} onClick={() =>  handleactive("CSS")} >CSS</button>
+          <button className={choice === "APTITUDE" ? "selectedbtn" : "dividerbtn"} onClick={() =>  handleactive("APTITUDE")} >APTITUDE</button>
+          <button className={choice === "C++" ? "selectedbtn" : "dividerbtn"} onClick={() =>  handleactive("C++")} id="divide5">C++</button>
         </div>
         <div className="question_sec">
           <h1>Question {currentQuestion  + 1}.</h1>
