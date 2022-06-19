@@ -90,7 +90,7 @@
 height: 40px;
 background: #3B8039;
 border: 1px solid #3B8039;
-clip-path: polygon(50% 0%, 100% 0, 100% 99%, 0 99%, 0% 38%);
+/* clip-path: polygon(50% 0%, 100% 0, 100% 99%, 0 99%, 0% 38%); */
 margin-top:0.5rem;
 }
 
