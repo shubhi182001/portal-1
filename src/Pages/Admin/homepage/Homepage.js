@@ -7,7 +7,7 @@ import { Card } from '@mui/material'
 function Homepage() {
   return (
       <>
-      <div className="homepage">
+      <div className="admin-main homepage">
         <Navbar/>
         <div className="box">
           <Card className='card'>

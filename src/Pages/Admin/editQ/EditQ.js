@@ -69,6 +69,7 @@ function EditQ() {
     //   console.log(options);
   return (
     <>
+    <div className="admin-main">
     <Navbar/>
     <div className="edit">
         <h1 className='edit_text'>Edit Question</h1>
@@ -129,6 +130,7 @@ function EditQ() {
                 </div>
             </div>
         </Card>
+    </div>
     </div>
     </>
   )

@@ -29,6 +29,7 @@ const GetQ = () => {
 
   return (
     <>
+    <div className="admin-main">
     <Navbar/>
     <div className="get">
         <h1 className='get_text'>Questions</h1>
@@ -51,6 +52,7 @@ const GetQ = () => {
           (<Cardc className="getCard" key={p._id} ques={p} reload={getAllQuestions}/>)
         ) : null
       }
+    </div>
     </div>
     </>
   )

@@ -22,7 +22,7 @@ import AddQuestions from './add/addQuestions/AddQuestions'
 function Admin() {
   return (
     <>
-    <div className="admin_body">
+    {/* <div className="admin_body"> */}
     <BrowserRouter>
     <Routes>
       <Route path='/homepage' element={<Homepage/>} />
@@ -37,7 +37,7 @@ function Admin() {
       <Route path='/responses' element={<Responses/>} />
     </Routes>
     </BrowserRouter>
-    </div>
+    {/* </div> */}
     </>
   )
 }

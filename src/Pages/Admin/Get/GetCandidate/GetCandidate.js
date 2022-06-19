@@ -2,7 +2,9 @@ import React from 'react'
 
 const GetCandidate = () => {
   return (
-    <div>GetCandidate</div>
+    <div className='admin-main'>
+      GetCandidate
+    </div>
   )
 }
 

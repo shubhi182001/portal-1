@@ -59,6 +59,7 @@ const AddQuestions = () => {
     console.log(options);
     return (
         <>
+        <div className="admin-main">
         <Navbar/>
             <div className='add-question-body'>
                     <h5 className='heading-question'>Add Question </h5>
@@ -126,7 +127,8 @@ const AddQuestions = () => {
                         </div>
                     </div>
             </div>
-            </div>         
+            </div>   
+            </div>      
         </>
     )
 }

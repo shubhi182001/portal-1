@@ -2,6 +2,13 @@
     margin: 0;
     padding: 0;
 }
+.admin-main{
+    height: calc(100vh + 85px);
+    width: 100%;
+    background: url("../../../Images/User/background.svg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
 
 .homepage{
     display: block;

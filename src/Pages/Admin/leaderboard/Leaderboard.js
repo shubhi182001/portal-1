@@ -6,6 +6,7 @@ import "./leaderboard.css";
 const Leaderboard = () => {
   return (
     <>
+    <div className="admin-main">
       <Navbar />
       <div className="leader">
         <div className="top">Leaderboard </div>
@@ -22,6 +23,7 @@ const Leaderboard = () => {
               
             </div>
           </div>
+        </div>
         </div>
         </div>
       
