@@ -1,35 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./QuestionPannel.css";
 import instlogo from "../../../../Images/User/inst_csilogo.png";
-import { useContext } from "react";
-import {contextapi} from "../../../../components/Context";
 const QuestionPannel = ({showques,testques, setChoice, choice, setShowques}) => 
 {
-  const {questions,random_questions} = useContext(contextapi);
-  const [currentQuestion,setCurrentQuestion] = useState(0);
   const [select,setSelect] = useState("");
   
 
   const handleactive =(val) =>{
-
     setChoice(val);
     setShowques(1);
   }
-// console.log(questions);
 let button =['1','2','3','4']
-  // let button =[random_questions[currentQuestion].option1,random_questions[currentQuestion].option2,random_questions[currentQuestion].option3,random_questions[currentQuestion].option4]
-// console.log(questions) 
-  // const [options,setOptions] = useState([]);
-
-  // const Next =()=>{
-  //   if(currentQuestion < 10){
-  //     setCurrentQuestion(currentQuestion + 1);
-  //   }
-  //   else{
-  //     setCurrentQuestion(0);
-
-  //   }
-  // }
 
   const Next =()=>{
     if(showques<testques.length){
@@ -61,7 +42,6 @@ let button =['1','2','3','4']
           <button className={choice === "C++" ? "selectedbtn" : "dividerbtn"} onClick={() =>  handleactive("C++")} id="divide5">C++</button>
         </div>
         <div className="question_sec">
-          {/* <h1>Question {currentQuestion  + 1}.</h1> */}
           <h1>Question {showques}.</h1>
           <hr />
           <h2>{testques[showques-1].question}</h2>
@@ -86,7 +66,7 @@ let button =['1','2','3','4']
               <>
               <input type="radio" className="que_options" value={result} name="btn" onChange={(e)=>setSelect(e.target.value)}/>
 
-              <b>{result}</b>
+              <b></b>
               <br></br>
               </>
             ))}

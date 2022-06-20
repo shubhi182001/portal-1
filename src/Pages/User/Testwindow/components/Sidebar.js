@@ -1,11 +1,8 @@
 import React, {useEffect, useRef, useState} from "react";
 import "./Sidebar.css";
 import Modal from "./../../Modal/Modal";
-import { contextapi } from "../../../../components/Context";
-import { useContext } from "react";
 const Sidebar = ({choice,testques, setShowques}) => {
 
-const questions = useContext(contextapi);
   const [hours,setHours]= useState(2);
   const [minutes,setMinutes]= useState(59);
   const [seconds,setSeconds]= useState(59);
@@ -46,7 +43,6 @@ const questions = useContext(contextapi);
     e.preventDefault();
     setShow(true);
     // console.log("modal");
-  console.log(questions);
     // {show && <Modal />}
   }
 
@@ -80,11 +76,6 @@ const questions = useContext(contextapi);
           <button className="sidebar_button" onClick={() => setShowques(i)}>{i}</button>
         ))
       }
-      {/* {
-        questions.map((x)=>{
-          return(<button className="sidebar_button" key={x}>{x}</button>)
-        })
-      } */}
       
     </div>
     </div>
