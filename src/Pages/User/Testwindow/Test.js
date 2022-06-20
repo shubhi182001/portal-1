@@ -17,7 +17,7 @@ const Test = () => {
      
   }
  const [choice,setChoice] = useState("HTML");
- const [testques, setTestques] = useState("");
+ const [testques, setTestques] = useState([""]);
  const [showques,setShowques]= useState("1");
  
  useEffect(()=>
@@ -39,6 +39,8 @@ const Test = () => {
           console.log(err)
         });
   }
+
+
 
   return (
     <div className="test_body" Provider>     

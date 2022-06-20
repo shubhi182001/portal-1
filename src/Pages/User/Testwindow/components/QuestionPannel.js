@@ -64,7 +64,7 @@ let button =['1','2','3','4']
           {/* <h1>Question {currentQuestion  + 1}.</h1> */}
           <h1>Question {showques}.</h1>
           <hr />
-          <h2>{showques}</h2>
+          <h2>{testques[showques-1].question}</h2>
           {/* <div className="que_options">
             <input type="radio" name="ans" value="" />
             <label htmlFor="">s</label>
