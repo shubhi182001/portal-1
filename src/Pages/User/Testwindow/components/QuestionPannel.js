@@ -11,7 +11,9 @@ const QuestionPannel = ({showques,testques, setChoice, choice, setShowques}) =>
   
 
   const handleactive =(val) =>{
+
     setChoice(val);
+    setShowques(1);
   }
 // console.log(questions);
 let button =['1','2','3','4']
