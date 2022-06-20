@@ -20,6 +20,8 @@ const Instruction = () => {
 
   const chkvalidate = async(e) =>{
     e.preventDefault();
+    // const appear=localStorage.getItem('Appeared');
+    
     await axios
         .patch(
           "https://csiportal.herokuapp.com/instruction",
@@ -32,6 +34,8 @@ const Instruction = () => {
         )
         .then((res) => {
           console.log(res.data);
+          // localStorage.setItem('Appeared',false);      
+
         }).catch((err)=>{
           console.log(err)
         });

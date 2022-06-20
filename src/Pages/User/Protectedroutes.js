@@ -9,7 +9,9 @@ const Protectedroutes = (props) => {
     let login2 = localStorage.getItem('login2');
     let instruct = localStorage.getItem('instruct');
     let feedback = localStorage.getItem('feedback');
-    if(!login1 && !login2){
+    let appeared = localStorage.getItem('Appeared');
+
+    if(!login1 && !login2 && appeared==true){
        navigate('/')
     }
     else if(!instruct){
