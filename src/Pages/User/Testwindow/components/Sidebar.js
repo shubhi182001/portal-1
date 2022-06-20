@@ -3,20 +3,19 @@ import "./Sidebar.css";
 import Modal from "./../../Modal/Modal";
 import { contextapi } from "../../../../components/Context";
 import { useContext } from "react";
-const Sidebar = ({choice,testques}) => {
+const Sidebar = ({choice,testques, setShowques}) => {
 
 const questions = useContext(contextapi);
   const [hours,setHours]= useState(2);
   const [minutes,setMinutes]= useState(59);
   const [seconds,setSeconds]= useState(59);
   const [show,setShow] =useState(false);
-  
-
   let sidebarbtn = []
   for(let i = 1;i <= testques.length; i++)
   {
    sidebarbtn.push(i);
   }
+
 
   let interval = useRef();
 
@@ -78,7 +77,7 @@ const questions = useContext(contextapi);
     <div className="test_btn">
       {
         sidebarbtn.map((i) => (
-          <button className="sidebar_button">{i}</button>
+          <button className="sidebar_button" onClick={() => setShowques(i)}>{i}</button>
         ))
       }
       {/* {

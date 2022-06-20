@@ -3,7 +3,7 @@ import "./QuestionPannel.css";
 import instlogo from "../../../../Images/User/inst_csilogo.png";
 import { useContext } from "react";
 import {contextapi} from "../../../../components/Context";
-const QuestionPannel = ({setChoice, choice}) => 
+const QuestionPannel = ({showques,testques, setChoice, choice, setShowques}) => 
 {
   const {questions,random_questions} = useContext(contextapi);
   const [currentQuestion,setCurrentQuestion] = useState(0);
@@ -19,16 +19,26 @@ let button =['1','2','3','4']
 // console.log(questions) 
   // const [options,setOptions] = useState([]);
 
+  // const Next =()=>{
+  //   if(currentQuestion < 10){
+  //     setCurrentQuestion(currentQuestion + 1);
+  //   }
+  //   else{
+  //     setCurrentQuestion(0);
+
+  //   }
+  // }
+
   const Next =()=>{
-    if(currentQuestion < 10){
-      setCurrentQuestion(currentQuestion + 1);
+    if(showques<testques.length){
+      setShowques(showques+1);
     }
     else{
-      setCurrentQuestion(0);
-
+      setShowques(1);
+      setChoice(choice === "HTML"? "SQL" : choice === "SQL" ? "CSS" :choice === "CSS" ? "APTITUDE" : choice === "APTITUDE"? "C++":choice === "C++"? "HTML":"HTML");
     }
   }
-  
+
   return (
     <div className="Question_body">
       <div className="wrap1">
@@ -49,9 +59,10 @@ let button =['1','2','3','4']
           <button className={choice === "C++" ? "selectedbtn" : "dividerbtn"} onClick={() =>  handleactive("C++")} id="divide5">C++</button>
         </div>
         <div className="question_sec">
-          <h1>Question {currentQuestion  + 1}.</h1>
+          {/* <h1>Question {currentQuestion  + 1}.</h1> */}
+          <h1>Question {showques}.</h1>
           <hr />
-          <h2>sdifjsldkfjsdkfj</h2>
+          <h2>{showques}</h2>
           {/* <div className="que_options">
             <input type="radio" name="ans" value="" />
             <label htmlFor="">s</label>

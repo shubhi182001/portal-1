@@ -18,10 +18,18 @@ const Test = () => {
   }
  const [choice,setChoice] = useState("HTML");
  const [testques, setTestques] = useState("");
+ const [showques,setShowques]= useState("1");
+ 
+ useEffect(()=>
+ {
+     choiceques();
+ },[choice]);
+
+ const url = `https://csiportal.herokuapp.com/question/${choice}`;
   const choiceques = (choice) => {
     axios
         .get(
-         `https://csiportal.herokuapp.com/question/HTML`
+         url
         )
         .then((res) => {
           setTestques(res.data)
@@ -32,15 +40,10 @@ const Test = () => {
         });
   }
 
-  useEffect(()=>
-  {
-      choiceques();
-  },[]);
-
   return (
     <div className="test_body" Provider>     
-      <QuestionPannel setChoice={setChoice} choice={choice}/>
-      <Sidebar testques={testques} choice={choice}/>
+      <QuestionPannel setShowques={setShowques} showques={showques} testques={testques} setChoice={setChoice} choice={choice}/>
+      <Sidebar setShowques={setShowques} testques={testques} choice={choice}/>
     </div>
   );
 };
