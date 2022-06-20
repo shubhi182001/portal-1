@@ -3,8 +3,7 @@
     padding: 0;
 }
 .admin_body{
-    /* height: 120vh; */
-    overflow: hidden ;
+    height: calc(100vh + 85px);
     width: 100%;
     background: url("../../Images/User/background.svg");
     background-size: 100% 100%;

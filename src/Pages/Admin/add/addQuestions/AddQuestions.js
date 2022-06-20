@@ -33,15 +33,14 @@ const AddQuestions = () => {
         e.preventDefault();
         setQuestion(e.target.value)
     }
+    
     const handleUpload = (e) => {
         e.preventDefault();
         console.log('Uploaded')
         const questionData = {
-
                 "question": question,
                 "category": String(chosenlang),
                 "options": options
-
             }
         
         console.log(questionData)
@@ -60,6 +59,7 @@ const AddQuestions = () => {
     console.log(options);
     return (
         <>
+        <div className="admin-main">
         <Navbar/>
             <div className='add-question-body'>
                     <h5 className='heading-question'>Add Question </h5>
@@ -127,7 +127,8 @@ const AddQuestions = () => {
                         </div>
                     </div>
             </div>
-            </div>         
+            </div>   
+            </div>      
         </>
     )
 }

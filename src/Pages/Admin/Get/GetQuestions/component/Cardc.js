@@ -1,27 +1,23 @@
 import React from 'react'
 // import {Card} from "@mui/material"
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 // import { Checkbox } from '@mui/material';
 
-function Cardc({ques, reload}) {
+function Cardc({key,ques, reload}) {
 
-    // const[isChecked, setIsChecked] = useState(false);
-    
-  // console.log(ques.options[3].isCorrect);
-    
-    // const check = ((value)=>{
-    //     for(let i=0; i<ques.options.length; i++){
-    //       if(value[i]===true){
-    //         setIsChecked(true);
-    //       }
-    //       else{
-    //         setIsChecked(false);
-    //       }
-    //   }
-    // }
-// )
-    
+  const navigate = useNavigate();
+  const openEditPage = () =>{
+    navigate('/editq',{
+      state:{
+        post_id: ques._id,
+        post_ques : ques.question,
+        post_category: ques.category,
+        post_options: ques.options
+      }
+    });
+  }
+       
 
     // console.log(ques);
     const url = `https://csiportal.herokuapp.com/question/${ques._id}`;
@@ -59,7 +55,7 @@ function Cardc({ques, reload}) {
                 
               <div className='edit-delete'>
                   <div className="edit">
-                  <Link to="/editq" state={[ques.question, ques.category]}><button className='edit-btn'>Edit</button></Link>
+                  <button onClick={openEditPage} className='edit-btn'>Edit</button>
                   </div>
                   <div className="delete">
                       <button className='delete-btn' onClick={deleteQuestion} >Delete</button>

@@ -183,3 +183,26 @@ button:focus{
     background: #DE5947;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
+.Einput-list{
+    /* border: 2px solid; */
+    margin: 3px;
+    width: 36vw;
+    background: rgba(241, 218, 254, 0.5);
+    border-radius: 10px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.Einput{
+    height: 18px;
+    width: 20px;
+    margin: 10px;
+}
+.Einputval{
+    font-size: 18px;
+    font-family: 'Montserrat';
+
+}

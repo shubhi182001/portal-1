@@ -10,6 +10,7 @@ import { style } from '@mui/system'
 function Responses() {
   return (
     <>
+    <div className="admin-main">
     <Navbar/>
     <div className="response">
         <h1 className='response_text'>Response</h1> 
@@ -100,6 +101,7 @@ function Responses() {
             <hr></hr>
         </div>
         {/* </Card> */}
+    </div>
     </div>
     </>
   )

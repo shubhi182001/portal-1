@@ -146,6 +146,10 @@
     background-size: 9px 9px;
   } */
 
+  li{
+    list-style: none;
+  }
+
 .Gopt-list{ 
     /* border: 2px solid; */
     width: 43vw;

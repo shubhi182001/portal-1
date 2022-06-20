@@ -2,7 +2,9 @@ import React from 'react'
 
 const FeedbackQ = () => {
   return (
-    <div>FeedbackQ</div>
+    <div className='admin-main'>
+      FeedbackQ
+    </div>
   )
 }
 
