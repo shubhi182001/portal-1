@@ -103,6 +103,7 @@ progress: undefined,
   const Submit = async (e) => {
     e.preventDefault();
     validateRadio(data);
+    // has appeared to be set true here in api
     // validateSugg(sugg);
     // validateroutes(route);
     // localStorage.setItem('feedback', true);
