@@ -10,13 +10,17 @@ const QuestionPannel = ({testoptions, setTestOptions,showques,testques, setChoic
   {
    optionarr.push(i);
   }
-
+  
+  // useEffect(() =>{
+  //   // setChoice(val);
+  //   setShowques(1);
+  //   setTestOptions(testques[showques-1].options);
+  // })
   const handleactive =(val) =>{
-    setChoice(val);
-    setShowques(1);
-    setTestOptions(testques[showques-1].options);
-  }
-
+  setChoice(val);
+  setShowques(1);
+  setTestOptions(testques[showques-1].options);
+}
   const Next =()=>{
     if(showques<testques.length){
       setShowques(showques+1);

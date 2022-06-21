@@ -106,7 +106,30 @@ progress: undefined,
     // has appeared to be set true here in api
     // validateSugg(sugg);
     // validateroutes(route);
-    // localStorage.setItem('feedback', true);
+    localStorage.setItem('feedback', true);
+    localStorage.removeItem('login2');
+    localStorage.removeItem('instruct');
+    // localStorage.removeItem('feedback');
+    localStorage.removeItem('testpage');
+    localStorage.removeItem('cookie');
+    localStorage.setItem('Appeared',true);
+    // await axios
+    //     .patch(
+    //       "https://csiportal.herokuapp.com/instruction",
+                
+    //           {
+    //           cookie_token:cook,
+    //           lang :chosenlang,
+    //           },     
+            
+    //     )
+    //     .then((res) => {
+    //       console.log(res.data);
+    //       // localStorage.setItem('Appeared',false);      
+
+    //     }).catch((err)=>{
+    //       console.log(err)
+    //     });
     // navigate('/thankyou')
   }
   const navigate = useNavigate();

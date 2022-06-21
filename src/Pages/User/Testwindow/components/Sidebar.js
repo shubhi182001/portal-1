@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import "./Sidebar.css";
 import Modal from "./../../Modal/Modal";
+import { useNavigate } from "react-router-dom";
 const Sidebar = ({choice,testques, setShowques}) => {
 
   const [hours,setHours]= useState(2);
@@ -40,12 +41,25 @@ const Sidebar = ({choice,testques, setShowques}) => {
     };
   },[]);
 
-  const Submit = (e) => {
+  const Submit =async (e) => {
     e.preventDefault();
     setShow(true);
     // console.log("modal");
     // {show && <Modal />}
+    localStorage.setItem('testpage','true');
+    navigate('/feedback');
   }
+  const navigate = useNavigate();
+  useEffect(()=>
+    {
+      
+        let testpage = localStorage.getItem('testpage');
+  
+        if(testpage){
+           navigate('/feedback')
+        }
+        
+    },[]);
 
 
    
