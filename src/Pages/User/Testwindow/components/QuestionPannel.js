@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from "react";
 import "./QuestionPannel.css";
 import instlogo from "../../../../Images/User/inst_csilogo.png";
-const QuestionPannel = ({showques,testques, setChoice, choice, setShowques}) => 
+const QuestionPannel = ({testoptions, setTestOptions,showques,testques, setChoice, choice, setShowques}) => 
 {
-  const [select,setSelect] = useState("");
+  const [select, setSelect] = useState("");
   
+  let optionarr = [];
+  for(let i = 1;i <= testoptions.length; i++)
+  {
+   optionarr.push(i);
+  }
 
   const handleactive =(val) =>{
     setChoice(val);
     setShowques(1);
+    setTestOptions(testques[showques-1].options);
   }
-let button =['1','2','3','4']
 
   const Next =()=>{
     if(showques<testques.length){
       setShowques(showques+1);
+      setTestOptions(testques[showques-1].options);
     }
     else{
       setShowques(1);
+      setTestOptions(testques[showques-1].options);
       setChoice(choice === "HTML"? "SQL" : choice === "SQL" ? "CSS" :choice === "CSS" ? "APTITUDE" : choice === "APTITUDE"? "C++":choice === "C++"? "HTML":"HTML");
     }
   }
@@ -45,29 +52,13 @@ let button =['1','2','3','4']
           <h1>Question {showques}.</h1>
           <hr />
           <h2>{testques[showques-1].question}</h2>
-          {/* <div className="que_options">
-            <input type="radio" name="ans" value="" />
-            <label htmlFor="">s</label>
-          </div>
-          <div className="que_options">
-            <input type="radio" name="ans" value="" />
-            <label htmlFor="">s</label>
-          </div>
-          <div className="que_options">
-            <input type="radio" name="ans" value="" />
-            <label htmlFor="">s</label>
-          </div>
-          <div className="que_options">
-            <input type="radio" name="ans" value="" />
-            <label htmlFor="">f</label>
-          </div> */}
-          <div className="que_options">
-            {button.map((result) =>(
+          <div className="testbtn">
+            {optionarr.map((i) =>(
               <>
-              <input type="radio" className="que_options" value={result} name="btn" onChange={(e)=>setSelect(e.target.value)}/>
-
-              <b></b>
-              <br></br>
+              <div className="que_options">
+              <input type="radio" value={testoptions[i-1].value} onChange={(e) => setSelect(e.target.value)} name="btn"/>
+              <label >{testoptions[i-1].value}</label>
+              </div>
               </>
             ))}
           </div>
@@ -82,11 +73,11 @@ let button =['1','2','3','4']
         <div className="colors">
           <div className="color_sel">
             <span id="color1"></span>
-            <h2>Attempted</h2>
+            <h2>UnAttempted</h2>
           </div>
           <div className="color_sel">
             <span id="color2"></span>
-            <h2>UnAttempted</h2>
+            <h2>Attempted</h2>
           </div>
           <div className="color_sel">
             <span id="color3"></span>

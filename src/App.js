@@ -17,7 +17,7 @@ function App() {
       {/* < Login/> */}
       <User/>
       {/* <Modal/> */}
-      <Admin/>
+      {/* <Admin/> */}
       {/* <Test /> */}
       {/* <Responses/> */}
     </div>
