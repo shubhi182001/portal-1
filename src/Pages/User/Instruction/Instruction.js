@@ -20,6 +20,8 @@ const Instruction = () => {
 
   const chkvalidate = async(e) =>{
     e.preventDefault();
+    // const appear=localStorage.getItem('Appeared');
+    
     await axios
         .patch(
           "https://csiportal.herokuapp.com/instruction",
@@ -32,6 +34,8 @@ const Instruction = () => {
         )
         .then((res) => {
           console.log(res.data);
+          // localStorage.setItem('Appeared',false);      
+
         }).catch((err)=>{
           console.log(err)
         });
@@ -68,28 +72,28 @@ const Instruction = () => {
         </div>
         <div className="ins">
           <ol>
-        <li>This exam contains 4 mandatory categories: HTML, CSS, APTITUDE, and SQL. </li>
-        <li>However, the candidate can select a choice of language(category)
+        <li>1. This exam contains 4 mandatory categories: HTML, CSS, APTITUDE, and SQL. </li>
+        <li>2. However, the candidate can select a choice of language(category)
         from the dropdown below. </li>
-        <li>This exam will be of 60 minutes in duration.
+        <li>3. This exam will be of 60 minutes in duration.
         When you submit the test/run out of time all your marked responses
         whether saved or not will be submitted.</li>
-        <li>For every correct answer, the
+        <li>4. For every correct answer, the
         candidate will be awarded 1 mark.</li>
-        <li>For every question, you can either
+        <li>5. For every question, you can either
         SAVE or MARK FOR REVIEW for the response.</li>
-        <li>A question once attempted
+        <li>6. A question once attempted
         cannot be left unanswered as there is  NO NEGATIVE MARKING in this test.</li>
-        <li>You can end the test anytime by clicking on the submit button. Make
+        <li>7. You can end the test anytime by clicking on the submit button. Make
         sure you submit only when you are done.</li>
-        <li>Once done submitting the test
+        <li>8. Once done submitting the test
         you'll be redirected to a feedback form. Your participation will only be
         considered once you submit your feedback. </li>
-        <li>If the candidate tries to
+        <li>9. If the candidate tries to
         do any malicious activity, he/she shall be automatically disqualified.</li>
-        <li>Before starting the test please make sure you have a stable internet
+        <li>10. Before starting the test please make sure you have a stable internet
         connection.</li> 
-        <li>Kindly take note that this test allows only a single
+        <li>11. Kindly take note that this test allows only a single
         login for a user, so any kind of disconnection or reloading of the page
         might log you out of the test.</li>
         </ol>

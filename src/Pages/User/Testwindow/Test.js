@@ -19,10 +19,12 @@ const Test = () => {
  const [choice,setChoice] = useState("HTML");
  const [testques, setTestques] = useState([""]);
  const [showques,setShowques]= useState("1");
- 
+ const [testoptions,setTestOptions] = useState([""]);
+
  useEffect(()=>
  {
      choiceques();
+
  },[choice]);
 
  const url = `https://csiportal.herokuapp.com/question/${choice}`;
@@ -33,6 +35,7 @@ const Test = () => {
         )
         .then((res) => {
           setTestques(res.data)
+          // setTestOptions(testques[showques-1].options);   
           console.log(res.data)
         })
         .catch((err)=>{
@@ -44,8 +47,8 @@ const Test = () => {
 
   return (
     <div className="test_body" Provider>     
-      <QuestionPannel setShowques={setShowques} showques={showques} testques={testques} setChoice={setChoice} choice={choice}/>
-      <Sidebar setShowques={setShowques} testques={testques} choice={choice}/>
+      <QuestionPannel testoptions={testoptions} setTestOptions={setTestOptions} setShowques={setShowques} showques={showques} testques={testques} setChoice={setChoice} choice={choice}/>
+      <Sidebar  setShowques={setShowques} testques={testques} choice={choice}/>
     </div>
   );
 };

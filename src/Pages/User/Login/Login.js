@@ -30,6 +30,7 @@ const Login = () => {
   const [studentPasswordError, setStudentPasswordError] = useState("");
   const [routepass,setRoutepass] = useState(false);
   const [routename,setRoutename] = useState(false);
+  const [appeared,setAppeared] = useState(false);
 
 
   const validateStudentNo = (value) => {
@@ -124,14 +125,14 @@ const Login = () => {
         )
         .then((res) => {
           console.log(res.data);
-          console.log(res.data.cookie_token);
+          // console.log(res.data.cookie_token);
           localStorage.setItem('cookie', res.data.cookie_token);
+          // console.log(res.data.hasAppeared);
+          setAppeared(res.data.hasAppeared);
+          localStorage.setItem('Appeared',res.data.hasAppeared);
           if(res.data.isAdmin==="true")
-          {
-
-          
+          {          
             validateroute1(routepass,routename);
-
             // console.log("x")
           }
           else{
@@ -161,10 +162,17 @@ const Login = () => {
         if(login1){
           navigate('/homepage')
         }
-        else if (login2)
-        {
-          navigate('/instructions')
+        else{
+
+           if (login2 && appeared==false)
+          {
+            navigate('/instructions')
+          }
+          else if (login2 && appeared==true){
+            navigate('/')
+          }
         }
+      
         
     },[]);
   return (
