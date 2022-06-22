@@ -4,10 +4,11 @@
 }
 .admin-main{
     height: calc(100vh + 85px);
-    width: 100%;
+    width: 100vw;
     background: url("../../../Images/User/background.svg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    /* overflow-x: hidden; */
 }
 
 .homepage{
