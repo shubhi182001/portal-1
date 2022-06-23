@@ -74,6 +74,9 @@ const AddQuestions = () => {
                         <div className="addques-lang">
                             <select className="addques-select" defaultValue={"DEFAULT"} style={{ color: "white" }} onChange={handleLanguage} name="lang" id="options" >
                                 <option value="DEFAULT" disabled hidden>Language</option>
+
+                                <option value="CSS" style={{ color: "black", backgroundColor: "#F6FCFF" }}>CSS</option>
+                                <option value="HTML" style={{ color: "black", backgroundColor: "#F6FCFF" }}>HTML</option>
                                 <option value="C" style={{ color: "black", backgroundColor: "#F6FCFF" }}>C</option>
                                 <option value="C++" style={{ color: "black", backgroundColor: "#F6FCFF" }}>C++</option>
                                 <option value="Java" style={{ color: "black", backgroundColor: "#F6FCFF" }}>Java</option>
