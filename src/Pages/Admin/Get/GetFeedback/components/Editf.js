@@ -43,7 +43,6 @@ function Editf() {
             url,
             {
                 "question": question,
-                "options" : options
             }
 
         ).then((res) => {
@@ -72,14 +71,14 @@ function Editf() {
             <p className='question_text'>Question</p>
             <textarea className="question_field" onChange={updateQuestion} value={question}></textarea>
             
-            <p className='options_text'>Options</p>
+            {/* <p className='options_text'>Options</p>
             <div className="editOptions">
                 <form className='option_form' onSubmit={onFormSubmit}>
                     <input type="text" className='option_input' value = {option} required onChange={onInputChange}  />
                     <button className='button_add' type="submit">Add</button>
                 </form>
-            </div>
-            <div>
+            </div> */}
+            {/* <div>
                 <div>
                     {options.map((option)=>(
                         <li className='option-list' key={option.Oid}>
@@ -91,7 +90,7 @@ function Editf() {
                         </li>
                     ))}
                 </div>
-            </div>
+            </div> */}
             <div className='upload-cancel'>
                 <div className="upload">
                     <button className='upload-btn' onClick={handleUpload}>Uplaod</button>
