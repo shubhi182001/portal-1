@@ -2,7 +2,8 @@ import React from 'react'
 import "./Admin.css"
 // import Add from './add/addQuestions/Add'
 import Homepage from './homepage/Homepage'
-import FeedbackQ from '../Admin/add/addFeedbackQ/FeedbackQ'
+// import FeedbackQ from '../Admin/add/addFeedbackQ/FeedbackQ'
+import AddFeedback from './add/addFeedbackQ/AddFeedback'
 import AddCandidate from '../Admin/add/addCandidate/AddCandidate'
 import {
   BrowserRouter,
@@ -33,7 +34,7 @@ function Admin() {
       <Route path='/editf' element={<Editf/>}/>
       <Route path ='/getcandidate' element={<GetCandidate/>} />
       <Route path='/addques' element={<AddQuestions/>} />
-      <Route path='/addfeedbackques' element={<FeedbackQ/>} />
+      <Route path='/addfeedbackques' element={<AddFeedback/>} />
       <Route path='/addcandidate' element={<AddCandidate/>} /> 
       <Route path='/leaderboard' element={<Leaderboard/>}/>
       <Route path='/responses' element={<Responses/>} />

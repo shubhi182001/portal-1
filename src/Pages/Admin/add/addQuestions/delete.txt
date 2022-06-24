@@ -66,7 +66,7 @@ const AddQuestions = () => {
                     <div className='white-container'>
                         <div className="question">
                             <p>Question</p>
-                            <textarea name="ques" required id="question-here" onChange={handleQuestion}></textarea>
+                            <textarea name="ques" required id="question-here" onChange={handleQuestion}>the question comes here </textarea>
                         </div>
                 
                     <div className="dropdown">
@@ -74,9 +74,6 @@ const AddQuestions = () => {
                         <div className="addques-lang">
                             <select className="addques-select" defaultValue={"DEFAULT"} style={{ color: "white" }} onChange={handleLanguage} name="lang" id="options" >
                                 <option value="DEFAULT" disabled hidden>Language</option>
-
-                                <option value="CSS" style={{ color: "black", backgroundColor: "#F6FCFF" }}>CSS</option>
-                                <option value="HTML" style={{ color: "black", backgroundColor: "#F6FCFF" }}>HTML</option>
                                 <option value="C" style={{ color: "black", backgroundColor: "#F6FCFF" }}>C</option>
                                 <option value="C++" style={{ color: "black", backgroundColor: "#F6FCFF" }}>C++</option>
                                 <option value="Java" style={{ color: "black", backgroundColor: "#F6FCFF" }}>Java</option>
