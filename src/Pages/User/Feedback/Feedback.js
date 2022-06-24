@@ -13,10 +13,13 @@ import { useNavigate } from "react-router-dom";
 // import { SignalCellularNull } from '@mui/icons-material';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
+
 
 const Feedback = () => {
   let data=[];
   const [ans, setAns] = useState([]);
+  const [ques, setQues] = useState([]);
   // const [sugg, setSugg] = useState("");
   // const [route, setRoute] = useState(false);
 
@@ -135,8 +138,17 @@ progress: undefined,
   const navigate = useNavigate();
   useEffect(()=>
     {
-        let login = localStorage.getItem('feedback');
-  
+      axios
+      .get(
+        "https://csiportal.herokuapp.com/feed/seefeedbackques",
+      data
+      )
+      .then((res) => {
+        console.log(res.data);
+        setQues(res.data);
+
+      })
+      let login = localStorage.getItem('feedback');
         if(login){
            navigate('/thankyou')
         }
@@ -149,10 +161,10 @@ progress: undefined,
           <div className='appbar'>Feedback</div>
 
           <div className="questions_container">
-            {que.map((element, index) => {
+            {ques.map((element, index) => {
               return (
                 <FormControl className="questions">
-                  <FormLabel ><strong>{element}</strong></FormLabel>
+                  <FormLabel ><strong>{ques[index].question}</strong></FormLabel>
                   <RadioGroup className='radio' name={index} onChange={handle}
                     row
                   >
