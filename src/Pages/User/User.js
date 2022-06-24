@@ -34,7 +34,7 @@ function App() {
 
   return (   
     <> 
-   {/*<Test/> */} 
+   {/* {<Feedback/> }  */}
 
   
    <BrowserRouter>    

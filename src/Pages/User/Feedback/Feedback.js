@@ -14,20 +14,13 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
-<<<<<<< HEAD
-
-=======
->>>>>>> e779288ef70a4e0307b6d1cc8d6164e73aa832ea
 
 const Feedback = () => {
   let data=[];
   const [ans, setAns] = useState([]);
-<<<<<<< HEAD
-  const [ques, setQues] = useState([]);
-=======
+  const [ques,setQues]= useState([]);
   const [appeare,setAppeare] = useState(false);
-  const [questions,setQuestions] = useState([]);
->>>>>>> e779288ef70a4e0307b6d1cc8d6164e73aa832ea
+  // const [questions,setQuestions] = useState([]);
   // const [sugg, setSugg] = useState("");
   // const [route, setRoute] = useState(false);
 
