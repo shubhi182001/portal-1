@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./Modal.css";
 import Logocsi from "../../../Images/User/Logocsi.svg"
+import { useNavigate } from "react-router-dom";
 
 const Modal = () => {
+  const Submit =async (e) => {
+    e.preventDefault();
+    // setShow(true);    
+    localStorage.setItem('testpage','true');
+    navigate('/feedback');
+  }
+  const navigate = useNavigate();
+  useEffect(()=>
+    {
+      
+        let testpage = localStorage.getItem('testpage');
+  
+        if(testpage){
+           navigate('/feedback')
+        }
+        
+    },[]);
     
   return (
     <div className='modalbackground'>
@@ -15,7 +33,7 @@ const Modal = () => {
             </div>
             <div className='footr'>
                 <button id='nobtn'>NO</button>
-                <button id='yesbtn'>Yes</button>
+                <button id='yesbtn'  onClick={Submit}>Yes</button>
             </div>
         </div>
     </div>
