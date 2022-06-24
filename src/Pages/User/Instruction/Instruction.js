@@ -9,13 +9,17 @@ import "./Instruction.css";
 import { useNavigate } from "react-router-dom";
 // import { ColorizeRounded } from "@mui/icons-material";
 import axios from "axios";
+import Context from "../../../Components/Context";
+import {contextapi} from "../../../Components/Context";
+import { useContext } from "react";
 
 
 const Instruction = () => {
-  
+  const { selectedOption,setSelectedOption } = useContext(contextapi);
+  console.log(contextapi)
   const cook= localStorage.getItem('cookie')
-  const [chosenlang, setChosenlang] = useState("");
-  console.log(chosenlang);
+  // const [chosenlang, setChosenlang] = useState("");
+  // console.log(chosenlang);
   // console.log(cook);
 
   const chkvalidate = async(e) =>{
@@ -28,7 +32,7 @@ const Instruction = () => {
                 
               {
               cookie_token:cook,
-              lang :chosenlang,
+              lang :selectedOption,
               },     
             
         )
@@ -39,7 +43,8 @@ const Instruction = () => {
         }).catch((err)=>{
           console.log(err)
         });
-    if(chosenlang === ""){
+    if(selectedOption === ""){
+      console.log(selectedOption)
       toast.error("Select any language first");
     }
     else{
@@ -101,12 +106,12 @@ const Instruction = () => {
        </div>
       <div className="lang_selection">
           <div className="lang">
-          <select className="select" defaultValue={"DEFAULT"}style={{color:"white"}} onChange={e => setChosenlang(e.target.value)} name="lang" id="options" >
+          <select className="select" defaultValue={"DEFAULT"}style={{color:"white"}} onClick={e => { setSelectedOption(e.target.value)}} name="lang" id="options" >
                <option value="DEFAULT"  disabled hidden>Language</option>
-               <option value="C"style={{color:"black",backgroundColor:"#F6FCFF"}}>C</option>
-               <option value="C++"style={{color:"black",backgroundColor:"#F6FCFF"}}>C++</option>
-               <option value="Java"style={{color:"black",backgroundColor:"#F6FCFF"}}>Java</option>
-               <option value="Python"style={{color:"black",backgroundColor:"#F6FCFF"}}>Python</option>
+               <option value="C"style={{color:"black",backgroundColor:"#F6FCFF"}} >C</option>
+               <option value="C++"style={{color:"black",backgroundColor:"#F6FCFF"}} >C++</option>
+               <option value="Java"style={{color:"black",backgroundColor:"#F6FCFF"}} >Java</option>
+               <option value="Python"style={{color:"black",backgroundColor:"#F6FCFF"}} >Python</option>
           </select>
           </div>
           <div className="start_exam">

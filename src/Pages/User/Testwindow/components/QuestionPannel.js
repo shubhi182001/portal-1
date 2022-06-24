@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./QuestionPannel.css";
 import instlogo from "../../../../Images/User/inst_csilogo.png";
+import Context from '../../../../Components/Context'
+import {contextapi} from "../../../../Components/Context"
+import { useContext } from "react";
 const QuestionPannel = ({testoptions, setTestOptions,showques,testques, setChoice, choice, setShowques}) => 
 {
+  const {selectedOption} = useContext(contextapi);
   const [select, setSelect] = useState("");
   
   let optionarr = [];
@@ -50,21 +54,21 @@ const QuestionPannel = ({testoptions, setTestOptions,showques,testques, setChoic
           <button className={choice === "SQL" ? "selectedbtn" : "dividerbtn"} onClick={() =>  handleactive("SQL")} >SQL</button>
           <button className={choice === "CSS" ? "selectedbtn" : "dividerbtn"} onClick={() =>  handleactive("CSS")} >CSS</button>
           <button className={choice === "APTITUDE" ? "selectedbtn" : "dividerbtn"} onClick={() =>  handleactive("APTITUDE")} >APTITUDE</button>
-          <button className={choice === "C++" ? "selectedbtn" : "dividerbtn"} onClick={() =>  handleactive("C++")} id="divide5">C++</button>
+          <button className={choice === "C++" ? "selectedbtn" : "dividerbtn"} onClick={() =>  handleactive("C++")} id="divide5">{selectedOption}</button>
         </div>
         <div className="question_sec">
           <h1>Question {showques}.</h1>
           <hr />
           <h2>{testques[showques-1].question}</h2>
           <div className="testbtn">
-            {optionarr.map((i) =>(
-              <>
-              <div className="que_options">
+            {optionarr.map(i =>
+              {return (<>
+              <div className="que_options" key={i} >
               <input type="radio" value={testoptions[i-1].value} onChange={(e) => setSelect(e.target.value)} name="btn"/>
               <label >{testoptions[i-1].value}</label>
               </div>
-              </>
-            ))}
+              </>)
+            })}
           </div>
 
         </div>

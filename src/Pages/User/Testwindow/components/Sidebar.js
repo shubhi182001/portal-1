@@ -2,8 +2,11 @@ import React, {useEffect, useRef, useState} from "react";
 import "./Sidebar.css";
 import Modal from "./../../Modal/Modal";
 import { useNavigate } from "react-router-dom";
+import Context from "../../../../Components/Context";
+import {contextapi} from "../../../../Components/Context"
+import { useContext } from "react";
 const Sidebar = ({choice,testques, setShowques}) => {
-
+const {selectedOption} = useContext(contextapi);
   const [hours,setHours]= useState(2);
   const [minutes,setMinutes]= useState(59);
   const [seconds,setSeconds]= useState(59);
@@ -88,7 +91,7 @@ const Sidebar = ({choice,testques, setShowques}) => {
     <div className="test_btn">
       {
         sidebarbtn.map((i) => (
-          <button className="sidebar_button" onClick={() => setShowques(i)}>{i}</button>
+          <button className="sidebar_button" key={i} onClick={() => setShowques(i)}>{i}</button>
         ))
       }
       
