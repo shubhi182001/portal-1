@@ -14,11 +14,11 @@ import {contextapi} from "../../../Components/Context";
 import { useContext } from "react";
 
 
-const Instruction = () => {
-  const { selectedOption,setSelectedOption } = useContext(contextapi);
-  console.log(contextapi)
+const Instruction = ({chosenlang,setChosenlang}) => {
+  const { selectedOption,setSelectedOption,choiceques } = useContext(contextapi);
+  // console.log(contextapi)
   const cook= localStorage.getItem('cookie')
-  // const [chosenlang, setChosenlang] = useState("");
+
   // console.log(chosenlang);
   // console.log(cook);
 
@@ -43,13 +43,13 @@ const Instruction = () => {
         }).catch((err)=>{
           console.log(err)
         });
-    if(selectedOption === ""){
-      console.log(selectedOption)
+    if(chosenlang === ""){
       toast.error("Select any language first");
     }
     else{
     localStorage.setItem('instruct', true);
-
+    choiceques();
+    
     navigate('/testwindow')
     }
 
@@ -106,7 +106,7 @@ const Instruction = () => {
        </div>
       <div className="lang_selection">
           <div className="lang">
-          <select className="select" defaultValue={"DEFAULT"}style={{color:"white"}} onClick={e => { setSelectedOption(e.target.value)}} name="lang" id="options" >
+          <select className="select" defaultValue={"DEFAULT"}style={{color:"white"}} onClick={e => {setChosenlang(e.target.value)}} name="lang" id="options" >
                <option value="DEFAULT"  disabled hidden>Language</option>
                <option value="C"style={{color:"black",backgroundColor:"#F6FCFF"}} >C</option>
                <option value="C++"style={{color:"black",backgroundColor:"#F6FCFF"}} >C++</option>

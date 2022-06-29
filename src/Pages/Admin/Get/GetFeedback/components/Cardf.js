@@ -23,8 +23,7 @@ function Cardf({key,ques, reload}) {
         navigate('/editf', {
             state: {
             post_id: ques._id,
-            post_ques : ques.question,
-            post_options: ques.options
+            post_ques : ques.question
             }
         })
     }
@@ -39,7 +38,7 @@ function Cardf({key,ques, reload}) {
               <p className='question_text'>Question</p>
               <p className="question-field"  >{ques.question}</p>
               
-              <p className='options_text'>Options</p>
+              {/* <p className='options_text'>Options</p>
                 
                 {ques.options && ques.options.length?
                     ques.options.map((o)=>(
@@ -53,7 +52,7 @@ function Cardf({key,ques, reload}) {
                         </>
                     )): null
                 }
-                
+                 */}
               <div className='edit-delete'>
                   <div className="edit">
                   <button onClick={openEditPage}   className='edit-btn'>Edit</button>

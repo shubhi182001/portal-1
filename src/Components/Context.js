@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react'
 export const contextapi = createContext();
 const Context = ({children}) => {
     const [selectedOption,setSlectedOption] = useState('');
-   console.log(selectedOption);
+  //  console.log(selectedOption);
   //  const url = `https://csiportal.herokuapp.com/question/${choice}`;
   // const choiceques = () => {
   //   axios

@@ -13,18 +13,22 @@ import { useNavigate } from "react-router-dom";
 // import { SignalCellularNull } from '@mui/icons-material';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
 const Feedback = () => {
   let data=[];
   const [ans, setAns] = useState([]);
+  const [ques,setQues] = useState([]);
+  const [appeare,setAppeare] = useState(false);
+  const [questions,setQuestions] = useState([]);
   // const [sugg, setSugg] = useState("");
   // const [route, setRoute] = useState(false);
 
   let que = [
-    "How easy was to navigate through the website?",
-    "How would you rate the questions based on their difficulty level?",
-    "How responsive have we been to your queries or concerns about our event?",
-    "Rate your overall experience.",
+    // "How easy was to navigate through the website?",
+    // "How would you rate the questions based on their difficulty level?",
+    // "How responsive have we been to your queries or concerns about our event?",
+    // "Rate your overall experience.",
 
   ]
   const validateRadio = (data) => {
@@ -113,30 +117,39 @@ progress: undefined,
     localStorage.removeItem('testpage');
     localStorage.removeItem('cookie');
     localStorage.setItem('Appeared',true);
-    // await axios
-    //     .patch(
-    //       "https://csiportal.herokuapp.com/instruction",
-                
-    //           {
-    //           cookie_token:cook,
-    //           lang :chosenlang,
-    //           },     
+    setAppeare(true);
+    await axios
+        .get(
+          "https://csiportal.herokuapp.com/feed/seefeedbackques",    
             
-    //     )
-    //     .then((res) => {
-    //       console.log(res.data);
-    //       // localStorage.setItem('Appeared',false);      
+        )
+        .then((res) => {
+          console.log(res.data);
+          // localStorage.setItem('Appeared',false); 
+          setQuestions(res.data);
+          console.log(questions);
 
-    //     }).catch((err)=>{
-    //       console.log(err)
-    //     });
+
+        })
+        // .catch((err)=>{
+        //   console.log(err)
+        // });
     // navigate('/thankyou')
   }
   const navigate = useNavigate();
   useEffect(()=>
     {
-        let login = localStorage.getItem('feedback');
-  
+      axios
+      .get(
+        "https://csiportal.herokuapp.com/feed/seefeedbackques",
+      data
+      )
+      .then((res) => {
+        console.log(res.data);
+        // setQues(res.data);
+
+      })
+      let login = localStorage.getItem('feedback');
         if(login){
            navigate('/thankyou')
         }
@@ -149,10 +162,10 @@ progress: undefined,
           <div className='appbar'>Feedback</div>
 
           <div className="questions_container">
-            {que.map((element, index) => {
+            {ques.map((element, index) => {
               return (
                 <FormControl className="questions">
-                  <FormLabel ><strong>{element}</strong></FormLabel>
+                  <FormLabel ><strong>{ques[index].question}</strong></FormLabel>
                   <RadioGroup className='radio' name={index} onChange={handle}
                     row
                   >

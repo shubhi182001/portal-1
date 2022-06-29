@@ -8,7 +8,7 @@ import axios from 'axios'
 
 const GetQ = () => {
 
-  const[getq, setGetq] = useState({});
+  const[getq, setGetq] = useState([]);
   const[search, setSearch] = useState(" ");
 
 
@@ -16,8 +16,8 @@ const GetQ = () => {
   const getAllQuestions = () => {
     axios.get(url)
     .then((res)=> {
-      setGetq(res);
-      console.log(res);
+      setGetq(res.data.result);
+      console.log(res.data.result);
     })
     .catch(error => console.log(error));
   }
@@ -25,6 +25,9 @@ const GetQ = () => {
     
     getAllQuestions();
   },[])
+
+  
+
   
 
   return (
@@ -41,8 +44,8 @@ const GetQ = () => {
     </div>
     </div>
     <div className="getq">
-      {getq.data && getq.data.length ?
-        getq.data.filter((p)=>{
+      {getq && getq.length ?
+        getq.filter((p)=>{
           if(search === " "){
             return p
           }else if (p.question.toLowerCase().includes(search.toLowerCase()) || p.category.toLowerCase().includes(search.toLowerCase())){
