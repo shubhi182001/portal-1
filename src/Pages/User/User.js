@@ -9,13 +9,13 @@ import Thankyou from "./Thankyoupage/Thankyou";
 import TestWindow from "./Testwindow/Test";
 import Protectedroutes from "./Protectedroutes";
 import Animation from "../../Animation/Animation";
+import Homepage from "../../Pages/Admin/homepage/Homepage";
 
 import Test from "./Testwindow/Test";
 
 function App() {
   const [showComponent, setShowComponent] = useState(true);
   const [showComponent2, setShowComponent2] = useState(false);
-  const [chosenlang, setChosenlang] = useState("");
   useEffect(() => {
     setInterval(() => {
       setShowComponent(!showComponent);
@@ -30,7 +30,7 @@ function App() {
 
   return (
     <>
-      {/*<Test/> */}
+      {/* {<Feedback/> }  */}
 
       <BrowserRouter>
         <Routes>
@@ -38,20 +38,16 @@ function App() {
           {showComponent2 && <Route path="/" element={<Login />} />}
           {/* <Route path ='/testwindow'   Component ={TestWindow} /> */}
           <Route
+            path="/homepage"
+            element={<Protectedroutes Component={Homepage} />}
+          />
+          <Route
             path="/instructions"
-            element={
-              <Protectedroutes
-                chosenlang={chosenlang}
-                setChosenlang={setChosenlang}
-                Component={Instructions}
-              />
-            }
+            element={<Protectedroutes Component={Instructions} />}
           />
           <Route
             path="/testwindow"
-            element={
-              <Protectedroutes chosenlang={chosenlang} Component={TestWindow} />
-            }
+            element={<Protectedroutes Component={TestWindow} />}
           />
           <Route
             path="/feedback"

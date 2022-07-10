@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import "./QuestionPannel.css";
 import instlogo from "../../../../Images/User/inst_csilogo.png";
-import Context from "../../../../Components/Context";
-import { contextapi } from "../../../../Components/Context";
-import { useContext } from "react";
 const QuestionPannel = ({
   testoptions,
   setTestOptions,
@@ -12,24 +9,20 @@ const QuestionPannel = ({
   setChoice,
   choice,
   setShowques,
-  chosenlang
 }) => {
-  const { selectedOption } = useContext(contextapi);
   const [select, setSelect] = useState("");
-
-  // let optionarr = [];
-  // for (let i = 1; i <=testoptions.length; i++) {
-  //   optionarr.push(i);
+  // useLayoutEffect(() =>{
+  //   // setChoice(val);
+  //   // setShowques(1);
+  //   // setTestOptions(testques[showques-1].options);
+  //   console.log(testoptions);
+  // })
+  let optionarr =[1,2,3,4];
+  // for (let i = 0; i <4; i++) {
+  //   optionarr.push((testoptions[i].value));
   // }
 
-  // useEffect(() =>{
-  //   // setChoice(val);
-  //   setShowques(1);
-  //   setTestOptions(testques[showques-1].options);
-  // })
-
-
-  //setting 
+  
   const handleactive = (val) => {
     setChoice(val);
     setShowques(1);
@@ -37,8 +30,10 @@ const QuestionPannel = ({
   };
   const Next = () => {
     if (showques < testques.length) {
+      console.log(select);
       setShowques(showques + 1);
-      setTestOptions(testques[showques - 1].options);
+      setTestOptions(testques[showques - 1].options)
+      setSelect(0);
     } else {
       setShowques(1);
       setTestOptions(testques[showques - 1].options);
@@ -50,8 +45,8 @@ const QuestionPannel = ({
           : choice === "CSS"
           ? "APTITUDE"
           : choice === "APTITUDE"
-          ? chosenlang
-          : choice === chosenlang
+          ? "C++"
+          : choice === "C++"
           ? "HTML"
           : "HTML"
       );
@@ -97,11 +92,11 @@ const QuestionPannel = ({
             APTITUDE
           </button>
           <button
-            className={choice === chosenlang ? "selectedbtn" : "dividerbtn"}
-            onClick={() => handleactive(chosenlang)}
+            className={choice === "C++" ? "selectedbtn" : "dividerbtn"}
+            onClick={() => handleactive("C++")}
             id="divide5"
           >
-            {chosenlang}
+            C++
           </button>
         </div>
         <div className="question_sec">
@@ -109,21 +104,19 @@ const QuestionPannel = ({
           <hr />
           <h2>{testques[showques - 1].question}</h2>
           <div className="testbtn">
-            {optionarr.map((i) => {
-              return (
-                <>
-                  <div className="que_options" key={i}>
-                    <input
-                      type="radio"
-                      value={testoptions[i - 1].value}
-                      onChange={(e) => setSelect(e.target.value)}
-                      name="btn"
-                    />
-                    <label>sdfjdfsj</label>
-                  </div>
-                </>
-              );
-            })}
+            {optionarr.map((i,index) => (
+               (<div className="que_options" key={index} >
+                  <input
+                    type="radio"
+                    value={i}
+                    onChange={(e) => setSelect(e.target.value)}
+                    name="btn"
+                  />
+                  {testoptions && <label>{testoptions[i - 1].value}</label>}
+                  {/* <label>{i}</label> */}
+                </div>)
+              
+            ))}
           </div>
         </div>
       </div>
@@ -132,6 +125,7 @@ const QuestionPannel = ({
           <button id="mfr">Mark for Review</button>
           <button id="s_n" onClick={Next}>
             Save & Next
+
           </button>
         </div>
         <div className="colors">
@@ -151,6 +145,8 @@ const QuestionPannel = ({
       </div>
     </div>
   );
-};
+
+}
+;
 
 export default QuestionPannel;

@@ -16,11 +16,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 
 const Feedback = () => {
-  let data=[];
+  let data = [];
   const [ans, setAns] = useState([]);
-  const [ques,setQues] = useState([]);
-  const [appeare,setAppeare] = useState(false);
-  const [questions,setQuestions] = useState([]);
+  const [ques, setQues] = useState([]);
+  const [appeare, setAppeare] = useState(false);
+  // const [questions,setQuestions] = useState([]);
   // const [sugg, setSugg] = useState("");
   // const [route, setRoute] = useState(false);
 
@@ -32,17 +32,17 @@ const Feedback = () => {
 
   ]
   const validateRadio = (data) => {
-    if(data.length === 0){
+    if (data.length === 0) {
       // alert("Complete all fields");
       toast.error('Complete all fields', {
         position: "top-right",
-autoClose: 5000,
-hideProgressBar: false,
-closeOnClick: true,
-pauseOnHover: true,
-draggable: true,
-progress: undefined,
-        });
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return;
     }
     let count = 0;
@@ -51,7 +51,7 @@ progress: undefined,
         count = count + 1;
       }
     }
-    if (count === que.length && (data[data.length-1].length!=0)) {
+    if (count === ques.length && (data[data.length - 1].length != 0)) {
       console.log("Send");
       // setRoute(true);
       // console.log(route);
@@ -65,14 +65,14 @@ progress: undefined,
       // alert("Complete all fields");
       toast.error('Complete all fields', {
         position: "top-right",
-autoClose: 5000,
-hideProgressBar: false,
-closeOnClick: true,
-pauseOnHover: true,
-draggable: true,
-progress: undefined,
-        });
-      navigate('/thankyou')
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      // navigate('/thankyou')
 
     }
 
@@ -87,7 +87,7 @@ progress: undefined,
   //   else{
   //     setRoute(true);
   //     console.log(route);
-      
+
   //   }
   // }
   // const validateroutes = (route)=>{
@@ -116,45 +116,45 @@ progress: undefined,
     // localStorage.removeItem('feedback');
     localStorage.removeItem('testpage');
     localStorage.removeItem('cookie');
-    localStorage.setItem('Appeared',true);
+    localStorage.setItem('Appeared', true);
     setAppeare(true);
-    await axios
-        .get(
-          "https://csiportal.herokuapp.com/feed/seefeedbackques",    
-            
-        )
-        .then((res) => {
-          console.log(res.data);
-          // localStorage.setItem('Appeared',false); 
-          setQuestions(res.data);
-          console.log(questions);
+    // await axios
+    //   .get(
+    //     "https://csiportal.herokuapp.com/feed/seefeedbackques",
+
+    //   )
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     // localStorage.setItem('Appeared',false); 
+    //     setQues(res.data);
+    //     console.log(ques);
 
 
-        })
-        // .catch((err)=>{
-        //   console.log(err)
-        // });
+    //   })
+    // .catch((err)=>{
+    //   console.log(err)
+    // });
     // navigate('/thankyou')
   }
   const navigate = useNavigate();
-  useEffect(()=>
-    {
-      axios
+  useEffect(() => {
+    axios
       .get(
         "https://csiportal.herokuapp.com/feed/seefeedbackques",
-      data
+        data
       )
       .then((res) => {
         console.log(res.data);
+        setQues(res.data);
         // setQues(res.data);
 
       })
-      let login = localStorage.getItem('feedback');
-        if(login){
-           navigate('/thankyou')
-        }
-        
-    },[]);
+    let login = localStorage.getItem('feedback');
+    if (login) {
+      navigate('/thankyou')
+    }
+
+  }, []);
   return (
     <>
       <div className='main'>
@@ -182,32 +182,32 @@ progress: undefined,
             })}
             <div className='text-container' >
               <textarea placeholder="Write something..."
-               className='text' 
-              //  type="text" 
-               name = {que.length}
-              //  value = {sugg} 
-               onChange={handle}></textarea>
+                className='text'
+                 type="text" 
+                name={ques.length}
+                //  value = {sugg} 
+                onChange={handle}></textarea>
 
             </div>
             <div className="button">
 
               <Button id='btn' size="large" type="submit" variant="contained" onClick={Submit}><b className='btncolor'>Submit</b></Button>
             </div>
-            
+
           </div>
 
         </div>
       </div>
       <ToastContainer
-      position="top-right"
-      autoClose={5000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover />
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover />
     </>
   )
 }

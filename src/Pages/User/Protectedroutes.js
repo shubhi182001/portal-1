@@ -17,6 +17,9 @@ const Protectedroutes = (props) => {
     if(!login1 && !login2 && appeared==true){
        navigate('/')
     }
+    else if (login1){
+      navigate('/homepage')
+    }
     else if(!instruct){
         navigate('/instructions')
     }

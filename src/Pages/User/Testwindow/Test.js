@@ -1,34 +1,48 @@
-import React, { useState, createContext, useEffect } from "react";
+import React, {
+  useState,
+  createContext,
+  useEffect,
+  useLayoutEffect,
+} from "react";
 import Sidebar from "./components/Sidebar";
 import QuestionPannel from "./components/QuestionPannel";
 import axios, { Axios } from "axios";
 import Modal from "./.././Modal/Modal";
 import "./Test.css";
-const Test = ({chosenlang}) => {
-  const [show, setShow] = useState(false);//for modal
-  const [choice, setChoice] = useState("HTML"); // for cataegory
-  const [testques, setTestques] = useState([""]); // for storing whole 
-  const [showques, setShowques] = useState("1"); // for question
-  const [testoptions, setTestOptions] = useState([""]); // array  for option
+const Test = () => {
+  const [show, setShow] = useState(false);
+  const [choice, setChoice] = useState("HTML");
+  const [testques, setTestques] = useState(['']);
+  const [showques, setShowques] = useState(1);
 
+  // const [showques, setShowques] = useState('1'); string
+  const [testoptions, setTestOptions] = useState();
+let data;
   useEffect(() => {
     choiceques();
+
   }, [choice]);
 
   const url = `https://csiportal.herokuapp.com/question/${choice}`;
-  const choiceques = () => {
-    axios
+  const choiceques = async () => {
+    data =  await axios
       .get(url)
-      .then((res) => {
-        setTestques(res.data.result);
-        // console.log(testques)
-        // setTestOptions(testques[showques-1].options);
-        console.log(res.data.result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      // .then((res) => {
+        
+      //   // console.log(res);
+      //   // console.log(testoptions.length);
+      // }
+      // )
+      // .catch((err) => {
+      //   console.log(err);
+      // });
+     console.log(data.data.result);
+    setTestques(data.data.result);
+     setTestOptions(data.data.result[showques - 1].options);
+
+      
   };
+
 
   return (
     <>
@@ -37,14 +51,12 @@ const Test = ({chosenlang}) => {
       ) : (
         <div className="test_body">
           <QuestionPannel
-          chosenlang={chosenlang}
             testoptions={testoptions}
             setTestOptions={setTestOptions}
             setShowques={setShowques}
             showques={showques}
             testques={testques}
             setChoice={setChoice}
-            choice={choice}
           />
           <Sidebar
             setShowques={setShowques}
