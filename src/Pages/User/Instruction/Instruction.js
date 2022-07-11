@@ -13,17 +13,28 @@ import axios from "axios";
 const Instruction = (props) => {
 
   const [langchoice, setLangchoice] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    let instruct = localStorage.getItem("instruct");
+
+    if (instruct) {
+      navigate("/testwindow");
+    }
+  }, []);
 
  const handlelangchoice = (val) => {
   setLangchoice(val);
   props.setChosenlang(val);
-
  }
 
   const cook = localStorage.getItem("cookie");
   console.log(props.chosenlang);
   // console.log(cook);
 
+
+
+  // button functionality [save and next]
   const chkvalidate = async (e) => {
     e.preventDefault();
     // const appear=localStorage.getItem('Appeared');
@@ -54,14 +65,7 @@ const Instruction = (props) => {
       navigate("/testwindow");
     }
   };
-  const navigate = useNavigate();
-  useEffect(() => {
-    let instruct = localStorage.getItem("instruct");
 
-    if (instruct) {
-      navigate("/testwindow");
-    }
-  }, []);
 
   return (
     <div className="instructions">
