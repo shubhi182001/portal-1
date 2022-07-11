@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import "./QuestionPannel.css";
 import instlogo from "../../../../Images/User/inst_csilogo.png";
+import axios from "axios";
 const QuestionPannel = ({
   testoptions,
   setTestOptions,
@@ -10,7 +11,13 @@ const QuestionPannel = ({
   choice,
   setShowques,
 }) => {
+  const[qid, setQid] = useState();
   const [select, setSelect] = useState("");
+  const cook = localStorage.getItem("cookie");
+  const [mark,setMark] = useState(false);
+  const [category,setCategory] = useState("CSS");
+  const [next,setNext] = useState(true);
+  const [oid,setOid] = useState();
   // useLayoutEffect(() =>{
   //   // setChoice(val);
   //   // setShowques(1);
@@ -28,13 +35,20 @@ const QuestionPannel = ({
     setShowques(1);
     setTestOptions(testques[showques - 1].options);
   };
-  const Next = () => {
+  const Next = () =>
+  {
     if (showques < testques.length) {
       console.log(select);
       setShowques(showques + 1);
       setTestOptions(testques[showques - 1].options)
-      setSelect(0);
-    } else {
+      setOid(testques[showques - 1].options[select].Oid)
+      setQid(testques[showques-1]._id)
+      setCategory(testques[showques-1].category)
+      
+      console.log(showques);
+      console.log(oid);
+    } else 
+    {
       setShowques(1);
       setTestOptions(testques[showques - 1].options);
       setChoice(
@@ -51,6 +65,28 @@ const QuestionPannel = ({
           : "HTML"
       );
     }
+    // console.log(categor);
+    const data = {
+      cookie_token : cook,
+      question : showques,
+      category :category ,
+      userAnswer : oid,
+      markRev : mark,
+      saveNext : next,
+      Qid : qid,
+   }
+    axios.put("https://csiportal.herokuapp.com/ans/answer",
+    data
+    )
+    .then ((res)=>{
+      console.log(res.data);
+      setSelect(0);
+    })
+    .catch((err) => {
+      console.log(err);
+      setSelect(0);
+    });
+
   };
 
   return (
