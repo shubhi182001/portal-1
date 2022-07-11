@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Sidebar.css";
 import Modal from "./../../Modal/Modal";
 import { useNavigate } from "react-router-dom";
-const Sidebar = ({ testques, setShow, setShowques }) => {
+const Sidebar = ({testques, setShow,showques, setShowques}) => {
   const [hours, setHours] = useState(2);
   const [minutes, setMinutes] = useState(59);
   const [seconds, setSeconds] = useState(59);
@@ -51,6 +51,12 @@ const Sidebar = ({ testques, setShow, setShowques }) => {
     }
   }, []);
 
+
+const handleoptions = (i) => {
+  setShowques(i);
+}
+
+
   return (
     <div className="Sidebar_body">
       <div className="part1">
@@ -75,7 +81,7 @@ const Sidebar = ({ testques, setShow, setShowques }) => {
 
         <div className="test_btn">
           {sidebarbtn.map((i) => (
-            <button className="sidebar_button" key={i} onClick={() => setShowques(i)}>
+            <button className="sidebar_button" key={i} onClick={() => handleoptions(i)}>
               {i}
             </button>
           ))}

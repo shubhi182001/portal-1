@@ -11,9 +11,6 @@ const Protectedroutes = (props) => {
     let feedback = localStorage.getItem('feedback');
     let appeared = localStorage.getItem('Appeared');
     let testpage = localStorage.getItem('testpage');
-
-
-
     if(!login1 && !login2 && appeared==true){
        navigate('/')
     }
@@ -32,7 +29,7 @@ const Protectedroutes = (props) => {
   }, []);
   return (
     <div>
-      <Component />
+      <Component chosenlang={props.chosenlang} setChosenlang={props.setChosenlang} />
     </div>
   );
 };

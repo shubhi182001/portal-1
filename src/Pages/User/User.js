@@ -14,6 +14,8 @@ import Homepage from "../../Pages/Admin/homepage/Homepage";
 import Test from "./Testwindow/Test";
 
 function App() {
+  const [chosenlang, setChosenlang] = useState("C++");
+
   const [showComponent, setShowComponent] = useState(true);
   const [showComponent2, setShowComponent2] = useState(false);
   useEffect(() => {
@@ -43,11 +45,11 @@ function App() {
           />
           <Route
             path="/instructions"
-            element={<Protectedroutes Component={Instructions} />}
+            element={<Protectedroutes chosenlang={chosenlang} setChosenlang={setChosenlang} Component={Instructions} />}
           />
           <Route
             path="/testwindow"
-            element={<Protectedroutes Component={TestWindow} />}
+            element={<Protectedroutes chosenlang={chosenlang}  Component={TestWindow} />}
           />
           <Route
             path="/feedback"
