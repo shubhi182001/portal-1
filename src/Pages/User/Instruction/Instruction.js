@@ -10,10 +10,18 @@ import { useNavigate } from "react-router-dom";
 // import { ColorizeRounded } from "@mui/icons-material";
 import axios from "axios";
 
-const Instruction = () => {
+const Instruction = (props) => {
+
+  const [langchoice, setLangchoice] = useState("");
+
+ const handlelangchoice = (val) => {
+  setLangchoice(val);
+  props.setChosenlang(val);
+
+ }
+
   const cook = localStorage.getItem("cookie");
-  const [chosenlang, setChosenlang] = useState("");
-  console.log(chosenlang);
+  console.log(props.chosenlang);
   // console.log(cook);
 
   const chkvalidate = async (e) => {
@@ -26,7 +34,7 @@ const Instruction = () => {
 
         {
           cookie_token: cook,
-          lang: chosenlang,
+          lang: props.chosenlang,
         }
       )
       .then((res) => {
@@ -36,7 +44,9 @@ const Instruction = () => {
       .catch((err) => {
         console.log(err);
       });
-    if (chosenlang === "") {
+
+
+    if (props.langchoice === "") {
       toast.error("Select any language first");
     } else {
       localStorage.setItem("instruct", true);
@@ -118,7 +128,7 @@ const Instruction = () => {
             className="select"
             defaultValue={"DEFAULT"}
             style={{ color: "white" }}
-            onChange={(e) => setChosenlang(e.target.value)}
+            onChange={(e) => handlelangchoice(e.target.value)}
             name="lang"
             id="options"
           >

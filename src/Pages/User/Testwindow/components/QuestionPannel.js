@@ -9,34 +9,29 @@ const QuestionPannel = ({
   setChoice,
   choice,
   setShowques,
+  chosenlang
 }) => {
-  const [select, setSelect] = useState("");
-  // useLayoutEffect(() =>{
-  //   // setChoice(val);
-  //   // setShowques(1);
-  //   // setTestOptions(testques[showques-1].options);
-  //   console.log(testoptions);
-  // })
-  let optionarr =[1,2,3,4];
-  // for (let i = 0; i <4; i++) {
-  //   optionarr.push((testoptions[i].value));
-  // }
 
-  
+  const [select, setSelect] = useState("");
+  let optionarr =[],x;
+  if(testoptions){
+    x = testoptions.length;
+   }
+  for(let i = 1;i<=x;i++){
+    optionarr.push(i);
+  }
+
   const handleactive = (val) => {
     setChoice(val);
     setShowques(1);
-    setTestOptions(testques[showques - 1].options);
   };
+
   const Next = () => {
     if (showques < testques.length) {
-      console.log(select);
       setShowques(showques + 1);
-      setTestOptions(testques[showques - 1].options)
-      setSelect(0);
-    } else {
+    }
+     else {
       setShowques(1);
-      setTestOptions(testques[showques - 1].options);
       setChoice(
         choice === "HTML"
           ? "SQL"
@@ -45,8 +40,8 @@ const QuestionPannel = ({
           : choice === "CSS"
           ? "APTITUDE"
           : choice === "APTITUDE"
-          ? "C++"
-          : choice === "C++"
+          ? chosenlang
+          : choice === chosenlang
           ? "HTML"
           : "HTML"
       );
@@ -92,11 +87,11 @@ const QuestionPannel = ({
             APTITUDE
           </button>
           <button
-            className={choice === "C++" ? "selectedbtn" : "dividerbtn"}
-            onClick={() => handleactive("C++")}
+            className={choice === chosenlang ? "selectedbtn" : "dividerbtn"}
+            onClick={() => handleactive(chosenlang)}
             id="divide5"
           >
-            C++
+            {chosenlang}
           </button>
         </div>
         <div className="question_sec">
@@ -105,15 +100,14 @@ const QuestionPannel = ({
           <h2>{testques[showques - 1].question}</h2>
           <div className="testbtn">
             {optionarr.map((i,index) => (
-               (<div className="que_options" key={index} >
+               (<div className="que_options" key={index}>
                   <input
                     type="radio"
                     value={i}
                     onChange={(e) => setSelect(e.target.value)}
                     name="btn"
                   />
-                  {testoptions && <label>{testoptions[i - 1].value}</label>}
-                  {/* <label>{i}</label> */}
+                  {testoptions && <label>{testques[showques - 1].options[i - 1].value}</label>}
                 </div>)
               
             ))}
