@@ -94,12 +94,41 @@
 /* clip-path: polygon(50% 0%, 100% 0, 100% 99%, 0 99%, 0% 38%); */
 margin-top:1rem;
 }
-/* .markforreview{
-  
-}
-.saveandnext{
 
-} */
+.visited{
+  color: black;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  background: #FFFFFF;;
+  border: 1px solid #3B8039;
+/* clip-path: polygon(50% 0%, 100% 0, 100% 99%, 0 99%, 0% 38%); */
+ margin-top:1rem;
+  background-color: red;
+}
+.mark_review{
+  color: black;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  background: #FFFFFF;;
+  border: 1px solid #3B8039;
+/* clip-path: polygon(50% 0%, 100% 0, 100% 99%, 0 99%, 0% 38%); */
+margin-top:1rem;
+background-color: blue;
+}
+.save_next{
+  color: black;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  background: #FFFFFF;;
+  border: 1px solid #3B8039;
+/* clip-path: polygon(50% 0%, 100% 0, 100% 99%, 0 99%, 0% 38%); */
+margin-top:1rem;
+background-color: green;
+}
+
 .side_footer{
 height: 150px;
 display: flex;

@@ -1,4 +1,5 @@
 .test_body{
+    overflow: none;
     /* border: 1px solid blue; */
     display: flex;
 }
