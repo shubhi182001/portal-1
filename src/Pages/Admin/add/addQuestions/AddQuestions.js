@@ -4,9 +4,8 @@ import axios from "axios";
 import Navbar from '../../navbar/Navbar'
 import { Checkbox } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Card } from "@mui/material"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAmbulance, faAnchor } from '@fortawesome/free-solid-svg-icons'
+
+
 
 
 
@@ -72,7 +71,7 @@ const AddQuestions = () => {
     useEffect(() => {
 
         if (Object.keys(questionerrors).length === 0 && isSubmit) {
-            console.log('hello');
+            console.log('Request Sent');
         } else {
             console.log('some error')
         }
