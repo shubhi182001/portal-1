@@ -3,11 +3,10 @@ import "./Sidebar.css";
 import Modal from "./../../Modal/Modal";
 import { useNavigate } from "react-router-dom";
 import { AirlineSeatFlatAngled } from "@mui/icons-material";
-const Sidebar = ({testques, setShow,showques, setShowques}) => {
+const Sidebar = ({ testques, setShow, showques, setShowques, ansid, flag }) => {
   const [hours, setHours] = useState(2);
   const [minutes, setMinutes] = useState(59);
   const [seconds, setSeconds] = useState(59);
-  const [flag, setFlag] = useState(0);
 
   let sidebarbtn = [];
   for (let i = 1; i <= testques.length; i++) {
@@ -53,12 +52,9 @@ const Sidebar = ({testques, setShow,showques, setShowques}) => {
     }
   }, []);
 
-
-const handleoptions = (i) => {
-  setShowques(i);
-  
-}
-
+  const handleoptions = (i) => {
+    setShowques(i);
+  };
 
   return (
     <div className="Sidebar_body">
@@ -83,8 +79,20 @@ const handleoptions = (i) => {
         <div className="time_head">Questions</div>
 
         <div className="test_btn">
-          {sidebarbtn.map((i) => (
-            <button className={flag === '0' ? "sidebar_button" : "sidebar_button" || flag === '1' ? "sidebar_button" : "visited" || flag === '2' ? "sidebar_button" : "mark_review" || flag === '3' ? "sidebar_button" : "save_next" } key={i} onClick={() => handleoptions(i)}>
+          {sidebarbtn.map((i, index) => (
+            <button
+              className={
+                flag === "2"
+                  ? "sidebar_button"
+                  : flag === "1"
+                  ? "save_next"
+                  : flag === "3"
+                  ? "mark_review"
+                  : "visited"
+              }
+              key={index}
+              onClick={() => handleoptions(i)}
+            >
               {i}
             </button>
           ))}

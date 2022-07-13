@@ -10,12 +10,13 @@ import axios, { Axios } from "axios";
 import Modal from "./.././Modal/Modal";
 import "./Test.css";
 const Test = (props) => {
-  const [show, setShow] = useState(false);
-  const [choice, setChoice] = useState("HTML");
-  const [testques, setTestques] = useState(['']);
-  const [showques, setShowques] = useState(1);
-  const [testoptions, setTestOptions] = useState();
-
+  const [show, setShow] = useState(false); // for modal
+  const [choice, setChoice] = useState("HTML");  // cataegory 
+  const [testques, setTestques] = useState(['']); // setting whole array of question 
+  const [showques, setShowques] = useState(1); // question iterator
+  const [testoptions, setTestOptions] = useState(); //setting the options
+  const [ansid,setAnsid] = useState("2"); //flag for question : 2 for not visited
+const [flag,setFlag] = useState("2");
 let data;
   useEffect(() => {
     choiceques();
@@ -45,6 +46,9 @@ let data;
             testques={testques}
             choice={choice}
             setChoice={setChoice}
+            setAnsid = {setAnsid}
+            setFlag = {setFlag}
+            ansid = {ansid}
           />
           <Sidebar
             showques={showques}
@@ -52,6 +56,8 @@ let data;
             testques={testques}
             choice={choice}
             setShow={setShow}
+            ansid = {ansid}
+            flag = {flag}
           />
         </div>
       )}

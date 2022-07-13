@@ -10,16 +10,19 @@ const QuestionPannel = ({
   setChoice,
   choice,
   setShowques,
-  chosenlang
+  chosenlang,
+  setAnsid,
+  ansid,
+  setFlag,
 }) => {
-  const[qid, setQid] = useState();
+  const [qid, setQid] = useState();
   const [select, setSelect] = useState("");
   const cook = localStorage.getItem("cookie");
-  const [mark,setMark] = useState(false);
-  const [category,setCategory] = useState("CSS");
-  const [next,setNext] = useState(true);
-  const [oid,setOid] = useState("");
-  const [ansid,setAnsid] = useState('2');
+  const [mark, setMark] = useState(false);
+  const [category, setCategory] = useState("CSS");
+  const [next, setNext] = useState(true);
+  const [oid, setOid] = useState();
+  const [radioActive, setRadioActive] = useState(false); // selecting radio buttons
   // useLayoutEffect(() =>{
   //   // setChoice(val);
   //   // setShowques(1);
@@ -32,88 +35,37 @@ const QuestionPannel = ({
   // }
 
   // const [select, setSelect] = useState("");
-  let optionarr =[],x;
-  if(testoptions){
+  let optionarr = [],
+    x;
+  if (testoptions) {
     x = testoptions.length;
-   }
-  for(let i = 1;i<=x;i++){
+  }
+  for (let i = 1; i <= x; i++) {
     optionarr.push(i);
   }
 
+  // selecting cataegory
   const handleactive = (val) => {
     setChoice(val);
     setShowques(1);
   };
 
-  // Mark for review started
-  const Mark = () =>
-  {
+  // Mark for review
+  const Mark = () => {
     if (showques < testques.length) {
       setShowques(showques + 1);
-      setTestOptions(testques[showques - 1].options)
-      setQid(testques[showques-1]._id)
-      setCategory(testques[showques-1].category)
-      setOid(testques[showques - 1].options[select].Oid)
-      setMark(true)
-      setNext(false)
-      setAnsid('3')
-      
+      setTestOptions(testques[showques - 1].options);
+      setQid(testques[showques - 1]._id);
+      setCategory(testques[showques - 1].category);
+      setOid(testques[showques - 1].options[select].Oid);
+      setMark(true);
+      setNext(false);
+      setAnsid("3");
+      console.log(select);
       console.log(showques);
       console.log(oid);
-    } else 
-    {
-      setShowques(1);
-      setChoice(
-        choice === "HTML"
-          ? "SQL"
-          : choice === "SQL"
-          ? "CSS"
-          : choice === "CSS"
-          ? "APTITUDE"
-          : choice === "APTITUDE"
-          ? chosenlang
-          : choice === chosenlang
-          ? "HTML"
-          : "HTML"
-      );
-    } const data = {
-      cookie_token : cook,
-      question : showques,
-      category :category ,
-      userAnswer : oid,
-      markRev : mark,
-      saveNext : next,
-      Qid : qid,
-      ansid : '3',
- }
-  axios.put("https://csiportal.herokuapp.com/ans/answer",
-  data
-  )
-  .then ((res)=>{
-    console.log(res.data);
-    setSelect(0);
-  })
-  .catch((err) => {
-    console.log(err);
-    setSelect(0);
-  });
-};
-  // Mark for review ended
-
-  const Next = () =>
-  {
-    if (showques < testques.length) {
-      setShowques(showques + 1);
-      setTestOptions(testques[showques - 1].options)
-      setQid(testques[showques-1]._id)
-      setCategory(testques[showques-1].category)
-      setOid(testques[showques - 1].options[select].Oid)
-      setAnsid('1')
-      
-      console.log(showques);
-      console.log(oid);
-    } else 
-    {
+      console.log(ansid);
+    } else {
       setShowques(1);
       setChoice(
         choice === "HTML"
@@ -129,29 +81,85 @@ const QuestionPannel = ({
           : "HTML"
       );
     }
-    // console.log(categor);
     const data = {
-      cookie_token : cook,
-      question : showques,
-      category :category ,
-      userAnswer : oid,
-      markRev : mark,
-      saveNext : next,
-      Qid : qid,
-      ansid : '1',
-   }
-    axios.put("https://csiportal.herokuapp.com/ans/answer",
-    data
-    )
-    .then ((res)=>{
-      console.log(res.data);
-      setSelect(0);
-    })
-    .catch((err) => {
-      console.log(err);
-      setSelect(0);
-    });
+      cookie_token: cook,
+      question: showques,
+      category: category,
+      userAnswer: oid,
+      markRev: mark,
+      saveNext: next,
+      Qid: qid,
+      ansid: ansid,
+    };
+    axios
+      .put("https://csiportal.herokuapp.com/ans/answer", data)
+      .then((res) => {
+        console.log(res.data);
+        setSelect(0);
+        // setFlag(res.data.ansid);
+      })
+      .catch((err) => {
+        console.log(err);
+        setSelect(0);
+      });
+    // setRadioActive(false);
 
+  };
+  // Mark for review ended
+
+  // save and next
+  const Next = () => {
+    if (showques < testques.length) {
+      setShowques(showques + 1);
+      setTestOptions(testques[showques - 1].options);
+      setQid(testques[showques - 1]._id);
+      setCategory(testques[showques - 1].category);
+      setOid(testques[showques - 1].options[select].Oid);
+      setAnsid("1");
+      console.log(select);
+      console.log(showques);
+      console.log(oid);
+      console.log(ansid);
+      setFlag("1");
+    } else {
+      setShowques(1);
+      setChoice(
+        choice === "HTML"
+          ? "SQL"
+          : choice === "SQL"
+          ? "CSS"
+          : choice === "CSS"
+          ? "APTITUDE"
+          : choice === "APTITUDE"
+          ? chosenlang
+          : choice === chosenlang
+          ? "HTML"
+          : "HTML"
+      );
+    }
+    // console.log(cataegory);
+    const data = {
+      cookie_token: cook,
+      question: showques,
+      category: category,
+      userAnswer: oid,
+      markRev: mark,
+      saveNext: next,
+      Qid: qid,
+      ansid: ansid,
+    };
+    axios
+      .put("https://csiportal.herokuapp.com/ans/answer", data)
+      .then((res) => {
+        console.log(res.data);
+        setSelect(0);
+        // setFlag(res.data.ansid);
+      })
+      .catch((err) => {
+        console.log(err);
+        setSelect(0);
+      });
+    // setRadioActive(false);
   };
 
   return (
@@ -205,27 +213,38 @@ const QuestionPannel = ({
           <hr />
           <h2>{testques[showques - 1].question}</h2>
           <div className="testbtn">
-            {optionarr.map((i,index) => (
-               (<div className="que_options" key={index}>
-                  <input
-                    type="radio"
-                    value={i}
-                    onChange={(e) => setSelect(e.target.value)}
-                    name="btn"
-                  />
-                  {testoptions && <label>{testques[showques - 1].options[i - 1].value}</label>}
-                </div>)
-              
+            {optionarr.map((i, index) => (
+             
+             <div className="que_options" key={index}>
+                <input
+                  // checked = {radioActive}
+                  type="radio"
+                  value={i}
+                  onChange={(e) => {
+                    setSelect(e.target.value);
+                    {
+                      testoptions &&
+                        setOid(testques[showques - 1].options[i - 1].Oid);
+                    }
+                  }}
+                  name="btn"
+                />
+                {testoptions && (
+                  <label >{testques[showques - 1].options[i - 1].value}</label>
+                )}
+              </div>
+             
             ))}
           </div>
         </div>
       </div>
       <div className="footer">
         <div className="foot_btn">
-          <button onClick={Mark} id="mfr">Mark for Review</button>
+          <button onClick={Mark} id="mfr">
+            Mark for Review
+          </button>
           <button id="s_n" onClick={Next}>
             Save & Next
-
           </button>
         </div>
         <div className="colors">
@@ -245,8 +264,5 @@ const QuestionPannel = ({
       </div>
     </div>
   );
-
-}
-;
-
+};
 export default QuestionPannel;
