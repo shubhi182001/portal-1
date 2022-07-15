@@ -52,6 +52,8 @@ const Sidebar = ({ testques, setShow, showques, setShowques, ansid, flag }) => {
     }
   }, []);
 
+
+ // for getting clicked question 
   const handleoptions = (i) => {
     setShowques(i);
   };
@@ -82,11 +84,11 @@ const Sidebar = ({ testques, setShow, showques, setShowques, ansid, flag }) => {
           {sidebarbtn.map((i, index) => (
             <button
               className={
-                flag === "2"
+                ansid === "2"
                   ? "sidebar_button"
-                  : flag === "1"
+                  : ansid === "1"
                   ? "save_next"
-                  : flag === "3"
+                  : ansid === "3"
                   ? "mark_review"
                   : "visited"
               }

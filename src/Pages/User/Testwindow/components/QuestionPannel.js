@@ -15,13 +15,13 @@ const QuestionPannel = ({
   ansid,
   setFlag,
 }) => {
-  const [qid, setQid] = useState();
-  const [select, setSelect] = useState("");
+  const [qid, setQid] = useState(); // for question id
+  const [select, setSelect] = useState(""); // option selection
   const cook = localStorage.getItem("cookie");
-  const [mark, setMark] = useState(false);
-  const [category, setCategory] = useState("CSS");
-  const [next, setNext] = useState(true);
-  const [oid, setOid] = useState();
+  const [mark, setMark] = useState(false); // mark for review
+  const [category, setCategory] = useState("CSS"); // cataegory for api
+  const [next, setNext] = useState(true); // for save and next 
+  const [oid, setOid] = useState(); // option id
   const [radioActive, setRadioActive] = useState(false); // selecting radio buttons
   // useLayoutEffect(() =>{
   //   // setChoice(val);
@@ -44,14 +44,14 @@ const QuestionPannel = ({
     optionarr.push(i);
   }
 
-  // selecting cataegory
+  // selecting cataegory [html,css,]
   const handleactive = (val) => {
     setChoice(val);
     setShowques(1);
   };
 
   // Mark for review
-  const Mark = () => {
+  const Mark = async () => {
     if (showques < testques.length) {
       setShowques(showques + 1);
       setTestOptions(testques[showques - 1].options);
@@ -65,6 +65,7 @@ const QuestionPannel = ({
       console.log(showques);
       console.log(oid);
       console.log(ansid);
+      console.log(next);
     } else {
       setShowques(1);
       setChoice(
@@ -91,7 +92,7 @@ const QuestionPannel = ({
       Qid: qid,
       ansid: ansid,
     };
-    axios
+    await axios
       .put("https://csiportal.herokuapp.com/ans/answer", data)
       .then((res) => {
         console.log(res.data);
@@ -103,12 +104,11 @@ const QuestionPannel = ({
         setSelect(0);
       });
     // setRadioActive(false);
-
   };
   // Mark for review ended
 
   // save and next
-  const Next = () => {
+  const Next = async () => {
     if (showques < testques.length) {
       setShowques(showques + 1);
       setTestOptions(testques[showques - 1].options);
@@ -148,7 +148,7 @@ const QuestionPannel = ({
       Qid: qid,
       ansid: ansid,
     };
-    axios
+    await axios
       .put("https://csiportal.herokuapp.com/ans/answer", data)
       .then((res) => {
         console.log(res.data);
@@ -214,8 +214,7 @@ const QuestionPannel = ({
           <h2>{testques[showques - 1].question}</h2>
           <div className="testbtn">
             {optionarr.map((i, index) => (
-             
-             <div className="que_options" key={index}>
+              <div className="que_options" key={index}>
                 <input
                   // checked = {radioActive}
                   type="radio"
@@ -230,10 +229,9 @@ const QuestionPannel = ({
                   name="btn"
                 />
                 {testoptions && (
-                  <label >{testques[showques - 1].options[i - 1].value}</label>
+                  <label>{testques[showques - 1].options[i - 1].value}</label>
                 )}
               </div>
-             
             ))}
           </div>
         </div>

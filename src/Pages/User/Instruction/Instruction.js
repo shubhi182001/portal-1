@@ -10,8 +10,7 @@ import { useNavigate } from "react-router-dom";
 // import { ColorizeRounded } from "@mui/icons-material";
 import axios from "axios";
 
-const Instruction = (props) => {
-
+const Instruction = ({ chosenlang, setChosenlang }) => {
   const [langchoice, setLangchoice] = useState("");
   const navigate = useNavigate();
 
@@ -23,49 +22,46 @@ const Instruction = (props) => {
     }
   }, []);
 
- const handlelangchoice = (val) => {
-  setLangchoice(val);
-  props.setChosenlang(val);
- }
+  // selecting language
+  const handlelangchoice = (val) => {
+    setLangchoice(val);
+    setChosenlang(val);
+    // props.setChosenlang(val);
+  };
 
   const cook = localStorage.getItem("cookie");
-  console.log(props.chosenlang);
+  console.log(chosenlang);
   // console.log(cook);
 
-
-
-  // button functionality [save and next]
+  // button functionality for selected language [save and next]
   const chkvalidate = async (e) => {
     e.preventDefault();
     // const appear=localStorage.getItem('Appeared');
 
-    await axios
-      .patch(
-        "https://csiportal.herokuapp.com/instruction",
-
-        {
-          cookie_token: cook,
-          lang: props.chosenlang,
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        // localStorage.setItem('Appeared',false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-
-    if (props.langchoice === "") {
+    if (langchoice === "") {
       toast.error("Select any language first");
     } else {
+      await axios
+        .patch(
+          "https://csiportal.herokuapp.com/instruction",
+
+          {
+            cookie_token: cook,
+            lang: chosenlang,
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          // localStorage.setItem('Appeared',false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       localStorage.setItem("instruct", true);
 
       navigate("/testwindow");
     }
   };
-
 
   return (
     <div className="instructions">
