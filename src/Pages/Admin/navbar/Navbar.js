@@ -3,8 +3,20 @@ import "./navbar.css"
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import {Link} from "react-router-dom"
 import logo from "../../../Images/Admin/logo.png" 
+import { useNavigate } from "react-router-dom";
+
 
 function Navbar() {
+  const navigate = useNavigate();
+
+  const logout=(e) =>
+  {
+    e.preventDefault();
+    localStorage.removeItem('login1', true);
+    localStorage.removeItem('cookie');
+    localStorage.removeItem('Appeared');   
+    
+  }
   return (
     <>
     <nav className='navbar'>
@@ -41,7 +53,9 @@ function Navbar() {
             <Link to="/leaderboard">
             <button  className="but leaderboard"><p style={{fontSize:"22px"}} className='buttonText'>LEADERBOARD</p></button>
             </Link>
+            <button className="but dropdown" onClick={logout}>
             <PowerSettingsNewIcon className="but logoutBtn" style={{color:'white',  fontSize:28 }}/>
+            </button>
           </div>
        </div>
         </div>
