@@ -34,7 +34,38 @@ let data;
   return (
     <>
       {show ? (
-        <Modal />
+        <>
+        
+        <div className="test_body">
+          <QuestionPannel
+            chosenlang={props.chosenlang}
+            testoptions={testoptions}
+            setTestOptions={setTestOptions}
+            setShowques={setShowques}
+            showques={showques}
+            testques={testques}
+            choice={choice}
+            setChoice={setChoice}
+            setAnsid = {setAnsid}
+            setFlag = {setFlag}
+            ansid = {ansid}
+          />
+          <Modal 
+          setShow={setShow}/>
+          <Sidebar
+            showques={showques}
+            setShowques={setShowques}
+            testques={testques}
+            choice={choice}
+            setShow={setShow}
+            ansid = {ansid}
+            flag = {flag}
+          />
+        
+
+        </div>
+        </>
+
       ) : (
         <div className="test_body">
           <QuestionPannel

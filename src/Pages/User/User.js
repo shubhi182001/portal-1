@@ -10,6 +10,7 @@ import TestWindow from "./Testwindow/Test";
 import Protectedroutes from "./Protectedroutes";
 import Animation from "../../Animation/Animation";
 import Homepage from "../../Pages/Admin/homepage/Homepage";
+import Admin from "../Admin/Admin";
 
 import Test from "./Testwindow/Test";
 
