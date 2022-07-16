@@ -4,6 +4,7 @@ import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import {Link} from "react-router-dom"
 import logo from "../../../Images/Admin/logo.png" 
 import { useNavigate } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
 
 
 function Navbar() {
@@ -15,7 +16,7 @@ function Navbar() {
     localStorage.removeItem('login1', true);
     localStorage.removeItem('cookie');
     localStorage.removeItem('Appeared');   
-    
+    navigate('/');
   }
   return (
     <>
