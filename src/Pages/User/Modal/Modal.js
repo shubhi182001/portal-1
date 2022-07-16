@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import "./Modal.css";
 import Logocsi from "../../../Images/User/Logocsi.svg"
 import { useNavigate } from "react-router-dom";
@@ -35,18 +35,23 @@ const Modal = ({setShow}) => {
   }
 
   const navigate = useNavigate();
+  // const btnRef = useRef();
   useEffect(()=>
     {
-      // const close = e =>{
-      //   setShow(false)
-      // }
-      // document.body.addEventListener('click',close)
+      const close = event =>{
+        // console.log(e);
+        if(event.path[0].tagName !== 'BUTTON'){
+          setShow(false);
+        }
+      }
+      document.body.addEventListener('click',close);
       
         let testpage = localStorage.getItem('testpage');
   
         if(testpage){
            navigate('/feedback')
         }
+        return() => document.body.removeEventListener('click',close);
         
     },[]);
     

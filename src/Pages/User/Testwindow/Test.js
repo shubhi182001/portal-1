@@ -50,8 +50,7 @@ let data;
             setFlag = {setFlag}
             ansid = {ansid}
           />
-          <Modal 
-          setShow={setShow}/>
+         
           <Sidebar
             showques={showques}
             setShowques={setShowques}
@@ -61,6 +60,8 @@ let data;
             ansid = {ansid}
             flag = {flag}
           />
+           <Modal 
+          setShow={setShow}/>
         
 
         </div>
