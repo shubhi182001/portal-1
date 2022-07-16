@@ -11,8 +11,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Instruction = (props) => {
-
-  const [langchoice, setLangchoice] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,7 +22,6 @@ const Instruction = (props) => {
   }, []);
 
  const handlelangchoice = (val) => {
-  setLangchoice(val);
   props.setChosenlang(val);
  }
 
@@ -57,7 +54,7 @@ const Instruction = (props) => {
       });
 
 
-    if (props.langchoice === "") {
+    if (props.chosenlang === "") {
       toast.error("Select any language first");
     } else {
       localStorage.setItem("instruct", true);
