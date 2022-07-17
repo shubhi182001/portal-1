@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Admin.css"
 // import Add from './add/addQuestions/Add'
-import Homepage from './homepage/Homepage'
+// import Homepage from './homepage/Homepage'
 // import FeedbackQ from '../Admin/add/addFeedbackQ/FeedbackQ'
 import AddFeedback from './add/addFeedbackQ/AddFeedback'
 import AddCandidate from '../Admin/add/addCandidate/AddCandidate'
@@ -27,7 +27,7 @@ function Admin() {
     {/* <div className="admin_body"> */}
     <BrowserRouter>
     <Routes>
-      <Route path='/homepage' element={<Homepage/>} />
+      {/* <Route path='/homepage' element={<Homepage/>} /> */}
       <Route path ='/getques' element={<GetQ/>} />
       <Route path='/editq' element={<EditQ/>} />
       <Route path ='/getfeedbackques' element={<GetFeedbackQ/>} />
