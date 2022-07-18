@@ -9,7 +9,7 @@ import QuestionPannel from "./components/QuestionPannel";
 import axios, { Axios } from "axios";
 import Modal from "./.././Modal/Modal";
 import "./Test.css";
-const Test = (props) => {
+const Test = () => {
   const [show, setShow] = useState(false); // for modal
   const [choice, setChoice] = useState("HTML");  // cataegory 
   const [testques, setTestques] = useState(['']); // setting whole array of question 
@@ -38,7 +38,6 @@ let data;
         
         <div className="test_body">
           <QuestionPannel
-            chosenlang={props.chosenlang}
             testoptions={testoptions}
             setTestOptions={setTestOptions}
             setShowques={setShowques}
@@ -70,7 +69,6 @@ let data;
       ) : (
         <div className="test_body">
           <QuestionPannel
-            chosenlang={props.chosenlang}
             testoptions={testoptions}
             setTestOptions={setTestOptions}
             setShowques={setShowques}

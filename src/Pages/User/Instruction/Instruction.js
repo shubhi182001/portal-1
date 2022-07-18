@@ -10,9 +10,9 @@ import { useNavigate } from "react-router-dom";
 // import { ColorizeRounded } from "@mui/icons-material";
 import axios from "axios";
 
-const Instruction = (props) => {
+const Instruction = () => {
   const navigate = useNavigate();
-
+const [chosenlang, setChosenlang] = useState("");
   useEffect(() => {
     let instruct = localStorage.getItem("instruct");
 
@@ -22,11 +22,10 @@ const Instruction = (props) => {
   }, []);
 
  const handlelangchoice = (val) => {
-  props.setChosenlang(val);
+    setChosenlang(val);
  }
 
   const cook = localStorage.getItem("cookie");
-  console.log(props.chosenlang);
   // console.log(cook);
 
 
@@ -42,7 +41,8 @@ const Instruction = (props) => {
 
         {
           cookie_token: cook,
-          lang: props.chosenlang,
+          lang: chosenlang
+          
         }
       )
       .then((res) => {
@@ -54,7 +54,7 @@ const Instruction = (props) => {
       });
 
 
-    if (props.chosenlang === "") {
+    if (chosenlang === "") {
       toast.error("Select any language first");
     } else {
       localStorage.setItem("instruct", true);

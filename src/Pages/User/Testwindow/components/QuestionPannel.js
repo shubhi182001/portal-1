@@ -10,7 +10,6 @@ const QuestionPannel = ({
   setChoice,
   choice,
   setShowques,
-  chosenlang,
   setAnsid,
   ansid,
   setFlag,
@@ -22,6 +21,7 @@ const QuestionPannel = ({
   const [category, setCategory] = useState("CSS");
   const [next, setNext] = useState(true);
   const [oid, setOid] = useState();
+  const [chosenlang, setChosenlang] = useState("");
   const [radioActive, setRadioActive] = useState(false); // selecting radio buttons
   // useLayoutEffect(() =>{
   //   // setChoice(val);
@@ -35,6 +35,21 @@ const QuestionPannel = ({
   // }
 
   // const [select, setSelect] = useState("");
+  const lang = {
+    cookie_token: cook
+  }
+  axios
+      .post("https://csiportal.herokuapp.com/langselected",lang)
+      .then((res) =>{
+        console.log(res.data.lang);
+        setChosenlang(res.data.lang);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+
+
+
   let optionarr = [],
     x;
   if (testoptions) {
