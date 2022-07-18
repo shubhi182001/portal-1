@@ -10,6 +10,10 @@ import { Navigate } from 'react-router-dom';
 function Navbar() {
   const navigate = useNavigate();
 
+  const nav = () =>{
+    navigate('/homepage');
+  }
+
   const logout=(e) =>
   {
     e.preventDefault();
@@ -24,7 +28,7 @@ function Navbar() {
       <div className='left'>
          <div className="navbarLeft">
            <img className="logo" src={logo} alt="error" />       
-           <Link to="/homepage"className='admin_text' ><h1 className='admin_text'>ADMIN</h1></Link>
+          <h1 onClick={nav} className='admin_text'>ADMIN</h1>
         </div>
 
       </div>
