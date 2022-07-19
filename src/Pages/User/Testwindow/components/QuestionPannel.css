@@ -4,12 +4,11 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat', sans-serif;
-   
+    font-family: 'Montserrat', sans-serif;   
 }
 
 
-.Question_body{
+.Question_body1{
     width: 70%;
     height: 100vh;
     display: flex;
@@ -18,12 +17,38 @@
     font-weight: bold;
     /* background:no-repeat url(../../../../Images/User/testpage_bg.svg); */
 }
-.test_nav{
+.Question_body2{
+    width: 70%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-weight: bold;
+  /* background-color: #E8E8E8; */
+  background-color: rgba(16, 16, 2, 0.502);
+     
+    /* background:no-repeat url(../../../../Images/User/testpage_bg.svg); */
+}
+.test_nav1{
     display: flex;
     height: 3.5rem;
     background-color: #E5E5E5;
 }
-.test_nav img{
+.test_nav2{
+    display: flex;
+    height: 3.5rem;
+    /* background-color: #E5E5E5; */
+  /* background-color: rgba(16, 16, 2, 0.502); */
+  background-color: rgba(16, 16, 2, 0.062);
+
+  opacity: 0.6;
+
+}
+.test_nav1 img{
+    height:40px;
+    width: 40px;
+}
+.test_nav2 img{
     height:40px;
     width: 40px;
 }
@@ -43,12 +68,20 @@
     letter-spacing: 0.1em;
 
 }
-.divider{
+.divider1{
     display: flex;
     justify-content: center;
     align-items: center;
     
 }
+.divider2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.4;
+    
+}
+
 .dividerbtn{
     width: 175px;
     height: 41px;
@@ -116,16 +149,28 @@
     letter-spacing: 0.05rem;
     margin-top: 20px; 
 }
-.que_options{
+.que_options1{
     margin-left: 15px;
     margin-top: 30px; 
 }
-.que_options input{
+.que_options2{
+    margin-left: 15px;
+    margin-top: 30px; 
+    opacity: 0.4;
+}
+
+.que_options1 input{
     height: 20px;
     width: 20px;
     cursor: pointer;
 }
-.que_options label{
+.que_options2 input{
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+
+.que_options1 label{
     font-style: normal;
     font-weight:bold;
     font-size: 23px;
@@ -133,9 +178,25 @@
     letter-spacing: 0.05em;
     margin-left: 22px;
 }
-.footer{
+.que_options2 label{
+    font-style: normal;
+    font-weight:bold;
+    font-size: 23px;
+    line-height: 28px;
+    letter-spacing: 0.05em;
+    margin-left: 22px;
+}
+.footer1{
     background: #E8E8E8;
+  /* background-color: rgba(16, 16, 2, 0.502); */
+
     opacity: 0.7;
+}
+.footer2{
+    /* background: #E8E8E8; */
+  background-color: rgba(16, 16, 2, 0.062);
+
+    opacity: 0.4;
 }
 .foot_btn{
     display: flex;

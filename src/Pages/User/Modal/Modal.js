@@ -62,7 +62,7 @@ const Modal = ({setShow}) => {
             <img src= {Logocsi} alt="none" className='thankyou_img' height="100px"/>
             </div>
             <div className='title'>
-                <h1>Are You Sure You Want To End The Exam?</h1>
+                <h3>Are You Sure You Want To End The Exam?</h3>
             </div>
             <div className='footr'>
                 <button id='nobtn' onClick={NotSubmit}>NO</button>

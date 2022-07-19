@@ -4,7 +4,7 @@ import Modal from "./../../Modal/Modal";
 import axios, { Axios } from "axios";
 import { useNavigate } from "react-router-dom";
 import { AirlineSeatFlatAngled } from "@mui/icons-material";
-const Sidebar = ({ testques, setShow, showques, setShowques, ansid, flag }) => {
+const Sidebar = ({ testques, setShow, showques, setShowques, ansid, flag ,show}) => {
 
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
@@ -83,28 +83,28 @@ const Sidebar = ({ testques, setShow, showques, setShowques, ansid, flag }) => {
   };
 
   return (
-    <div className="Sidebar_body">
+    <div className={show ? "Sidebar_body2" : "Sidebar_body1"}>
       <div className="part1">
-        <div className="time_left">
+        <div className={show ? "time_left2" : "time_left1"}>
           <h1>Time left</h1>
         </div>
         <div className="time_measure">  
           <div className="time_counting2">
-            <span className="time_num">{hours}</span>
+            <span className={show ? "time_num2" : "time_num1"}>{hours}</span>
             <span className="time_text">hours</span>
           </div>
           <div className="time_counting2">
-            <span className="time_num">{minutes}</span>
+            <span className={show ? "time_num2" : "time_num1"}>{minutes}</span>
             <span className="time_text">min</span>
           </div>
           <div className="time_counting2">
-            <span className="time_num">{seconds}</span>
+            <span className={show ? "time_num2" : "time_num1"}>{seconds}</span>
             <span className="time_text">sec</span>
           </div>
         </div>
-        <div className="time_head">Questions</div>
+        <div className={show ? "time_head2" : "time_head1"}>Questions</div>
 
-        <div className="test_btn">
+        <div className={show ? "test_btn2" : "test_btn1"}>
           {sidebarbtn.map((i, index) => (
             <button
               className={
@@ -125,7 +125,7 @@ const Sidebar = ({ testques, setShow, showques, setShowques, ansid, flag }) => {
         </div>
       </div>
       <div className="side_footer">
-        <button className="submit_button" onClick={Submit}>
+        <button className={show ? "submit_button2" : "submit_button1"} onClick={Submit}>
           Submit Test
         </button>
       </div>

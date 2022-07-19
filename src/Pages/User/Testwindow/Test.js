@@ -48,6 +48,8 @@ let data;
             setAnsid = {setAnsid}
             setFlag = {setFlag}
             ansid = {ansid}
+            setShow={setShow}
+            show={show}            
           />
          
           <Sidebar
@@ -58,6 +60,8 @@ let data;
             setShow={setShow}
             ansid = {ansid}
             flag = {flag}
+            show={show}            
+
           />
            <Modal 
           setShow={setShow}/>

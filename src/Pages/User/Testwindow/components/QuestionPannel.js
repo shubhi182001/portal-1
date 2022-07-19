@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState} from "react";
 import "./QuestionPannel.css";
 import instlogo from "../../../../Images/User/inst_csilogo.png";
 import axios from "axios";
@@ -13,6 +13,7 @@ const QuestionPannel = ({
   setAnsid,
   ansid,
   setFlag,
+  show,
 }) => {
   const [qid, setQid] = useState();
   const [select, setSelect] = useState("");
@@ -178,9 +179,9 @@ const QuestionPannel = ({
   };
 
   return (
-    <div className="Question_body">
+    <div className={show ? "Question_body2" : "Question_body1"}>
       <div className="wrap1">
-        <div className="test_nav">
+        <div className={show ? "test_nav2" : "test_nav1"}>
           <div className="ques_logo">
             <img src={instlogo} alt="" />
           </div>
@@ -189,7 +190,7 @@ const QuestionPannel = ({
           </div>
         </div>
 
-        <div className="divider">
+        <div className={show ? "divider2" : "divider1"}>
           <button
             className={choice === "HTML" ? "selectedbtn" : "dividerbtn"}
             onClick={() => handleactive("HTML")}
@@ -230,7 +231,7 @@ const QuestionPannel = ({
           <div className="testbtn">
             {optionarr.map((i, index) => (
              
-             <div className="que_options" key={index}>
+             <div className={show ? "que_options2" : "que_options1"} key={index}>
                 <input
                   // checked = {radioActive}
                   type="radio"
@@ -253,7 +254,7 @@ const QuestionPannel = ({
           </div>
         </div>
       </div>
-      <div className="footer">
+      <div className={show ? "footer2" : "footer1"}>
         <div className="foot_btn">
           <button onClick={Mark} id="mfr">
             Mark for Review
