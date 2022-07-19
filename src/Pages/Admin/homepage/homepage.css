@@ -12,6 +12,7 @@
 }
 
 .homepage{
+    height: calc(100vh);
     display: block;
     align-items: center;
     justify-content: center;
