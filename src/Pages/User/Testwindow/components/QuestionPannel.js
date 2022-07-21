@@ -120,7 +120,6 @@ const QuestionPannel = ({
       console.log(showques);
       console.log(oid);
       console.log(ansid);
-      setFlag("1");
     } else {
       setShowques(1);
       setChoice(

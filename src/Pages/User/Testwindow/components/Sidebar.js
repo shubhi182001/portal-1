@@ -24,7 +24,7 @@ const Sidebar = ({ testques, setShow, showques, setShowques, ansid, flag }) => {
 //   console.log(decode);
   const starttime = () => {
 
-    axios.get("https://csiportal.herokuapp.com/logintime",datacookie)
+    axios.post("https://csiportal.herokuapp.com/logintime",datacookie)
     .then((res)=>{
       console.log(res);
     })
