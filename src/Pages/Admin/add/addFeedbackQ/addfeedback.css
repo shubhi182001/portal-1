@@ -52,3 +52,7 @@
    padding: 4px 8px;
    color: white;
 }
+.f-feedback-main{
+   overflow: hidden;
+   height: 100vh;
+}

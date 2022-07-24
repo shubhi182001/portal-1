@@ -58,13 +58,22 @@ const AddQuestions = () => {
                 'https://csiportal.herokuapp.com/question/addquestion', questionData)
                 .then((res) => {
                     console.log(res);
-                    console.log(res.data)
-
+                    console.log(res.data);
+                    setQuestion('');
+                    setChosenlang(' ');
+                    setOptions([])
+                    setQuestionErrors({})
+                    if(res){
+                        window.alert("Question Added Successfully");
+                    }
                 })
                 .catch((err) => {
                     console.log(err);
                 })
         } else {
+            if(options.length>4){
+                window.alert("Can't add more than 4 options");
+            }
             console.log('Something wrong')
         }
     }
@@ -149,7 +158,7 @@ const AddQuestions = () => {
                                                 }))
 
                                             }} />
-                                            <li className="s-class item-2 option-item">{option.value}</li>
+                                            <li className="s-class item-2 option-item" key={option.Oid} >{option.value}</li>
                                             <DeleteIcon fontSize='10px' height="8px"  style={{ color: "red", cursor: "pointer" }} className=" item-3  delete" onClick={() => {
                                                 setOptions(options.filter(el => el.Oid !== option.Oid))
                                                 // console.log(options)
