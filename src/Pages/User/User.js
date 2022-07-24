@@ -10,12 +10,11 @@ import TestWindow from "./Testwindow/Test";
 import Protectedroutes from "./Protectedroutes";
 import Animation from "../../Animation/Animation";
 import Homepage from "../../Pages/Admin/homepage/Homepage";
+import Admin from "../Admin/Admin";
 
 import Test from "./Testwindow/Test";
 
 function App() {
-  // const [chosenlang, setChosenlang] = useState("C++");
-  const [chosenlang, setChosenlang] = useState("");
 
   const [showComponent, setShowComponent] = useState(true);
   const [showComponent2, setShowComponent2] = useState(false);
@@ -48,8 +47,6 @@ function App() {
             path="/instructions"
             element={
               <Protectedroutes
-                chosenlang={chosenlang}
-                setChosenlang={setChosenlang}
                 Component={Instructions}
               />
             }
@@ -57,7 +54,7 @@ function App() {
           <Route
             path="/testwindow"
             element={
-              <Protectedroutes chosenlang={chosenlang} Component={TestWindow} />
+              <Protectedroutes Component={TestWindow} />
             }
           />
           <Route

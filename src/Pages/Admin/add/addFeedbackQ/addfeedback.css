@@ -1,0 +1,54 @@
+.f-add-feedback-body{
+     display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.f-heading-feedback{
+    width: 220px;
+     margin: 18px;
+  padding: 10px 30px;
+  color: white;
+  background-color:#8C8FFF;
+}
+.f-white-container{
+   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color:#ffffff;
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  margin: 20px;
+  padding:50px;
+}
+
+.f-feedback-ques>textarea{
+  border: none;
+  border-style: none;
+  width:60vw;
+  height: 30vh;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  background-color: #F2DAFE;
+  font-size: 16px;
+  resize: none;
+  color: #075594;
+}
+.f-add-feedback-buttons{
+     width:60vw;
+   display: flex;
+   justify-content: space-between;
+}
+.f-upload-button>button{
+
+   background-color: #5AD046;
+   border: none;
+   padding: 4px 8px;
+   color: white;
+}
+.f-reset-button>button{
+   background-color: #D75C4C;
+   border: none;
+   padding: 4px 8px;
+   color: white;
+}

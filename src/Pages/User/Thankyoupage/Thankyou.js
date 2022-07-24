@@ -5,9 +5,9 @@ const Thankyou = () => {
   return (
     <>
     <div className='main'>
-        <div className='container'>
+        <div className='container1'>
         <div className="img">
-        <img src= {Logocsi} alt="none" className='thankyou_img' height="100px"/>
+        <img src= {Logocsi} alt="none" className='Thankyou_img' height="100px"/>
       </div>
            
            <div className='txt'>

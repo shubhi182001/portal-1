@@ -32,7 +32,7 @@ const GetQ = () => {
 
   return (
     <>
-    <div className="admin-main">
+    <div className="admin-main getc">
     <Navbar/>
     <div className="get">
         <h1 className='get_text'>Questions</h1>

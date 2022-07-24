@@ -27,7 +27,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 40vh;
+  height: 45vh;
   width: 25%;
   box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.15);
   border-radius: 10px;
@@ -39,7 +39,7 @@
 }
 
 .admin_icon{
-  top:29%;
+  top:26%;
   height: 70px;
   width: 60px;
   /* font-size: 400px; */
@@ -49,7 +49,7 @@
 }
 
 .admin_group{
-  top:28%;
+  top:25%;
   height: 80px;
   width: 60px;
   transform: scale(0.8);

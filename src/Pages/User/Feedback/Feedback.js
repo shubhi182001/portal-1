@@ -57,7 +57,7 @@ const Feedback = () => {
       // console.log(route);
       localStorage.setItem('feedback', true);
       navigate('/thankyou')
-      localStorage.removeItem('login', true);
+      localStorage.removeItem('login2', true);
       localStorage.removeItem('instruct', true);
       localStorage.removeItem('feedback', true);
     }

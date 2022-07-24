@@ -41,7 +41,7 @@ const Login = () => {
       setErrorStudentType(true);
       setRoutename(false);
     } else if (!regex.test(value)) {
-      error = "Student number is not matched";
+      error = "Student number is incorrect";
       setErrorStudentType(true);
       setRoutename(false);
     } else {
@@ -54,11 +54,11 @@ const Login = () => {
     let error;
     const regex = /^[A-Za-z]{3,}[@][0-9]{7}$/;
     if (!value) {
-      error = "password is required";
+      error = "Password is required";
       setPasswordErrorType(true);
       setRoutepass(false);
     } else if (!regex.test(value)) {
-      error = "Your password is firstname@studentno.";
+      error = "Password is incorrect";
       setPasswordErrorType(true);
       setRoutepass(false);
     } else {
@@ -221,7 +221,7 @@ const Login = () => {
             variant="outlined"
             size="small"
             className="input_field"
-            error={PasswordErrorType ? true : ""}
+            error={PasswordErrorType ? true : false}
             onBlur={passwordFocus}
             focused={focused.tostring}
             type={eye ? "text" : "password"}

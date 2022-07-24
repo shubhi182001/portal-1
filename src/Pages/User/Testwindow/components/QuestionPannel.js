@@ -10,18 +10,19 @@ const QuestionPannel = ({
   setChoice,
   choice,
   setShowques,
-  chosenlang,
   setAnsid,
   ansid,
   setFlag,
+  show,
 }) => {
   const [qid, setQid] = useState(); // for question id
   const [select, setSelect] = useState(""); // option selection
   const cook = localStorage.getItem("cookie");
-  const [mark, setMark] = useState(false); // mark for review
-  const [category, setCategory] = useState("CSS"); // cataegory for api
-  const [next, setNext] = useState(true); // for save and next 
-  const [oid, setOid] = useState(); // option id
+  const [mark, setMark] = useState(false);
+  const [category, setCategory] = useState("CSS");
+  const [next, setNext] = useState(true);
+  const [oid, setOid] = useState();
+  const [chosenlang, setChosenlang] = useState("");
   const [radioActive, setRadioActive] = useState(false); // selecting radio buttons
   // useLayoutEffect(() =>{
   //   // setChoice(val);
@@ -35,6 +36,19 @@ const QuestionPannel = ({
   // }
 
   // const [select, setSelect] = useState("");
+  const lang = {
+    cookie_token: cook,
+  };
+  axios
+    .post("https://csiportal.herokuapp.com/langselected", lang)
+    .then((res) => {
+      console.log(res.data.lang);
+      setChosenlang(res.data.lang);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
   let optionarr = [],
     x;
   if (testoptions) {
@@ -162,9 +176,9 @@ const QuestionPannel = ({
   };
 
   return (
-    <div className="Question_body">
+    <div className={show ? "Question_body2" : "Question_body1"}>
       <div className="wrap1">
-        <div className="test_nav">
+        <div className={show ? "test_nav2" : "test_nav1"}>
           <div className="ques_logo">
             <img src={instlogo} alt="" />
           </div>
@@ -173,7 +187,7 @@ const QuestionPannel = ({
           </div>
         </div>
 
-        <div className="divider">
+        <div className={show ? "divider2" : "divider1"}>
           <button
             className={choice === "HTML" ? "selectedbtn" : "dividerbtn"}
             onClick={() => handleactive("HTML")}
@@ -213,7 +227,10 @@ const QuestionPannel = ({
           <h2>{testques[showques - 1].question}</h2>
           <div className="testbtn">
             {optionarr.map((i, index) => (
-              <div className="que_options" key={index}>
+              <div
+                className={show ? "que_options2" : "que_options1"}
+                key={index}
+              >
                 <input
                   // checked = {radioActive}
                   type="radio"
@@ -235,7 +252,7 @@ const QuestionPannel = ({
           </div>
         </div>
       </div>
-      <div className="footer">
+      <div className={show ? "footer2" : "footer1"}>
         <div className="foot_btn">
           <button onClick={Mark} id="mfr">
             Mark for Review

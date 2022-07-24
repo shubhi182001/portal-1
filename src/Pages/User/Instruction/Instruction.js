@@ -10,10 +10,9 @@ import { useNavigate } from "react-router-dom";
 // import { ColorizeRounded } from "@mui/icons-material";
 import axios from "axios";
 
-const Instruction = ({ chosenlang, setChosenlang }) => {
-  const [langchoice, setLangchoice] = useState("");
+const Instruction = () => {
   const navigate = useNavigate();
-
+const [chosenlang, setChosenlang] = useState("");
   useEffect(() => {
     let instruct = localStorage.getItem("instruct");
 
@@ -22,15 +21,11 @@ const Instruction = ({ chosenlang, setChosenlang }) => {
     }
   }, []);
 
-  // selecting language
-  const handlelangchoice = (val) => {
-    setLangchoice(val);
+ const handlelangchoice = (val) => {
     setChosenlang(val);
-    // props.setChosenlang(val);
-  };
+ }
 
   const cook = localStorage.getItem("cookie");
-  console.log(chosenlang);
   // console.log(cook);
 
   // button functionality for selected language [save and next]
@@ -38,7 +33,26 @@ const Instruction = ({ chosenlang, setChosenlang }) => {
     e.preventDefault();
     // const appear=localStorage.getItem('Appeared');
 
-    if (langchoice === "") {
+    await axios
+      .patch(
+        "https://csiportal.herokuapp.com/instruction",
+
+        {
+          cookie_token: cook,
+          lang: chosenlang
+          
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        // localStorage.setItem('Appeared',false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+
+    if (chosenlang === "") {
       toast.error("Select any language first");
     } else {
       await axios

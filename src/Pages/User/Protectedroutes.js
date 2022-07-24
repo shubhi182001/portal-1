@@ -25,10 +25,7 @@ const Protectedroutes = (props) => {
   }, []);
   return (
     <div>
-      <Component
-        chosenlang={props.chosenlang}
-        setChosenlang={props.setChosenlang}
-      />
+      <Component />
     </div>
   );
 };

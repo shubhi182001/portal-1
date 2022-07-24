@@ -3,8 +3,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
+    /* overflow-x: hidden; */
 }
+.getc{
+    width: 98.9vw;
+    /* height: 100vh; */
+    overflow: hidden;
+}
+
 .get_text{
     /* display: flex;
     align-items: center;

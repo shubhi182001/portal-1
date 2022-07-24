@@ -25,7 +25,7 @@ function Getfeedback() {
 
 
   return (
-    <div className='admin-main'>
+    <div className='admin-main getc'>
         <Navbar/>
         <div className="get" style={{marginBottom:"15px"}}>
         <h1 className='get_text' >Feedback Questions</h1>
