@@ -27,7 +27,7 @@ const Sidebar = ({ testques, setShow, showques, setShowques, ansid, flag ,show})
     .catch((err) => {
       console.log(err);
     });
-  },[])
+  },[showques])
 
 
   let d,interval = useRef();

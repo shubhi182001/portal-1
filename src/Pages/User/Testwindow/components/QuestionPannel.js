@@ -39,7 +39,8 @@ const QuestionPannel = ({
   const lang = {
     cookie_token: cook,
   };
-  axios
+  useEffect(()=>{
+    axios
     .post("https://csiportal.herokuapp.com/langselected", lang)
     .then((res) => {
       console.log(res.data.lang);
@@ -48,6 +49,8 @@ const QuestionPannel = ({
     .catch((err) => {
       console.log(err);
     });
+  },[]);
+
 
   let optionarr = [],
     x;
@@ -134,6 +137,9 @@ const QuestionPannel = ({
       console.log(showques);
       console.log(oid);
       console.log(ansid);
+    setRadioActive(false);
+
+      // setRadioActive(true);
     } else {
       setShowques(1);
       setChoice(
@@ -172,7 +178,6 @@ const QuestionPannel = ({
         console.log(err);
         setSelect(0);
       });
-    // setRadioActive(false);
   };
 
   return (
@@ -232,10 +237,11 @@ const QuestionPannel = ({
                 key={index}
               >
                 <input
-                  // checked = {radioActive}
+                  checked = {radioActive}
                   type="radio"
                   value={i}
                   onChange={(e) => {
+                    setRadioActive(true);
                     setSelect(e.target.value);
                     {
                       testoptions &&

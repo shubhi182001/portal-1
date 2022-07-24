@@ -29,10 +29,11 @@
     justify-content: space-between;
     font-weight: bold;
   /* background-color: #E8E8E8; */
-  background-color: rgba(16, 16, 2, 0.502);
   background-image: url('../../../../Images/User/test_background.png');  
   background-repeat: no-repeat;
   background-position: center center;
+  background-color: rgba(16, 16, 2, 0.502);
+  
     /* background:no-repeat url(../../../../Images/User/testpage_bg.svg); */
 }
 .test_nav1{
