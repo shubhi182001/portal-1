@@ -16,7 +16,6 @@ function Navbar() {
 
   const logout=(e) =>
   {
-    e.preventDefault();
     localStorage.removeItem('login1', true);
     localStorage.removeItem('cookie');
     localStorage.removeItem('Appeared');   

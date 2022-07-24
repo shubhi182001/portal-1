@@ -44,32 +44,41 @@ function EditQ() {
       const url = `https://csiportal.herokuapp.com/question/${state.post_id}`
       const handleUpload = (e) =>{
         e.preventDefault();
-        
-        axios.patch(
-            url,
-            {
-                "question": question,
-                "category": category,
-                "options" : options
+        if(question && options.length <= 4){
+            axios.patch(
+                url,
+                {
+                    "question": question,
+                    "category": category,
+                    "options" : options
+                }
+    
+            ).then((res) => {
+                console.log(res);
+                console.log(res.data);
+                window.alert("data updated")
+                navigate('/getques');
+                
+            })
+            .catch((err) =>{
+                console.log(err);
+                window.alert("not updated ERROR!!!")
+            })
+          }
+          else{
+            if(!question){
+                window.alert("Can't Leave Question field empty");
+            }  
+            if(options.length>4){
+                window.alert("Only 4 options are possible");
             }
-
-        ).then((res) => {
-            console.log(res);
-            console.log(res.data);
-            window.alert("data updated")
-            navigate('/getques');
-            
-        })
-        .catch((err) =>{
-            console.log(err);
-            window.alert("not updated ERROR!!!")
-        })
-      }
+          }
+        }
 
     //   console.log(options);
   return (
     <>
-    <div className="admin-main">
+    <div className="admin-main edit-main">
     <Navbar/>
     <div className="edit">
         <h1 className='edit_text'>Edit Question</h1>
@@ -77,7 +86,8 @@ function EditQ() {
     <div className="editq">
         <Card className='editCard'>
             <p className='question_text'>Question</p>
-            <textarea className="question_field" onChange={updateQuestion} value={question}></textarea>
+            <textarea className="question_field" required onChange={updateQuestion} defaultValue={question}></textarea>
+            {question.length===0 ? <p style={{marginLeft:"10px", color:"red", fontWeight:"bolder"}}>Question is required</p>:null}
             <p className='category_text'>Category</p>
             <div className="language">
                 <select className="select select_lang" value={category} onChange={updateCategory} style={{color:"black",fontSize:"15px", fontFamily:"Roboto" }} name="lang" id="options" >
@@ -102,7 +112,7 @@ function EditQ() {
                     {options.map((option)=>(
                         <li className='option-list' key={option.Oid}>
                         <div className="Einput-list">
-                            <input type="Checkbox" checked={option.isCorrect} className="Einput" value={option.value} onClick={() =>[
+                            <input type="Checkbox" defaultChecked={option.isCorrect} className="Einput" value={option.value} onClick={() =>[
                                 setOptions(options.map((e)=>{
                                     if(e.Oid === option.Oid){
                                         return{
