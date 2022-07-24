@@ -58,13 +58,22 @@ const AddQuestions = () => {
                 'https://csiportal.herokuapp.com/question/addquestion', questionData)
                 .then((res) => {
                     console.log(res);
-                    console.log(res.data)
-
+                    console.log(res.data);
+                    setQuestion('');
+                    setChosenlang(' ');
+                    setOptions([])
+                    setQuestionErrors({})
+                    if(res){
+                        window.alert("Question Added Successfully");
+                    }
                 })
                 .catch((err) => {
                     console.log(err);
                 })
         } else {
+            if(options.length>4){
+                window.alert("Can't add more than 4 options");
+            }
             console.log('Something wrong')
         }
     }
@@ -98,7 +107,7 @@ const AddQuestions = () => {
     console.log(options);
     return (
         <>
-            <div className="admin-main">
+            <div className="admin-main add-main">
                 <Navbar />
                 <div className='add-question-body'>
                     <h5 className='heading-question'>Add Question </h5>
@@ -127,8 +136,8 @@ const AddQuestions = () => {
                         <div className="answers-and-options">
                             <div className="answers-section">
                                 <p>Options</p>
-                                <form action="" onSubmit={submitHandler}>
-                                    <div className="answer-input-field">
+                                <form action="" onSubmit={submitHandler} >
+                                    <div className="answer-input-field" >
                                         <input value={inputText}
                                             onChange={inputTextHandler} type="text" name="" id="" placeholder='Add Options' />
                                     </div>
@@ -137,7 +146,7 @@ const AddQuestions = () => {
                             <div className="options-section">
                                 <ul className="option-list">
                                     {options.map(option => (
-                                        <div className="option">
+                                        <div className="option" style={{alignItems:"center"}}>
                                             <Checkbox checked={option.isCorrect} value={option.value} className="s-class item-1 check" onClick={() => {
                                                 setOptions(options.map((el) => {
                                                     if (el.Oid === option.Oid) {
@@ -149,8 +158,8 @@ const AddQuestions = () => {
                                                 }))
 
                                             }} />
-                                            <li className="s-class item-2 option-item">{option.value}</li>
-                                            <DeleteIcon fontSize="small" style={{ color: "#DE5947", cursor: "pointer" }} className="s-class item-3  delete" onClick={() => {
+                                            <li className="s-class item-2 option-item" key={option.Oid} >{option.value}</li>
+                                            <DeleteIcon fontSize='10px' height="8px"  style={{ color: "red", cursor: "pointer" }} className=" item-3  delete" onClick={() => {
                                                 setOptions(options.filter(el => el.Oid !== option.Oid))
                                                 // console.log(options)
                                             }} />
@@ -177,4 +186,3 @@ const AddQuestions = () => {
 }
 
 export default AddQuestions
-
