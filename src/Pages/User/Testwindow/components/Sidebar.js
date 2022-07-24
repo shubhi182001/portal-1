@@ -102,7 +102,7 @@ const Sidebar = ({ testques, setShow, showques, setShowques, ansid, flag ,show})
     <div className={show ? "Sidebar_body2" : "Sidebar_body1"}>
       <div className="part1">
         <div className={show ? "time_left2" : "time_left1"}>
-          <h1>Time left</h1>
+          <h3>Time left</h3>
         </div>
         <div className="time_measure">  
           <div className="time_counting2">
