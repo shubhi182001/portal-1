@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../navbar/Navbar'
 import "./getq.css"
 import Cardc from "./component/Cardc"
@@ -8,55 +8,56 @@ import axios from 'axios'
 
 const GetQ = () => {
 
-  const[getq, setGetq] = useState([]);
-  const[search, setSearch] = useState(" ");
+  const [getq, setGetq] = useState([]);
+  const [search, setSearch] = useState(" ");
 
 
   const url = "https://csiportal.herokuapp.com/question/seequestion";
   const getAllQuestions = () => {
     axios.get(url)
-    .then((res)=> {
-      setGetq(res.data.result);
-      console.log(res.data.result);
-    })
-    .catch(error => console.log(error));
+      .then((res) => {
+        setGetq(res.data.result);
+        // console.log(getq);
+        console.log(res.data.result);
+      })
+      .catch(error => console.log(error));
   }
-  useEffect(()=>{
-    
+  useEffect(() => {
+
     getAllQuestions();
-  },[])
+  }, [])
 
-  
 
-  
+
+
 
   return (
     <>
-    <div className="admin-main getc">
-    <Navbar/>
-    <div className="get">
-        <h1 className='get_text'>Questions</h1>
-    </div>
-    <div className="searchWrap">
-    <div className="searchbar">
-      <input className='search' type="text" placeholder='Search' onChange={e => {setSearch(e.target.value)}} />
-      <SearchOutlinedIcon style={{fontSize:"38px", opacity:"45%"}}/>
-    </div>
-    </div>
-    <div className="getq">
-      {getq && getq.length ?
-        getq.filter((p)=>{
-          if(search === " "){
-            return p
-          }else if (p.question.toLowerCase().includes(search.toLowerCase()) || p.category.toLowerCase().includes(search.toLowerCase())){
-            return p
+      <div className="admin-main getc">
+        <Navbar />
+        <div className="get">
+          <h1 className='get_text'>Questions</h1>
+        </div>
+        <div className="searchWrap">
+          <div className="searchbar">
+            <input className='search' type="text" placeholder='Search' onChange={e => { setSearch(e.target.value) }} />
+            <SearchOutlinedIcon style={{ fontSize: "38px", opacity: "45%" }} />
+          </div>
+        </div>
+        <div className="getq">
+          {getq && getq.length ?
+            getq.filter((p) => {
+              if (search === " ") {
+                return p
+              } else if (p.question.toLowerCase().includes(search.toLowerCase()) || p.category.toLowerCase().includes(search.toLowerCase())) {
+                return p
+              }
+            }).map((p) =>
+              (<Cardc className="getCard" key={p._id} ques={p} reload={getAllQuestions} />)
+            ) : null
           }
-        }).map((p) => 
-          (<Cardc className="getCard" key={p._id} ques={p} reload={getAllQuestions}/>)
-        ) : null
-      }
-    </div>
-    </div>
+        </div>
+      </div>
     </>
   )
 }
