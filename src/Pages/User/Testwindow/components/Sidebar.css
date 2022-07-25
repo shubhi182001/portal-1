@@ -19,7 +19,7 @@
   flex-direction: column;
   justify-content: space-between;
   /* background-color: #E5E4E2; */
-  background-color: rgba(23, 22, 23, 0.502);
+  background-color: rgba(51, 51, 51, 0.895);
   /* opacity: 0.8; */
 }
 .time_left1 {
@@ -35,7 +35,7 @@
   align-items: center;
   /* background-color: #dbdbdb; */
   /* background-color: rgba(16, 16, 2, 0.502); */
-  background-color: rgba(23, 22, 23, 0.062);
+  background-color: rgba(51, 51, 51, 0.895);
 
 opacity: 0.6;
   height: 56px;
@@ -132,7 +132,7 @@ opacity: 0.6;
   margin-bottom: 1rem;
   /* background-color: rgba(16, 16, 2, 0.502);
    */
-  background-color: rgba(23, 22, 23, 0.062);
+  background-color: rgba(51, 51, 51, 0.895);
 
 opacity: 0.4;
 }

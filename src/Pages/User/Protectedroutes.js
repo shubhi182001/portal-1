@@ -15,7 +15,11 @@ const Protectedroutes = (props) => {
       navigate("/");
     } else if (login1) {
       navigate("/homepage");
-    } else if (!instruct) {
+    } 
+    else if(!login2 ){
+      navigate("/");
+    }
+    else if (!instruct) {
       navigate("/instructions");
     } else if (!testpage) {
       navigate("/testwindow");
