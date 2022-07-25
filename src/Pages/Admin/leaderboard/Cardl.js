@@ -5,9 +5,8 @@ const Cardl = ({ckc,reload}) => {
     const showDetails = studentDetail.map((info => <li>{info}</li>))
     return (
         <>
-            <div className="cardContainer">
+            <div className="cardContainer" style={{border:"2px solid black"}}>
                 <div className='edit-Card'>
-                    <div className='upper_div'>
                         <div classname='info'>{showDetails}</div>
                         <ul>
                             <li>{ckc.name} </li>
@@ -17,12 +16,6 @@ const Cardl = ({ckc,reload}) => {
                             <li>{ckc.lang}</li>
                            
                         </ul>
-                        <div className="details-btn">
-                            <button className='fetch-details'>fetchdetails</button>
-                        </div>
-                        <div className="answer">
-                            <button className='answer-btn'  >fetchanswer</button>
-                        </div>
                     </div>
 
                     <div className='edit-delete'>
@@ -36,7 +29,7 @@ const Cardl = ({ckc,reload}) => {
                     <hr className="cardHr" />
                 </div>
 
-            </div>
+            
         </>
     )
 }

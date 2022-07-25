@@ -8,17 +8,18 @@ import Cardl from './Cardl'
 
 const Leaderboard = () => {
 
-  const studentDetail = ['Name', 'StudentNo', 'Branch', 'Score', 'StartTime', 'EndTime'];
-    const showDetails = studentDetail.map((info => <li>{info}</li>))
+  
   const [getq, setGetq] = useState([]);
-  const [data, setData] = useState([]);
+  const [udata, setUData] = useState([]);
   const [search, setSearch] = useState(" ");
   const url = "https://csiportal.herokuapp.com/leaderboard";
   const getAllCandidates = () => {
     axios.get(url)
       .then((res) => {
-        setData(res.data);
-        console.log(res.data);
+        // console.log(res);
+        setUData(res.data);
+        // console.log(res.data);
+        // console.log(res.data.name);
       })
       .catch(error => console.log(error));
   }
@@ -44,11 +45,11 @@ const Leaderboard = () => {
           </div>
         </div>
         <div className="getq">
-          {getq && getq.length ?
-            getq.filter((p) => {
+          {udata && udata.length ?
+            udata.filter((p) => {
               if (search === " ") {
                 return p
-              } else if (p.question.toLowerCase().includes(search.toLowerCase()) || p.category.toLowerCase().includes(search.toLowerCase())) {
+              } else if (p.name.toLowerCase().includes(search.toLowerCase()) || p.studentNum.toLowerCase().includes(search.toLowerCase())) {
                 return p
               }
             }).map((p) =>

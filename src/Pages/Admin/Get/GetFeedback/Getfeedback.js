@@ -19,7 +19,6 @@ function Getfeedback() {
     .catch(error => console.log(error));
   }
   useEffect(()=>{
-    
     getAllQuestions();
   },[])
 

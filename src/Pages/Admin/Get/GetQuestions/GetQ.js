@@ -17,8 +17,8 @@ const GetQ = () => {
     axios.get(url)
       .then((res) => {
         setGetq(res.data.result);
-        // console.log(getq);
         console.log(res.data.result);
+        // console.log(res.data.result._id);
       })
       .catch(error => console.log(error));
   }
