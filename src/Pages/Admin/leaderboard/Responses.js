@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../navbar/Navbar'
 import { Link } from "react-router-dom"
-
+import { useNavigate,useLocation } from 'react-router-dom'
 import "./response.css"
 import { Card } from 'react-bootstrap'
 import { style } from '@mui/system'
@@ -9,24 +9,15 @@ import axios from 'axios'
 import Cardr from '../leaderboard/Cardr'
 
 function Responses() {
+    const navigate = useNavigate();
+    const {state} = useLocation();
+    console.log(state);
     const [Details, setDetails] = useState();
     const [seeAnswer, setSeeanswer] = useState();
     let data;
     const studentDetail = ['Name', 'StudentNo', 'Branch', 'Score', 'StartTime', 'EndTime'];
     const showDetails = studentDetail.map((info => <li>{info}</li>))
-    const url = "https://csiportal.herokuapp.com/leaderboard";
-    // let question ;
-    // for(let i = 0; i < )
-    useEffect(() => {
-        getdata();
-        // { Details && console.log(Details) };
-    }, [])
-    const getdata = async () => {
-       const data =  await axios.get(url)
-           console.log(data);
-           setSeeanswer(data.data);
-           console.log(seeAnswer);
-    }
+   
     return (
         <>
             <div className="admin-main">
@@ -39,9 +30,9 @@ function Responses() {
                     <div className='upper_div'>
                         <div classname='info'>{showDetails}</div>
                         <ul>
-                            <li>Nate </li>
-                            <li>2010565</li>
-                            <li>CSE</li>
+                            <li>{state.post_name}</li>
+                            <li>{state.post_studentnum}</li>
+                            <li>{state.post_branch}</li>
                             <li>100</li>
                             <li>10:00</li>
                             <li>12:00</li>
