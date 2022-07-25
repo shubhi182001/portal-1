@@ -7,7 +7,12 @@ function Cardr({ quesData }) {
     <>
     <div className="cardElements">
     <div className="question-field">
-      
+    <p className="question-field"  >Question</p>
+      <div>{quesData.question}</div>
+    </div>
+    <div className="question-field">
+    <p className="question-field"  >Category</p>
+      <div>{quesData.category}</div>
     </div>
     </div>
     </>
