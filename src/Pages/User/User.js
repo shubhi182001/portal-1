@@ -10,9 +10,19 @@ import TestWindow from "./Testwindow/Test";
 import Protectedroutes from "./Protectedroutes";
 import Animation from "../../Animation/Animation";
 import Homepage from "../../Pages/Admin/homepage/Homepage";
-import Admin from "../Admin/Admin";
 
 import Test from "./Testwindow/Test";
+import GetQ from "../Admin/Get/GetQuestions/GetQ";
+import EditQ from "../Admin/editQ/EditQ";
+import Editf from "../Admin/Get/GetFeedback/components/Editf";
+import GetCandidate from "../Admin/Get/GetCandidate/GetCandidate";
+import AddQuestions from "../Admin/add/addQuestions/AddQuestions";
+import AddFeedback from "../Admin/add/addFeedbackQ/AddFeedback";
+import AddCandidate from "../Admin/add/addCandidate/AddCandidate";
+import Leaderboard from "../Admin/leaderboard/Leaderboard";
+import Responses from "../Admin/leaderboard/Responses";
+import Getfeedback from "../Admin/Get/GetFeedback/Getfeedback";
+
 
 function App() {
 
@@ -65,6 +75,16 @@ function App() {
             path="/thankyou"
             element={<Protectedroutes Component={Thankyou} />}
           />
+          <Route path ='/getques' element={<GetQ/>} />
+          <Route path='/editq' element={<EditQ/>} />
+          <Route path ='/getfeedbackques' element={<Getfeedback/>} />
+          <Route path='/editf' element={<Editf/>}/>
+          <Route path ='/getcandidate' element={<GetCandidate/>} />
+          <Route path='/addques' element={<AddQuestions/>} />
+          <Route path='/addfeedbackques' element={<AddFeedback/>} />
+          <Route path='/addcandidate' element={<AddCandidate/>} /> 
+          <Route path='/leaderboard' element={<Leaderboard/>}/>
+          <Route path='/responses' element={<Responses/>} />
         </Routes>
       </BrowserRouter>
     </>

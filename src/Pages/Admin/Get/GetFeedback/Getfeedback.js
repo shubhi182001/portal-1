@@ -53,4 +53,4 @@ function Getfeedback() {
   )
 }
 
-export default Getfeedback
+export default Getfeedback;
