@@ -12,8 +12,8 @@ function Responses() {
     const navigate = useNavigate();
     const {state} = useLocation();
     console.log(state);
-    const [Details, setDetails] = useState();
-    const [seeAnswer, setSeeanswer] = useState();
+    const [Details, setDetails] = useState(state.post_result);
+    const [seeAnswer, setSeeanswer] = useState(state.post_result);
     let data;
     const studentDetail = ['Name', 'StudentNo', 'Branch', 'Score', 'StartTime', 'EndTime'];
     const showDetails = studentDetail.map((info => <li>{info}</li>))
@@ -39,11 +39,10 @@ function Responses() {
                         </ul>
                     </div>
                     <div className='lower_div'>
-                        {seeAnswer && seeAnswer.map((p) =>
-                            (<Cardr className="getCard" key={p._id} ques={p}/>)
+                        {seeAnswer .map((p) =>
+                            (<Cardr className="getCard" key={p._id} quesData={p}/>)
                         )}
-
-                    </div>
+                    </div>  
                 </div>
             </div>
         </>
