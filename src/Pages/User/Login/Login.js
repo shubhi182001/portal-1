@@ -72,17 +72,26 @@ const Login = () => {
     }
   }
   const validateroute2 = (routepass,routename,appear) =>{
-    if(routepass && routename && appear==true ){   
-      localStorage.setItem('login2', false);      
+    console.log(appear)
+    if(routepass===true && routename===true && appear=== 'true' ){ 
+      // console.log('x')
+      // localStorage.setItem('login2', false);      
       navigate('/')
     }
-    else {
-      localStorage.setItem('login2', true);
-     
+    else if (routepass===true && routename===true && appear==='false') {
+      console.log(appear)
+      localStorage.setItem('login2', true);     
       
         navigate('/instructions')
             
     }
+    // else {
+    //   console.log(appear)
+    //   localStorage.setItem('login2', true);     
+      
+    //     navigate('/instructions')
+            
+    // }
   }
   const studentFocus = (e) => {
     setFocused(true);
@@ -120,15 +129,18 @@ const Login = () => {
         );
         console.log(result.data)
         localStorage.setItem('cookie', result.data.cookie_token);
-        if(result.data.isAdmin===true)
-          {          
+        let admin = result.data.isAdmin;
+        console.log(admin)
+        if (admin === 'true')
+          {      
+            console.log('any')    
             validateroute1(routepass,routename);
           }
-          else{
-            let appeared =result.data.hasAppeared;
+          else {
+            let appeared = result.data.hasAppeared;
+            // localStorage.setItem('Appeared',appeared)
+            console.log(appeared)
             validateroute2(routepass,routename,appeared);
-
-
           }          
         };
   const navigate = useNavigate();
@@ -136,13 +148,20 @@ const Login = () => {
     {
         let login1 = localStorage.getItem('login1'); // For admin 
         let login2 = localStorage.getItem('login2'); //For user
-  
+        // let appearvalidate = localStorage.getItem('Appeared'); //For Appear or not check
+        
         if(login1){
           navigate('/homepage')
         }
         else if(login2){
           navigate('/instructions')
         }
+        // else if(login2 && appearvalidate==true){
+        //   navigate('/')
+        // }
+        // else if(!login2 && appearvalidate==false){
+        //   navigate('/')
+        // }
         
       
         

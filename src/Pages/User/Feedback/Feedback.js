@@ -81,7 +81,7 @@ const Feedback = () => {
   }
   const navigate = useNavigate();
   useEffect(() => {
-    axios
+     axios
       .get(
         "https://csiportal.herokuapp.com/feed/seefeedbackques",
         data
