@@ -1,64 +1,67 @@
-import React from "react";
-import Navbar from "../navbar/Navbar";
-// import { Button } from "bootstrap";
-import "./leaderboard.css";
+import React, { useEffect, useState } from 'react'
+import Navbar from '../navbar/Navbar'
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import "./leaderboard.css"
+import axios from 'axios'
+import { Card } from '@mui/material';
+import Cardl from './Cardl'
+
+const Leaderboard = () => {
+
+  
+  const [getq, setGetq] = useState([]);
+  const [udata, setUData] = useState([]);
+  const [search, setSearch] = useState(" ");
+  const url = "https://csiportal.herokuapp.com/leaderboard";
+  const getAllCandidates = () => {
+    axios.get(url)
+      .then((res) => {
+        // console.log(res);
+        setUData(res.data);
+        // console.log(res.data);
+        // console.log(res.data.name);
+      })
+      .catch(error => console.log(error));
+  }
+  useEffect(() => {
+
+    getAllCandidates();
+  }, [])
 
 
-function Leaderboard() {
   return (
+
     <>
-      <Navbar />
-      <div className="leader">
-        <div className="top">Leaderboard </div>
-      </div>
-     
-     <div className="inputwrap">
-     <input className="wrap" type="text" placeholder="Search..."></input>
-     </div>
-      
-      <div className="box3">
-        <div className="content">
-          <div className="details">
-            <div className="information">
-            <div className="info_ques">
-            <ul>
-                <li>Name</li>
-                <li>Student no.</li>
-                <li>Branch</li>
-                <li>Score</li>
-                <li>Start Time</li>
-                <li>End Time</li>
-                <div className="fetch">
-                <div className="fetch_details">Fetch Details</div>
-                </div>
-            </ul>
-            </div>
-            <div className="info_ans">
-            <ul>
-                <li>Nate</li>
-                <li>2010565</li>
-                <li>CSE</li>
-                <li>100</li>
-                <li>10:00</li>
-                <li>12:00</li>
-                <div className="answers">
-                <div className="fetch_answers">
-                Fetch Answers</div>
-                </div>
-            </ul>
-            </div>
-           
-            </div>
-            </div>
+      <div className="admin-main getc">
+        <Navbar />
+        <div className="get">
+          <h1 className='get_text'>Leaderboard</h1>
         </div>
-              
-            </div>
-          
-      
 
-      
+        <div className="searchWrap">
+          <div className="searchbar">
+            <input className='search' type="text" placeholder='Search' onChange={e => { setSearch(e.target.value) }} />
+            <SearchOutlinedIcon style={{ fontSize: "38px", opacity: "45%" }} />
+          </div>
+        </div>
+        <div className="getq">
+          {udata && udata.length ?
+            udata.filter((p) => {
+              if (search === " ") {
+                return p
+              } else if (p.name.toLowerCase().includes(search.toLowerCase()) || p.studentNum.toLowerCase().includes(search.toLowerCase())) {
+                return p
+              }
+            }).map((p) =>
+            (<Cardl className="getCard" key={p._id} ckc ={p} reload= {getAllCandidates}/>)):null
+          }
+       
+        
+             
+        </div>
+      </div>
     </>
-  );
-};
+  )
+}
 
-export default Leaderboard;
+export default Leaderboard
