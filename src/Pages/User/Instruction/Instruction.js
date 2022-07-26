@@ -61,11 +61,11 @@ const [chosenlang, setChosenlang] = useState("");
             lang: chosenlang,
           }
         );        
-        if(result.data.isVerified=== 'true'){
+        if(result.data.isVerified=== true){
           localStorage.setItem("instruct", true);    
           navigate("/testwindow");
         }
-        else if(result.data.isVerified=== 'false'){
+        else if(result.data.isVerified=== false){
           localStorage.removeItem("instruct")
           navigate("/")
         }
