@@ -1,26 +1,37 @@
 /* @import 'bootstrap/dist/css/bootstrap.min.css'; */
 
 .containerzz{
-    height: 55vh;
-    width: 60vw;
-    background-color:  rgb(167, 222, 222);
-    position: absolute;
-    top: 22.5%;
-    left: 20%;
-    box-shadow: 4px 4px 8px 8px grey;
-    border-radius:20px ;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: space-evenly;
 
+    height: 77vh;
+    width: 50vw;
+    background-color:  rgb(255, 255, 255);
+    position: absolute;
+    top: 17.5%;
+    left: 10%;
+    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.15);
+    border-radius:10px ;
+    column-gap: 2rem;
+    animation: fadein 2s ease;
+  animation-iteration-count: 1;
 }
   .error_msg{
+    position: relative;
+    top: -10%;
+    left: 16%;
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: red;
-    margin: auto;
+ 
     text-align: left;
     width: 55%;
     margin-bottom:0.7%;
     opacity: 1;
   }
+
   .headertext{
     display: flex;
     justify-content: center;
@@ -30,13 +41,14 @@
     font-weight: 600;
   }
   .inputCandidate{
-   margin-left: 30%;
+   margin-left: 15%;
+   margin-bottom: 5%;
    
   }
   .inputcandAdd{
     border: none;
     border-bottom: 2px solid grey;
-    background-color:  rgb(167, 222, 222);
+    /* background-color:  rgb(167, 222, 222); */
     color: #fff;
   }
   .buttonPositon{
@@ -44,3 +56,43 @@
     top: 20%;
     left: 43%;
   }
+  
+  
+ .computersRegister
+ {
+  position: absolute;
+  top: 20%;
+  left: 65%;
+
+  height: 450px;
+  width: 450px;
+ }
+ .iconadmin{
+  top:-5%;
+  left: 44%;
+  height: 70px;
+  width: 60px;
+ 
+  transform: scale(1.5);
+  
+  position: absolute;
+ }
+ .groupadmin{
+  top:-6%;
+  left: 44%;
+  height: 80px;
+  width: 60px;
+  transform: scale(0.8);
+  
+  position: absolute;
+ }
+@keyframes fadein {
+
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+
+}
