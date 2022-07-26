@@ -26,12 +26,10 @@ const [chosenlang, setChosenlang] = useState("");
  }
 
   const cook = localStorage.getItem("cookie");
-  // console.log(cook);
 
   // button functionality for selected language [save and next]
   const chkvalidate = async (e) => {
     e.preventDefault();
-    // const appear=localStorage.getItem('Appeared');
 
     await axios
       .patch(
@@ -45,7 +43,6 @@ const [chosenlang, setChosenlang] = useState("");
       )
       .then((res) => {
         console.log(res.data);
-        // localStorage.setItem('Appeared',false);
       })
       .catch((err) => {
         console.log(err);
@@ -55,7 +52,7 @@ const [chosenlang, setChosenlang] = useState("");
     if (chosenlang === "") {
       toast.error("Select any language first");
     } else {
-      await axios
+       const result= await axios
         .patch(
           "https://csiportal.herokuapp.com/instruction",
 
@@ -63,17 +60,14 @@ const [chosenlang, setChosenlang] = useState("");
             cookie_token: cook,
             lang: chosenlang,
           }
-        )
-        .then((res) => {
-          console.log(res.data);
-          // localStorage.setItem('Appeared',false);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      localStorage.setItem("instruct", true);
-
-      navigate("/testwindow");
+        );        
+        if(result.data.isVerified===true){
+          localStorage.setItem("instruct", true);    
+          navigate("/testwindow");
+        }
+        else{
+          navigate("/")
+        }
     }
   };
 

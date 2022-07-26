@@ -19,18 +19,12 @@ const Feedback = () => {
   let data = [];
   const [ans, setAns] = useState([]);
   const [ques, setQues] = useState([]);
-  const [appeare, setAppeare] = useState(false);
+  // const [appeare, setAppeare] = useState();
   // const [questions,setQuestions] = useState([]);
   // const [sugg, setSugg] = useState("");
   // const [route, setRoute] = useState(false);
 
-  let que = [
-    // "How easy was to navigate through the website?",
-    // "How would you rate the questions based on their difficulty level?",
-    // "How responsive have we been to your queries or concerns about our event?",
-    // "Rate your overall experience.",
-
-  ]
+ 
   const validateRadio = (data) => {
     if (data.length === 0) {
       // alert("Complete all fields");
@@ -62,7 +56,6 @@ const Feedback = () => {
       localStorage.removeItem('feedback', true);
     }
     else {
-      // alert("Complete all fields");
       toast.error('Complete all fields', {
         position: "top-right",
         autoClose: 5000,
@@ -72,33 +65,11 @@ const Feedback = () => {
         draggable: true,
         progress: undefined,
       });
-      // navigate('/thankyou')
 
     }
 
 
   }
-  // const validateSugg = (value)=>{
-  //   if (value===""){
-  //     window.alert("Please provide your valuable suggestion")
-  //     setRoute(false);
-
-  //   }
-  //   else{
-  //     setRoute(true);
-  //     console.log(route);
-
-  //   }
-  // }
-  // const validateroutes = (route)=>{
-  //   if(route===true){
-  //     localStorage.setItem('feedback', true);
-  //     navigate('/thankyou')
-  //     localStorage.removeItem('login', true);
-  //     localStorage.removeItem('instruct', true);
-  //     localStorage.removeItem('feedback', true);
-  //   }
-  // }
   const handle = (e) => {
     data = ans;
     data[e.target.name] = e.target.value;
@@ -106,35 +77,7 @@ const Feedback = () => {
   }
   const Submit = async (e) => {
     e.preventDefault();
-    validateRadio(data);
-    // has appeared to be set true here in api
-    // validateSugg(sugg);
-    // validateroutes(route);
-    localStorage.setItem('feedback', true);
-    localStorage.removeItem('login2');
-    localStorage.removeItem('instruct');
-    // localStorage.removeItem('feedback');
-    localStorage.removeItem('testpage');
-    localStorage.removeItem('cookie');
-    localStorage.setItem('Appeared', true);
-    setAppeare(true);
-    // await axios
-    //   .get(
-    //     "https://csiportal.herokuapp.com/feed/seefeedbackques",
-
-    //   )
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     // localStorage.setItem('Appeared',false); 
-    //     setQues(res.data);
-    //     console.log(ques);
-
-
-    //   })
-    // .catch((err)=>{
-    //   console.log(err)
-    // });
-    // navigate('/thankyou')
+    validateRadio(data);    
   }
   const navigate = useNavigate();
   useEffect(() => {
@@ -181,7 +124,8 @@ const Feedback = () => {
               )
             })}
             <div className='text-container' >
-              <textarea placeholder="Write something..."
+            <p>Your suggestions matter,drop us one!</p>
+              <textarea 
                 className='text'
                  type="text" 
                 name={ques.length}

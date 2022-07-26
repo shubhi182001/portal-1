@@ -232,7 +232,6 @@ const QuestionPannel = ({
                 key={index}
               >
                 <input
-                  // checked = {radioActive}
                   type="radio"
                   value={i}
                   onChange={(e) => {
