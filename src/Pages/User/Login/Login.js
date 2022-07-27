@@ -78,7 +78,7 @@ const Login = () => {
       // localStorage.setItem('login2', false);      
       navigate('/')
     }
-    else if (routepass===true && routename===true && appear==="false") {
+    else if (routepass===true && routename===true && appear==='false') {
       console.log(appear)
       localStorage.setItem('login2', true);     
       

@@ -90,6 +90,8 @@ const QuestionPannel = ({
         });
       setRadioActive(false);
       setShowques(showques + 1);
+      setOid('000');
+      setSelect();
     } else {
       setShowques(1);
       setChoice(
@@ -160,6 +162,7 @@ const QuestionPannel = ({
         });
       setRadioActive(false);
       setShowques(showques + 1);
+      setOid('000');
       setSelect();
     } else {
       setShowques(1);
