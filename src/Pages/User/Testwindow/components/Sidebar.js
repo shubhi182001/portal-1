@@ -4,7 +4,7 @@ import Modal from "./../../Modal/Modal";
 import axios, { Axios } from "axios";
 import { useNavigate } from "react-router-dom";
 import { AirlineSeatFlatAngled } from "@mui/icons-material";
-const Sidebar = ({ testques, setShow, showques, setShowques, ansid, flag ,show}) => {
+const Sidebar = ({ testques, setShow,showques, setShowques, ansid,show}) => {
 
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
@@ -15,19 +15,8 @@ const Sidebar = ({ testques, setShow, showques, setShowques, ansid, flag ,show})
  const datacookie = {
     cookie_token:usercookie
   };
-  // const flag_data = {
 
-  // }
-  useEffect(()=>{
-     axios
-    .put("https://csiportal.herokuapp.com/ans/flags",datacookie)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  },[])
+
 
 
   let d,interval = useRef();
@@ -96,6 +85,9 @@ const Sidebar = ({ testques, setShow, showques, setShowques, ansid, flag ,show})
  // for getting clicked question 
   const handleoptions = (i) => {
     setShowques(i);
+    
+
+
   };
 
   return (
@@ -124,13 +116,14 @@ const Sidebar = ({ testques, setShow, showques, setShowques, ansid, flag ,show})
           {sidebarbtn.map((i, index) => (
             <button
               className={
-                ansid === "2"
+                testques[i - 1].flagMark === 2
                   ? "sidebar_button"
-                  : ansid === "1"
+                  : testques[i - 1].flagMark === 1
                   ? "save_next"
-                  : ansid === "3"
+                  : testques[i - 1].flagMark === 3
                   ? "mark_review"
-                  : "visited"
+                  : testques[i - 1].flagMark === 5
+                  ? "not_answered" : "not_visited"
               }
               key={index}
               onClick={() => handleoptions(i)}

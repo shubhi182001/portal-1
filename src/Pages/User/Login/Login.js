@@ -74,7 +74,6 @@ const Login = () => {
   const validateroute2 = (routepass,routename,appear) =>{
     console.log(appear)
     if(routepass===true && routename===true && appear=== 'true' ){ 
-      // console.log('x')
       // localStorage.setItem('login2', false);      
       navigate('/')
     }

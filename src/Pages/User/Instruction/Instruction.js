@@ -31,22 +31,23 @@ const [chosenlang, setChosenlang] = useState("");
   const chkvalidate = async (e) => {
     e.preventDefault();
 
-    await axios
-      .patch(
-        "https://csiportal.herokuapp.com/instruction",
+    // await axios
+    //   .patch(
+    //     "https://csiportal.herokuapp.com/instruction",
 
-        {
-          cookie_token: cook,
-          lang: chosenlang
+    //     {
+    //       cookie_token: cook,
+    //       lang: chosenlang
           
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    //     }
+    //   )
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     // localStorage.setItem('Appeared',false);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
 
 
     if (chosenlang === "") {

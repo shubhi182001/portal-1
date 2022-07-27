@@ -109,6 +109,7 @@
     cursor: pointer;
     outline:none;
     border:none;
+    text-transform: uppercase;
 }
 .selectedbtn{
     width: 175px;
@@ -126,6 +127,8 @@
     border:none;
     background: rgba(180, 183, 252, 0.22);
     box-shadow: none;  
+    text-transform: uppercase;
+
 }
  /* .divider button:hover{
     background: rgba(180, 183, 252, 0.22);
@@ -232,7 +235,7 @@
     margin-top: 25px;
 }
 #mfr{
-    background: blue;
+    background: rgb(46, 20, 133);
     width: 250px;
     margin-left: 90px;
 }
@@ -259,11 +262,11 @@
     margin-right: 30px;
 }
 #color1{
-    background: #AE1615;
+    background: #c22a2c;
 }
 #color2{
     background: green;
 }
 #color3{
-    background:blue;
+    background:rgb(46, 20, 133);
 }
