@@ -4,6 +4,7 @@ import axios from "axios";
 import Navbar from '../../navbar/Navbar'
 import { Checkbox } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import $ from 'jquery' 
 
 
 
@@ -18,7 +19,6 @@ const AddQuestions = () => {
     const [isSubmit, setIsSubmit] = useState(false)
     const [categoryerrors, setCategoryErrors] = useState({});
 
-
     const inputTextHandler = (e) => {
         setInputText(e.target.value);
     }
@@ -28,7 +28,7 @@ const AddQuestions = () => {
         setOptions(
             [...options, { value: inputText, Oid: Math.floor(Math.random() * 1000), isCorrect: false }]
         );
-        setInputText(' ');
+        setInputText('');
     }
 
     const handleLanguage = (e) => {
@@ -36,9 +36,23 @@ const AddQuestions = () => {
         setChosenlang(e.target.value)
     }
 
+    
+
     const handleQuestion = (e) => {
         e.preventDefault();
-        setQuestion(e.target.value)
+        let str = e.target.value;
+        setQuestion(str).trim();
+    }
+
+    function check(){
+        const fields = $(`input[name='opt']`).serializeArray();
+        if (fields.length === 0) {
+          console.log('nothing selected');
+          return false;
+        } else {
+          console.log(fields.length, "items selected");
+        }
+        return true;
     }
 
     const handleUpload = (e) => {
@@ -53,7 +67,7 @@ const AddQuestions = () => {
         }
 
         console.log(questionData)
-        if (questionData.question && questionData.category && options.length === 4) {
+        if (questionData.question && questionData.category && options.length === 4 && check()) {
             axios.post(
                 'https://csiportal.herokuapp.com/question/addquestion', questionData)
                 .then((res) => {
@@ -72,9 +86,19 @@ const AddQuestions = () => {
                     console.log(err);
                 })
         } else {
+            if(options.length==0){
+                window.alert("Add options");
+            }
+            if(options.length>0 && options.length<=4){
+                if(!check()){
+                    window.alert("You have to select at least one correct option");
+                }
+            }
             if (options.length > 4) {
                 window.alert("Can only add 4 options");
+                
             }
+            
             console.log('Add Questions validations failed')
         }
     }
@@ -151,6 +175,7 @@ const AddQuestions = () => {
                                 <form action="" onSubmit={submitHandler} >
                                     <div className="answer-input-field" >
                                         <input value={inputText}
+                                        required
                                             onChange={inputTextHandler} type="text" name="" id="" placeholder='Add Options' />
                                     </div>
                                 </form>
@@ -159,7 +184,7 @@ const AddQuestions = () => {
                                 <ul className="option-list">
                                     {options.map(option => (
                                         <div className="option" style={{ alignItems: "center" }}>
-                                            <Checkbox checked={option.isCorrect} value={option.value} className="s-class item-1 check" onClick={() => {
+                                            <Checkbox checked={option.isCorrect} name='opt' value={option.value} className="s-class item-1 check" onClick={() => {
                                                 setOptions(options.map((el) => {
 
                                                     if (el.Oid === option.Oid) {
