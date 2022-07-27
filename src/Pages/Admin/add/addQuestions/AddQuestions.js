@@ -15,8 +15,8 @@ const AddQuestions = () => {
     const [chosenlang, setChosenlang] = useState("");
     const [question, setQuestion] = useState("");
     const [questionerrors, setQuestionErrors] = useState({})
-    // const [langErrors,setLangErrors]=useState({})
     const [isSubmit, setIsSubmit] = useState(false)
+    const [categoryerrors, setCategoryErrors] = useState({});
 
 
     const inputTextHandler = (e) => {
@@ -44,8 +44,8 @@ const AddQuestions = () => {
     const handleUpload = (e) => {
         e.preventDefault();
         setQuestionErrors(validateQuestion(question))
+        setCategoryErrors(validateCategory(chosenlang))
         setIsSubmit(true)
-        // console.log('Uploaded')
         const questionData = {
             "question": question,
             "category": String(chosenlang),
@@ -53,7 +53,7 @@ const AddQuestions = () => {
         }
 
         console.log(questionData)
-        if (questionData.question && questionData.category) {
+        if (questionData.question && questionData.category && options.length === 4) {
             axios.post(
                 'https://csiportal.herokuapp.com/question/addquestion', questionData)
                 .then((res) => {
@@ -63,7 +63,8 @@ const AddQuestions = () => {
                     setChosenlang(' ');
                     setOptions([])
                     setQuestionErrors({})
-                    if(res){
+                    setCategoryErrors({})
+                    if (res) {
                         window.alert("Question Added Successfully");
                     }
                 })
@@ -71,26 +72,34 @@ const AddQuestions = () => {
                     console.log(err);
                 })
         } else {
-            if(options.length>4){
-                window.alert("Can't add more than 4 options");
+            if (options.length > 4) {
+                window.alert("Can only add 4 options");
             }
-            console.log('Something wrong')
+            console.log('Add Questions validations failed')
         }
     }
     useEffect(() => {
 
-        if (Object.keys(questionerrors).length === 0 && isSubmit) {
+        if (Object.keys(questionerrors).length === 0 && isSubmit && Object.keys(categoryerrors).length === 0) {
             console.log('Request Sent');
         } else {
-            console.log('some error')
+            console.log('Some error')
         }
 
-    }, [questionerrors, isSubmit])
+    }, [questionerrors, categoryerrors, isSubmit])
 
     const validateQuestion = (value) => {
         const err = {}
         if (!value) {
             err.ques = 'Question is  required'
+        }
+        return err;
+    }
+
+    const validateCategory = (value) => {
+        const err = {}
+        if (!value) {
+            err.cat = 'Category is required'
         }
         return err;
     }
@@ -102,9 +111,10 @@ const AddQuestions = () => {
         setChosenlang(' ');
         setOptions([])
         setQuestionErrors({})
+        setCategoryErrors({})
     }
 
-    console.log(options);
+
     return (
         <>
             <div className="admin-main add-main">
@@ -128,9 +138,11 @@ const AddQuestions = () => {
                                     <option value="C++" style={{ color: "black", backgroundColor: "#F6FCFF" }}>C++</option>
                                     <option value="C" style={{ color: "black", backgroundColor: "#F6FCFF" }}>C</option>
                                     <option value="JAVA" style={{ color: "black", backgroundColor: "#F6FCFF" }}>JAVA</option>
-                                    <option value="Python" style={{ color: "black", backgroundColor: "#F6FCFF" }}>APTITUDE</option>
+                                    <option value="PYTHON" style={{ color: "black", backgroundColor: "#F6FCFF" }}>PYTHON</option>
+                                    <option value="APTITUDE" style={{ color: "black", backgroundColor: "#F6FCFF" }}>APTITUDE</option>
                                 </select>
                             </div>
+                            {chosenlang === '' ? <p className='add-category-error'>{categoryerrors.cat}</p> : null}
                         </div>
 
                         <div className="answers-and-options">
@@ -146,9 +158,10 @@ const AddQuestions = () => {
                             <div className="options-section">
                                 <ul className="option-list">
                                     {options.map(option => (
-                                        <div className="option" style={{alignItems:"center"}}>
+                                        <div className="option" style={{ alignItems: "center" }}>
                                             <Checkbox checked={option.isCorrect} value={option.value} className="s-class item-1 check" onClick={() => {
                                                 setOptions(options.map((el) => {
+
                                                     if (el.Oid === option.Oid) {
                                                         return {
                                                             ...el, isCorrect: !el.isCorrect
@@ -159,13 +172,12 @@ const AddQuestions = () => {
 
                                             }} />
                                             <li className="s-class item-2 option-item" key={option.Oid} >{option.value}</li>
-                                            <DeleteIcon fontSize='10px' height="8px"  style={{ color: "red", cursor: "pointer" }} className=" item-3  delete" onClick={() => {
+                                            <DeleteIcon fontSize='10px' height="8px" style={{ color: "red", cursor: "pointer" }} className=" item-3  delete" onClick={() => {
                                                 setOptions(options.filter(el => el.Oid !== option.Oid))
-                                                // console.log(options)
                                             }} />
 
                                         </div>
-                                       
+
                                     ))}
                                 </ul>
                             </div>

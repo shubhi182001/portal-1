@@ -7,17 +7,18 @@ import Navbar from '../../navbar/Navbar';
 const AddFeedback = () => {
 
   const [feedback, setFeedback] = useState("");
-  // setChosenlang(e.target.value)
 
 
   const handleFeedback = (e) => {
     e.preventDefault();
     setFeedback(e.target.value)
+
   }
 
   const handleReset = (e) => {
-    console.log('handle reset')
-    // setFeedback(' ');
+    e.preventDefault();
+    setFeedback(' ');
+    console.log('handle')
   }
 
   const handleUpload = (e) => {
@@ -33,6 +34,10 @@ const AddFeedback = () => {
         .then((res) => {
           console.log(res)
           console.log(res.data)
+          setFeedback('')
+          if (res) {
+            window.alert('Feedback question added successfully ')
+          }
         })
         .catch((err) => {
           console.log(err)
@@ -47,14 +52,14 @@ const AddFeedback = () => {
   return (
     <>
       <div className="f-feedback-main admin-main">
-      <Navbar />
+        <Navbar />
 
         <div className='f-add-feedback-body'>
           <h5 className='f-heading-feedback'>Add Feedback </h5>
           <div className='f-white-container'>
             <div className="f-feedback-ques">
               <p>Feedback</p>
-              <textarea name="ques" required id="feedback-here" onChange={handleFeedback}></textarea>
+              <textarea name="ques" value={feedback} placeholder='Enter the feedback question' required id="feedback-here" onChange={handleFeedback}></textarea>
             </div>
 
             <div className='f-add-feedback-buttons'>

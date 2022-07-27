@@ -19,7 +19,6 @@ function Getfeedback() {
     .catch(error => console.log(error));
   }
   useEffect(()=>{
-    
     getAllQuestions();
   },[])
 
@@ -53,4 +52,4 @@ function Getfeedback() {
   )
 }
 
-export default Getfeedback
+export default Getfeedback;

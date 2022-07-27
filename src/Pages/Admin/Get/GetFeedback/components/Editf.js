@@ -38,24 +38,28 @@ function Editf() {
       const url = `https://csiportal.herokuapp.com/feedback/${state.post_id}`
       const handleUpload = (e) =>{
         e.preventDefault();
-        
-        axios.patch(
-            url,
-            {
-                "question": question,
-            }
-
-        ).then((res) => {
-            console.log(res);
-            console.log(res.data);
-            window.alert("data updated")
-            navigate('/getfeedbackques');
-            
-        })
-        .catch((err) =>{
-            console.log(err);
-            window.alert("not updated ERROR!!!")
-        })
+        if(question){
+            axios.patch(
+                url,
+                {
+                    "question": question,
+                }
+    
+            ).then((res) => {
+                console.log(res);
+                console.log(res.data);
+                window.alert("data updated")
+                navigate('/getfeedbackques');
+                
+            })
+            .catch((err) =>{
+                console.log(err);
+                window.alert("not updated ERROR!!!")
+            })
+        }
+        else{
+            window.alert("Enter valid Question")
+        }
       }
       console.log(options);
 
@@ -70,7 +74,7 @@ function Editf() {
         <Card className='editCard'>
             <p className='question_text'>Question</p>
             <textarea className="question_field" onChange={updateQuestion} value={question}></textarea>
-            
+            {question.length===0 ? <p style={{marginLeft:"10px", color:"red", fontWeight:"bolder"}}>Question is required</p>:null}
             {/* <p className='options_text'>Options</p>
             <div className="editOptions">
                 <form className='option_form' onSubmit={onFormSubmit}>

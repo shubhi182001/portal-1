@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "./Login.css";
-// import HiOutlineHashtag from "react-icons"
 import Logocsi from "../../../Images/User/Logocsi.svg"
 import computers from "../../../Images/User/computers.png";
 import Ellipse from "../../../Images/User/Ellipse.svg"
 import Group from "../../../Images/User/Group.svg"
-import Login_Page_start from "../../../Images/User/Login_Page_start.svg"
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import TagIcon from "@mui/icons-material/Tag";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import { toHaveFormValues } from "@testing-library/jest-dom/dist/matchers";
 const Login = () => {
   const [studentNo, setStudentNo] = useState("");
   const [password, setPassword] = useState("");
@@ -30,7 +26,8 @@ const Login = () => {
   const [studentPasswordError, setStudentPasswordError] = useState("");
   const [routepass,setRoutepass] = useState(false);
   const [routename,setRoutename] = useState(false);
-  const [appeared,setAppeared] = useState(false);
+ 
+  
 
 
   const validateStudentNo = (value) => {
@@ -71,24 +68,30 @@ const Login = () => {
   const validateroute1 = (routepass,routename) =>{
     if(routepass===true && routename===true){
       localStorage.setItem('login1', true);
-      navigate('/homepage')
-      // setAdmin(true)
-      // console.log(admin)
-      
-      
-
+      navigate('/homepage');       
     }
   }
-  const validateroute2 = (routepass,routename) =>{
-    if(routepass===true && routename===true){
-      localStorage.setItem('login2', true);
-      // setAdmin(false)
+  const validateroute2 = (routepass,routename,appear) =>{
+    console.log(appear)
+    if(routepass===true && routename===true && appear=== 'true' ){ 
+      // console.log('x')
+      // localStorage.setItem('login2', false);      
+      navigate('/')
+    }
+    else if (routepass===true && routename===true && appear==="false") {
+      console.log(appear)
+      localStorage.setItem('login2', true);     
       
         navigate('/instructions')
-        // console.log(admin)
-      
-
+            
     }
+    // else {
+    //   console.log(appear)
+    //   localStorage.setItem('login2', true);     
+      
+    //     navigate('/instructions')
+            
+    // }
   }
   const studentFocus = (e) => {
     setFocused(true);
@@ -108,70 +111,58 @@ const Login = () => {
       setVisibleIcon(false);
     }, 1000);
   };
+  
+  
   const Submit = async (e) => {
     e.preventDefault();
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
     console.log(studentNo,password)
-    // console.log(routepass,routename);
     const data = {
        studentNum : +(studentNo),
       password : password,
     }
-    axios
+   const result = await axios
         .post(
           "https://csiportal.herokuapp.com/login",
         data
-        )
-        .then((res) => {
-          console.log(res.data);
-          // console.log(res.data.cookie_token);
-          localStorage.setItem('cookie', res.data.cookie_token);
-          // console.log(res.data.hasAppeared);
-          setAppeared(res.data.hasAppeared);
-          localStorage.setItem('Appeared',res.data.hasAppeared);
-          if(res.data.isAdmin==="true")
-          {          
+        );
+        console.log(result.data)
+        localStorage.setItem('cookie', result.data.cookie_token);
+        let admin = result.data.isAdmin;
+        console.log(admin)
+        if (admin === 'true')
+          {      
+            console.log('any')    
             validateroute1(routepass,routename);
-            // console.log("x")
           }
-          else{
-          
-            validateroute2(routepass,routename);
-            // console.log("y")
-
-
-          }
-          // const cookie = res.data.cookie_token;
-        }).catch((err)=>{
-          console.log(err)
-        });
-        
-        
-
-    // localStorage.setItem('login', true);
-
-    // navigate('/instructions')
-  }
+          else {
+            let appeared = result.data.hasAppeared;
+            // localStorage.setItem('Appeared',appeared)
+            console.log(appeared)
+            validateroute2(routepass,routename,appeared);
+          }          
+        };
   const navigate = useNavigate();
   useEffect(()=>
     {
-        let login1 = localStorage.getItem('login1');
-        let login2 = localStorage.getItem('login2');
-  
+        let login1 = localStorage.getItem('login1'); // For admin 
+        let login2 = localStorage.getItem('login2'); //For user
+        // let appearvalidate = localStorage.getItem('Appeared'); //For Appear or not check
+        
         if(login1){
           navigate('/homepage')
         }
-        else{
-
-           if (login2 && appeared==false)
-          {
-            navigate('/instructions')
-          }
-          else if (login2 && appeared==true){
-            navigate('/')
-          }
+        else if(login2){
+          navigate('/instructions')
         }
+        // else if(login2 && appearvalidate==true){
+        //   navigate('/')
+        // }
+        // else if(!login2 && appearvalidate==false){
+        //   navigate('/')
+        // }
+        
       
         
     },[]);

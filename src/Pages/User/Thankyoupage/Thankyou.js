@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Thankyou.css'
 import Logocsi from "../../../Images/User/Logocsi.svg"
 const Thankyou = () => {
+  useEffect(()=>
+    {
+    localStorage.setItem('feedback', true);
+
+      localStorage.removeItem('login2');
+      localStorage.removeItem('instruct');
+      // localStorage.removeItem('feedback');
+      localStorage.removeItem('testpage');
+      localStorage.removeItem('cookie');
+      localStorage.setItem('Appeared', true);     
+        
+    },[]);
   return (
     <>
     <div className='main'>

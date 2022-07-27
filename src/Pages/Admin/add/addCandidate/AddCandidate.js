@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Addcandidate.css";
+import "../../../User/Login/Login.css";
 import axios from "axios";
 import Navbar from "../../navbar/Navbar";
+import TextField from "@mui/material/TextField";
+import Ellipse from "../../../../Images/User/Ellipse.svg"
+import Group from "../../../../Images/User/Group.svg"
+import computers from "../../../../Images/User/computers.png";
 // import { useNavigate } from "react-router-dom";
 function AddCandidate() {
   const [name, setname] = useState("");
@@ -27,7 +32,7 @@ function AddCandidate() {
   const [formErrorsRoll, setformErrorsRoll] = useState({});
 
   const [formErrorsstudentNum, setformErrorsstudentNum] = useState({});
-  const [formErrorsyear, setformErrorsyear] = useState({});
+  // const [formErrorsyear, setformErrorsyear] = useState({});
   const [formErrorsbranch, setformErrorsbranch] = useState({});
   const [formErrorsmobileNum, setformErrorsmobileNum] = useState({});
   const [formErrorsgender, setformErrorsgender] = useState({});
@@ -246,40 +251,49 @@ function AddCandidate() {
     <>
     <div className="admin-main">
       <Navbar/>
-      <div className="containerzz">
+      <div className="containerzz ">
         <div className="row">
           <div className="headertext">
-            <h1 className="headertxtCandidate">Register</h1>
+            {/* <h1 className="headertxtCandidate">Register</h1> */}
           </div>
 
           <form action="" className="CandidadateAdd">
+          <img src={Ellipse} className="iconadmin " />
+      <img src={Group} className="groupadmin " />
             <div className="row">
               <div className="col-lg-6">
                 {/* NAMe */}
 
                 <div className="inputCandidate">
-                  <input
+                  <TextField
                     required="required"
+                    variant="outlined"
+                    size="small"
                     type="text"
                     className="inputcandAdd"
-                    placeholder="Name"
+                    label="Name"
                     name="Name"
                     value={name}
                     onChange={(e) => setname(e.target.value)}
+                    
                     onBlur={handleFocusName}
                     focused={focused.toString()}
+             
                   />
                 </div>
                 <span className="error_msg">{formErrorsName.Name}</span>
               </div>
-
+              
+     
               <div className="col-lg-6">
                 <div className="inputCandidate">
-                  <input
+                  <TextField
                     required="required"
+                    variant="outlined"
+                    size="small"
                     type="text"
                     className="inputcandAdd"
-                    placeholder="StudentNumber"
+                    label="StudentNumber"
                     name="studentNum"
                     value={studentNum}
                     onChange={(e) => setstudentNum(e.target.value)}
@@ -296,11 +310,13 @@ function AddCandidate() {
             <div className="row">
               <div className="col-lg-6">
                 <div className="inputCandidate">
-                  <input
+                  <TextField
                     required="required"
+                    variant="outlined"
+                    size="small"
                     type="text"
                     className="inputcandAdd"
-                    placeholder="rollNum"
+                    label="rollNum"
                     name="rollNum"
                     value={rollNum}
                     onChange={(e) => setrollNum(e.target.value)}
@@ -313,11 +329,13 @@ function AddCandidate() {
 
               <div className="col-lg-6">
                 <div className="inputCandidate">
-                  <input
+                  <TextField
                     required="required"
+                    variant="outlined"
+                    size="small"
                     type="text"
                     className="inputcandAdd"
-                    placeholder="email"
+                    label="email"
                     name="email"
                     value={email}
                     onChange={(e) => setemail(e.target.value)}
@@ -332,11 +350,13 @@ function AddCandidate() {
             <div className="row">
               <div className="col-lg-6">
                 <div className="inputCandidate">
-                  <input
+                  <TextField
                     required="required"
+                    variant="outlined"
+                    size="small"
                     type="text"
                     className="inputcandAdd"
-                    placeholder="gender"
+                    label="gender"
                     name="gender"
                     value={gender}
                     onChange={(e) => setgender(e.target.value)}
@@ -349,11 +369,13 @@ function AddCandidate() {
 
               <div className="col-lg-6">
                 <div className="inputCandidate">
-                  <input
+                  <TextField  
                     required="required"
+                    variant="outlined"
+                    size="small"
                     type="text"
                     className="inputcandAdd"
-                    placeholder="mobileNum"
+                    label="mobileNum"
                     name="mobileNum"
                     value={mobileNum}
                     onChange={(e) => setmobileNum(e.target.value)}
@@ -370,11 +392,13 @@ function AddCandidate() {
             <div className="row">
               <div className="col-lg-6">
                 <div className="inputCandidate">
-                  <input
+                  <TextField
                     required="required"
+                    variant="outlined"
+                    size="small"
                     type="text"
                     className="inputcandAdd"
-                    placeholder="year"
+                    label="year"
                     name="year"
                     value={year}
                     onChange={(e) => setyear(e.target.value)}
@@ -387,11 +411,13 @@ function AddCandidate() {
 
               <div className="col-lg-6">
                 <div className="inputCandidate">
-                  <input
+                  <TextField
                     required="required"
+                    variant="outlined"
+                    size="small"
                     type="text"
                     className="inputcandAdd"
-                    placeholder="branch"
+                    label="branch"
                     name="branch"
                     value={branch}
                     onChange={(e) => setbranch(e.target.value)}
@@ -399,7 +425,7 @@ function AddCandidate() {
                     //  focused={focused.toString()}
                   />
                 </div>
-                <span className="error_msg">{formErrorsbranch.branch}</span>
+                <span className="error_msg messages_err">{formErrorsbranch.branch}</span>
               </div>
             </div>
 
@@ -407,11 +433,13 @@ function AddCandidate() {
               <div className="col-lg-6"></div>
               <div className="col-lg-6">
                 <div className="inputCandidate">
-                  <input
+                  <TextField
                     required="required"
+                    variant="outlined"
+                    size="small"
                     type="boolean"
                     className="inputcandAdd"
-                    placeholder="isHosteler"
+                    label="isHosteler"
                     name="isHosteler"
                     value={isHosteler}
                     onChange={(e) => setisHosteler(e.target.value)}
@@ -429,7 +457,11 @@ function AddCandidate() {
               Register
             </button>
           </form>
+         
         </div>
+      </div>
+      <div className="img">
+        <img src={computers} alt="none" className="computers computersRegister"/>
       </div>
       </div>
     </>
