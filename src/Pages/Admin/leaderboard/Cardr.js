@@ -3,11 +3,17 @@ import Navbar from '../navbar/Navbar';
 
 function Cardr({ quesData }) {
   console.log(quesData.length);
+  function check(){
+    if(quesData.isCorrect == false){
+      return "No";
+    }
+    return "Yes";
+  }
   return (
     <>
     <div className="cardElements">
     <div className="quest-field">
-    <p className="quest-field"  >Qtion <div className='bluedetails'>{quesData.question}</div></p>
+    <p className="quest-field"  >Question <div className='bluedetails'>{quesData.question}</div></p>
       
     </div>
     <div className="quest-field">
@@ -19,11 +25,11 @@ function Cardr({ quesData }) {
      
     </div>
     <div className="quest-field">
-    <p className="quest-field"  >Correct<div className='bluedetails'>{quesData.isCorrect}</div></p>
+    <p className="quest-field"  >Correct<div className='bluedetails'>{check()}</div></p>
      
     </div>
     <div className="quest-field">
-    <p className="quest-field"  >Status<div className='ques-field'>{quesData.category}</div></p>
+    <p className="quest-field"  >Status<div className='bluedetails'>Marked </div></p>
       
     </div>
     <hr className='Hr'/>

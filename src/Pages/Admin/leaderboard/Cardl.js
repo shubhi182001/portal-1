@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-const Cardl = ({ ckc, reload }) => {
+const Cardl = ({ ckc}) => {
     const navigate = useNavigate();
     const openResponse = () => {
         navigate('/responses', {
@@ -28,7 +28,7 @@ const Cardl = ({ ckc, reload }) => {
         <>
             <div className="detailscard">
                 <div className='detailsdisplay'>
-                    <div classname='info'>{showDetails} </div>
+                    <div className='info'>{showDetails} </div>
                     <ul>
                         <li className='bluedetails'>{ckc.name} </li>
                         <li className='bluedetails'>{ckc.studentNum}</li>

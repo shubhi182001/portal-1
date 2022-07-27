@@ -49,11 +49,11 @@ const Leaderboard = () => {
             udata.filter((p) => {
               if (search === " ") {
                 return p
-              } else if (p.name.toLowerCase().includes(search.toLowerCase()) || p.studentNum.toLowerCase().includes(search.toLowerCase())) {
+              } else if (p.name.toLowerCase().includes(search.toLowerCase())) {
                 return p
               }
             }).map((p) =>
-            (<Cardl className="getCard" key={p._id} ckc ={p} reload= {getAllCandidates}/>)):null
+            (<Cardl className="getCard" key={p._id} ckc ={p} />)):null
           }
        
         
