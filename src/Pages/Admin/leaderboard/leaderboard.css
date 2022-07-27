@@ -1,310 +1,64 @@
-/* * {
-  margin: 0;
-  padding: 0;
-}
-
-.leader {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-}
-.top {
-  color: white;
-  font-weight: 500;
-  font-size: 35px;
-  font-family: "Montserrat";
-  font-style: normal;
-  width: 18rem;
-  padding: 8px;
-  background: #8b8fff;
-  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
-  text-align: center;
-  margin: 56px;
-  color: #ffffff;
-}
-
-.outer_box {
-  display: flex;
-  justify-content: center;
-}
-
-.inputwrap {
-  display: flex;
-  justify-content: center;
-}
-.inputwrap input {
-  height: 75px;
-  width: 972px;
-  padding: 30px;
-  font-weight: 300;
-  font-size: 30px;
-  color: #c7c7c7;
-}
-
-.box3 {
-  display: flex;
-  justify-content: center;
-  padding-top: 3rem;
-}
-.content {
-  box-sizing: border-box;
-  width: 972px;
-  height: 894px;
-  background: #fffcfc;
-  border: 0.5px solid #c5c5c5;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.details {
-  width: 924px;
-  height: 385px;
-  left: 294px;
-  top: 473px;
-  background: rgba(241, 218, 254, 0.5);
-  border-radius: 10px;
-  margin-top: 2rem;
-  margin-left: 1.5rem;
-}
-.information {
-  margin-top: 4%;
-  display: flex;
-  justify-content: space-between;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 30px;
-  line-height: 37px;
-  
-  left: 1027px;
-  top: 552px;
-  padding: 25px;
-}
-.info_ans{
- color: #8b8fff;
-}
-.fetch {
-cursor: pointer;
-width: 241px;
-height: 60px;
-margin-top: 45px;
-background: rgba(73, 77, 226, 0.81);
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.fetch_details{
-  padding-top: 15px;
- font-family: 'Montserrat';
-font-style: normal;
-font-weight: 600;
-font-size: 26px;
-line-height: 32px;
-text-align: center;
-color: #FFFFFF;
-}
-.answers{
-  cursor: pointer;
-  width: 241px;
-height: 60px;
-margin-top: 45px;
-background: rgba(73, 77, 226, 0.81);
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.fetch_answers{
-  padding-top: 15px;
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 600;
-font-size: 26px;
-line-height: 32px;
-text-align: center;
-color: #FFFFFF;
-} */
-.get{
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+*{
   /* overflow-x: hidden; */
+  margin:0px;
+  padding: 0px;;
+  /* background-size: cover; */
 }
-.getc{
-  width: 98.9vw;
-  /* height: 100vh; */
-  overflow: hidden;
+.detailsdisplay{
+    display: flex;
+    justify-content: space-between;
+    margin: 5%;
+    padding-top: 25px;
+    
 }
-
-.get_text{
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-  padding: 12px;
-  margin-top: 1.4%;
-  font-family: 'Montserrat';
-  text-align: center;
-  font-size: 35px;
-  width: fit-content;
-  color: white;
-  background-color: rgba(139, 143, 255, 1);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+.buttonsdisplay{
+  /* width: 40px; */
+  justify-content: space-between;
 }
-.searchWrap{
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* border: 2px solid; */
-}
-
-.searchbar{
-  border: 1px solid #C5C5C5;
-  box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.25);
-  display: flex;
-  align-items: center;
-  background: white;
-  height: 46px;
-  width: 40vw;
-}
-.search{
-  font-size: large;
-  padding: 10px;
-  font-family: 'Montserrat';
-  width: 38vw;
+.fetch-detail-btn{
+  width: 160px;
+  margin-left: 20px;
+  padding: 5px;
+  position: relative;
+  top: -22px;
+  left: 9px;
+  font-weight: bold;
+  color: antiquewhite;
+    font-size: 20px;
+  background-color: rgba(73, 77, 226, 0.81);
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
   border: none;
+  border-radius: 3px;
 }
-
-.getq{
-  margin: 2% 25%;
-  width: 50%;
-  height: 75vh;
-  
-  display: block;
-  overflow-y: scroll;
-  border: 0.5px solid #C5C5C5;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.edit-Card{
-  padding: 20px;
+.fetch-answers-btn{
+  width: 160px;
+  margin-left: 20px;
+  padding: 5px;
   border: none;
+  position: relative;
+  top: -65px;
+  left: 9px;
+  font-weight: bold;
+    font-size: 20px;
+    background-color: rgba(73, 77, 226, 0.81);;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: antiquewhite;
+    border-radius: 3px;
 }
-
-
-
-/* .question-field{
-  margin: 12px;
-  color: #000000;
-  font-family: 'Roboto';
-  font-weight: 200;
-  font-size: large; 
-  text-align: center;
- }
-.category{
-  margin: 12px;
-  color: #000000;
-  font-size: large;
-  font-family: 'Roboto';
-  font-weight: 300;
-} 
-
-.edit-delete{
-  display: flex;
-
-  margin: 10px;
-  padding: 10px;
-}*/
-/* .edit{ */
-  /* border: 2px solid; */
-  /* display: flex; */
-  /* justify-content: left; */
-  /* margin-left: 2%; */
-  /* margin-right: 38%; */
-/* } */
-/* .delete{
-  
-  display: flex;
-  margin-right: 7%;
-  justify-content: right;
+.detailscard{
+    background-color: rgba(241, 218, 254, 0.5);;
+    margin: 5%;
+    border-radius: 5px;
+    font-family: 'Montserrat'  !important;
+    font-weight: bold;
+    font-size: 20px;
+    height: 318px;
+    /* overflow-x: hidden; */
 }
-.edit-btn{
-  cursor: pointer;
-  padding: 6%;
-  width: 10rem;
-  font-size: large;
-  color: white;
-  font-family: 'Montserrat';
-  font-style: normal;
-  text-align: center;
-  letter-spacing: 0.1em;
-  font-weight: 500;
-  border: none;
-  background: #5AD047;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.delete-btn{
-  cursor: pointer;
-  padding: 6%;
-  width: 10rem;
-  font-size: large;
-  color: white;
-  font-family: 'Montserrat';
-  font-style: normal;
-  text-align: center;
-  letter-spacing: 0.1em;
-  font-weight: 500;
-  border: none;
-  background: #DE5947;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.cardHr{
-  margin: 3% 9%;
-  width: 80%;
-}
-
-/* .option_box_radio{
-  color: #5AD047;
-  margin: 0px 10px;
+/* .buttonsdisplay{
+  margin-bottom: 10px;
 } */
-/* input[type=radio] {
-  border: 1px solid rgb(148, 110, 110);
-  padding: 0.5em;
-  -webkit-appearance: none;
+.Hr{
+  margin: 25px;
+  /* color:rgba(241, 218, 254, 0.5) ; */
 }
-input[type=radio]:checked {
-  background: green;
-  background-size: 9px 9px;
-} */
-
-/* li{
-  list-style: none;
-}
-
-.Gopt-list{ 
-
-  width: 43vw;
-  background: rgba(241, 218, 254, 0.5);
-  border-radius: 100px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  margin: 15px 2px;
-}
-.Ginput{
-  
-  width: 30px; 
-  height: 17px;
-}
-.Ginputval{
-  font-size: large;
-} */
-.upper_div{
-  margin: 4%;
-  display: flex;
-  /* justify-content: space-between; */
-  padding: 25px;
-  background: #F2DAFE;
-  border-radius: 2vh;
-}
-.info{
-   justify-content: space-between;
-}
-
-
-

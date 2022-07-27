@@ -9,7 +9,7 @@ import Cardl from './Cardl'
 const Leaderboard = () => {
 
   
-  const [getq, setGetq] = useState([]);
+  // const [getq, setGetq] = useState([]);
   const [udata, setUData] = useState([]);
   const [search, setSearch] = useState(" ");
   const url = "https://csiportal.herokuapp.com/leaderboard";

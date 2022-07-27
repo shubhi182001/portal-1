@@ -13,6 +13,7 @@ function Responses() {
     const {state} = useLocation();
     console.log(state);
     const [Details, setDetails] = useState(state.post_result);
+    // const [scoreDetails, setscoreDetails] = useState(state.post_userNumCount);
     const [seeAnswer, setSeeanswer] = useState(state.post_result);
     let data;
     const studentDetail = ['Name', 'StudentNo', 'Branch', 'Score', 'StartTime', 'EndTime'];
@@ -30,12 +31,12 @@ function Responses() {
                     <div className='upper_div'>
                         <div classname='info'>{showDetails}</div>
                         <ul>
-                            <li>{state.post_name}</li>
-                            <li>{state.post_studentnum}</li>
-                            <li>{state.post_branch}</li>
-                            <li>100</li>
-                            <li>10:00</li>
-                            <li>12:00</li>
+                            <li className='bluedetails'>{state.post_name}</li>
+                            <li className='bluedetails'>{state.post_studentnum}</li>
+                            <li className='bluedetails'>{state.post_branch}</li>
+                            <li className='bluedetails'>score</li>
+                            <li className='bluedetails'>{state.post_loginAt}</li>
+                            <li className='bluedetails'>{state.post_logoutAt}</li>
                         </ul>
                     </div>
                     <div className='lower_div'>
