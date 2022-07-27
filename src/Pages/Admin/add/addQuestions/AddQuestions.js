@@ -132,13 +132,14 @@ const AddQuestions = () => {
                             <h5>Category</h5>
                             <div className="addques-lang">
                                 <select className="addques-select" required value={chosenlang} style={{ color: "black", borderRadius: "4px"  }} onChange={handleLanguage} name="lang" id="options" >
-                                    <option value="DEFAULT" hidden>Language</option>
+                                    <option value="DEFAULT" hidden>Category</option>
                                     <option value="HTML" style={{ color: "black",backgroundColor: "#F6FCFF" }}>HTML</option>
                                     <option value="CSS" style={{ color: "black", backgroundColor: "#F6FCFF" }}>CSS</option>
                                     <option value="C++" style={{ color: "black", backgroundColor: "#F6FCFF" }}>C++</option>
                                     <option value="C" style={{ color: "black", backgroundColor: "#F6FCFF" }}>C</option>
                                     <option value="JAVA" style={{ color: "black", backgroundColor: "#F6FCFF" }}>JAVA</option>
                                     <option value="PYTHON" style={{ color: "black", backgroundColor: "#F6FCFF" }}>PYTHON</option>
+                                    <option value="SQL" style={{ color: "black", backgroundColor: "#F6FCFF" }}>SQL</option>
                                     <option value="APTITUDE" style={{ color: "black", backgroundColor: "#F6FCFF" }}>APTITUDE</option>
                                 </select>
                             </div>
