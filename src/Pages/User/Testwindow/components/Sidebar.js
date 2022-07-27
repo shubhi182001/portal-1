@@ -85,6 +85,9 @@ const Sidebar = ({ testques, setShow,showques, setShowques, ansid,show}) => {
  // for getting clicked question 
   const handleoptions = (i) => {
     setShowques(i);
+    
+
+
   };
 
   return (

@@ -17,9 +17,9 @@ const Test = () => {
   const [testoptions, setTestOptions] = useState(); //setting the options
   const [ansid, setAnsid] = useState("2"); //flags for question :
   // save and next -> 1 green
-  //Review -> 3 red
+  //Review -> 3 blue
   // Not visited -> 2 border -> blue, background ->white
-  // not answered -> 5 blue
+  // not answered -> 5 red
 
   // let data;
   useEffect(() => {

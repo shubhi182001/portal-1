@@ -235,7 +235,7 @@
     margin-top: 25px;
 }
 #mfr{
-    background: rgb(255, 0, 0);
+    background: rgb(46, 20, 133);
     width: 250px;
     margin-left: 90px;
 }
@@ -262,11 +262,11 @@
     margin-right: 30px;
 }
 #color1{
-    background: #0325ff;
+    background: #c22a2c;
 }
 #color2{
     background: green;
 }
 #color3{
-    background:rgb(255, 0, 0);
+    background:rgb(46, 20, 133);
 }

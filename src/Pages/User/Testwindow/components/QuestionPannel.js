@@ -22,6 +22,7 @@ const QuestionPannel = ({
   const [oid, setOid] = useState("000");
   const [chosenlang, setChosenlang] = useState("");
   const [selectOpt, setSecteOpt] = useState("");
+
   // const [question,setQuestion] = useState('');
   // useLayoutEffect(() =>{
   //   // setChoice(val);
@@ -246,8 +247,8 @@ const QuestionPannel = ({
                     onClick={() => {
                       setSelect(option.value);
                       setOid(option.Oid);
-                      setAnsid(index);
-                      select == option.value
+                      // setAnsid(index);
+                      select === option.value
                         ? setRadioActive(true)
                         : setRadioActive(false);
                     }}
@@ -255,7 +256,7 @@ const QuestionPannel = ({
                     name="btn"
                   />
 
-                  <label>{option.value}</label>
+                  <label>{testques[showques - 1].options[index].value}</label>
                 </div>
               ))}
           </div>
