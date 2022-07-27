@@ -138,7 +138,8 @@ const AddQuestions = () => {
                                     <option value="C++" style={{ color: "black", backgroundColor: "#F6FCFF" }}>C++</option>
                                     <option value="C" style={{ color: "black", backgroundColor: "#F6FCFF" }}>C</option>
                                     <option value="JAVA" style={{ color: "black", backgroundColor: "#F6FCFF" }}>JAVA</option>
-                                    <option value="Python" style={{ color: "black", backgroundColor: "#F6FCFF" }}>APTITUDE</option>
+                                    <option value="PYTHON" style={{ color: "black", backgroundColor: "#F6FCFF" }}>PYTHON</option>
+                                    <option value="APTITUDE" style={{ color: "black", backgroundColor: "#F6FCFF" }}>APTITUDE</option>
                                 </select>
                             </div>
                             {chosenlang === '' ? <p className='add-category-error'>{categoryerrors.cat}</p> : null}
