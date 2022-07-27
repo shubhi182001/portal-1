@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './addfeedback.css'
 import Navbar from '../../navbar/Navbar';
@@ -7,7 +7,8 @@ import Navbar from '../../navbar/Navbar';
 const AddFeedback = () => {
 
   const [feedback, setFeedback] = useState("");
-
+  const [feedbackErrors, setFeedbackErrors] = useState({})
+  const [isSubmit, setIsSubmit] = useState(false)
 
   const handleFeedback = (e) => {
     e.preventDefault();
@@ -18,23 +19,24 @@ const AddFeedback = () => {
   const handleReset = (e) => {
     e.preventDefault();
     setFeedback(' ');
-    console.log('handle')
   }
 
   const handleUpload = (e) => {
     e.preventDefault();
-    console.log('Uploaded')
+    setFeedbackErrors(validateFeedback(feedback))
+    setIsSubmit(true)
 
     const questionFeedback = {
       "question": feedback
     }
     console.log(questionFeedback)
-    if (questionFeedback) {
+    if (questionFeedback && Object.keys(feedbackErrors).length === 0) {
       axios.post('https://csiportal.herokuapp.com/addfeedback', questionFeedback)
         .then((res) => {
           console.log(res)
           console.log(res.data)
           setFeedback('')
+          setFeedbackErrors({})
           if (res) {
             window.alert('Feedback question added successfully ')
           }
@@ -47,7 +49,19 @@ const AddFeedback = () => {
     }
 
   }
+  useEffect(() => {
 
+    if (Object.keys(feedbackErrors).length === 0 && isSubmit) {
+      console.log('Request Sent');
+    }
+  })
+  const validateFeedback = (value) => {
+    const err = {}
+    if (!value) {
+      err.x = 'Feedback Question is required'
+    }
+    return err;
+  }
 
   return (
     <>
@@ -59,7 +73,8 @@ const AddFeedback = () => {
           <div className='f-white-container'>
             <div className="f-feedback-ques">
               <p>Feedback</p>
-              <textarea name="ques" value={feedback} placeholder='Enter the feedback question' required id="feedback-here" onChange={handleFeedback}></textarea>
+              <textarea name="ques" value={feedback} required id="feedback-here" onChange={handleFeedback}></textarea>
+              {(feedback.length === 0) ? <p style={{ color: "red" }}>{feedbackErrors.x}</p> : null}
             </div>
 
             <div className='f-add-feedback-buttons'>
