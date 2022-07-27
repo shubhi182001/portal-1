@@ -30,11 +30,11 @@ const Cardl = ({ ckc, reload }) => {
                 <div className='detailsdisplay'>
                     <div classname='info'>{showDetails} </div>
                     <ul>
-                        <li>{ckc.name} </li>
-                        <li>{ckc.studentNum}</li>
-                        <li>{ckc.branch}</li>
-                        <li>{ckc.userNumCount.TotalNum}</li>
-                        <li>{ckc.lang}</li>
+                        <li className='bluedetails'>{ckc.name} </li>
+                        <li className='bluedetails'>{ckc.studentNum}</li>
+                        <li className='bluedetails'>{ckc.branch}</li>
+                        <li className='bluedetails'>{ckc.userNumCount.TotalNum}</li>
+                        <li className='bluedetails'>{ckc.lang}</li>
 
                     </ul>
 
