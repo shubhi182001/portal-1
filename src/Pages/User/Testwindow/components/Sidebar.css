@@ -19,7 +19,7 @@
   flex-direction: column;
   justify-content: space-between;
   /* background-color: #E5E4E2; */
-  background-color: rgba(16, 16, 2, 0.502);
+  background-color: rgba(23, 22, 23, 0.502);
   /* opacity: 0.8; */
 }
 .time_left1 {
@@ -35,15 +35,15 @@
   align-items: center;
   /* background-color: #dbdbdb; */
   /* background-color: rgba(16, 16, 2, 0.502); */
-  background-color: rgba(16, 16, 2, 0.062);
+  background-color: rgba(23, 22, 23, 0.062);
 
 opacity: 0.6;
   height: 56px;
 }
-.time_left h1 {
+.time_left h3 {
   font-family: "Montserrat";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 24px;
   line-height: 29px;
   letter-spacing: 0.1em;
@@ -132,7 +132,7 @@ opacity: 0.6;
   margin-bottom: 1rem;
   /* background-color: rgba(16, 16, 2, 0.502);
    */
-  background-color: rgba(16, 16, 2, 0.062);
+  background-color: rgba(23, 22, 23, 0.062);
 
 opacity: 0.4;
 }
@@ -160,38 +160,49 @@ opacity: 0.4;
 margin-top:1rem;
 }
 
-.visited{
+.not_visited{
   color: black;
   cursor: pointer;
   width: 50px;
   height: 50px;
-  background: #FFFFFF;;
-  border: 1px solid #3B8039;
+  /* background: #FFFFFF;; */
+  border: 1px solid #001eff;
 /* clip-path: polygon(50% 0%, 100% 0, 100% 99%, 0 99%, 0% 38%); */
  margin-top:1rem;
-  background-color: red;
+  background-color: rgb(255, 255, 255);
 }
 .mark_review{
   color: black;
   cursor: pointer;
   width: 50px;
   height: 50px;
-  background: #FFFFFF;;
-  border: 1px solid #3B8039;
+  /* background: #FFFFFF;; */
+  border: 1px solid #ff0101;
 /* clip-path: polygon(50% 0%, 100% 0, 100% 99%, 0 99%, 0% 38%); */
 margin-top:1rem;
-background-color: blue;
+background-color: rgb(255, 0, 0);
 }
 .save_next{
   color: black;
   cursor: pointer;
   width: 50px;
   height: 50px;
-  background: #FFFFFF;;
+  /* background: #FFFFFF;; */
   border: 1px solid #3B8039;
 /* clip-path: polygon(50% 0%, 100% 0, 100% 99%, 0 99%, 0% 38%); */
 margin-top:1rem;
 background-color: green;
+}
+.not_answered{
+  color: black;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  /* background: #FFFFFF;; */
+  border: 1px solid #395580;
+/* clip-path: polygon(50% 0%, 100% 0, 100% 99%, 0 99%, 0% 38%); */
+margin-top:1rem;
+background-color: rgb(12, 69, 240);
 }
 
 .side_footer{

@@ -12,25 +12,28 @@ import "./Test.css";
 const Test = () => {
   const [show, setShow] = useState(false); // for modal
   const [choice, setChoice] = useState("HTML"); // cataegory
-  const [testques, setTestques] = useState([""]); // setting whole array of question
+  const [testques, setTestques] = useState([{}]); // setting whole array of question
   const [showques, setShowques] = useState(1); // question iterator
   const [testoptions, setTestOptions] = useState(); //setting the options
   const [ansid, setAnsid] = useState("2"); //flags for question :
-  // save and next -> 1
-  //Review -> 3
-  // Not visited -> 2
-  let data;
+  // save and next -> 1 green
+  //Review -> 3 red
+  // Not visited -> 2 border -> blue, background ->white
+  // not answered -> 5 blue
+
+  // let data;
   useEffect(() => {
     choiceques();
-  }, [choice]);
+  }, [choice,showques]);
 
   const url = `https://csiportal.herokuapp.com/question/${choice}`;
   const choiceques = async () => {
-    data = await axios.get(url);
+    const data = await axios.get(url);
     console.log(data);
     setTestques(data.data.result);
-    setTestOptions(data.data.result[showques - 1].options);
+    setTestOptions(data.data.result[showques - 1].options); 
   };
+
 
   return (
     <>
@@ -47,10 +50,10 @@ const Test = () => {
             choice={choice}
             setChoice={setChoice}
             setAnsid = {setAnsid}
-            // setFlag = {setFlag}
             ansid = {ansid}
             setShow={setShow}
-            show={show}            
+            show={show}
+            setTestques={setTestques}
           />
          
           <Sidebar
@@ -60,7 +63,6 @@ const Test = () => {
             choice={choice}
             setShow={setShow}
             ansid = {ansid}
-            // flag = {flag}
             show={show}            
 
           />
@@ -75,14 +77,13 @@ const Test = () => {
         <div className="test_body">
           <QuestionPannel
             testoptions={testoptions}
-            setTestOptions={setTestOptions}
             setShowques={setShowques}
             showques={showques}
             testques={testques}
             choice={choice}
             setChoice={setChoice}
             setAnsid={setAnsid}
-            ansid={ansid}
+                      ansid={ansid}
           />
           <Sidebar
             showques={showques}

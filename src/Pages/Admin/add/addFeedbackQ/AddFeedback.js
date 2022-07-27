@@ -46,8 +46,8 @@ const AddFeedback = () => {
 
   return (
     <>
+      <div className="f-feedback-main admin-main">
       <Navbar />
-      <div className="f-feedback-main">
 
         <div className='f-add-feedback-body'>
           <h5 className='f-heading-feedback'>Add Feedback </h5>
