@@ -1,8 +1,6 @@
 import React, {
   useState,
-  createContext,
   useEffect,
-  useLayoutEffect,
 } from "react";
 import Sidebar from "./components/Sidebar";
 import QuestionPannel from "./components/QuestionPannel";
@@ -12,7 +10,7 @@ import "./Test.css";
 const Test = () => {
   const [show, setShow] = useState(false); // for modal
   const [choice, setChoice] = useState("HTML"); // cataegory
-  const [testques, setTestques] = useState([{}]); // setting whole array of question
+  const [testques, setTestques] = useState(['']); // setting whole array of question
   const [showques, setShowques] = useState(1); // question iterator
   const [testoptions, setTestOptions] = useState(); //setting the options
   const [ansid, setAnsid] = useState("2"); //flags for question :
@@ -21,58 +19,50 @@ const Test = () => {
   // Not visited -> 2 border -> blue, background ->white
   // not answered -> 5 red
 
-  // let data;
   useEffect(() => {
     choiceques();
-  }, [choice,showques]);
+  }, [choice, showques]);
 
   const url = `https://csiportal.herokuapp.com/question/${choice}`;
   const choiceques = async () => {
     const data = await axios.get(url);
-    console.log(data);
+    // console.log(data);
     setTestques(data.data.result);
-    setTestOptions(data.data.result[showques - 1].options); 
+    setTestOptions(data.data.result[showques - 1].options);
   };
-
 
   return (
     <>
       {show ? (
         <>
-        
-        <div className="test_body">
-          <QuestionPannel
-            testoptions={testoptions}
-            setTestOptions={setTestOptions}
-            setShowques={setShowques}
-            showques={showques}
-            testques={testques}
-            choice={choice}
-            setChoice={setChoice}
-            setAnsid = {setAnsid}
-            ansid = {ansid}
-            setShow={setShow}
-            show={show}
-            setTestques={setTestques}
-          />
-         
-          <Sidebar
-            showques={showques}
-            setShowques={setShowques}
-            testques={testques}
-            choice={choice}
-            setShow={setShow}
-            ansid = {ansid}
-            show={show}            
+          <div className="test_body">
+            <QuestionPannel
+              testoptions={testoptions}
+              setTestOptions={setTestOptions}
+              setShowques={setShowques}
+              showques={showques}
+              testques={testques}
+              choice={choice}
+              setChoice={setChoice}
+              setAnsid={setAnsid}
+              ansid={ansid}
+              setShow={setShow}
+              show={show}
+              setTestques={setTestques}
+            />
 
-          />
-           <Modal 
-          setShow={setShow}/>
-        
-
-        </div>
+            <Sidebar
+              showques={showques}
+              setShowques={setShowques}
+              testques={testques}
+              choice={choice}
+              setShow={setShow}
+              ansid={ansid}
+              show={show}
+            />
+            <Modal setShow={setShow} />
+          </div>
         </>
-
       ) : (
         <div className="test_body">
           <QuestionPannel
@@ -83,7 +73,7 @@ const Test = () => {
             choice={choice}
             setChoice={setChoice}
             setAnsid={setAnsid}
-                      ansid={ansid}
+            ansid={ansid}
           />
           <Sidebar
             showques={showques}

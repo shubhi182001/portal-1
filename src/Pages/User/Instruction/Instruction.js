@@ -12,7 +12,7 @@ import axios from "axios";
 
 const Instruction = () => {
   const navigate = useNavigate();
-const [chosenlang, setChosenlang] = useState("");
+  const [chosenlang, setChosenlang] = useState("");
   useEffect(() => {
     let instruct = localStorage.getItem("instruct");
 
@@ -21,9 +21,9 @@ const [chosenlang, setChosenlang] = useState("");
     }
   }, []);
 
- const handlelangchoice = (val) => {
+  const handlelangchoice = (val) => {
     setChosenlang(val);
- }
+  };
 
   const cook = localStorage.getItem("cookie");
 
@@ -38,7 +38,7 @@ const [chosenlang, setChosenlang] = useState("");
     //     {
     //       cookie_token: cook,
     //       lang: chosenlang
-          
+
     //     }
     //   )
     //   .then((res) => {
@@ -49,27 +49,24 @@ const [chosenlang, setChosenlang] = useState("");
     //     console.log(err);
     //   });
 
-
     if (chosenlang === "") {
       toast.error("Select any language first");
     } else {
-       const result= await axios
-        .patch(
-          "https://csiportal.herokuapp.com/instruction",
+      const result = await axios.patch(
+        "https://csiportal.herokuapp.com/instruction",
 
-          {
-            cookie_token: cook,
-            lang: chosenlang,
-          }
-        );        
-        if(result.data.isVerified=== true){
-          localStorage.setItem("instruct", true);    
-          navigate("/testwindow");
+        {
+          cookie_token: cook,
+          lang: chosenlang,
         }
-        else if(result.data.isVerified=== false){
-          localStorage.removeItem("instruct")
-          navigate("/")
-        }
+      );
+      if (result.data.isVerified === true) {
+        localStorage.setItem("instruct", true);
+        navigate("/testwindow");
+      } else if (result.data.isVerified === false) {
+        localStorage.removeItem("instruct");
+        navigate("/");
+      }
     }
   };
 

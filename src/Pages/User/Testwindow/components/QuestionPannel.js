@@ -14,30 +14,13 @@ const QuestionPannel = ({
   setAnsid,
   show,
 }) => {
-  const [radioActive, setRadioActive] = useState(false); // selecting radio buttons
   let isVerified;
 
-  const [select, setSelect] = useState(""); // option selected
-  // const [qid, setQid] = useState(); // for question id
   const cook = localStorage.getItem("cookie");
-  // const [mark, setMark] = useState(false);
-  // const [next, setNext] = useState(true);
+
   const [oid, setOid] = useState("000");
   const [chosenlang, setChosenlang] = useState("");
-  // const [selectOpt, setSecteOpt] = useState("");
-  // const [question,setQuestion] = useState('');
-  // useLayoutEffect(() =>{
-  //   // setChoice(val);
-  //   // setShowques(1);
-  //   // setTestOptions(testques[showques-1].options);
-  //   console.log(testoptions);
-  // })
-  // let optionarr =[1,2,3,4];
-  // for (let i = 0; i <4; i++) {
-  //   optionarr.push((testoptions[i].value));
-  // }
 
-  // const [select, setSelect] = useState("");
   const lang = {
     cookie_token: cook,
   };
@@ -45,7 +28,6 @@ const QuestionPannel = ({
     axios
       .post("https://csiportal.herokuapp.com/langselected", lang)
       .then((res) => {
-        // console.log(res.data.lang);
         setChosenlang(res.data.lang);
       })
       .catch((err) => {
@@ -53,29 +35,24 @@ const QuestionPannel = ({
       });
   }, [lang]);
 
-  // selecting cataegory [html,css,]
   const handleactive = (val) => {
     setChoice(val);
     setShowques(1);
   };
-  // useEffect(()=>{
-
-  // },[testques]);
 
   // Mark for review
   const navigate = useNavigate();
 
   const Mark = async () => {
     if (showques < testques.length) {
-
       let qid = testques[showques - 1]._id;
       let question = testques[showques - 1].question;
 
-      console.log(select);
       console.log(qid);
       console.log(oid);
       console.log(choice);
       console.log(question);
+      console.log(showques);
 
       const data = {
         cookie_token: cook,
@@ -85,28 +62,59 @@ const QuestionPannel = ({
         Qid: qid,
         ansid: 3,
       };
-    
+
       await axios
         .put("https://csiportal.herokuapp.com/ans/answer", data)
         .then((res) => {
           console.log(res.data);
-          isVerified=res.data.isVerified;
-          if(isVerified === false)
-          {
-            localStorage.removeItem('instruct');
-            localStorage.removeItem('login2');
-            localStorage.removeItem('cookie');
-            navigate('/')
+          isVerified = res.data.isVerified;
+          if (isVerified === false) {
+            localStorage.removeItem("instruct");
+            localStorage.removeItem("login2");
+            localStorage.removeItem("cookie");
+            navigate("/");
           }
         })
         .catch((err) => {
           console.log(err);
         });
-      setRadioActive(false);
       setShowques(showques + 1);
-      setOid('000');
-      setSelect();
+      setOid("000");
     } else {
+      let qid = testques[showques - 1]._id;
+      let question = testques[showques - 1].question;
+
+      console.log(qid);
+      console.log(oid);
+      console.log(choice);
+      console.log(question);
+      console.log(showques);
+
+      const data = {
+        cookie_token: cook,
+        question: question,
+        category: choice,
+        userAnswer: oid,
+        Qid: qid,
+        ansid: 3,
+      };
+
+      await axios
+        .put("https://csiportal.herokuapp.com/ans/answer", data)
+        .then((res) => {
+          console.log(res.data);
+          isVerified = res.data.isVerified;
+          if (isVerified === false) {
+            localStorage.removeItem("instruct");
+            localStorage.removeItem("login2");
+            localStorage.removeItem("cookie");
+            navigate("/");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      setOid("000");
       setShowques(1);
       setChoice(
         choice === "HTML"
@@ -125,68 +133,73 @@ const QuestionPannel = ({
   };
   // Mark for review ended
 
-//   let option_data ;
-//  if(testoptions){ 
-//    option_data = testoptions.filter((i)=>{
-//     if(testques[showques - 1].selectOpt === i.value)
-//       {return true;}
-//        return false;
-//   })}
-//   console.log(option_data[0]);
-
-  // const handleOption = (option) => {
-  //   console.log('called handleOption');
-  //   if (testques[showques - 1].selectOpt) {
-  //     testques[showques - 1].selectOpt == option.value
-  //       ? setRadioActive(true)
-  //       : setRadioActive(false);
-  //   }
-  // };
-
   // save and next
   const Next = async () => {
     if (showques < testques.length) {
-     
-
       let qid = testques[showques - 1]._id;
       let question = testques[showques - 1].question;
-
-      
-      console.log(select);
-      console.log(qid);
-      console.log(oid);
-      console.log(choice);
-      console.log(question);
-
       const data = {
         cookie_token: cook,
         question: question,
         category: choice,
         userAnswer: oid,
         Qid: qid,
-        ansid: oid === '000' ? 5 : 1,
+        ansid: oid === "000" ? 5 : 1,
       };
       await axios
         .put("https://csiportal.herokuapp.com/ans/answer", data)
         .then((res) => {
           console.log(res.data);
-          isVerified=res.data.isVerified;
-          if(isVerified === false)
-          {
-            localStorage.removeItem('instruct');
-            localStorage.removeItem('login2');
-            localStorage.removeItem('cookie');
-            navigate('/')
+          isVerified = res.data.isVerified;
+          if (isVerified === false) {
+            localStorage.removeItem("instruct");
+            localStorage.removeItem("login2");
+            localStorage.removeItem("cookie");
+            navigate("/");
           }
         })
         .catch((err) => {
           console.log(err);
         });
-      setRadioActive(false);
       setShowques(showques + 1);
-      setOid('000');
-      setSelect();
+      console.log(qid);
+      console.log(oid);
+      console.log(choice);
+      console.log(question);
+      console.log(showques);
+      setOid("000");
     } else {
+      let qid = testques[showques - 1]._id;
+      let question = testques[showques - 1].question;
+      const data = {
+        cookie_token: cook,
+        question: question,
+        category: choice,
+        userAnswer: oid,
+        Qid: qid,
+        ansid: oid === "000" ? 5 : 1,
+      };
+      await axios
+        .put("https://csiportal.herokuapp.com/ans/answer", data)
+        .then((res) => {
+          console.log(res.data);
+          isVerified = res.data.isVerified;
+          if (isVerified === false) {
+            localStorage.removeItem("instruct");
+            localStorage.removeItem("login2");
+            localStorage.removeItem("cookie");
+            navigate("/");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      console.log(qid);
+      console.log(oid);
+      console.log(choice);
+      console.log(question);
+      console.log(showques);
+      setOid("000");
       setShowques(1);
       setChoice(
         choice === "HTML"
@@ -202,7 +215,6 @@ const QuestionPannel = ({
           : "HTML"
       );
     }
-    // console.log(cataegory);
   };
 
   return (
@@ -264,14 +276,14 @@ const QuestionPannel = ({
                 >
                   <input
                     type="radio"
-                    defaultChecked={radioActive}
+                    defaultChecked={
+                      testques[showques - 1].selectedOpt === option.value
+                        ? true
+                        : false
+                    }
                     onClick={() => {
-                      setSelect(option.value);
                       setOid(option.Oid);
                       // setAnsid(index);
-                      select === option.value
-                        ? setRadioActive(true)
-                        : setRadioActive(false);
                     }}
                     value={option.value}
                     name="btn"
