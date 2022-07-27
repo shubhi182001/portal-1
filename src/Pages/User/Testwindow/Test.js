@@ -1,7 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-} from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./components/Sidebar";
 import QuestionPannel from "./components/QuestionPannel";
 import axios, { Axios } from "axios";
@@ -10,7 +7,7 @@ import "./Test.css";
 const Test = () => {
   const [show, setShow] = useState(false); // for modal
   const [choice, setChoice] = useState("HTML"); // cataegory
-  const [testques, setTestques] = useState(['']); // setting whole array of question
+  const [testques, setTestques] = useState([""]); // setting whole array of question
   const [showques, setShowques] = useState(1); // question iterator
   const [testoptions, setTestOptions] = useState(); //setting the options
   const [ansid, setAnsid] = useState("2"); //flags for question :
@@ -44,8 +41,6 @@ const Test = () => {
               testques={testques}
               choice={choice}
               setChoice={setChoice}
-              setAnsid={setAnsid}
-              ansid={ansid}
               setShow={setShow}
               show={show}
               setTestques={setTestques}
@@ -57,7 +52,6 @@ const Test = () => {
               testques={testques}
               choice={choice}
               setShow={setShow}
-              ansid={ansid}
               show={show}
             />
             <Modal setShow={setShow} />
@@ -72,8 +66,6 @@ const Test = () => {
             testques={testques}
             choice={choice}
             setChoice={setChoice}
-            setAnsid={setAnsid}
-            ansid={ansid}
           />
           <Sidebar
             showques={showques}
@@ -81,7 +73,6 @@ const Test = () => {
             testques={testques}
             choice={choice}
             setShow={setShow}
-            ansid={ansid}
           />
         </div>
       )}

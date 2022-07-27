@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Feedback.css'
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -104,9 +104,9 @@ const Feedback = () => {
           <div className="questions_container">
             {ques.map((element, index) => {
               return (
-                <FormControl className="questions">
-                  <FormLabel ><strong>{ques[index].question}</strong></FormLabel>
-                  <RadioGroup className='radio' name={index} onChange={handle}
+                <FormControl className="questions" key={index}>
+                  <FormLabel className="FormLabel" ><Typography variant='h6'>{ques[index].question}</Typography></FormLabel>
+                  <RadioGroup className='radio'  onChange={handle}  name={index}
                     row
                   >
                     <FormControlLabel value="1" control={<Radio />} label="1" />
@@ -121,12 +121,11 @@ const Feedback = () => {
               )
             })}
             <div className='text-container' >
-            <p>Your suggestions matter,drop us one!</p>
+            <Typography variant='h6' my={2}>Your suggestions matter, drop us one!</Typography>
               <textarea 
                 className='text'
                  type="text" 
                 name={ques.length}
-                //  value = {sugg} 
                 onChange={handle}></textarea>
 
             </div>

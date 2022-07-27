@@ -13,17 +13,13 @@ const Protectedroutes = (props) => {
     let testpage = localStorage.getItem("testpage");
     if (!login1 && !login2 && appeared == true) {
       navigate("/");
-    } 
-    else if (appeared == true){
-      navigate ("/")
-    }
-    else if (login1) {
-      navigate("/homepage");
-    } 
-    else if(!login2 ){
+    } else if (appeared == true) {
       navigate("/");
-    }
-    else if (!instruct) {
+    } else if (login1) {
+      navigate("/homepage");
+    } else if (!login2) {
+      navigate("/");
+    } else if (!instruct) {
       navigate("/instructions");
     } else if (!testpage) {
       navigate("/testwindow");

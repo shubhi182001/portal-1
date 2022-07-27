@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Login/Login";
 import Instructions from "./Instruction/Instruction";
-// import Confirmation from './Confirmationpage/Confirmation';
 import Feedback from "./Feedback/Feedback";
 import Thankyou from "./Thankyoupage/Thankyou";
 import TestWindow from "./Testwindow/Test";
@@ -11,7 +10,6 @@ import Protectedroutes from "./Protectedroutes";
 import Animation from "../../Animation/Animation";
 import Homepage from "../../Pages/Admin/homepage/Homepage";
 
-import Test from "./Testwindow/Test";
 import GetQ from "../Admin/Get/GetQuestions/GetQ";
 import EditQ from "../Admin/editQ/EditQ";
 import Editf from "../Admin/Get/GetFeedback/components/Editf";
@@ -23,9 +21,7 @@ import Leaderboard from "../Admin/leaderboard/Leaderboard";
 import Responses from "../Admin/leaderboard/Responses";
 import Getfeedback from "../Admin/Get/GetFeedback/Getfeedback";
 
-
 function App() {
-
   const [showComponent, setShowComponent] = useState(true);
   const [showComponent2, setShowComponent2] = useState(false);
   useEffect(() => {
@@ -55,17 +51,11 @@ function App() {
           />
           <Route
             path="/instructions"
-            element={
-              <Protectedroutes
-                Component={Instructions}
-              />
-            }
+            element={<Protectedroutes Component={Instructions} />}
           />
           <Route
             path="/testwindow"
-            element={
-              <Protectedroutes Component={TestWindow} />
-            }
+            element={<Protectedroutes Component={TestWindow} />}
           />
           <Route
             path="/feedback"
@@ -75,16 +65,16 @@ function App() {
             path="/thankyou"
             element={<Protectedroutes Component={Thankyou} />}
           />
-          <Route path ='/getques' element={<GetQ/>} />
-          <Route path='/editq' element={<EditQ/>} />
-          <Route path ='/getfeedbackques' element={<Getfeedback/>} />
-          <Route path='/editf' element={<Editf/>}/>
-          <Route path ='/getcandidate' element={<GetCandidate/>} />
-          <Route path='/addques' element={<AddQuestions/>} />
-          <Route path='/addfeedbackques' element={<AddFeedback/>} />
-          <Route path='/addcandidate' element={<AddCandidate/>} /> 
-          <Route path='/leaderboard' element={<Leaderboard/>}/>
-          <Route path='/responses' element={<Responses/>} />
+          <Route path="/getques" element={<GetQ />} />
+          <Route path="/editq" element={<EditQ />} />
+          <Route path="/getfeedbackques" element={<Getfeedback />} />
+          <Route path="/editf" element={<Editf />} />
+          <Route path="/getcandidate" element={<GetCandidate />} />
+          <Route path="/addques" element={<AddQuestions />} />
+          <Route path="/addfeedbackques" element={<AddFeedback />} />
+          <Route path="/addcandidate" element={<AddCandidate />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/responses" element={<Responses />} />
         </Routes>
       </BrowserRouter>
     </>

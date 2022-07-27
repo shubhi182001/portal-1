@@ -7,7 +7,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Instruction.css";
 import { useNavigate } from "react-router-dom";
-// import { ColorizeRounded } from "@mui/icons-material";
 import axios from "axios";
 
 const Instruction = () => {
@@ -31,23 +30,6 @@ const Instruction = () => {
   const chkvalidate = async (e) => {
     e.preventDefault();
 
-    // await axios
-    //   .patch(
-    //     "https://csiportal.herokuapp.com/instruction",
-
-    //     {
-    //       cookie_token: cook,
-    //       lang: chosenlang
-
-    //     }
-    //   )
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     // localStorage.setItem('Appeared',false);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
 
     if (chosenlang === "") {
       toast.error("Select any language first");

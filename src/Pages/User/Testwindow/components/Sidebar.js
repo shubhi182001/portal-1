@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Sidebar.css";
-import Modal from "./../../Modal/Modal";
+import { Button } from "@mui/material";
+
 import axios, { Axios } from "axios";
 import { useNavigate } from "react-router-dom";
-import { AirlineSeatFlatAngled } from "@mui/icons-material";
 const Sidebar = ({ testques, setShow, showques, setShowques, ansid, show }) => {
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
