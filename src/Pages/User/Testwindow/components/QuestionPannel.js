@@ -1,7 +1,9 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./QuestionPannel.css";
 import instlogo from "../../../../Images/User/inst_csilogo.png";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 const QuestionPannel = ({
   testoptions,
   showques,
@@ -13,6 +15,7 @@ const QuestionPannel = ({
   show,
 }) => {
   const [radioActive, setRadioActive] = useState(false); // selecting radio buttons
+  let isVerified;
 
   const [select, setSelect] = useState(""); // option selected
   // const [qid, setQid] = useState(); // for question id
@@ -21,8 +24,7 @@ const QuestionPannel = ({
   // const [next, setNext] = useState(true);
   const [oid, setOid] = useState("000");
   const [chosenlang, setChosenlang] = useState("");
-  const [selectOpt, setSecteOpt] = useState("");
-
+  // const [selectOpt, setSecteOpt] = useState("");
   // const [question,setQuestion] = useState('');
   // useLayoutEffect(() =>{
   //   // setChoice(val);
@@ -49,7 +51,7 @@ const QuestionPannel = ({
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
 
   // selecting cataegory [html,css,]
   const handleactive = (val) => {
@@ -61,6 +63,8 @@ const QuestionPannel = ({
   // },[testques]);
 
   // Mark for review
+  const navigate = useNavigate();
+
   const Mark = async () => {
     if (showques < testques.length) {
 
@@ -81,10 +85,19 @@ const QuestionPannel = ({
         Qid: qid,
         ansid: 3,
       };
+    
       await axios
         .put("https://csiportal.herokuapp.com/ans/answer", data)
         .then((res) => {
           console.log(res.data);
+          isVerified=res.data.isVerified;
+          if(isVerified === false)
+          {
+            localStorage.removeItem('instruct');
+            localStorage.removeItem('login2');
+            localStorage.removeItem('cookie');
+            navigate('/')
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -157,6 +170,14 @@ const QuestionPannel = ({
         .put("https://csiportal.herokuapp.com/ans/answer", data)
         .then((res) => {
           console.log(res.data);
+          isVerified=res.data.isVerified;
+          if(isVerified === false)
+          {
+            localStorage.removeItem('instruct');
+            localStorage.removeItem('login2');
+            localStorage.removeItem('cookie');
+            navigate('/')
+          }
         })
         .catch((err) => {
           console.log(err);
