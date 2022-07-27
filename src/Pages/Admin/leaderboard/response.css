@@ -6,13 +6,16 @@
     padding:9px 23px 0px 15px;;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     overflow-y: scroll ;
+    /* overflow-x: hidden; */
 }
 .upper_div{
     margin-top: 4%;
     display: flex;
     justify-content: space-between;
     padding: 25px;
-    background: #ffdce2;
+    background:  rgba(241, 218, 254, 0.5);
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .response{
@@ -40,12 +43,19 @@
 .lower_div{
     padding: 9px;
 }
-h5{
+/* h5{
     padding-top: 2px;
-}
-hr{
-    margin: 5px;
-}
-p{
+}*/
+/* .Hr{
+    color:rgba(241, 218, 254, 0.5)
+} */
+/*p{
     padding-top: 2px;
+} */
+.question-field{
+    font-weight: bold;
+    font-size: 20px;
+}
+.bluedetails{
+    color: #8B8FFF;
 }

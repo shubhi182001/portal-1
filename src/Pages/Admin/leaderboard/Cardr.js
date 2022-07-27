@@ -7,13 +7,26 @@ function Cardr({ quesData }) {
     <>
     <div className="cardElements">
     <div className="question-field">
-    <p className="question-field"  >Question</p>
-      <div>{quesData.question}</div>
+    <p className="question-field"  >Question <div className='bluedetails'>{quesData.question}</div></p>
+      
     </div>
     <div className="question-field">
-    <p className="question-field"  >Category</p>
-      <div>{quesData.category}</div>
+    <p className="question-field"  >Category<div className='bluedetails'>{quesData.category}</div></p>
+      
     </div>
+    <div className="question-field">
+    <p className="question-field"  >Answers<div className='bluedetails'>{quesData.answer}</div></p>
+     
+    </div>
+    <div className="question-field">
+    <p className="question-field"  >Correct<div className='bluedetails'>{quesData.isCorrect}</div></p>
+     
+    </div>
+    <div className="question-field">
+    <p className="question-field"  >Status<div className='ques-field'>{quesData.category}</div></p>
+      
+    </div>
+    <hr className='Hr'/>
     </div>
     </>
     // <div className="cardElements">
