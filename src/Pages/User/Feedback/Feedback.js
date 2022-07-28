@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
+import Logocsi from "../../../Images/User/Logocsi.svg";
 
 const Feedback = () => {
   let data = [];
@@ -100,23 +101,26 @@ const Feedback = () => {
   }, []);
   return (
     <>
-      <div className='main'>
-        <div className="feedback_form">
-          <div className='appbar'>Feedback</div>
+      <div className='feedback_main'>
+      <div className="logo">
+        <img src={Logocsi} alt="none" className="logocsi"/>
+      </div>
 
+        <div className="feedback_form">
+          <div className='appbar'>FEEDBACK</div>
           <div className="questions_container">
             {ques.map((element, index) => {
               return (
                 <FormControl className="questions">
-                  <FormLabel ><strong>{ques[index].question}</strong></FormLabel>
+                  <FormLabel className='ques'>{ques[index].question}</FormLabel>
                   <RadioGroup className='radio' name={index} onChange={handle}
                     row
                   >
-                    <FormControlLabel value="1" control={<Radio />} label="1" />
-                    <FormControlLabel value="2" control={<Radio />} label="2" />
-                    <FormControlLabel value="3" control={<Radio />} label="3" />
-                    <FormControlLabel value="4" control={<Radio />} label="4" />
-                    <FormControlLabel value="5" control={<Radio />} label="5" />
+                    <FormControlLabel value="1" control={<Radio />} label="1" key={element.id} />
+                    <FormControlLabel value="2" control={<Radio />} label="2" key={element.id}/>
+                    <FormControlLabel value="3" control={<Radio />} label="3" key={element.id}/>
+                    <FormControlLabel value="4" control={<Radio />} label="4" key={element.id}/>
+                    <FormControlLabel value="5" control={<Radio />} label="5" key={element.id}/>
 
                   </RadioGroup>
 
@@ -128,7 +132,7 @@ const Feedback = () => {
               <textarea 
                 className='text'
                  type="text" 
-                name={ques.length}
+                name={ques.length.toString()}
                 //  value = {sugg} 
                 onChange={handle}></textarea>
 

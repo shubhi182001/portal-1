@@ -16,13 +16,13 @@ const Thankyou = () => {
     },[]);
   return (
     <>
-    <div className='main'>
+    <div className='thanks_main'>
         <div className='container1'>
         <div className="img">
         <img src= {Logocsi} alt="none" className='Thankyou_img' height="100px"/>
       </div>
            
-           <div className='txt'>
+           <div className='thankyou_text'>
            THANK YOU FOR PARTICIPATING
            <br></br>
            You have been successfully logged out.

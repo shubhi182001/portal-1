@@ -5,16 +5,18 @@
 
 
   }
-.main{
+.feedback_main{
 /* padding: 3.5%; */
 background-image: url(../../../Images/User/background.svg);
 height: 100vh;
 display: flex;
 justify-content: center;
 align-items: center;
-/* overflow: none; */
+overflow: none;
+background-size: 100% 100%;
 }
 .feedback_form{
+    margin-left: -5rem;
     align-items: center;
     background-color: white;
     /* margin-top: 20%; */
@@ -25,17 +27,19 @@ align-items: center;
     /* box-shadow: 2px 4px 8px 0 rgba(0, 0, 0, 0.5),
     4px 8px 20px 0 rgba(0, 0, 0, 0.5); */
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
-border-radius: 10px;
+border-radius: 10px 10px 0px 0px;
     
 }
 
 .appbar {
-    font-size: 2.5rem;
+    font-size: 2rem;
     box-shadow: none;
     align-items: center;
     background: linear-gradient(180deg, #B4B7FC 0%, rgba(180, 183, 252, 0) 100%);
     text-align: center;
-    border-radius: 10px 0px 0px 0px;
+    border-radius: 10px 10px 0px 0px;
+    font-weight: bolder;
+
 
 }
 
@@ -49,9 +53,10 @@ border-radius: 10px;
     overflow-y: hidden;
 }
 
-.questions FormLabel {
+.ques {
     font-size: large;
     font-weight: 600;
+    /* border: 1px red solid; */
     
 }
 .button{
@@ -64,12 +69,15 @@ border-radius: 10px;
 }
 #btn{
     margin-left: 15%;
+    margin-top: 10px;
     width: 25%;
     background: #B9BBFC;
+    border-radius: 0%;
     
 }
 .btncolor{
     color: black;
+    
 }
 
 .radio{
@@ -88,8 +96,19 @@ border-radius: 10px;
 }  
 textarea{
     padding:2px 5px 0px 5px;
-    background-color: rgba(128, 128, 128, 0.669);
-    
+    /* background-color: rgba(128, 128, 128, 0.669); */
+    background: #D9D9D9;
     
 } 
+
+.logocsi{
+    /* top: -22rem; */
+    top: 1rem;
+    left: 1rem;
+    /* border: 1px solid red; */
+    height: 91px;
+    width: 67px;
+    position: fixed;
+    
+  }
    
