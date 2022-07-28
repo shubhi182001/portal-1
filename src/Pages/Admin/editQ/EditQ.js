@@ -7,7 +7,7 @@ import { useLocation, useNavigate, Link } from 'react-router-dom'
 import axios from "axios"
 import $ from 'jquery' 
 
-function EditQ() {
+function EditQ() {it 
 
     const navigate = useNavigate();
     const {state} = useLocation();
@@ -33,7 +33,7 @@ function EditQ() {
     const onFormSubmit = (e) => {
         e.preventDefault();
         setOptions([...options,{Oid: Math.floor(Math.random() * 1000), value:option, isCorrect:false }])
-        setOption(" ");
+        setOption("");
     }
     
       const handleDelete = (({Oid})=>{
