@@ -3,27 +3,33 @@ import Navbar from '../navbar/Navbar';
 
 function Cardr({ quesData }) {
   console.log(quesData.length);
+  function check(){
+    if(quesData.isCorrect == false){
+      return "No";
+    }
+    return "Yes";
+  }
   return (
     <>
     <div className="cardElements">
-    <div className="question-field">
-    <p className="question-field"  >Question <div className='bluedetails'>{quesData.question}</div></p>
+    <div className="quest-field">
+    <p className="quest-field"  >Question <div className='bluedetails'>{quesData.question}</div></p>
       
     </div>
-    <div className="question-field">
-    <p className="question-field"  >Category<div className='bluedetails'>{quesData.category}</div></p>
+    <div className="quest-field">
+    <p className="quest-field"  >Category<div className='bluedetails'>{quesData.category}</div></p>
       
     </div>
-    <div className="question-field">
-    <p className="question-field"  >Answers<div className='bluedetails'>{quesData.answer}</div></p>
+    <div className="quest-field">
+    <p className="quest-field"  >Answers<div className='bluedetails'>{quesData.answer}</div></p>
      
     </div>
-    <div className="question-field">
-    <p className="question-field"  >Correct<div className='bluedetails'>{quesData.isCorrect}</div></p>
+    <div className="quest-field">
+    <p className="quest-field"  >Correct<div className='bluedetails'>{check()}</div></p>
      
     </div>
-    <div className="question-field">
-    <p className="question-field"  >Status<div className='ques-field'>{quesData.category}</div></p>
+    <div className="quest-field">
+    <p className="quest-field"  >Status<div className='bluedetails'>Marked </div></p>
       
     </div>
     <hr className='Hr'/>

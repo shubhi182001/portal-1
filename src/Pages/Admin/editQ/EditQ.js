@@ -5,9 +5,10 @@ import {Card} from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useLocation, useNavigate, Link } from 'react-router-dom'
 import axios from "axios"
+import $ from 'jquery' 
 
-function EditQ() {
-
+// function EditQ() {it 
+    function EditQ() {
     const navigate = useNavigate();
     const {state} = useLocation();
     console.log(state);
@@ -15,7 +16,7 @@ function EditQ() {
     // const[correct , setCorrect] =useState(state.post_options.isCorrect);
     const [question, setQuestion] = useState(state.post_ques)
     const[category, setCategory] = useState(state.post_category)
-    const [option, setOption] = useState(" ");            
+    const [option, setOption] = useState("");            
     const [options, setOptions] = useState(state.post_options)   //array
 
     const updateQuestion = (e) => {
@@ -32,7 +33,7 @@ function EditQ() {
     const onFormSubmit = (e) => {
         e.preventDefault();
         setOptions([...options,{Oid: Math.floor(Math.random() * 1000), value:option, isCorrect:false }])
-        setOption(" ");
+        setOption("");
     }
     
       const handleDelete = (({Oid})=>{
@@ -41,10 +42,23 @@ function EditQ() {
         ))
       })
 
+      function check(){
+          const fields = $(`input[name='opt']`).serializeArray();
+          if (fields.length === 0) {
+            console.log('nothing selected');
+            return false;
+          } else {
+            console.log(fields.length, "items selected");
+          }
+          return true;
+      }
+   
+
       const url = `https://csiportal.herokuapp.com/question/${state.post_id}`
       const handleUpload = (e) =>{
         e.preventDefault();
-        if(question && options.length <= 4){
+
+        if(question && options.length <= 4 && check()){
             axios.patch(
                 url,
                 {
@@ -66,9 +80,17 @@ function EditQ() {
             })
           }
           else{
-            if(!question){
-                window.alert("Can't Leave Question field empty");
-            }  
+            // if(!question){
+            //     window.alert("Can't Leave Question field empty");
+            // }
+            if(options.length==0){
+                window.alert("Add options");
+            }
+            if(options.length>0 && options.length<=4){
+                if(!check()){
+                    window.alert("You have to select at least one correct option");
+                }
+            }
             if(options.length>4){
                 window.alert("Only 4 options are possible");
             }
@@ -112,7 +134,7 @@ function EditQ() {
                     {options.map((option)=>(
                         <li className='option-list' key={option.Oid}>
                         <div className="Einput-list">
-                            <input type="Checkbox" defaultChecked={option.isCorrect} className="Einput" value={option.value} onClick={() =>[
+                            <input type="Checkbox"  defaultChecked={option.isCorrect} className="Einput" defaultValue={option.value} onClick={() =>[
                                 setOptions(options.map((e)=>{
                                     if(e.Oid === option.Oid){
                                         return{

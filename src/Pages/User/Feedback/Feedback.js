@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import './Feedback.css'
-import { Button } from "@mui/material";
-// import AppBar from '@mui/material/AppBar';
-// import Toolbar from '@mui/material/Toolbar';
-// import {Grid} from "@mui/material";
+import { Button, Typography } from "@mui/material";
+
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { useNavigate } from "react-router-dom";
-// import { SignalCellularNull } from '@mui/icons-material';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
@@ -102,18 +99,18 @@ const Feedback = () => {
   return (
     <>
       <div className='feedback_main'>
-      <div className="logo">
+      {/* <div className="logo">
         <img src={Logocsi} alt="none" className="logocsi"/>
-      </div>
+      </div> */}
 
         <div className="feedback_form">
           <div className='appbar'>FEEDBACK</div>
           <div className="questions_container">
             {ques.map((element, index) => {
               return (
-                <FormControl className="questions">
-                  <FormLabel className='ques'>{ques[index].question}</FormLabel>
-                  <RadioGroup className='radio' name={index} onChange={handle}
+                <FormControl className="questions" key={index}>
+                  <FormLabel className="FormLabel" ><Typography variant='h6'>{ques[index].question}</Typography></FormLabel>
+                  <RadioGroup className='radio'  onChange={handle}  name={index}
                     row
                   >
                     <FormControlLabel value="1" control={<Radio />} label="1" key={element.id} />
@@ -128,12 +125,11 @@ const Feedback = () => {
               )
             })}
             <div className='text-container' >
-            <p>Your suggestions matter,drop us one!</p>
+            <Typography variant='h6' my={2}>Your suggestions matter, drop us one!</Typography>
               <textarea 
                 className='text'
                  type="text" 
-                name={ques.length.toString()}
-                //  value = {sugg} 
+                name={ques.length}
                 onChange={handle}></textarea>
 
             </div>

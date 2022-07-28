@@ -74,7 +74,6 @@ const Login = () => {
   const validateroute2 = (routepass,routename,appear) =>{
     console.log(appear)
     if(routepass===true && routename===true && appear=== 'true' ){ 
-      // console.log('x')
       // localStorage.setItem('login2', false);      
       navigate('/')
     }
@@ -103,13 +102,10 @@ const Login = () => {
   };
 
   const seen = () => {
-    setEye(true);
-    setVisibleIcon(true);
+    setEye(!eye);
+    setVisibleIcon(!visibleIcon);
 
-    setTimeout(() => {
-      setEye(false);
-      setVisibleIcon(false);
-    }, 1000);
+   
   };
   
   
@@ -180,6 +176,7 @@ const Login = () => {
             <TagIcon />
           </div>
           <TextField
+          autoComplete="off"
             label="Student No."
             variant="outlined"
             size="small"
@@ -206,6 +203,7 @@ const Login = () => {
             <LockOutlinedIcon />
           </div>
           <TextField
+           autoComplete="off"
             my={10}
             label="Password"
             name="password"

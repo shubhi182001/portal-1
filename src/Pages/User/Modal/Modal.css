@@ -21,9 +21,10 @@ text-align: center;
 letter-spacing: 0.1em;;
 background: rgba(255, 255, 255, 0.975);
 margin-right: 97%;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     width: 35%;
     opacity: 0.9;
+    border-radius: 2rem;
     
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
 /* border-radius: 40px; */
@@ -48,6 +49,7 @@ font-size: 1.625rem;
 line-height: 2rem;
 text-align: center;
 margin-right: 12%;
+color: black;
 }
 #yesbtn{
     width: 22%;
@@ -59,6 +61,8 @@ font-weight: 500;
 font-size: 1.625rem;
 line-height: 2rem;
 text-align: center;
+color: black;
+
 }
 .thankyou_img{
      /* border: 2px  red solid; */
