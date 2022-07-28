@@ -47,7 +47,7 @@ const AddQuestions = () => {
     const handleQuestion = (e) => {
         e.preventDefault();
         let str = e.target.value;
-        setQuestion(str).trim();
+        setQuestion(str);
     }
 
     function check(){
