@@ -23,6 +23,12 @@
     border-radius:10px 0px 0px 10px;
     overflow:auto;
 }
+.inst_container::-webkit-scrollbar {
+    display: none;
+  }
+  .inst_container {
+    -ms-overflow-style: none;
+  }
 .instcsilogo{
     height:40px;
     width: 40px;
