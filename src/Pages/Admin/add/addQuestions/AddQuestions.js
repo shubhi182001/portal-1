@@ -36,6 +36,12 @@ const AddQuestions = () => {
         setChosenlang(e.target.value)
     }
 
+    const handleDelete = (({Oid})=>{
+        setOptions(options.filter((option)=>
+          option.Oid !== Oid
+        ))
+      })
+
     
 
     const handleQuestion = (e) => {
@@ -182,30 +188,24 @@ const AddQuestions = () => {
                                 </form>
                             </div>
                             <div className="options-section">
-                                <ul className="option-list">
-                                    {options.map(option => (
-                                        <div className="option" style={{ alignItems: "center" }}>
-                                            <Checkbox checked={option.isCorrect} name='opt' value={option.value} className="s-class item-1 check" onClick={() => {
-                                                setOptions(options.map((el) => {
-
-                                                    if (el.Oid === option.Oid) {
-                                                        return {
-                                                            ...el, isCorrect: !el.isCorrect
-                                                        }
-                                                    }
-                                                    return el;
-                                                }))
-
-                                            }} />
-                                            <li className="s-class item-2 option-item" key={option.Oid} >{option.value}</li>
-                                            <DeleteIcon fontSize='10px' height="8px" style={{ color: "red", cursor: "pointer" }} className=" item-3  delete" onClick={() => {
-                                                setOptions(options.filter(el => el.Oid !== option.Oid))
-                                            }} />
-
-                                        </div>
-
-                                    ))}
-                                </ul>
+                            {options.map((option)=>(
+                        <li className='option-list' key={option.Oid}>
+                        <div className="Einput-list">
+                            <input type="Checkbox"  defaultChecked={option.isCorrect} className="Einput" defaultValue={option.value} onClick={() =>[
+                                setOptions(options.map((e)=>{
+                                    if(e.Oid === option.Oid){
+                                        return{
+                                            ...e, isCorrect: !e.isCorrect
+                                        }
+                                    }
+                                    return e;
+                                }))
+                            ]} name='opt'/>
+                            <span className="Einputval">{option.value}</span>
+                            <DeleteIcon onClick={()=>handleDelete(option)} style={{color:"#DE5947", cursor:"pointer"}}/>
+                        </div>
+                        </li>
+                    ))}
                             </div>
                         </div>
                         <div className='add-questions-buttons'>
