@@ -30,7 +30,6 @@ const Instruction = () => {
   const chkvalidate = async (e) => {
     e.preventDefault();
 
-
     if (chosenlang === "") {
       toast.error("Select any language first");
     } else {

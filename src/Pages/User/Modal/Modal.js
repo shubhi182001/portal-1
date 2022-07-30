@@ -65,15 +65,9 @@ const Modal = ({ setShow }) => {
           <Button id="nobtn" onClick={NotSubmit}>
             NO
           </Button>
-          {/* <button id="nobtn" onClick={NotSubmit}>
-            NO
-          </button> */}
           <Button id="yesbtn" onClick={Submit}>
             Yes
           </Button>
-          {/* <button id="yesbtn" onClick={Submit}>
-            Yes
-          </button> */}
         </div>
       </div>
     </div>

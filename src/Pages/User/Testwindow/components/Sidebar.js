@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Sidebar.css";
-import { Button } from "@mui/material";
 
 import axios, { Axios } from "axios";
 import { useNavigate } from "react-router-dom";
@@ -65,8 +64,6 @@ const Sidebar = ({ testques, setShow, showques, setShowques, ansid, show }) => {
   const Submit = async (e) => {
     e.preventDefault();
     setShow(true);
-    // localStorage.setItem('testpage','true');
-    // navigate('/feedback');
   };
 
   const navigate = useNavigate();

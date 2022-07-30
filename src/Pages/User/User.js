@@ -9,7 +9,6 @@ import TestWindow from "./Testwindow/Test";
 import Protectedroutes from "./Protectedroutes";
 import Animation from "../../Animation/Animation";
 import Homepage from "../../Pages/Admin/homepage/Homepage";
-
 import GetQ from "../Admin/Get/GetQuestions/GetQ";
 import EditQ from "../Admin/editQ/EditQ";
 import Editf from "../Admin/Get/GetFeedback/components/Editf";
@@ -38,13 +37,10 @@ function App() {
 
   return (
     <>
-      {/* {<Feedback/> }  */}
-
       <BrowserRouter>
         <Routes>
           {showComponent && <Route path="/" element={<Animation />} />}
           {showComponent2 && <Route path="/" element={<Login />} />}
-          {/* <Route path ='/testwindow'   Component ={TestWindow} /> */}
           <Route
             path="/homepage"
             element={<Protectedroutes Component={Homepage} />}

@@ -33,11 +33,11 @@ const Login = () => {
     if (!value) {
       error = "Student Number is required";
       setErrorStudentType(true);
-      // setRoutename(false);
+      setRoutename(false);
     } else if (!regex.test(value)) {
       error = "Student number is incorrect";
       setErrorStudentType(true);
-      // setRoutename(false);
+      setRoutename(false);
     } else {
       setErrorStudentType(false);
       setRoutename(true);
@@ -50,11 +50,11 @@ const Login = () => {
     if (!value) {
       error = "Password is required";
       setPasswordErrorType(true);
-      // setRoutepass(false);
+      setRoutepass(false);
     } else if (!regex.test(value)) {
       error = "Password is incorrect";
       setPasswordErrorType(true);
-      // setRoutepass(false);
+      setRoutepass(false);
     } else {
       setPasswordErrorType(false);
       setRoutepass(true);
@@ -69,24 +69,15 @@ const Login = () => {
   };
   const validateroute2 = (routepass, routename, appear) => {
     console.log(appear);
-    if (routepass === true && routename === true && appear == 'true') {
+    if (routepass === true && routename === true && appear === "true") {
       // localStorage.setItem('login2', false);
       navigate("/");
-    } else {
+    } else if (routepass === true && routename === true && appear === "false") {
       console.log(appear);
-      console.log(routepass);
-      console.log(routename);
       localStorage.setItem("login2", true);
 
       navigate("/instructions");
     }
-    // else {
-    //   console.log(appear)
-    //   localStorage.setItem('login2', true);
-
-    //     navigate('/instructions')
-
-    // }
   };
   const studentFocus = (e) => {
     setFocused(true);
@@ -106,46 +97,38 @@ const Login = () => {
     e.preventDefault();
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
-    if (PasswordErrorType === false && errorStudentType === false) {
-      console.log(studentNo, password);
-      const data = {
-        studentNum: +studentNo,
-        password: password,
-      };
-     const result =  await axios.post("https://csiportal.herokuapp.com/login", data);
-      console.log(result.data);
-      localStorage.setItem("cookie", result.data.cookie_token);
-      let admin = result.data.isAdmin;
-      console.log(admin);
-      if (admin === "true") {
-        console.log("any");
-        validateroute1(routepass, routename);
-      } else {
-        let appeared = result.data.hasAppeared;
-        // let appeared = true;
-        // localStorage.setItem('Appeared',appeared)
-        console.log(appeared);
-        validateroute2(routepass, routename, appeared);
-      }
+    console.log(studentNo, password);
+    const data = {
+      studentNum: +studentNo,
+      password: password,
+    };
+    const result = await axios.post(
+      "https://csiportal.herokuapp.com/login",
+      data
+    );
+    console.log(result.data);
+    localStorage.setItem("cookie", result.data.cookie_token);
+    let admin = result.data.isAdmin;
+    console.log(admin);
+    if (admin === "true") {
+      console.log("any");
+      validateroute1(routepass, routename);
+    } else {
+      let appeared = result.data.hasAppeared;
+      console.log(appeared);
+      validateroute2(routepass, routename, appeared);
     }
   };
   const navigate = useNavigate();
   useEffect(() => {
     let login1 = localStorage.getItem("login1"); // For admin
     let login2 = localStorage.getItem("login2"); //For user
-    // let appearvalidate = localStorage.getItem('Appeared'); //For Appear or not check
 
     if (login1) {
       navigate("/homepage");
     } else if (login2) {
       navigate("/instructions");
     }
-    // else if(login2 && appearvalidate==true){
-    //   navigate('/')
-    // }
-    // else if(!login2 && appearvalidate==false){
-    //   navigate('/')
-    // }
   }, []);
   return (
     <div className="form_body">
