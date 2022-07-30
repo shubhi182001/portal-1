@@ -47,7 +47,7 @@ const AddQuestions = () => {
     const handleQuestion = (e) => {
         e.preventDefault();
         let str = e.target.value;
-        setQuestion(str).trim();
+        setQuestion(str);
     }
 
     function check(){
@@ -111,9 +111,9 @@ const AddQuestions = () => {
     useEffect(() => {
 
         if (Object.keys(questionerrors).length === 0 && isSubmit && Object.keys(categoryerrors).length === 0) {
-            console.log('Request Sent');
+           
         } else {
-            console.log('Some error')
+            
         }
 
     }, [questionerrors, categoryerrors, isSubmit])
@@ -190,8 +190,8 @@ const AddQuestions = () => {
                             <div className="options-section">
                             {options.map((option)=>(
                         <li className='option-list' key={option.Oid}>
-                        <div className="Einput-list">
-                            <input type="Checkbox"  defaultChecked={option.isCorrect} className="Einput" defaultValue={option.value} onClick={() =>[
+                        <div className="option">
+                            <input type="Checkbox"  defaultChecked={option.isCorrect} className=" s-class item-1" defaultValue={option.value} onClick={() =>[
                                 setOptions(options.map((e)=>{
                                     if(e.Oid === option.Oid){
                                         return{
@@ -201,8 +201,8 @@ const AddQuestions = () => {
                                     return e;
                                 }))
                             ]} name='opt'/>
-                            <span className="Einputval">{option.value}</span>
-                            <DeleteIcon onClick={()=>handleDelete(option)} style={{color:"#DE5947", cursor:"pointer"}}/>
+                            <span className=" s-class item-2">{option.value}</span>
+                            <DeleteIcon  onClick={()=>handleDelete(option)} style={{color:"#DE5947", cursor:"pointer"}}/>
                         </div>
                         </li>
                     ))}

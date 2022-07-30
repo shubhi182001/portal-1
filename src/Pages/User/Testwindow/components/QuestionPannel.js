@@ -82,9 +82,12 @@ const QuestionPannel = ({
         });
       setShowques(showques + 1);
       setOid("000");
+    }
+    else if (testques[showques - 1].selectedOpt) {
+      setShowques(showques + 1);
     } else if (oid == "000") {
       toast.error("Select an option");
-    } else {
+    }  else {
       let qid = testques[showques - 1]._id;
       let question = testques[showques - 1].question;
 

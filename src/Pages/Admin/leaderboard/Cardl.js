@@ -9,11 +9,10 @@ const Cardl = ({ ckc}) => {
                 post_name: ckc.name,
                 post_branch: ckc.branch,
                 post_studentnum: ckc.studentNum,
-                // post_TotalNum: ckc.TotalNum,
                 post_result: ckc.results,
                 post_loginAt: ckc.loginAt,
                 post_logoutAt: ckc.logoutAt,
-                // post_userNumCount: ckc.userNumCount,
+                post_userNumCount: ckc.userNumCount.TotalNum,
 
                 // post_studentnum: ckc.studentNum,
                 // post_score: ckc.score
@@ -21,14 +20,22 @@ const Cardl = ({ ckc}) => {
             }
         });
     }
-    const studentDetail = ['Name', 'StudentNo', 'Branch', 'Score', 'language'];
-    const showDetails = studentDetail.map((info => <li>{info}</li>))
+    // const studentDetail = ['Name', 'StudentNo', 'Branch', 'Score', 'language'];
+    // const showDetails = studentDetail.map((info => <li key={studentDetail}>{info}</li>))
     return (
-
         <>
             <div className="detailscard">
                 <div className='detailsdisplay'>
-                    <div className='info'>{showDetails} </div>
+                    <div>
+                    <ul>
+                        <li className='info'>Name </li>
+                        <li className='info'>StudentNo</li>
+                        <li className='info'>Branch</li>
+                        <li className='info'>Score</li>
+                        <li className='info'>Language</li>
+
+                    </ul>
+                    </div>
                     <ul>
                         <li className='bluedetails'>{ckc.name} </li>
                         <li className='bluedetails'>{ckc.studentNum}</li>
