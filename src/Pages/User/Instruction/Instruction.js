@@ -18,7 +18,7 @@ const Instruction = () => {
     if (instruct) {
       navigate("/testwindow");
     }
-  }, []);
+  });
 
   const handlelangchoice = (val) => {
     setChosenlang(val);
