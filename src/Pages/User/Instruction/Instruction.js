@@ -18,7 +18,7 @@ const Instruction = () => {
     if (instruct) {
       navigate("/testwindow");
     }
-  }, []);
+  });
 
   const handlelangchoice = (val) => {
     setChosenlang(val);
@@ -142,10 +142,10 @@ const Instruction = () => {
               JAVA
             </option>
             <option
-              value="Python"
+              value="PYTHON"
               style={{ color: "black", backgroundColor: "#F6FCFF" }}
             >
-              Python
+              PYTHON
             </option>
           </select>
         </div>
