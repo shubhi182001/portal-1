@@ -83,7 +83,7 @@ function EditQ() {
             // if(!question){
             //     window.alert("Can't Leave Question field empty");
             // }
-            if(options.length==0){
+            if(options.length===0){
                 window.alert("Add options");
             }
             if(options.length>0 && options.length<=4){
@@ -96,6 +96,7 @@ function EditQ() {
             }
           }
         }
+
 
     //   console.log(options);
   return (

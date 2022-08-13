@@ -249,7 +249,7 @@ function AddCandidate() {
 
   return (
     <>
-    <div className="admin-main">
+    <div className="admin-main addc">
       <Navbar/>
       <div className="containerzz ">
         <div className="row">
