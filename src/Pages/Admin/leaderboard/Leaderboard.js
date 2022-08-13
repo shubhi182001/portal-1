@@ -47,7 +47,7 @@ const Leaderboard = () => {
         <div className="getq">
           {udata && udata.length ?
             udata.filter((p) => {
-              if (search === " ") {
+              if (search == " ") {
                 return p
               } else if (p.name.toLowerCase().includes(search.toLowerCase())) {
                 return p

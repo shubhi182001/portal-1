@@ -6,10 +6,23 @@
     /* overflow-x: hidden; */
 }
 .getc{
-    width: 98.9vw;
+    width: 99.45vw;
     /* height: 100vh; */
     overflow: hidden;
 }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(173, 170, 170);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 
 .get_text{
     /* display: flex;
