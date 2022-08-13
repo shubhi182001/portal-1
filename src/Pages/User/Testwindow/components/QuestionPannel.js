@@ -141,7 +141,7 @@ const QuestionPannel = ({
 
   // save and next
   const Next = async () => {
-    if (showques < testques.length) {
+    if (showques < testques.length  ) {
       let qid = testques[showques - 1]._id;
       let question = testques[showques - 1].question;
       const data = {
@@ -174,7 +174,8 @@ const QuestionPannel = ({
       console.log(question);
       console.log(showques);
       setOid("000");
-    } else {
+    }
+     else {
       let qid = testques[showques - 1]._id;
       let question = testques[showques - 1].question;
       const data = {
