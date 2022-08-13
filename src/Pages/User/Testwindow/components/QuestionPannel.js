@@ -82,12 +82,11 @@ const QuestionPannel = ({
         });
       setShowques(showques + 1);
       setOid("000");
-    }
-    else if (testques[showques - 1].selectedOpt) {
+    } else if (testques[showques - 1].selectedOpt) {
       setShowques(showques + 1);
     } else if (oid == "000") {
       toast.error("Select an option");
-    }  else {
+    } else {
       let qid = testques[showques - 1]._id;
       let question = testques[showques - 1].question;
 
@@ -142,84 +141,196 @@ const QuestionPannel = ({
   // save and next
   const Next = async () => {
     if (showques < testques.length) {
-      let qid = testques[showques - 1]._id;
-      let question = testques[showques - 1].question;
-      const data = {
-        cookie_token: cook,
-        question: question,
-        category: choice,
-        userAnswer: oid,
-        Qid: qid,
-        ansid: oid === "000" ? 5 : 1,
-      };
-      await axios
-        .put("https://csiportal.herokuapp.com/ans/answer", data)
-        .then((res) => {
-          console.log(res.data);
-          isVerified = res.data.isVerified;
-          if (isVerified === false) {
-            localStorage.removeItem("instruct");
-            localStorage.removeItem("login2");
-            localStorage.removeItem("cookie");
-            navigate("/");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      setShowques(showques + 1);
-      console.log(qid);
-      console.log(oid);
-      console.log(choice);
-      console.log(question);
-      console.log(showques);
-      setOid("000");
+      if (oid != "000") {
+        let qid = testques[showques - 1]._id;
+        let question = testques[showques - 1].question;
+        const data = {
+          cookie_token: cook,
+          question: question,
+          category: choice,
+          userAnswer: oid,
+          Qid: qid,
+          ansid: oid === "000" ? 5 : 1,
+        };
+        await axios
+          .put("https://csiportal.herokuapp.com/ans/answer", data)
+          .then((res) => {
+            console.log(res.data);
+            isVerified = res.data.isVerified;
+            if (isVerified === false) {
+              localStorage.removeItem("instruct");
+              localStorage.removeItem("login2");
+              localStorage.removeItem("cookie");
+              navigate("/");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        setShowques(showques + 1);
+        console.log(qid);
+        console.log(oid);
+        console.log(choice);
+        console.log(question);
+        console.log(showques);
+        setOid("000");
+      } else if (oid === "000") {
+        if (
+          testques[showques - 1].flagMark === 5 ||
+          testques[showques - 1].flagMark === 1 ||
+          testques[showques - 1].flagMark === 3
+        ) {
+          setShowques(showques + 1);
+        } else {
+          let qid = testques[showques - 1]._id;
+          let question = testques[showques - 1].question;
+          const data = {
+            cookie_token: cook,
+            question: question,
+            category: choice,
+            userAnswer: oid,
+            Qid: qid,
+            ansid: oid === "000" ? 5 : 1,
+          };
+          await axios
+            .put("https://csiportal.herokuapp.com/ans/answer", data)
+            .then((res) => {
+              console.log(res.data);
+              isVerified = res.data.isVerified;
+              if (isVerified === false) {
+                localStorage.removeItem("instruct");
+                localStorage.removeItem("login2");
+                localStorage.removeItem("cookie");
+                navigate("/");
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          setShowques(showques + 1);
+          console.log(qid);
+          console.log(oid);
+          console.log(choice);
+          console.log(question);
+          console.log(showques);
+          setOid("000");
+        }
+      }
     } else {
-      let qid = testques[showques - 1]._id;
-      let question = testques[showques - 1].question;
-      const data = {
-        cookie_token: cook,
-        question: question,
-        category: choice,
-        userAnswer: oid,
-        Qid: qid,
-        ansid: oid === "000" ? 5 : 1,
-      };
-      await axios
-        .put("https://csiportal.herokuapp.com/ans/answer", data)
-        .then((res) => {
-          console.log(res.data);
-          isVerified = res.data.isVerified;
-          if (isVerified === false) {
-            localStorage.removeItem("instruct");
-            localStorage.removeItem("login2");
-            localStorage.removeItem("cookie");
-            navigate("/");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      console.log(qid);
-      console.log(oid);
-      console.log(choice);
-      console.log(question);
-      console.log(showques);
-      setOid("000");
-      setShowques(1);
-      setChoice(
-        choice === "HTML"
-          ? "SQL"
-          : choice === "SQL"
-          ? "CSS"
-          : choice === "CSS"
-          ? "APTITUDE"
-          : choice === "APTITUDE"
-          ? chosenlang
-          : choice === chosenlang
-          ? "HTML"
-          : "HTML"
-      );
+      if (oid != "000") {
+        let qid = testques[showques - 1]._id;
+        let question = testques[showques - 1].question;
+        const data = {
+          cookie_token: cook,
+          question: question,
+          category: choice,
+          userAnswer: oid,
+          Qid: qid,
+          ansid: oid === "000" ? 5 : 1,
+        };
+        await axios
+          .put("https://csiportal.herokuapp.com/ans/answer", data)
+          .then((res) => {
+            console.log(res.data);
+            isVerified = res.data.isVerified;
+            if (isVerified === false) {
+              localStorage.removeItem("instruct");
+              localStorage.removeItem("login2");
+              localStorage.removeItem("cookie");
+              navigate("/");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        console.log(qid);
+        console.log(oid);
+        console.log(choice);
+        console.log(question);
+        console.log(showques);
+        setOid("000");
+        setShowques(1);
+        setChoice(
+          choice === "HTML"
+            ? "SQL"
+            : choice === "SQL"
+            ? "CSS"
+            : choice === "CSS"
+            ? "APTITUDE"
+            : choice === "APTITUDE"
+            ? chosenlang
+            : choice === chosenlang
+            ? "HTML"
+            : "HTML"
+        );
+      } else if (oid === "000") {
+        if (
+          testques[showques - 1].flagMark === 5 ||
+          testques[showques - 1].flagMark === 1 ||
+          testques[showques - 1].flagMark === 3
+        ) {
+          setShowques(1);
+          setChoice(
+            choice === "HTML"
+              ? "SQL"
+              : choice === "SQL"
+              ? "CSS"
+              : choice === "CSS"
+              ? "APTITUDE"
+              : choice === "APTITUDE"
+              ? chosenlang
+              : choice === chosenlang
+              ? "HTML"
+              : "HTML"
+          );
+        } else {
+          let qid = testques[showques - 1]._id;
+          let question = testques[showques - 1].question;
+          const data = {
+            cookie_token: cook,
+            question: question,
+            category: choice,
+            userAnswer: oid,
+            Qid: qid,
+            ansid: oid === "000" ? 5 : 1,
+          };
+          await axios
+            .put("https://csiportal.herokuapp.com/ans/answer", data)
+            .then((res) => {
+              console.log(res.data);
+              isVerified = res.data.isVerified;
+              if (isVerified === false) {
+                localStorage.removeItem("instruct");
+                localStorage.removeItem("login2");
+                localStorage.removeItem("cookie");
+                navigate("/");
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          console.log(qid);
+          console.log(oid);
+          console.log(choice);
+          console.log(question);
+          console.log(showques);
+          setOid("000");
+          setShowques(1);
+          setChoice(
+            choice === "HTML"
+              ? "SQL"
+              : choice === "SQL"
+              ? "CSS"
+              : choice === "CSS"
+              ? "APTITUDE"
+              : choice === "APTITUDE"
+              ? chosenlang
+              : choice === chosenlang
+              ? "HTML"
+              : "HTML"
+          );
+        }
+      }
     }
   };
 

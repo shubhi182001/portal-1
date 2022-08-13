@@ -23,7 +23,7 @@ const Test = () => {
   const url = `https://csiportal.herokuapp.com/question/${choice}`;
   const choiceques = async () => {
     const data = await axios.get(url);
-    // console.log(data);
+    console.log(data);
     setTestques(data.data.result);
     setTestOptions(data.data.result[showques - 1].options);
   };

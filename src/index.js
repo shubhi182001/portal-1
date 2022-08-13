@@ -7,7 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
-    <App />
+  window.innerWidth > "820" ? <App /> : <h1 className="mobile_view">use desktop!!!!</h1>
   // {/* </React.StrictMode> */}
 );
 
