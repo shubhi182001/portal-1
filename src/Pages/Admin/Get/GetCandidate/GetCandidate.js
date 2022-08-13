@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import Navbar from '../../navbar/Navbar'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import Cardc from "./component/Cardc"
+import Cardl from "./component/Cardl"
 import axios from 'axios'
 const GetCandidate = () => {
   const [data,setData]=useState([]);
+ 
   const[search, setSearch] = useState(" ");
 const url = "https://csiportal.herokuapp.com/candidate";
 const getAllCandidates = () => {
@@ -29,28 +30,42 @@ useEffect(()=>{
     </div>
 
     <div className="searchWrap">
-    <div className="searchbar">
-      <input className='search' type="text" placeholder='Search' onChange={e => {setSearch(e.target.value)}} />
-      <SearchOutlinedIcon style={{fontSize:"38px", opacity:"45%"}}/>
-    </div>
-    </div>
-
-
-    {/* <div className="getq">
-      {data && data.length ?
-        data.filter((curElem)=>{
-          if(search === " "){
-            return curElem
-          }else if (curElem.candidate.toLowerCase().includes(search.toLowerCase()) || curElem.category.toLowerCase().includes(search.toLowerCase())){
-            return curElem
+          <div className="searchbar">
+            <input className='search' type="text" placeholder='Search' onChange={e => { setSearch(e.target.value) }} />
+            <SearchOutlinedIcon style={{ fontSize: "38px", opacity: "45%" }} />
+          </div>
+        </div>
+        <div className="getq">
+          {data && data.length ?
+            data.filter((p) => {
+              if (search === " ") {
+                return p
+              } else if (p.name.toLowerCase().includes(search.toLowerCase())) {
+                return p
+              }
+            }).map((p) =>
+            (<Cardl className="getCard" key={p._id} ckc ={p} />)):null
           }
-        }).map((curElem,idx) => 
-          (<Cardc className="getCard" key={curElem._id} ques={curElem} reload={getAllCandidates}/>)
-        ) : null
-      }
-    </div> */}
+       
+        
+             
+        </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* 
     <div className="getq">
     <table className='table table-hover'>
 
@@ -129,7 +144,7 @@ useEffect(()=>{
            
             </tbody>
             </table>
-    </div>
+    </div> */}
 
 
 

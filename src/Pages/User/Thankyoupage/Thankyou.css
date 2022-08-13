@@ -6,8 +6,12 @@
   background: url(../../../Images/User/background.svg);
   background-repeat: no-repeat;
   height: 100vh;
-  width: 100vw;
+  /* flex:1; */
+  width:100vw;
+  /* background-position:center center ; */
   display: flex;
+  background-size: 100% 100%;
+
   justify-content: center;
   align-items: center;
 }
@@ -15,29 +19,32 @@
   background: rgba(255, 255, 255, 0.7);
   display: flex;
   align-items: center;
-justify-content: center; 
-flex-direction: column;
-gap:4rem;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4rem;
+  /* flex:0.5; */
   height: 60%;
-  width: 50%;
+  min-width: 50%;
   opacity: 0.8;
   box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.15);
 
   border-radius: 20px;
 }
-.txt {display: flex;
+.txt {
+  display: flex;
   align-items: center;
   flex-direction: column;
   font-size: 2rem;
+  flex:0.5;
 
 }
 .Thankyou_img {
- 
   height: 20vh;
- 
+  flex:0.5;
+
 }
 .Thank_img {
   display: flex;
   align-items: center;
-justify-content: center; 
+  justify-content: center;
 }

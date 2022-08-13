@@ -1,79 +1,65 @@
 * {
-    margin: 0;
-    padding: 0;
-  }
-.modalbackground{
-    /* background: url(../../../Images/User/background.svg); */
-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
-/* background-color: #5AD047; */
+  margin: 0;
+  padding: 0;
 }
-.modalcontainer{
-    position: absolute;
-    font-family: 'Montserrat';
-font-style: normal;
-font-weight: 400;
-font-size: 0.1rem;
-line-height: 2rem;
-text-align: center;
-letter-spacing: 0.1em;;
-background: rgba(255, 255, 255, 0.975);
-margin-right: 97%;
-    /* border: 2px solid black; */
-    width: 35%;
-    opacity: 0.9;
-    border-radius: 2rem;
-    
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-/* border-radius: 40px; */
-/* background-color: #5AD047; */
+.modalbackground {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modalcontainer {
+  position: absolute;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.1rem;
+  line-height: 2rem;
+  text-align: center;
+  letter-spacing: 0.1em;
+  background: rgba(255, 255, 255, 0.975);
+  margin-right: 97%;
+  width: 35%;
+  opacity: 0.9;
+  border-radius: 2rem;
 
-
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-.footr{
-    display: flex;
-    justify-content: center;
-    margin-top: 6%;
-    margin-bottom: 8%;
+.footr {
+  display: flex;
+  justify-content: center;
+  margin-top: 6%;
+  margin-bottom: 8%;
 }
-#nobtn{
-    width: 22%;
-    background: #DE5947;
-    letter-spacing: 0.1em;
-    font-family: 'Montserrat';
-font-style: normal;
-font-weight: 500;
-font-size: 1.625rem;
-line-height: 2rem;
-text-align: center;
-margin-right: 12%;
-color: black;
+#nobtn {
+  width: 22%;
+  background: #de5947;
+  letter-spacing: 0.1em;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.625rem;
+  line-height: 2rem;
+  text-align: center;
+  margin-right: 12%;
+  color: black;
 }
-#yesbtn{
-    width: 22%;
-    background: #5AD047;
-    letter-spacing: 0.1em;
-    font-family: 'Montserrat';
-font-style: normal;
-font-weight: 500;
-font-size: 1.625rem;
-line-height: 2rem;
-text-align: center;
-color: black;
-
+#yesbtn {
+  width: 22%;
+  background: #5ad047;
+  letter-spacing: 0.1em;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.625rem;
+  line-height: 2rem;
+  text-align: center;
+  color: black;
 }
-.thankyou_img{
-     /* border: 2px  red solid; */
-     width: 60px;
-     margin: 0%;
-     height: 70px;
-     margin-bottom: 1rem;
-     /* margin-left: 14rem; */
-     /* padding: 20px; */
-     /* width: 30%; */
-     margin-top: 3%;
-
-  
-  }
+.thankyou_img {
+  width: 60px;
+  margin: 0%;
+  height: 70px;
+  margin-bottom: 1rem;
+  margin-top: 3%;
+}

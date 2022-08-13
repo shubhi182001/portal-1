@@ -198,14 +198,14 @@ function AddCandidate() {
   const validateRoll = (value) => {
     const errors = {};
     let regex = new RegExp("^[0-9D-d]+$");
-    let regexi = new RegExp("^[0-9D-d]{7,7}$");
+    let regexi = new RegExp("^[0-9D-d]{7,13}$");
     if (!value) {
       errors.rollNum = "Student number is required!";
     } else if (!regex.test(value)) {
       errors.rollNum =
         "Student number should be numeric or can contain a letter D";
     } else if (!regexi.test(value)) {
-      errors.rollNum = "Length of student should be of 7 digits";
+      errors.rollNum = "Length of student should be of 7-13 digits";
     } else {
       checkStatusAll = true;
     }

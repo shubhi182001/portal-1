@@ -1,27 +1,22 @@
 * {
   margin: 0;
   padding: 0;
-  /* overflow: none; */
 }
+
 .main {
-  /* padding: 3.5%; */
   background-image: url(../../../Images/User/background.svg);
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* overflow: none; */
 }
 .feedback_form {
   align-items: center;
   background-color: white;
-  /* margin-top: 20%; */
-  /* margin-bottom: 20%; */
-  /* transform: scale(0.86); */
+
   width: 65%;
   opacity: 0.8;
-  /* box-shadow: 2px 4px 8px 0 rgba(0, 0, 0, 0.5),
-    4px 8px 20px 0 rgba(0, 0, 0, 0.5); */
+
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
 }
@@ -44,9 +39,8 @@
 
 .FormLabel {
   font-size: 1.2rem;
-  /* font-weight: 400; */
   margin-top: 10px;
-  color:black
+  color: black;
 }
 .button {
   display: flex;
@@ -66,7 +60,7 @@
   justify-content: space-between;
 }
 .text-container {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
   color: black;
 }
 .text {

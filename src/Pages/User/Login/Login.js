@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Login.css";
-import Logocsi from "../../../Images/User/Logocsi.svg"
+import Logocsi from "../../../Images/User/Logocsi.svg";
 import computers from "../../../Images/User/computers.png";
-import Ellipse from "../../../Images/User/Ellipse.svg"
-import Group from "../../../Images/User/Group.svg"
+import Ellipse from "../../../Images/User/Ellipse.svg";
+import Group from "../../../Images/User/Group.svg";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -24,11 +24,8 @@ const Login = () => {
   const [focused, setFocused] = useState(false);
   const [studentNumberError, setStudentNumberError] = useState("");
   const [studentPasswordError, setStudentPasswordError] = useState("");
-  const [routepass,setRoutepass] = useState(false);
-  const [routename,setRoutename] = useState(false);
- 
-  
-
+  const [routepass, setRoutepass] = useState(false);
+  const [routename, setRoutename] = useState(false);
 
   const validateStudentNo = (value) => {
     let error;
@@ -61,37 +58,27 @@ const Login = () => {
     } else {
       setPasswordErrorType(false);
       setRoutepass(true);
-
     }
     return error;
   };
-  const validateroute1 = (routepass,routename) =>{
-    if(routepass===true && routename===true){
-      localStorage.setItem('login1', true);
-      navigate('/homepage');       
+  const validateroute1 = (routepass, routename) => {
+    if (routepass === true && routename === true) {
+      localStorage.setItem("login1", true);
+      navigate("/homepage");
     }
-  }
-  const validateroute2 = (routepass,routename,appear) =>{
-    console.log(appear)
-    if(routepass===true && routename===true && appear=== 'true' ){ 
-      // localStorage.setItem('login2', false);      
-      navigate('/')
+  };
+  const validateroute2 = (routepass, routename, appear) => {
+    // console.log(appear);
+    if (routepass === true && routename === true && appear === "true") {
+      // localStorage.setItem('login2', false);
+      navigate("/");
+    } else if (routepass === true && routename === true && appear === "false") {
+      // console.log(appear);
+      localStorage.setItem("login2", true);
+
+      navigate("/instructions");
     }
-    else if (routepass===true && routename===true && appear==='false') {
-      console.log(appear)
-      localStorage.setItem('login2', true);     
-      
-        navigate('/instructions')
-            
-    }
-    // else {
-    //   console.log(appear)
-    //   localStorage.setItem('login2', true);     
-      
-    //     navigate('/instructions')
-            
-    // }
-  }
+  };
   const studentFocus = (e) => {
     setFocused(true);
     setStudentNumberError(validateStudentNo(studentNo));
@@ -104,79 +91,61 @@ const Login = () => {
   const seen = () => {
     setEye(!eye);
     setVisibleIcon(!visibleIcon);
-
-   
   };
-  
-  
+
   const Submit = async (e) => {
     e.preventDefault();
+    localStorage.removeItem('feedback')
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
-    console.log(studentNo,password)
+    // console.log(studentNo, password);
     const data = {
-       studentNum : +(studentNo),
-      password : password,
+      studentNum: +studentNo,
+      password: password,
+    };
+    const result = await axios.post(
+      "https://csiportal.herokuapp.com/login",
+      data
+    );
+    // console.log(result.data);
+    localStorage.setItem("cookie", result.data.cookie_token);
+    let admin = result.data.isAdmin;
+    // console.log(admin);
+    if (admin === "true") {
+      // console.log("any");
+      validateroute1(routepass, routename);
+    } else {
+      let appeared = result.data.hasAppeared;
+      // console.log(appeared);
+      validateroute2(routepass, routename, appeared);
     }
-   const result = await axios
-        .post(
-          "https://csiportal.herokuapp.com/login",
-        data
-        );
-        console.log(result.data)
-        localStorage.setItem('cookie', result.data.cookie_token);
-        let admin = result.data.isAdmin;
-        console.log(admin)
-        if (admin === 'true')
-          {      
-            console.log('any')    
-            validateroute1(routepass,routename);
-          }
-          else {
-            let appeared = result.data.hasAppeared;
-            // localStorage.setItem('Appeared',appeared)
-            console.log(appeared)
-            validateroute2(routepass,routename,appeared);
-          }          
-        };
+  };
   const navigate = useNavigate();
-  useEffect(()=>
-    {
-        let login1 = localStorage.getItem('login1'); // For admin 
-        let login2 = localStorage.getItem('login2'); //For user
-        // let appearvalidate = localStorage.getItem('Appeared'); //For Appear or not check
-        
-        if(login1){
-          navigate('/homepage')
-        }
-        else if(login2){
-          navigate('/instructions')
-        }
-        // else if(login2 && appearvalidate==true){
-        //   navigate('/')
-        // }
-        // else if(!login2 && appearvalidate==false){
-        //   navigate('/')
-        // }
-        
-      
-        
-    },[]);
+  useEffect(() => {
+    let login1 = localStorage.getItem("login1"); // For admin
+    let login2 = localStorage.getItem("login2"); //For user
+
+    if (login1) {
+      navigate("/homepage");
+    } else if (login2) {
+      navigate("/instructions");
+    }
+  }, []);
   return (
     <div className="form_body">
       <div className="logo">
-        <img src={Logocsi} alt="none" className="logocsi"/>
+        <img src={Logocsi} alt="none" className="logocsi" />
       </div>
       <form className="form_container">
-      <img src={Ellipse} className="admin_icon" />
-      <img src={Group} className="admin_group" />
+        <img src={Ellipse} className="admin_icon" />
+        <img src={Group} className="admin_group" />
         <div className="icon_container">
           <div className="icon">
             <p className="bars"></p>
             <TagIcon />
           </div>
           <TextField
-          autoComplete="off"
+            autoComplete="off"
             label="Student No."
             variant="outlined"
             size="small"
@@ -203,7 +172,7 @@ const Login = () => {
             <LockOutlinedIcon />
           </div>
           <TextField
-           autoComplete="off"
+            autoComplete="off"
             my={10}
             label="Password"
             name="password"
@@ -249,7 +218,7 @@ const Login = () => {
         </div>
       </form>
       <div className="img">
-        <img src={computers} alt="none" className="computers"/>
+        <img src={computers} alt="none" className="computers" />
       </div>
     </div>
   );

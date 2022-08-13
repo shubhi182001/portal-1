@@ -30,7 +30,6 @@ const Instruction = () => {
   const chkvalidate = async (e) => {
     e.preventDefault();
 
-
     if (chosenlang === "") {
       toast.error("Select any language first");
     } else {
@@ -61,14 +60,14 @@ const Instruction = () => {
           <img className="instcsilogo" src={whitelogo} alt="logoimg" />
         </div>
         <div className="ins">
-          <ol>
+          <ul type="disc">
             <li>
               1. This exam contains 4 mandatory categories: HTML, CSS, APTITUDE,
-              and SQL.{" "}
+              and SQL.
             </li>
             <li>
               2. However, the candidate can select a choice of
-              language(category) from the dropdown below.{" "}
+              language(category) from the dropdown below.
             </li>
             <li>
               3. This exam will be of 60 minutes in duration. When you submit
@@ -93,7 +92,7 @@ const Instruction = () => {
             <li>
               8. Once done submitting the test you'll be redirected to a
               feedback form. Your participation will only be considered once you
-              submit your feedback.{" "}
+              submit your feedback.
             </li>
             <li>
               9. If the candidate tries to do any malicious activity, he/she
@@ -108,7 +107,7 @@ const Instruction = () => {
               a user, so any kind of disconnection or reloading of the page
               might log you out of the test.
             </li>
-          </ol>
+          </ul>
         </div>
       </div>
       <div className="lang_selection">
@@ -137,10 +136,10 @@ const Instruction = () => {
               C++
             </option>
             <option
-              value="Java"
+              value="JAVA"
               style={{ color: "black", backgroundColor: "#F6FCFF" }}
             >
-              Java
+              JAVA
             </option>
             <option
               value="Python"
