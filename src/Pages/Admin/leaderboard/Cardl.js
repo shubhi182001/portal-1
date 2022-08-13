@@ -2,6 +2,9 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 const Cardl = ({ ckc}) => {
     const navigate = useNavigate();
+    const openDetails =()=>{
+        navigate('/getcandidate')
+    }
     const openResponse = () => {
         navigate('/responses', {
             state: {
@@ -49,7 +52,7 @@ const Cardl = ({ ckc}) => {
 
                 <div className='buttonsdisplay'>
                     <div className="fetch-details">
-                        <button className='fetch-detail-btn'>Fetch Details</button>
+                        <button className='fetch-detail-btn' onClick={openDetails}>Fetch Details</button>
                     </div>
                     <div className="delete">
                         <button className='fetch-answers-btn'
