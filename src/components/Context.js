@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-export const contextapi = createContext();
+const contextapi = createContext();
 export const Context = ({ children }) => {
   const [oid, setOid] = useState("000");
 
