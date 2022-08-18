@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Sidebar.css";
 
-import axios, { Axios } from "axios";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const Sidebar = ({ testques, setShow, showques, setShowques, ansid, show }) => {
+const Sidebar = ({ testques, setShow, setShowques,  show}) => {
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
   const [seconds, setSeconds] = useState("");
@@ -76,11 +76,14 @@ const Sidebar = ({ testques, setShow, showques, setShowques, ansid, show }) => {
     if (testpage) {
       navigate("/feedback");
     }
+    // eslint-disable-next-line
   }, []);
 
+  
   // for getting clicked question
   const handleoptions = (i) => {
     setShowques(i);
+ 
   };
 
   return (
@@ -120,7 +123,9 @@ const Sidebar = ({ testques, setShow, showques, setShowques, ansid, show }) => {
                   : "not_visited"
               }
               key={index}
-              onClick={() => handleoptions(i)}
+              onClick={() => {
+                handleoptions(i);
+              }}
             >
               {i}
             </button>

@@ -19,8 +19,8 @@ const QuestionPannel = ({
   let isVerified;
 
   const cook = localStorage.getItem("cookie");
-
   const [oid, setOid] = useState("000");
+
   const [chosenlang, setChosenlang] = useState("");
 
   const lang = {

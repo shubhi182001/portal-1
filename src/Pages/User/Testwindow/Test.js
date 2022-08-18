@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "./components/Sidebar";
 import QuestionPannel from "./components/QuestionPannel";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import Modal from "./.././Modal/Modal";
 import "./Test.css";
 const Test = () => {
@@ -10,7 +10,7 @@ const Test = () => {
   const [testques, setTestques] = useState([""]); // setting whole array of question
   const [showques, setShowques] = useState(1); // question iterator
   const [testoptions, setTestOptions] = useState(); //setting the options
-  const [ansid, setAnsid] = useState("2"); //flags for question :
+  // const [ansid, setAnsid] = useState("2"); //flags for question :
   // save and next -> 1 green
   //Review -> 3 blue
   // Not visited -> 2 border -> blue, background ->white

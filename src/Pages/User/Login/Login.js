@@ -107,7 +107,7 @@ const Login = () => {
       "https://csiportal.herokuapp.com/login",
       data
     );
-    // console.log(result.data);
+    console.log(result.data);
     localStorage.setItem("cookie", result.data.cookie_token);
     let admin = result.data.isAdmin;
     // console.log(admin);
