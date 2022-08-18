@@ -7,8 +7,8 @@ import { useLocation, useNavigate, Link } from 'react-router-dom'
 import axios from "axios"
 import $ from 'jquery' 
 
-// function EditQ() {it 
-    function EditQ() {
+function EditQ() {
+
     const navigate = useNavigate();
     const {state} = useLocation();
     console.log(state);

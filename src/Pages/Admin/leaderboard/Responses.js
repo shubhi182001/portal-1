@@ -11,13 +11,9 @@ import Cardr from '../leaderboard/Cardr'
 function Responses() {
     const navigate = useNavigate();
     const {state} = useLocation();
-    console.log(state);
     const [Details, setDetails] = useState(state.post_result);
-    // const [scoreDetails, setscoreDetails] = useState(state.post_userNumCount);
     const [seeAnswer, setSeeanswer] = useState(state.post_result);
-    let data;
-    const studentDetail = ['Name', 'StudentNo', 'Branch', 'Score', 'StartTime', 'EndTime'];
-    const showDetails = studentDetail.map((info => <li>{info}</li>))
+      
    
     return (
         <>
@@ -29,12 +25,19 @@ function Responses() {
                 <div className='container_of_data'>
                     {/* <Card className="container_of_data"> */}
                     <div className='upper_div'>
-                        <div classname='info'>{showDetails}</div>
+                        <div >
+                            <li className='info'>Name</li>
+                            <li className='info'>Student Number</li>
+                            <li className='info'>Branch</li>
+                            <li className='info'>Score</li>
+                            <li className='info'>Start Time</li>
+                            <li className='info'>End Time</li>
+                        </div>
                         <ul>
                             <li className='bluedetails'>{state.post_name}</li>
                             <li className='bluedetails'>{state.post_studentnum}</li>
                             <li className='bluedetails'>{state.post_branch}</li>
-                            <li className='bluedetails'>score</li>
+                            <li className='bluedetails'>{state.post_userNumCount}</li>
                             <li className='bluedetails'>{state.post_loginAt}</li>
                             <li className='bluedetails'>{state.post_logoutAt}</li>
                         </ul>
