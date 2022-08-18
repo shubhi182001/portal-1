@@ -1,10 +1,13 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useContext, useState } from "react";
 export const contextapi = createContext();
-const Context = ({children}) => {
-    const [option,setOption] = useState("");
-  return (
-    <Context.provider value = {{option,setOption}}>{children}</Context.provider>
-  )
-}
+export const Context = ({ children }) => {
+  const [oid, setOid] = useState("000");
 
-export default Context;
+  return (
+    <contextapi.Provider value={{ oid, setOid }}>
+      {children}
+    </contextapi.Provider>
+  );
+};
+
+export const useStateContext = () => useContext(contextapi);

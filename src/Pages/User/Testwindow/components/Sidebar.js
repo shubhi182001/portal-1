@@ -3,12 +3,13 @@ import "./Sidebar.css";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const Sidebar = ({ testques, setShow, setShowques,  show}) => {
+import { useStateContext } from "../../../../Components/Context";
+const Sidebar = ({ testques, setShow, setShowques, show }) => {
+  const { setOid } = useStateContext();
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
   const [seconds, setSeconds] = useState("");
   const usercookie = localStorage.getItem("cookie");
-
   let st,
     result,
     limit = 7200000;
@@ -79,11 +80,10 @@ const Sidebar = ({ testques, setShow, setShowques,  show}) => {
     // eslint-disable-next-line
   }, []);
 
-  
   // for getting clicked question
   const handleoptions = (i) => {
     setShowques(i);
- 
+    setOid("000");
   };
 
   return (

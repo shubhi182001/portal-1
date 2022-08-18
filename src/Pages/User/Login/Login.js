@@ -130,15 +130,15 @@ const Login = () => {
     } else if (login2) {
       navigate("/instructions");
     }
-  }, []);
+  }, [navigate]);
   return (
     <div className="form_body">
       <div className="logo">
         <img src={Logocsi} alt="none" className="logocsi" />
       </div>
       <form className="form_container">
-        <img src={Ellipse} className="admin_icon" />
-        <img src={Group} className="admin_group" />
+        <img src={Ellipse} alt = "ellipse" className="admin_icon" />
+        <img src={Group} alt = "group"  className="admin_group" />
         <div className="icon_container">
           <div className="icon">
             <p className="bars"></p>
