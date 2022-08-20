@@ -82,11 +82,7 @@ function App() {
           <Route path="/addfeedbackques" element={<AddFeedback />} />
           <Route path="/addcandidate" element={<AddCandidate />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/responses" element={<Responses />} /></> : <>
-          {showComponent && <Route path="/" element={<Animation />} />}
-          {showComponent2 && <Route path="/" element={<Login />} />}
-          
-          </> }       
+          <Route path="/responses" element={<Responses />} /></> : " " }     
           
         </Routes>
       </BrowserRouter>
