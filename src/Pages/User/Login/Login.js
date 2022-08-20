@@ -66,6 +66,7 @@ const Login = () => {
       localStorage.setItem("login1", true);
       navigate("/homepage");
     }
+   
   };
   const validateroute2 = (routepass, routename, appear) => {
     // console.log(appear);
