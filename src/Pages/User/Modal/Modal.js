@@ -38,7 +38,7 @@ const Modal = ({ setShow }) => {
       }
     };
     document.body.addEventListener("click", close);
-
+ 
     let testpage = localStorage.getItem("testpage");
 
     if (testpage) {

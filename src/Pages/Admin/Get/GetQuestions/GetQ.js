@@ -52,9 +52,10 @@ const GetQ = () => {
               } else if (p.question.toLowerCase().includes(search.toLowerCase()) || p.category.toLowerCase().includes(search.toLowerCase())) {
                 return p
               }
+              return false
             }).map((p) =>
               (<Cardc className="getCard" key={p._id} ques={p} reload={getAllQuestions} />)
-            ) : null
+            ) : null 
           }
         </div>
       </div>
