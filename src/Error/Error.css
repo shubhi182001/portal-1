@@ -1,0 +1,22 @@
+.error_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url(../Images/User/background.svg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+}
+.error_body{
+    background: url(../Images/User/error.svg);
+ background-repeat: no-repeat;
+ background-size: 100%;
+ background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    flex-direction: column;
+    height: 80vh;
+}

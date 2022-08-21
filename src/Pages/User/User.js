@@ -19,6 +19,7 @@ import AddCandidate from "../Admin/add/addCandidate/AddCandidate";
 import Leaderboard from "../Admin/leaderboard/Leaderboard";
 import Responses from "../Admin/leaderboard/Responses";
 import Getfeedback from "../Admin/Get/GetFeedback/Getfeedback";
+import Error from "../../Error/Error";
 
 function App() {
   const [showComponent, setShowComponent] = useState(true);
@@ -27,12 +28,14 @@ function App() {
     setInterval(() => {
       setShowComponent(!showComponent);
     }, 4000);
+    // eslint-disable-next-line
   },[]);
 
   useEffect(() => {
     setInterval(() => {
       setShowComponent2(!showComponent2);
     }, 4000);
+    // eslint-disable-next-line
   },[]);
    const login1 = localStorage.getItem("login1")
 
@@ -83,7 +86,7 @@ function App() {
           <Route path="/addcandidate" element={<AddCandidate />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/responses" element={<Responses />} /></> : " " }     
-          
+          <Route path="*" element={<Error/>}/>
         </Routes>
       </BrowserRouter>
     </>

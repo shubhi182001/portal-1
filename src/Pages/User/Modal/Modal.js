@@ -45,6 +45,7 @@ const Modal = ({ setShow }) => {
       navigate("/feedback");
     }
     return () => document.body.removeEventListener("click", close);
+    // eslint-disable-next-line
   }, []);
 
   return (

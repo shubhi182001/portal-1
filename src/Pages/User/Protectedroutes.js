@@ -26,6 +26,7 @@ const Protectedroutes = (props) => {
     } else if (!feedback) {
       navigate("/feedback");
     }
+    // eslint-disable-next-line
   }, []);
   return (
     <div>
