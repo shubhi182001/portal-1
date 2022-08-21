@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { Button } from "@mui/material";
-
+import { useStateContext } from "../../../../Components/ContextProvider";
 const QuestionPannel = ({
   testoptions,
   showques,
@@ -16,17 +16,18 @@ const QuestionPannel = ({
   setShowques,
   show,
 }) => {
+  const { oid, setOid } = useStateContext();
   let isVerified;
 
   const cook = localStorage.getItem("cookie");
-  const [oid, setOid] = useState("000");
 
   const [chosenlang, setChosenlang] = useState("");
 
-  const lang = {
-    cookie_token: cook,
-  };
+  
   useEffect(() => {
+    const lang = {
+      cookie_token: cook,
+    };
     axios
       .post("https://csiportal.herokuapp.com/langselected", lang)
       .then((res) => {
@@ -35,7 +36,7 @@ const QuestionPannel = ({
       .catch((err) => {
         console.log(err);
       });
-  }, [lang]);
+  }, [cook]);
 
   const handleactive = (val) => {
     setChoice(val);
@@ -46,7 +47,7 @@ const QuestionPannel = ({
   const navigate = useNavigate();
 
   const Mark = async () => {
-    if (showques < testques.length && oid != "000") {
+    if (showques < testques.length && oid !== "000") {
       let qid = testques[showques - 1]._id;
       let question = testques[showques - 1].question;
 
@@ -84,7 +85,7 @@ const QuestionPannel = ({
       setOid("000");
     } else if (testques[showques - 1].selectedOpt) {
       setShowques(showques + 1);
-    } else if (oid == "000") {
+    } else if (oid === "000") {
       toast.error("Select an option");
     } else {
       let qid = testques[showques - 1]._id;
@@ -141,7 +142,7 @@ const QuestionPannel = ({
   // save and next
   const Next = async () => {
     if (showques < testques.length) {
-      if (oid != "000") {
+      if (oid !== "000") {
         let qid = testques[showques - 1]._id;
         let question = testques[showques - 1].question;
         const data = {
@@ -217,7 +218,7 @@ const QuestionPannel = ({
         }
       }
     } else {
-      if (oid != "000") {
+      if (oid !== "000") {
         let qid = testques[showques - 1]._id;
         let question = testques[showques - 1].question;
         const data = {

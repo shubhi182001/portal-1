@@ -3,11 +3,14 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { Context } from "./Components/ContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
-  window.innerWidth > "820" ? <App /> : <h1 className="mobile_view">use desktop!!!!</h1>
+  <Context>
+    <App />
+  </Context>
   // {/* </React.StrictMode> */}
 );
 
