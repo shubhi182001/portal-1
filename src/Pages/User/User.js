@@ -28,13 +28,13 @@ function App() {
     setInterval(() => {
       setShowComponent(!showComponent);
     }, 4000);
-  }, [showComponent]);
+  }, []);
 
   useEffect(() => {
     setInterval(() => {
       setShowComponent2(!showComponent2);
     }, 4000);
-  }, [showComponent2]);
+  }, []);
   const login1 = localStorage.getItem("login1");
   console.log(roomId)
 
