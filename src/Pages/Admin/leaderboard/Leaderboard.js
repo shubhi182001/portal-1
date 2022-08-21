@@ -5,7 +5,7 @@ import "./leaderboard.css"
 import axios from 'axios'
 import { Card } from '@mui/material';
 import Cardl from './Cardl'
-
+let st;
 const Leaderboard = () => {
 
   
@@ -16,7 +16,7 @@ const Leaderboard = () => {
   const getAllCandidates = () => {
     axios.get(url)
       .then((res) => {
-        // console.log(res);
+        
         setUData(res.data);
         // console.log(res.data);
         // console.log(res.data.name);
@@ -51,7 +51,10 @@ const Leaderboard = () => {
                 return p
               } else if (p.name.toLowerCase().includes(search.toLowerCase())) {
                 return p
+              }else if(p.studentNum.toString().includes(search)){
+                  return p
               }
+              
             }).map((p) =>
             (<Cardl className="getCard" key={p._id} ckc ={p} />)):null
           }

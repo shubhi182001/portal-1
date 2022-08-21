@@ -21,6 +21,7 @@ const Cardl = ({ ckc}) => {
                 // post_score: ckc.score
 
             }
+            
         });
     }
     // const studentDetail = ['Name', 'StudentNo', 'Branch', 'Score', 'language'];

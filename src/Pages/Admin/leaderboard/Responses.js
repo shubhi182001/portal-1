@@ -13,8 +13,12 @@ function Responses() {
     const {state} = useLocation();
     const [Details, setDetails] = useState(state.post_result);
     const [seeAnswer, setSeeanswer] = useState(state.post_result);
-      
-   
+    
+   const event1=state.post_loginAt;
+   const newLoginTime=new Date(event1);
+   const newLoginTime2=newLoginTime.toLocaleTimeString();
+ 
+  
     return (
         <>
             <div className="admin-main">
@@ -38,7 +42,7 @@ function Responses() {
                             <li className='bluedetails'>{state.post_studentnum}</li>
                             <li className='bluedetails'>{state.post_branch}</li>
                             <li className='bluedetails'>{state.post_userNumCount}</li>
-                            <li className='bluedetails'>{state.post_loginAt}</li>
+                            <li className='bluedetails'>{newLoginTime2}</li>
                             <li className='bluedetails'>{state.post_logoutAt}</li>
                         </ul>
                     </div>
