@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Sidebar.css";
 
-import axios, { Axios } from "axios";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const Sidebar = ({ testques, setShow, showques, setShowques, ansid, show }) => {
+import { useStateContext } from "../../../../Components/ContextProvider";
+const Sidebar = ({ testques, setShow, setShowques, show }) => {
+  const { setOid } = useStateContext();
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
   const [seconds, setSeconds] = useState("");
   const usercookie = localStorage.getItem("cookie");
-
   let st,
     result,
     limit = 7200000;
@@ -76,11 +77,13 @@ const Sidebar = ({ testques, setShow, showques, setShowques, ansid, show }) => {
     if (testpage) {
       navigate("/feedback");
     }
+    // eslint-disable-next-line
   }, []);
 
   // for getting clicked question
   const handleoptions = (i) => {
     setShowques(i);
+    setOid("000");
   };
 
   return (
@@ -120,7 +123,9 @@ const Sidebar = ({ testques, setShow, showques, setShowques, ansid, show }) => {
                   : "not_visited"
               }
               key={index}
-              onClick={() => handleoptions(i)}
+              onClick={() => {
+                handleoptions(i);
+              }}
             >
               {i}
             </button>

@@ -42,7 +42,10 @@ useEffect(()=>{
                 return p
               } else if (p.name.toLowerCase().includes(search.toLowerCase())) {
                 return p
-              }
+              }else if(p.studentNum.toString().includes(search)){
+                return p
+            }
+            return false
             }).map((p) =>
             (<Cardl className="getCard" key={p._id} ckc ={p} />)):null
           }

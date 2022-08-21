@@ -17,7 +17,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: rgba(51, 51, 51, 0.895);
+  /* background-color: rgba(51, 51, 51, 0.895); */
   filter: blur(2px);
 }
 .time_left1 {
@@ -31,7 +31,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(51, 51, 51, 0.895);
+  /* background-color: rgba(51, 51, 51, 0.895); */
 
   opacity: 0.6;
   height: 56px;
@@ -125,7 +125,8 @@
   line-height: 29px;
   letter-spacing: 0.1em;
   margin-bottom: 1rem;
-  background-color: rgba(51, 51, 51, 0.895);
+  /* background-color: rgba(51, 51, 51, 0.895); */
+  filter: blur(2px);
 
   opacity: 0.4;
 }

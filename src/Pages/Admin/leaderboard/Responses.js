@@ -1,24 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import Navbar from '../navbar/Navbar'
-import { Link } from "react-router-dom"
-import { useNavigate,useLocation } from 'react-router-dom'
+// import { Link } from "react-router-dom"
+import {useLocation } from 'react-router-dom'
 import "./response.css"
-import { Card } from 'react-bootstrap'
-import { style } from '@mui/system'
-import axios from 'axios'
+// import { Card } from 'react-bootstrap'
+// import { style } from '@mui/system'
+// import axios from 'axios'
 import Cardr from '../leaderboard/Cardr'
 
 function Responses() {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const {state} = useLocation();
-    const [Details, setDetails] = useState(state.post_result);
-    const [seeAnswer, setSeeanswer] = useState(state.post_result);
-      
-   
+    // const [Details, setDetails] = useState(state.post_result);
+    const [seeAnswer] = useState(state.post_result);
+    
+   const event1=state.post_loginAt;
+   const newLoginTime=new Date(event1);
+   const newLoginTime2=newLoginTime.toLocaleTimeString();
     return (
         <>
             <div className="admin-main">
-                <Navbar />
+                <Navbar /> 
                 <div className="response">
                     <h1 className='response_text'>Response</h1>
                 </div>
@@ -38,12 +40,12 @@ function Responses() {
                             <li className='bluedetails'>{state.post_studentnum}</li>
                             <li className='bluedetails'>{state.post_branch}</li>
                             <li className='bluedetails'>{state.post_userNumCount}</li>
-                            <li className='bluedetails'>{state.post_loginAt}</li>
+                            <li className='bluedetails'>{newLoginTime2}</li>
                             <li className='bluedetails'>{state.post_logoutAt}</li>
                         </ul>
                     </div>
-                    <div className='lower_div'>
-                        {seeAnswer .map((p) =>
+                    <div className='lower_div'> 
+                        {seeAnswer.map((p) =>
                             (<Cardr className="getCard" key={p._id} quesData={p}/>)
                         )}
                     </div>  
@@ -52,4 +54,4 @@ function Responses() {
         </>
     )
 }
-export default Responses
+export default Responses 

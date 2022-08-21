@@ -18,7 +18,7 @@ const Feedback = () => {
   const [postData, setPostData] = useState([]);
 
   const validateRadio = () => {
-    if (postData.length != ques.length || TextArea.trim() === "") {
+    if (postData.length !== ques.length || TextArea.trim() === "") {
       toast.error("Complete all fields");
     }
   };
@@ -38,7 +38,7 @@ const Feedback = () => {
     e.preventDefault();
     validateRadio();
     // console.log(postData.length, ques.length, TextArea,TextArea.trim());
-    if (postData.length === ques.length && TextArea.trim() != "") {
+    if (postData.length === ques.length && TextArea.trim() !== "") {
       const cook = localStorage.getItem("cookie");
       let feedbackData = {
         cookie_token: cook,
@@ -53,6 +53,7 @@ const Feedback = () => {
         )
         .then((res) => {
           console.log(res);
+          setPostData([]);
         })
         .catch((err) => {
           console.log(err);
@@ -76,7 +77,7 @@ const Feedback = () => {
     if (login) {
       navigate("/thankyou");
     }
-  }, []);
+  }, [navigate]);
   return (
     <>
       <div className="main">

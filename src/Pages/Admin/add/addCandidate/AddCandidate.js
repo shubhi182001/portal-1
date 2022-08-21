@@ -14,20 +14,20 @@ function AddCandidate() {
   const [rollNum, setrollNum] = useState("");
   const [mobileNum, setmobileNum] = useState("");
   const [email, setemail] = useState("");
-  const [OTP, setOTP] = useState("");
+ 
   const [branch, setbranch] = useState("");
   const [year, setyear] = useState("");
   const [gender, setgender] = useState("");
   const [isHosteler, setisHosteler] = useState("");
-  const [flag, setFlag] = useState(0);
+  // const [flag, setFlag] = useState(0);
   // const Navigate = useNavigate();
   var checkStatus = false;
   var checkStatusAll = false;
 
-  const [formErrors, setFormErrors] = useState({});
+  // const [formErrors, setFormErrors] = useState({});
   const [formErrorsemail, setFormErrorsemail] = useState({});
   const [formErrorsName, setformErrorsName] = useState({});
-  const [formErrorsOTP, setformErrorsOTP] = useState({});
+  // const [formErrorsOTP, setformErrorsOTP] = useState({});
 
   const [formErrorsRoll, setformErrorsRoll] = useState({});
 
@@ -35,7 +35,7 @@ function AddCandidate() {
   // const [formErrorsyear, setformErrorsyear] = useState({});
   const [formErrorsbranch, setformErrorsbranch] = useState({});
   const [formErrorsmobileNum, setformErrorsmobileNum] = useState({});
-  const [formErrorsgender, setformErrorsgender] = useState({});
+  const [formErrorsgender, setformErrorsGender] = useState({});
 
   const [isSubmit, setIsSubmit] = useState(false);
   const [focused, setFocused] = useState(false);
@@ -44,17 +44,17 @@ function AddCandidate() {
 
   useEffect(() => {
     // console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
+    if (Object.keys(formErrorsemail).length === 0 && isSubmit) {
       // console.log(formdata);
     }
   }, [
-    formErrors,
+    
     formErrorsmobileNum,
     formErrorsRoll,
     formErrorsemail,
     isSubmit,
     formErrorsstudentNum,
-    formErrorsOTP,
+    
   ]);
 
   const handleFocusemail = (e) => {
@@ -80,10 +80,18 @@ function AddCandidate() {
     setFocused(true);
     setformErrorsstudentNum(validatestudentNum(studentNum));
   };
-  const handleFocusOTP = (e) => {
-    setOTP(true);
-    setformErrorsOTP(validateOTP(OTP));
-  };
+  const handleFocusBranch =(e)=>{
+    setFocused(true);
+    setformErrorsbranch(validateBranch);
+  }
+  const handleFocusGender =(e)=>{
+    setFocused(true);
+    setformErrorsGender(validateGender);
+  }
+  // const handleFocusOTP = (e) => {
+  //   setOTP(true);
+  //   setformErrorsOTP(validateOTP(OTP));
+  // };
   const submit = async (e) => {
     e.preventDefault();
     setformErrorsName(validateName(name));
@@ -92,10 +100,10 @@ function AddCandidate() {
     setformErrorsRoll(validateRoll(rollNum));
     setformErrorsstudentNum(validatestudentNum(studentNum));
     setformErrorsRoll(validateRoll(rollNum));
-    setformErrorsOTP(validateOTP(OTP));
+    
     setIsSubmit(true);
 
-    console.log(flag);
+    console.log();
     if (
       name &&
       rollNum &&
@@ -105,7 +113,7 @@ function AddCandidate() {
     ) {
       const newEntry = {
         name: name,
-        rollNum: String(rollNum),
+        rollNum: Number(rollNum),
         mobileNum: Number(mobileNum),
         email: email,
         studentNum: Number(studentNum),
@@ -126,11 +134,7 @@ function AddCandidate() {
         .then((res) => {
           console.log(res.data);
           if (res.status === 200) {
-            if (flag === 1) {
-              // Navigate("/confirm");
-            } else {
-              window.alert("captcha Required!!!");
-            }
+           window.alert("user added successfully");
           }
         })
         .catch((err) => {
@@ -139,11 +143,7 @@ function AddCandidate() {
           window.alert("Invalid Credentials or user already exists!!!");
         });
 
-      // axios
-      //   .post("https://nameless-citadel-14148.herokuapp.com/api/users/captcha",ReCAPTCHA)
-      //   .then((resp) => {
-      //     console.log(resp.data);
-      //   })
+    
     } else if (!(name && rollNum && mobileNum && email)) {
       window.alert("Enter Data in all Fields!!!");
     } else if (
@@ -156,18 +156,18 @@ function AddCandidate() {
         year &&
         studentNum &&
         isHosteler
-      ) &&
-      flag === 1
+      )
     ) {
       window.alert("Enter Data in all Fields");
-    } else if (flag === 0) {
-      window.alert("Captcha Required!!!");
-    }
+    } 
+    // else if (flag === 0) {
+    //   window.alert("Captcha Required!!!");
+    // }
   };
 
   const validateemail = (value) => {
     const errors = {};
-    let regex = new RegExp("[a-z0-9]+@akgec.ac.in");
+    let regex = new RegExp("[a-z0-9]+@");
 
     if (!value) {
       errors.email = "email is required!";
@@ -239,14 +239,21 @@ function AddCandidate() {
     return errors;
   };
 
-  const validateOTP = (value) => {
+  const validateBranch = (value) => {
     const errors = {};
     if (!value) {
-      errors.OTP = "OTP IS REQUIRED!!!";
+      errors.branch = "BRANCH IS REQUIRED!!!";
     }
     return errors;
   };
 
+  const validateGender = (value) => {
+    const errors = {};
+    if (!value) {
+      errors.gender = "GENDER IS REQUIRED!!!";
+    }
+    return errors;
+  };
   return (
     <>
     <div className="admin-main addc">
@@ -258,8 +265,8 @@ function AddCandidate() {
           </div>
 
           <form action="" className="CandidadateAdd">
-          <img src={Ellipse} className="iconadmin " />
-      <img src={Group} className="groupadmin " />
+          <img src={Ellipse} alt ="ellipse" className="iconadmin " />
+      <img src={Group} alt="group" className="groupadmin " />
             <div className="row">
               <div className="col-lg-6">
                 {/* NAMe */}
@@ -360,7 +367,7 @@ function AddCandidate() {
                     name="gender"
                     value={gender}
                     onChange={(e) => setgender(e.target.value)}
-                    onBlur={handleFocusmobileNum}
+                    onBlur={handleFocusGender}
                     focused={focused.toString()}
                   />
                 </div>
@@ -406,7 +413,7 @@ function AddCandidate() {
                     focused={focused.toString()}
                   />
                 </div>
-                <span className="error_msg">{formErrors.year}</span>
+                <span className="error_msg">{formErrorsbranch.year}</span>
               </div>
 
               <div className="col-lg-6">
@@ -421,7 +428,7 @@ function AddCandidate() {
                     name="branch"
                     value={branch}
                     onChange={(e) => setbranch(e.target.value)}
-                     onBlur={handleFocusemail}
+                     onBlur={handleFocusBranch}
                      focused={focused.toString()}
                   />
                 </div>

@@ -1,26 +1,26 @@
 import React from 'react'
-import Navbar from '../navbar/Navbar';
+// import Navbar from '../navbar/Navbar';
 
 function Cardr({ quesData }) {
 
   function check(){
-    if(quesData.isCorrect == false){
+    if(quesData.isCorrect === false){
       return "No";
     }
     return "Yes";
   }
 
   function submitCheck(){
-    if(quesData.ansid == 1){
+    if(quesData.ansid === 1){
       return "Question Answered"
     }
-    else if(quesData.ansid == 2){
+    else if(quesData.ansid === 2){
       return "Not Answered"
     }
-    else if(quesData.ansid == 3){
+    else if(quesData.ansid === 3){
       return "Answered and Marked for Review"
     }
-    else if(quesData.ansid == 4){
+    else if(quesData.ansid === 4){
       return "Not Answerd and Marked for Review "
     }
 
