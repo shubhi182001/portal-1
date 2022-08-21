@@ -1,6 +1,6 @@
 import "./User.css";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import Login from "./Login/Login";
 import Instructions from "./Instruction/Instruction";
 import Feedback from "./Feedback/Feedback";
@@ -23,24 +23,25 @@ import Getfeedback from "../Admin/Get/GetFeedback/Getfeedback";
 function App() {
   const [showComponent, setShowComponent] = useState(true);
   const [showComponent2, setShowComponent2] = useState(false);
+  const {roomId} = useParams();
   useEffect(() => {
     setInterval(() => {
       setShowComponent(!showComponent);
     }, 4000);
-  },[]);
+  }, [showComponent]);
 
   useEffect(() => {
     setInterval(() => {
       setShowComponent2(!showComponent2);
     }, 4000);
-  },[]);
-   const login1 = localStorage.getItem("login1")
+  }, [showComponent2]);
+  const login1 = localStorage.getItem("login1");
+  console.log(roomId)
 
   return (
     <>
       <BrowserRouter>
         <Routes>
-        
           {showComponent && <Route path="/" element={<Animation />} />}
           {showComponent2 && <Route path="/" element={<Login />} />}
           <Route
@@ -63,6 +64,12 @@ function App() {
             path="/thankyou"
             element={<Protectedroutes Component={Thankyou} />}
           />
+          {roomId &&
+          <Route
+          path={`/room/:roomId`} element={<h1>hello</h1>}>
+
+          </Route>}
+
           {/* <Route path="/getques" element={<Protectedroutes Component={GetQ} />} />
           <Route path="/editq" element={<Protectedroutes Component={EditQ} />} />
           <Route path="/getfeedbackques" element={<Protectedroutes Component={Getfeedback} />} />
@@ -73,17 +80,22 @@ function App() {
           <Route path="/addcandidate" element={<Protectedroutes Component={AddCandidate} />} />
           <Route path="/leaderboard" element={<Protectedroutes Component={Leaderboard} />} />
           <Route path="/responses" element={<Protectedroutes Component={Responses} />} />   */}
-          {login1 ? <><Route path="/getques" element={<GetQ />} />
-          <Route path="/editq" element={<EditQ />} />
-          <Route path="/getfeedbackques" element={<Getfeedback />} />
-          <Route path="/editf" element={<Editf />} />
-          <Route path="/getcandidate" element={<GetCandidate />} />
-          <Route path="/addques" element={<AddQuestions />} />
-          <Route path="/addfeedbackques" element={<AddFeedback />} />
-          <Route path="/addcandidate" element={<AddCandidate />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/responses" element={<Responses />} /></> : " " }     
-          
+          {login1 ? (
+            <>
+              <Route path="/getques" element={<GetQ />} />
+              <Route path="/editq" element={<EditQ />} />
+              <Route path="/getfeedbackques" element={<Getfeedback />} />
+              <Route path="/editf" element={<Editf />} />
+              <Route path="/getcandidate" element={<GetCandidate />} />
+              <Route path="/addques" element={<AddQuestions />} />
+              <Route path="/addfeedbackques" element={<AddFeedback />} />
+              <Route path="/addcandidate" element={<AddCandidate />} />
+              <Route path="/leaderboard" element={<Leaderboard />} />
+              <Route path="/responses" element={<Responses />} />
+            </>
+          ) : (
+            " "
+          )}
         </Routes>
       </BrowserRouter>
     </>
