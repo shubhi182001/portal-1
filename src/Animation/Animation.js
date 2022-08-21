@@ -1,7 +1,7 @@
 import React from 'react'
 import './Animation.css'
 import logo from './logo.svg'
-import { useEffect } from 'react'
+
 
 const Animation = () => {
  

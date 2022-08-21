@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { Button } from "@mui/material";
-import { useStateContext } from "../../../../Components/ContextProvider";
+import { useStateContext } from "../../../../components/ContextProvider";
 const QuestionPannel = ({
   testoptions,
   showques,

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Navbar from '../../../navbar/Navbar'
 import {Card} from "@mui/material"
-import DeleteIcon from '@mui/icons-material/Delete';
 import {useLocation ,useNavigate , Link} from "react-router-dom"
 import axios from 'axios';
 
@@ -12,28 +11,28 @@ function Editf() {
 
     // const[correct , setCorrect] =useState(state.post_options.isCorrect);
     const [question, setQuestion] = useState(state.post_ques)
-    const [option, setOption] = useState(" ");            
-    const [options, setOptions] = useState(state.post_options)   //array
+    // const [option, setOption] = useState(" ");            
+    // const [options, setOptions] = useState(state.post_options)   //array
 
     const updateQuestion = (e) => {
         setQuestion(e.target.value);
     }
     
-    const onInputChange = (e) => {
-        setOption(e.target.value)
-    };
+    // const onInputChange = (e) => {
+    //     setOption(e.target.value)
+    // };
 
-    const onFormSubmit = (e) => {
-        e.preventDefault();
-        setOptions([...options,{Oid: Math.floor(Math.random() * 1000), value:option }])
-        setOption(" ");
-    }
+    // const onFormSubmit = (e) => {
+    //     e.preventDefault();
+    //     setOptions([...options,{Oid: Math.floor(Math.random() * 1000), value:option }])
+    //     setOption(" ");
+    // }
     
-      const handleDelete = (({Oid})=>{
-        setOptions(options.filter((option)=>
-          option.Oid !== Oid
-        ))
-      })
+    //   const handleDelete = (({Oid})=>{
+    //     setOptions(options.filter((option)=>
+    //       option.Oid !== Oid
+    //     ))
+    //   })
 
       const url = `https://csiportal.herokuapp.com/feedback/${state.post_id}`
       const handleUpload = (e) =>{
@@ -61,7 +60,7 @@ function Editf() {
             window.alert("Enter valid Question")
         }
       }
-      console.log(options);
+    //   console.log(options);
 
   return (
     <>
