@@ -53,10 +53,8 @@ const Leaderboard = () => {
                 return p
               }else if(p.studentNum.toString().includes(search)){
                   return p
-              }else{
-                return
               }
-              
+              return false
             }).map((p) =>
             (<Cardl className="getCard" key={p._id} ckc ={p} />)
             ):null

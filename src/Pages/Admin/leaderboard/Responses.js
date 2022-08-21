@@ -46,7 +46,7 @@ function Responses() {
                             <li className='bluedetails'>{state.post_logoutAt}</li>
                         </ul>
                     </div>
-                    <div className='lower_div'>
+                    <div className='lower_div'> 
                         {seeAnswer.map((p) =>
                             (<Cardr className="getCard" key={p._id} quesData={p}/>)
                         )}
