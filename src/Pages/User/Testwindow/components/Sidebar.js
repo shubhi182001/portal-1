@@ -30,7 +30,7 @@ const Sidebar = ({ testques, setShow, setShowques, show }) => {
           console.log(err);
         });
       axios
-        .get("http://worldtimeapi.org/api/timezone/Asia/Kolkata")
+        .get("https://worldtimeapi.org/api/timezone/Asia/Kolkata")
         .then((res) => {
           d = new Date(res.data.datetime).getTime();
           result = limit - (d - st);
