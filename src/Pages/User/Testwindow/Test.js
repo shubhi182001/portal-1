@@ -18,6 +18,8 @@ const Test = () => {
 
   useEffect(() => {
     choiceques();
+ 
+    // eslint-disable-next-line
   }, [choice, showques]);
 
   const url = `https://csiportal.herokuapp.com/question/${choice}`;
