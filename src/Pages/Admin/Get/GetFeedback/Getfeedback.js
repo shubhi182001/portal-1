@@ -43,6 +43,7 @@ function Getfeedback() {
           }else if (p.question.toLowerCase().includes(search.toLowerCase())){
             return p
           }
+          return false
         }).map((p) => 
           (<Cardc className="getCard" key={p._id} ques={p} reload={getAllQuestions}/>)
         ) : null
