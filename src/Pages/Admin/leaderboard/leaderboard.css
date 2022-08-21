@@ -1,7 +1,8 @@
 *{
   /* overflow-x: hidden; */
-  margin:0px;
-  padding: 0px;;
+  /* overflow-y: hidden; */
+  /* margin:0px;
+  padding: 0px;; */
   /* background-size: cover; */
 }
 .detailsdisplay{
@@ -52,7 +53,7 @@
     font-family: 'Montserrat'  !important;
     font-weight: bold;
     font-size: 20px;
-    height: 318px;
+    height: 280px;
     /* overflow-x: hidden; */
 }
 /* .buttonsdisplay{

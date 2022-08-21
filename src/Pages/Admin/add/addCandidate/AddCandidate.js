@@ -198,14 +198,14 @@ function AddCandidate() {
   const validateRoll = (value) => {
     const errors = {};
     let regex = new RegExp("^[0-9D-d]+$");
-    let regexi = new RegExp("^[0-9D-d]{7,7}$");
+    let regexi = new RegExp("^[0-9D-d]{7,13}$");
     if (!value) {
-      errors.rollNum = "Student number is required!";
+      errors.rollNum = "Roll number is required!";
     } else if (!regex.test(value)) {
       errors.rollNum =
-        "Student number should be numeric or can contain a letter D";
+        "Roll number should be numeric or can contain a letter D";
     } else if (!regexi.test(value)) {
-      errors.rollNum = "Length of student should be of 7 digits";
+      errors.rollNum = "Length of student should be of 7-13 digits";
     } else {
       checkStatusAll = true;
     }
@@ -249,7 +249,7 @@ function AddCandidate() {
 
   return (
     <>
-    <div className="admin-main">
+    <div className="admin-main addc">
       <Navbar/>
       <div className="containerzz ">
         <div className="row">
@@ -360,8 +360,8 @@ function AddCandidate() {
                     name="gender"
                     value={gender}
                     onChange={(e) => setgender(e.target.value)}
-                    // onBlur={handleFocusmobileNum}
-                    // focused={focused.toString()}
+                    onBlur={handleFocusmobileNum}
+                    focused={focused.toString()}
                   />
                 </div>
                 <span className="error_msg">{formErrorsgender.gender}</span>
@@ -402,11 +402,11 @@ function AddCandidate() {
                     name="year"
                     value={year}
                     onChange={(e) => setyear(e.target.value)}
-                    // onBlur={handleFocusyear}
-                    // focused={focused.toString()}
+                    onBlur={handleFocusemail}
+                    focused={focused.toString()}
                   />
                 </div>
-                <span className="error_msg">{formErrorsRoll.rollNum}</span>
+                <span className="error_msg">{formErrors.year}</span>
               </div>
 
               <div className="col-lg-6">
@@ -421,8 +421,8 @@ function AddCandidate() {
                     name="branch"
                     value={branch}
                     onChange={(e) => setbranch(e.target.value)}
-                    //  onBlur={handleFocusemail}
-                    //  focused={focused.toString()}
+                     onBlur={handleFocusemail}
+                     focused={focused.toString()}
                   />
                 </div>
                 <span className="error_msg messages_err">{formErrorsbranch.branch}</span>
@@ -443,8 +443,8 @@ function AddCandidate() {
                     name="isHosteler"
                     value={isHosteler}
                     onChange={(e) => setisHosteler(e.target.value)}
-                    //  onBlur={handleFocusemail}
-                    //  focused={focused.toString()}
+                     onBlur={handleFocusemail}
+                     focused={focused.toString()}
                   />
                 </div>
               </div>

@@ -69,7 +69,7 @@ const Feedback = () => {
     axios
       .get("https://csiportal.herokuapp.com/feed/seefeedbackques")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setQues(res.data);
       });
     let login = localStorage.getItem("feedback");

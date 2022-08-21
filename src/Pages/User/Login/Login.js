@@ -68,12 +68,12 @@ const Login = () => {
     }
   };
   const validateroute2 = (routepass, routename, appear) => {
-    console.log(appear);
+    // console.log(appear);
     if (routepass === true && routename === true && appear === "true") {
       // localStorage.setItem('login2', false);
       navigate("/");
     } else if (routepass === true && routename === true && appear === "false") {
-      console.log(appear);
+      // console.log(appear);
       localStorage.setItem("login2", true);
 
       navigate("/instructions");
@@ -95,9 +95,10 @@ const Login = () => {
 
   const Submit = async (e) => {
     e.preventDefault();
+    localStorage.removeItem('feedback')
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
-    console.log(studentNo, password);
+    // console.log(studentNo, password);
     const data = {
       studentNum: +studentNo,
       password: password,
@@ -109,13 +110,13 @@ const Login = () => {
     console.log(result.data);
     localStorage.setItem("cookie", result.data.cookie_token);
     let admin = result.data.isAdmin;
-    console.log(admin);
+    // console.log(admin);
     if (admin === "true") {
-      console.log("any");
+      // console.log("any");
       validateroute1(routepass, routename);
     } else {
       let appeared = result.data.hasAppeared;
-      console.log(appeared);
+      // console.log(appeared);
       validateroute2(routepass, routename, appeared);
     }
   };
