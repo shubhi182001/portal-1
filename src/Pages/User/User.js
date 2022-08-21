@@ -27,18 +27,20 @@ function App() {
     setInterval(() => {
       setShowComponent(!showComponent);
     }, 4000);
-  }, []);
+  },[]);
 
   useEffect(() => {
     setInterval(() => {
       setShowComponent2(!showComponent2);
     }, 4000);
-  }, []);
+  },[]);
+   const login1 = localStorage.getItem("login1")
 
   return (
     <>
       <BrowserRouter>
         <Routes>
+        
           {showComponent && <Route path="/" element={<Animation />} />}
           {showComponent2 && <Route path="/" element={<Login />} />}
           <Route
@@ -61,7 +63,17 @@ function App() {
             path="/thankyou"
             element={<Protectedroutes Component={Thankyou} />}
           />
-          <Route path="/getques" element={<GetQ />} />
+          {/* <Route path="/getques" element={<Protectedroutes Component={GetQ} />} />
+          <Route path="/editq" element={<Protectedroutes Component={EditQ} />} />
+          <Route path="/getfeedbackques" element={<Protectedroutes Component={Getfeedback} />} />
+          <Route path="/editf" element={<Protectedroutes Component={Editf} />} />
+          <Route path="/getcandidate" element={<Protectedroutes Component={GetCandidate} />} />
+          <Route path="/addques" element={<Protectedroutes Component={AddQuestions} />} />
+          <Route path="/addfeedbackques" element={<Protectedroutes Component={AddFeedback} />} />
+          <Route path="/addcandidate" element={<Protectedroutes Component={AddCandidate} />} />
+          <Route path="/leaderboard" element={<Protectedroutes Component={Leaderboard} />} />
+          <Route path="/responses" element={<Protectedroutes Component={Responses} />} />   */}
+          {login1 ? <><Route path="/getques" element={<GetQ />} />
           <Route path="/editq" element={<EditQ />} />
           <Route path="/getfeedbackques" element={<Getfeedback />} />
           <Route path="/editf" element={<Editf />} />
@@ -70,7 +82,8 @@ function App() {
           <Route path="/addfeedbackques" element={<AddFeedback />} />
           <Route path="/addcandidate" element={<AddCandidate />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/responses" element={<Responses />} />
+          <Route path="/responses" element={<Responses />} /></> : " " }     
+          
         </Routes>
       </BrowserRouter>
     </>

@@ -64,8 +64,10 @@ const Login = () => {
   const validateroute1 = (routepass, routename) => {
     if (routepass === true && routename === true) {
       localStorage.setItem("login1", true);
+      
       navigate("/homepage");
     }
+   
   };
   const validateroute2 = (routepass, routename, appear) => {
     // console.log(appear);
@@ -112,7 +114,7 @@ const Login = () => {
     let admin = result.data.isAdmin;
     // console.log(admin);
     if (admin === "true") {
-      // console.log("any");
+      
       validateroute1(routepass, routename);
     } else {
       let appeared = result.data.hasAppeared;
