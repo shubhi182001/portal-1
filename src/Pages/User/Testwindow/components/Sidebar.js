@@ -3,7 +3,7 @@ import "./Sidebar.css";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useStateContext } from "../../../../Components/ContextProvider";
+import { useStateContext } from "../../../../components/ContextProvider";
 const Sidebar = ({ testques, setShow, setShowques, show }) => {
   const { setOid } = useStateContext();
   const [hours, setHours] = useState("");

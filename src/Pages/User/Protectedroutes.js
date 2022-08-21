@@ -11,9 +11,9 @@ const Protectedroutes = (props) => {
     let feedback = localStorage.getItem("feedback");
     let appeared = localStorage.getItem("Appeared");
     let testpage = localStorage.getItem("testpage");
-    if (!login1 && !login2 && appeared === true) {
+    if (!login1 && !login2 && appeared === "true") {
       navigate("/");
-    } else if (appeared === true) {
+    } else if (appeared === "true") {
       navigate("/");
     } else if (login1) {
       navigate("/homepage");
@@ -26,8 +26,9 @@ const Protectedroutes = (props) => {
     } else if (!feedback) {
       navigate("/feedback");
     }
-    // eslint-disable-next-line
-  }, []);
+
+  }, [navigate]);
+
   return (
     <div>
       <Component />

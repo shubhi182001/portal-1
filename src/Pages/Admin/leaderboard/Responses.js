@@ -17,8 +17,6 @@ function Responses() {
    const event1=state.post_loginAt;
    const newLoginTime=new Date(event1);
    const newLoginTime2=newLoginTime.toLocaleTimeString();
- 
- 
     return (
         <>
             <div className="admin-main">
