@@ -3,9 +3,9 @@ import Navbar from '../navbar/Navbar'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import "./leaderboard.css"
 import axios from 'axios'
-import { Card } from '@mui/material';
+// import { Card } from '@mui/material';
 import Cardl from './Cardl'
-let st;
+
 const Leaderboard = () => {
 
   
@@ -15,7 +15,7 @@ const Leaderboard = () => {
   const url = "https://csiportal.herokuapp.com/leaderboard";
   const getAllCandidates = () => {
     axios.get(url)
-      .then((res) => {
+      .then((res) => { 
         
         setUData(res.data);
         // console.log(res.data);
@@ -47,16 +47,19 @@ const Leaderboard = () => {
         <div className="getq">
           {udata && udata.length ?
             udata.filter((p) => {
-              if (search == " ") {
+              if (search === " ") {
                 return p
               } else if (p.name.toLowerCase().includes(search.toLowerCase())) {
                 return p
               }else if(p.studentNum.toString().includes(search)){
                   return p
+              }else{
+                return
               }
               
             }).map((p) =>
-            (<Cardl className="getCard" key={p._id} ckc ={p} />)):null
+            (<Cardl className="getCard" key={p._id} ckc ={p} />)
+            ):null
           }
        
         
