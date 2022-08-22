@@ -1,6 +1,6 @@
 import "./User.css";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Login/Login";
 import Instructions from "./Instruction/Instruction";
 import Feedback from "./Feedback/Feedback";
