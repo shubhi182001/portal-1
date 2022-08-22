@@ -8,7 +8,7 @@ const Thankyou = () => {
     localStorage.removeItem("instruct");
     localStorage.removeItem("testpage");
     localStorage.removeItem("cookie");
-    localStorage.setItem("Appeared", true);
+    // localStorage.setItem("Appeared", true);
     // eslint-disable-next-line
   }, []);
   return (
