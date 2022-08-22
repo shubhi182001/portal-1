@@ -24,7 +24,6 @@ import Error from "../../Error/Error";
 function App() {
   const [showComponent, setShowComponent] = useState(true);
   const [showComponent2, setShowComponent2] = useState(false);
-  const { roomId } = useParams();
   useEffect(() => {
     setInterval(() => {
       setShowComponent(!showComponent);
@@ -68,9 +67,6 @@ function App() {
             path="/thankyou"
             element={<Protectedroutes Component={Thankyou} />}
           />
-          {roomId && (
-            <Route path={`/room/:roomId`} element={<h1>hello</h1>}></Route>
-          )}
 
           {/* <Route path="/getques" element={<Protectedroutes Component={GetQ} />} />
           <Route path="/editq" element={<Protectedroutes Component={EditQ} />} />
