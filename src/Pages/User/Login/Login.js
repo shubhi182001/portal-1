@@ -132,7 +132,7 @@ const Login = () => {
     } else if (login2) {
       navigate("/instructions");
     }
-  }, [navigate]);
+  });
   return (
     <div className="form_body">
       <div className="logo">
