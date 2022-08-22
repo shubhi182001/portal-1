@@ -1,6 +1,6 @@
 import "./User.css";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Login/Login";
 import Instructions from "./Instruction/Instruction";
 import Feedback from "./Feedback/Feedback";
@@ -24,7 +24,7 @@ import Error from "../../Error/Error";
 function App() {
   const [showComponent, setShowComponent] = useState(true);
   const [showComponent2, setShowComponent2] = useState(false);
-  const { roomId } = useParams();
+  // const { roomId } = useParams();
   useEffect(() => {
     setInterval(() => {
       setShowComponent(!showComponent);
@@ -68,9 +68,9 @@ function App() {
             path="/thankyou"
             element={<Protectedroutes Component={Thankyou} />}
           />
-          {roomId && (
+          {/* {roomId && (
             <Route path={`/room/:roomId`} element={<h1>hello</h1>}></Route>
-          )}
+          )} */}
 
           {/* <Route path="/getques" element={<Protectedroutes Component={GetQ} />} />
           <Route path="/editq" element={<Protectedroutes Component={EditQ} />} />

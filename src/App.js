@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
-    window.innerWidth > "820" ? <User /> : <h1 className="mobile_view">use desktop!!!!</h1>
+    window.innerWidth > "820" ? <User /> : <h1 className="mobile_view"></h1>
 
       
   );
