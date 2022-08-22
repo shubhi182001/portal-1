@@ -9,6 +9,7 @@ const Thankyou = () => {
     localStorage.removeItem("testpage");
     localStorage.removeItem("cookie");
     localStorage.setItem("Appeared", true);
+    // eslint-disable-next-line
   }, []);
   return (
     <>
