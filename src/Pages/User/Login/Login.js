@@ -132,7 +132,8 @@ const Login = () => {
     } else if (login2) {
       navigate("/instructions");
     }
-  });
+    // eslint-disable-next-line    
+  },[]);
   return (
     <div className="form_body">
       <div className="logo">
