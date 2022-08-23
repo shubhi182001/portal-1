@@ -23,7 +23,6 @@ const QuestionPannel = ({
 
   const [chosenlang, setChosenlang] = useState("");
 
-  
   useEffect(() => {
     const lang = {
       cookie_token: cook,
