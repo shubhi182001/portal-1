@@ -16,6 +16,7 @@ function App() {
       setMobile(false);
     }
     console.log(mobile);
+    // eslint-disable-next-line
   }, []);
 
   return mobile === true ? <User /> : <MobileError />;
