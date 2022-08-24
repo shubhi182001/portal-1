@@ -10,6 +10,9 @@ const Thankyou = () => {
     localStorage.removeItem("cookie");
     // eslint-disable-next-line
   }, []);
+  setTimeout(()=>{
+    window.location.reload();
+  },10000);
   return (
     <>
       <div className="main">
