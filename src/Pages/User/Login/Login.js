@@ -64,10 +64,9 @@ const Login = () => {
   const validateroute1 = (routepass, routename) => {
     if (routepass === true && routename === true) {
       localStorage.setItem("login1", true);
-      
+
       navigate("/homepage");
     }
-   
   };
   const validateroute2 = (routepass, routename, appear) => {
     // console.log(appear);
@@ -97,7 +96,7 @@ const Login = () => {
 
   const Submit = async (e) => {
     e.preventDefault();
-    localStorage.removeItem('feedback')
+    localStorage.removeItem("feedback");
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
     // console.log(studentNo, password);
@@ -114,11 +113,10 @@ const Login = () => {
     let admin = result.data.isAdmin;
     // console.log(admin);
     if (admin === "true") {
-      
       validateroute1(routepass, routename);
     } else {
       let appeared = result.data.hasAppeared;
-      // console.log(appeared);
+      console.log(appeared);
       validateroute2(routepass, routename, appeared);
     }
   };
@@ -132,16 +130,16 @@ const Login = () => {
     } else if (login2) {
       navigate("/instructions");
     }
-    // eslint-disable-next-line    
-  },[]);
+    // eslint-disable-next-line
+  }, []);
   return (
     <div className="form_body">
       <div className="logo">
         <img src={Logocsi} alt="none" className="logocsi" />
       </div>
       <form className="form_container">
-        <img src={Ellipse} alt = "ellipse" className="admin_icon" />
-        <img src={Group} alt = "group"  className="admin_group" />
+        <img src={Ellipse} alt="ellipse" className="admin_icon" />
+        <img src={Group} alt="group" className="admin_group" />
         <div className="icon_container">
           <div className="icon">
             <p className="bars"></p>
