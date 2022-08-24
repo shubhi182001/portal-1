@@ -71,10 +71,10 @@ const Login = () => {
   };
   const validateroute2 = (routepass, routename, appear) => {
     // console.log(appear);
-    if (routepass === true && routename === true && appear === "true") {
+    if (routepass === true && routename === true && appear === true) {
       // localStorage.setItem('login2', false);
       navigate("/");
-    } else if (routepass === true && routename === true && appear === "false") {
+    } else if (routepass === true && routename === true && appear === false) {
       // console.log(appear);
       localStorage.setItem("login2", true);
 
