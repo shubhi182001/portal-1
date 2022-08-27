@@ -82,7 +82,7 @@ function App() {
           <Route path="/leaderboard" element={<Protectedroutes Component={Leaderboard} />} />
           <Route path="/responses" element={<Protectedroutes Component={Responses} />} />   */}
 
-          {login1 ? (
+          {login1 && (
             <>
               <Route path="/getques" element={<GetQ />} />
               <Route path="/editq" element={<EditQ />} />
@@ -95,9 +95,7 @@ function App() {
               <Route path="/leaderboard" element={<Leaderboard />} />
               <Route path="/responses" element={<Responses />} />
             </>
-          ) : (
-            " "
-          )}
+          ) }
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
