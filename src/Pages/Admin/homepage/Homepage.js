@@ -25,9 +25,16 @@ function Homepage() {
     })
     .catch(err => console.log(err));
   }
+ 
   useEffect(() => {
     getData();
+    // refreshPage();
+    // setInterval(()=>{
+    //   window.location.reload();
+    // },1000);
+    
   },[])
+  
 
   return (
       <>
