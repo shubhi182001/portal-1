@@ -82,28 +82,85 @@ const QuestionPannel = ({
         });
       setShowques(showques + 1);
       setOid("000");
-    } else if (testques[showques - 1].selectedOpt) {
-      setShowques(showques + 1);
-    } else if (oid === "000") {
-      toast.error("Select an option");
-    } else {
+    } else if (
+      showques < testques.length &&
+      testques[showques - 1].selectedOpt
+    ) {
       let qid = testques[showques - 1]._id;
       let question = testques[showques - 1].question;
+
+      let OptionId = testques[showques - 1].options.filter(
+        (option) => option.value === testques[showques - 1].selectedOpt
+      );
 
       console.log(qid);
       console.log(oid);
       console.log(choice);
       console.log(question);
       console.log(showques);
+      console.log(OptionId);
 
       const data = {
         cookie_token: cook,
         question: question,
         category: choice,
-        userAnswer: oid,
+        userAnswer: OptionId.Oid,
         Qid: qid,
         ansid: 3,
       };
+
+      await axios
+        .put("https://csiportal.herokuapp.com/ans/answer", data)
+        .then((res) => {
+          console.log(res.data);
+          isVerified = res.data.isVerified;
+          if (isVerified === false) {
+            localStorage.removeItem("instruct");
+            localStorage.removeItem("login2");
+            localStorage.removeItem("cookie");
+            navigate("/");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      setShowques(showques + 1);
+      setOid("000");
+    } else if (oid === "000" && !testques[showques - 1].selectedOpt) {
+      toast.error("Select an option");
+    } else {
+      let qid = testques[showques - 1]._id;
+      let question = testques[showques - 1].question;
+      let data, OptionId;
+      if (testques[showques - 1].selectedOpt) {
+        OptionId = testques[showques - 1].options.filter(
+          (option) => option.value === testques[showques - 1].selectedOpt
+        );
+        data = {
+          cookie_token: cook,
+          question: question,
+          category: choice,
+          userAnswer: OptionId.Oid,
+          Qid: qid,
+          ansid: 3,
+        };
+      } else {
+        data = {
+          cookie_token: cook,
+          question: question,
+          category: choice,
+          userAnswer: oid,
+          Qid: qid,
+          ansid: 3,
+        };
+      }
+
+      console.log(qid);
+      console.log(oid);
+      console.log(choice);
+      console.log(question);
+      console.log(showques);
+      console.log(OptionId);
 
       await axios
         .put("https://csiportal.herokuapp.com/ans/answer", data)
@@ -176,9 +233,48 @@ const QuestionPannel = ({
         setOid("000");
       } else if (oid === "000") {
         if (
-          testques[showques - 1].flagMark === 5 ||
-          testques[showques - 1].flagMark === 1 ||
+          testques[showques - 1].selectedOpt &&
           testques[showques - 1].flagMark === 3
+        ) {
+          let qid = testques[showques - 1]._id;
+          let question = testques[showques - 1].question;
+          let data, OptionId;
+          OptionId = testques[showques - 1].options.filter(
+            (option) => option.value === testques[showques - 1].selectedOpt
+          );
+          data = {
+            cookie_token: cook,
+            question: question,
+            category: choice,
+            userAnswer: OptionId.Oid,
+            Qid: qid,
+            ansid: 1,
+          };
+          await axios
+            .put("https://csiportal.herokuapp.com/ans/answer", data)
+            .then((res) => {
+              console.log(res.data);
+              isVerified = res.data.isVerified;
+              if (isVerified === false) {
+                localStorage.removeItem("instruct");
+                localStorage.removeItem("login2");
+                localStorage.removeItem("cookie");
+                navigate("/");
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          setShowques(showques + 1);
+          console.log(qid);
+          console.log(oid);
+          console.log(choice);
+          console.log(question);
+          console.log(showques);
+          setOid("000");
+        } else if (
+          testques[showques - 1].flagMark === 5 ||
+          testques[showques - 1].flagMark === 1
         ) {
           setShowques(showques + 1);
         } else {
@@ -266,8 +362,7 @@ const QuestionPannel = ({
       } else if (oid === "000") {
         if (
           testques[showques - 1].flagMark === 5 ||
-          testques[showques - 1].flagMark === 1 ||
-          testques[showques - 1].flagMark === 3
+          testques[showques - 1].flagMark === 1
         ) {
           setShowques(1);
           setChoice(
@@ -286,14 +381,33 @@ const QuestionPannel = ({
         } else {
           let qid = testques[showques - 1]._id;
           let question = testques[showques - 1].question;
-          const data = {
-            cookie_token: cook,
-            question: question,
-            category: choice,
-            userAnswer: oid,
-            Qid: qid,
-            ansid: oid === "000" ? 5 : 1,
-          };
+          let data, OptionId;
+
+          if (
+            testques[showques - 1].selectedOpt &&
+            testques[showques - 1].flagMark === 3
+          ) {
+            OptionId = testques[showques - 1].options.filter(
+              (option) => option.value === testques[showques - 1].selectedOpt
+            );
+            data = {
+              cookie_token: cook,
+              question: question,
+              category: choice,
+              userAnswer: OptionId.Oid,
+              Qid: qid,
+              ansid: 1,
+            };
+          } else {
+            data = {
+              cookie_token: cook,
+              question: question,
+              category: choice,
+              userAnswer: oid,
+              Qid: qid,
+              ansid: oid === "000" ? 5 : 1,
+            };
+          }
           await axios
             .put("https://csiportal.herokuapp.com/ans/answer", data)
             .then((res) => {
