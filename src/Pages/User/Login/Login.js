@@ -12,6 +12,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 const Login = () => {
@@ -70,8 +72,9 @@ const Login = () => {
   };
   const validateroute2 = (routepass, routename, appear) => {
     // console.log(appear);
-    if (routepass === true && routename === true && appear === "true") {
+    if (routepass === true && routename === true && appear === true) {
       // localStorage.setItem('login2', false);
+      toast.error("User already completed the test!!!");
       navigate("/");
     } else if (routepass === true && routename === true && appear === false) {
       // console.log(appear);
@@ -221,6 +224,7 @@ const Login = () => {
       <div className="img">
         <img src={computers} alt="none" className="computers" />
       </div>
+      <ToastContainer />
     </div>
   );
 };

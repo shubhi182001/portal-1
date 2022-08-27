@@ -32,6 +32,7 @@ function App() {
 
     // eslint-disable-next-line
   }, []);
+  
 
   useEffect(() => {
     setInterval(() => {
@@ -68,20 +69,6 @@ function App() {
             path="/thankyou"
             element={<Protectedroutes Component={Thankyou} />}
           />
-
-
-
-          {/* <Route path="/getques" element={<Protectedroutes Component={GetQ} />} />
-          <Route path="/editq" element={<Protectedroutes Component={EditQ} />} />
-          <Route path="/getfeedbackques" element={<Protectedroutes Component={Getfeedback} />} />
-          <Route path="/editf" element={<Protectedroutes Component={Editf} />} />
-          <Route path="/getcandidate" element={<Protectedroutes Component={GetCandidate} />} />
-          <Route path="/addques" element={<Protectedroutes Component={AddQuestions} />} />
-          <Route path="/addfeedbackques" element={<Protectedroutes Component={AddFeedback} />} />
-          <Route path="/addcandidate" element={<Protectedroutes Component={AddCandidate} />} />
-          <Route path="/leaderboard" element={<Protectedroutes Component={Leaderboard} />} />
-          <Route path="/responses" element={<Protectedroutes Component={Responses} />} />   */}
-
           {login1 ? (
             <>
               <Route path="/getques" element={<GetQ />} />
