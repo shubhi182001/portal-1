@@ -37,7 +37,7 @@ function App() {
   useEffect(() => {
     setInterval(() => {
       setShowComponent2(!showComponent2);
-    }, 4000);
+    }, 2000);
 
     // eslint-disable-next-line
   }, []);
