@@ -22,7 +22,7 @@ const Test = () => {
     // eslint-disable-next-line
   }, [choice, showques]);
 
-  const url = `https://csiportal.herokuapp.com/question/category/${choice}`;
+  const url = `https://csiportal.herokuapp.com/question/shuffle/${choice}`;
   const choiceques = async () => {
     const data = await axios.get(url);
     console.log(data);
