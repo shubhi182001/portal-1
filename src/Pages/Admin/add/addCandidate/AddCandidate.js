@@ -14,7 +14,7 @@ function AddCandidate() {
   const [rollNum, setrollNum] = useState("");
   const [mobileNum, setmobileNum] = useState("");
   const [email, setemail] = useState("");
- 
+  const [domain, setDomain] = useState("");
   const [branch, setbranch] = useState("");
   const [year, setyear] = useState("");
   const [gender, setgender] = useState("");
@@ -121,6 +121,7 @@ function AddCandidate() {
         branch: branch,
         gender: gender,
         isHosteler: Boolean(isHosteler),
+        domain: domain
 
         // ReCAPTCHA
       };
@@ -155,7 +156,7 @@ function AddCandidate() {
         branch &&
         year &&
         studentNum &&
-        isHosteler
+        isHosteler && domain
       )
     ) {
       window.alert("Enter Data in all Fields");
@@ -437,7 +438,19 @@ function AddCandidate() {
             </div>
 
             <div className="row">
-              <div className="col-lg-6"></div>
+              <div className="col-lg-6">    <TextField
+                    required="required"
+                    variant="outlined"
+                    size="small"
+                    type="text"
+                    className="inputcandAdd domain"
+                    label="domain"
+                    name="domain"
+                    value={domain}
+                    onChange={(e) => setDomain(e.target.value)}
+                    
+                    focused={focused.toString()}
+                  /></div>
               <div className="col-lg-6">
                 <div className="inputCandidate">
                   <TextField
@@ -456,6 +469,7 @@ function AddCandidate() {
                 </div>
               </div>
             </div>
+        
             <button
               type="button"
               className="btn btnregx buttonPositon"
