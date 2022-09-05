@@ -25,7 +25,7 @@ const Test = () => {
 
   const url = `https://csiportal.herokuapp.com/question/shuffle/${choice}`;
   const choiceques = async () => {
-    const data = await axios.put(url,{
+    const data = await axios.get(url,{
       cookie_token:cook,
     });
     console.log(data);
