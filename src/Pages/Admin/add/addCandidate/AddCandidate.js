@@ -176,7 +176,7 @@ function AddCandidate() {
 
   const validateemail = (value) => {
     const errors = {};
-    let regex = new RegExp("[a-z0-9]+@");
+    let regex = new RegExp("[a-z0-9]+@akgec.ac.in");
 
     if (!value) {
       errors.email = "email is required!";
@@ -475,13 +475,15 @@ function AddCandidate() {
             </div>
 
             <div className="row">
-              <div className="col-lg-6">      <FormControl fullWidth size="small">
-                <InputLabel id="demo-simple-select-label">Domain</InputLabel>
+              <div className="col-lg-6">      <FormControl fullWidth size="small"
+              className="inputCandidate">
+                <InputLabel id="demo-simple-select-label" className="inputCandidate">Domain</InputLabel>
                 <Select
                 sx={{ width: { sm: 200, md: 210 } }}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={domain}
+                  className="inputCandidate"
                   label="Domain"
                   onChange={(e) => setDomain(e.target.value)}
                   
@@ -503,6 +505,7 @@ function AddCandidate() {
     aria-labelledby="demo-radio-buttons-group-label"
     defaultValue="false"
     name="radio-buttons-group"
+    row
   >
     <FormControlLabel value="true" control={<Radio />} label="true" />
     <FormControlLabel value="false" control={<Radio />} label="false" />
