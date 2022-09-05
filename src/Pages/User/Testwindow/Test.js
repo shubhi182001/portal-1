@@ -19,18 +19,20 @@ const Test = () => {
 
   useEffect(() => {
     choiceques();
- 
+
     // eslint-disable-next-line
   }, [choice, showques]);
 
   const url = `https://csiportal.herokuapp.com/question/shuffle/${choice}`;
   const choiceques = async () => {
-    const data = await axios.put(url,{
-      cookie_token:cook,
-    });
-    console.log(data);
-    setTestques(data.data.result);
-    setTestOptions(data.data.result[showques - 1].options);
+    try {
+      const data = await axios.get(url);
+      console.log(data);
+      setTestques(data.data.result);
+      setTestOptions(data.data.result[showques - 1].options);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

@@ -16,7 +16,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
+
 const Login = () => {
+  const handle = useFullScreenHandle();
+
   const [studentNo, setStudentNo] = useState("");
   const [password, setPassword] = useState("");
   const [eye, setEye] = useState(false);
@@ -99,6 +103,7 @@ const Login = () => {
 
   const Submit = async (e) => {
     e.preventDefault();
+    handle.enter();
     localStorage.removeItem("feedback");
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
@@ -136,6 +141,8 @@ const Login = () => {
     // eslint-disable-next-line
   }, []);
   return (
+     
+
     <div className="form_body">
       <div className="logo">
         <img src={Logocsi} alt="none" className="logocsi" />
@@ -215,6 +222,7 @@ const Login = () => {
               variant="contained"
               size="medium"
               onClick={Submit}
+
             >
               Login
             </Button>
@@ -226,6 +234,7 @@ const Login = () => {
       </div>
       <ToastContainer />
     </div>
+   
   );
 };
 
