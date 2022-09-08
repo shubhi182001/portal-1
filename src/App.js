@@ -12,9 +12,25 @@ function App() {
     } else if (window.innerWidth < "1000") {
       setMobile(false);
     }
-    console.log(mobile);
+
+
+    document.body.requestFullscreen();
+
+    // console.log(mobile);
     // eslint-disable-next-line
   }, []);
+  const [isFullscreen, setIsFullscreen] = React.useState(false);
+
+// Watch for fullscreenchange
+useEffect(() => {
+  function onFullscreenChange() {
+    setIsFullscreen(Boolean(document.body));
+  }
+        
+  document.addEventListener('fullscreenchange', onFullscreenChange);
+
+  return () => document.removeEventListener('fullscreenchange', onFullscreenChange);
+}, []);
 
   return mobile === true ? <User /> : <MobileError />;
 }
