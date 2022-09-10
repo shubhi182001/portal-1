@@ -77,7 +77,8 @@ const Feedback = () => {
     if (login) {
       navigate("/thankyou");
     }
-  }, [navigate]);
+    // eslint-disable-next-line
+  }, []);
   return (
     <>
       <div className="main">

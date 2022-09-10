@@ -8,8 +8,11 @@ const Thankyou = () => {
     localStorage.removeItem("instruct");
     localStorage.removeItem("testpage");
     localStorage.removeItem("cookie");
-    localStorage.setItem("Appeared", true);
+    // eslint-disable-next-line
   }, []);
+  setTimeout(()=>{
+    window.location.reload();
+  },10000);
   return (
     <>
       <div className="main">

@@ -15,9 +15,9 @@ function Cardf({ques, reload}) {
         })
     )
 
-    const handleChange = (e) => {
-        e.preventDefault();
-    }
+    // const handleChange = (e) => {
+    //     e.preventDefault();
+    // }
 
     const openEditPage = () =>{
         navigate('/editf', {

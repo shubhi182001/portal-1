@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './addquestions.css'
 import axios from "axios";
 import Navbar from '../../navbar/Navbar'
-import { Checkbox } from '@mui/material';
+// import { Checkbox } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import $ from 'jquery' 
 
@@ -92,7 +92,7 @@ const AddQuestions = () => {
                     console.log(err);
                 })
         } else {
-            if(options.length==0){
+            if(options.length===0){
                 window.alert("Add options");
             }
             if(options.length>0 && options.length<=4){

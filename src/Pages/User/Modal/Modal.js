@@ -38,14 +38,16 @@ const Modal = ({ setShow }) => {
       }
     };
     document.body.addEventListener("click", close);
-
+ 
     let testpage = localStorage.getItem("testpage");
 
     if (testpage) {
       navigate("/feedback");
     }
     return () => document.body.removeEventListener("click", close);
-  }, []);
+
+  }, [setShow,navigate]);
+
 
   return (
     <div className="modalbackground">

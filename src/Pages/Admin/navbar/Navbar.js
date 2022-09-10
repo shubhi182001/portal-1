@@ -1,7 +1,7 @@
 import React from 'react'
 import "./navbar.css"
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import {Link} from "react-router-dom"
+// import {Link} from "react-router-dom"
 import logo from "../../../Images/Admin/logo.png" 
 import { useNavigate } from "react-router-dom";
 
@@ -20,6 +20,9 @@ function Navbar() {
     localStorage.removeItem('Appeared');   
     navigate('/');
   }
+  function refreshPage() {
+    window.location.reload(false);
+  }
   return (
     <>
     <nav className='navbar'>
@@ -36,26 +39,26 @@ function Navbar() {
             <div className="but dropdown">
               <button className="dropbtn">GET</button>
               <div className="dropdown-content">
-                <a href="/getques">Get Questions</a>
+                <a href="/getques" onClick={refreshPage}>Get Questions</a>
                 <hr style={{color:"white"}}/>
-                <a href="/getfeedbackques">Get Feedback Questions</a>
+                <a href="/getfeedbackques" onClick={refreshPage}>Get Feedback Questions</a>
                 <hr style={{color:"white"}}/>
-                <a href="/getcandidate">Get Candidates</a>
+                <a href="/getcandidate" onClick={refreshPage}>Get Candidates</a>
               </div>
             </div>
             <div className="but dropdown">
               <button className="dropbtn">ADD</button>
               <div className="dropdown-content">
-                <a href="/addques">Add Questions</a>
+                <a href="/addques" onClick={refreshPage}>Add Questions</a>
                 <hr style={{color:"white"}}/>
-                <a href="/addfeedbackques">Add Feedback Questions</a>
+                <a href="/addfeedbackques" onClick={refreshPage}>Add Feedback Questions</a>
                 <hr style={{color:"white"}}/>
-                <Link to="/addcandidate">Add Candidates</Link>
+                <a href ="/addcandidate" onClick={refreshPage}>Add Candidates</a>
               </div>
             </div>
-            <Link to="/leaderboard">
-            <button  className="but leaderboard"><p style={{fontSize:"22px"}} className='buttonText'>LEADERBOARD</p></button>
-            </Link>
+            <a href ="/leaderboard">
+            <button  className="but leaderboard" onClick={refreshPage} ><p style={{fontSize:"22px"}} className='buttonText'>LEADERBOARD</p></button>
+            </a>
             <button className="but dropdown" onClick={logout}>
             <PowerSettingsNewIcon className="but logoutBtn" style={{color:'white',  fontSize:28 }}/>
             </button>

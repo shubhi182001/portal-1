@@ -18,7 +18,8 @@ const Instruction = () => {
     if (instruct) {
       navigate("/testwindow");
     }
-  });
+    // eslint-disable-next-line  
+  },[]);
 
   const handlelangchoice = (val) => {
     setChosenlang(val);

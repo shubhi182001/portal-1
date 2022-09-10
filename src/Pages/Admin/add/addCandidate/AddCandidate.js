@@ -3,6 +3,14 @@ import "./Addcandidate.css";
 import "../../../User/Login/Login.css";
 import axios from "axios";
 import Navbar from "../../navbar/Navbar";
+import Radio from "@mui/material/Radio";
+import { FormControl } from "@mui/material";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from "@mui/material/FormLabel";
+import MenuItem from "@mui/material/MenuItem";
+import RadioGroup from "@mui/material/RadioGroup/RadioGroup";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import Ellipse from "../../../../Images/User/Ellipse.svg"
 import Group from "../../../../Images/User/Group.svg"
@@ -14,20 +22,20 @@ function AddCandidate() {
   const [rollNum, setrollNum] = useState("");
   const [mobileNum, setmobileNum] = useState("");
   const [email, setemail] = useState("");
-  const [OTP, setOTP] = useState("");
+  const [domain, setDomain] = useState("");
   const [branch, setbranch] = useState("");
   const [year, setyear] = useState("");
   const [gender, setgender] = useState("");
   const [isHosteler, setisHosteler] = useState("");
-  const [flag, setFlag] = useState(0);
+  // const [flag, setFlag] = useState(0);
   // const Navigate = useNavigate();
   var checkStatus = false;
   var checkStatusAll = false;
 
-  const [formErrors, setFormErrors] = useState({});
+  // const [formErrors, setFormErrors] = useState({});
   const [formErrorsemail, setFormErrorsemail] = useState({});
   const [formErrorsName, setformErrorsName] = useState({});
-  const [formErrorsOTP, setformErrorsOTP] = useState({});
+  // const [formErrorsOTP, setformErrorsOTP] = useState({});
 
   const [formErrorsRoll, setformErrorsRoll] = useState({});
 
@@ -35,7 +43,7 @@ function AddCandidate() {
   // const [formErrorsyear, setformErrorsyear] = useState({});
   const [formErrorsbranch, setformErrorsbranch] = useState({});
   const [formErrorsmobileNum, setformErrorsmobileNum] = useState({});
-  const [formErrorsgender, setformErrorsgender] = useState({});
+  const [formErrorsgender, setformErrorsGender] = useState({});
 
   const [isSubmit, setIsSubmit] = useState(false);
   const [focused, setFocused] = useState(false);
@@ -44,17 +52,17 @@ function AddCandidate() {
 
   useEffect(() => {
     // console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
+    if (Object.keys(formErrorsemail).length === 0 && isSubmit) {
       // console.log(formdata);
     }
   }, [
-    formErrors,
+    
     formErrorsmobileNum,
     formErrorsRoll,
     formErrorsemail,
     isSubmit,
     formErrorsstudentNum,
-    formErrorsOTP,
+    
   ]);
 
   const handleFocusemail = (e) => {
@@ -80,10 +88,18 @@ function AddCandidate() {
     setFocused(true);
     setformErrorsstudentNum(validatestudentNum(studentNum));
   };
-  const handleFocusOTP = (e) => {
-    setOTP(true);
-    setformErrorsOTP(validateOTP(OTP));
-  };
+  const handleFocusBranch =(e)=>{
+    setFocused(true);
+    setformErrorsbranch(validateBranch);
+  }
+  const handleFocusGender =(e)=>{
+    setFocused(true);
+    setformErrorsGender(validateGender);
+  }
+  // const handleFocusOTP = (e) => {
+  //   setOTP(true);
+  //   setformErrorsOTP(validateOTP(OTP));
+  // };
   const submit = async (e) => {
     e.preventDefault();
     setformErrorsName(validateName(name));
@@ -92,10 +108,10 @@ function AddCandidate() {
     setformErrorsRoll(validateRoll(rollNum));
     setformErrorsstudentNum(validatestudentNum(studentNum));
     setformErrorsRoll(validateRoll(rollNum));
-    setformErrorsOTP(validateOTP(OTP));
+    
     setIsSubmit(true);
 
-    console.log(flag);
+    console.log();
     if (
       name &&
       rollNum &&
@@ -105,7 +121,7 @@ function AddCandidate() {
     ) {
       const newEntry = {
         name: name,
-        rollNum: String(rollNum),
+        rollNum: Number(rollNum),
         mobileNum: Number(mobileNum),
         email: email,
         studentNum: Number(studentNum),
@@ -113,6 +129,7 @@ function AddCandidate() {
         branch: branch,
         gender: gender,
         isHosteler: Boolean(isHosteler),
+        domain: domain
 
         // ReCAPTCHA
       };
@@ -126,11 +143,7 @@ function AddCandidate() {
         .then((res) => {
           console.log(res.data);
           if (res.status === 200) {
-            if (flag === 1) {
-              // Navigate("/confirm");
-            } else {
-              window.alert("captcha Required!!!");
-            }
+           window.alert("user added successfully");
           }
         })
         .catch((err) => {
@@ -139,11 +152,7 @@ function AddCandidate() {
           window.alert("Invalid Credentials or user already exists!!!");
         });
 
-      // axios
-      //   .post("https://nameless-citadel-14148.herokuapp.com/api/users/captcha",ReCAPTCHA)
-      //   .then((resp) => {
-      //     console.log(resp.data);
-      //   })
+    
     } else if (!(name && rollNum && mobileNum && email)) {
       window.alert("Enter Data in all Fields!!!");
     } else if (
@@ -155,14 +164,14 @@ function AddCandidate() {
         branch &&
         year &&
         studentNum &&
-        isHosteler
-      ) &&
-      flag === 1
+        isHosteler && domain
+      )
     ) {
       window.alert("Enter Data in all Fields");
-    } else if (flag === 0) {
-      window.alert("Captcha Required!!!");
-    }
+    } 
+    // else if (flag === 0) {
+    //   window.alert("Captcha Required!!!");
+    // }
   };
 
   const validateemail = (value) => {
@@ -239,14 +248,21 @@ function AddCandidate() {
     return errors;
   };
 
-  const validateOTP = (value) => {
+  const validateBranch = (value) => {
     const errors = {};
     if (!value) {
-      errors.OTP = "OTP IS REQUIRED!!!";
+      errors.branch = "BRANCH IS REQUIRED!!!";
     }
     return errors;
   };
 
+  const validateGender = (value) => {
+    const errors = {};
+    if (!value) {
+      errors.gender = "GENDER IS REQUIRED!!!";
+    }
+    return errors;
+  };
   return (
     <>
     <div className="admin-main addc">
@@ -258,14 +274,15 @@ function AddCandidate() {
           </div>
 
           <form action="" className="CandidadateAdd">
-          <img src={Ellipse} className="iconadmin " />
-      <img src={Group} className="groupadmin " />
+          <img src={Ellipse} alt ="ellipse" className="iconadmin " />
+      <img src={Group} alt="group" className="groupadmin " />
             <div className="row">
               <div className="col-lg-6">
                 {/* NAMe */}
 
                 <div className="inputCandidate">
                   <TextField
+                   autoComplete="off"
                     required="required"
                     variant="outlined"
                     size="small"
@@ -288,6 +305,7 @@ function AddCandidate() {
               <div className="col-lg-6">
                 <div className="inputCandidate">
                   <TextField
+                   autoComplete="off"
                     required="required"
                     variant="outlined"
                     size="small"
@@ -311,6 +329,7 @@ function AddCandidate() {
               <div className="col-lg-6">
                 <div className="inputCandidate">
                   <TextField
+                   autoComplete="off"
                     required="required"
                     variant="outlined"
                     size="small"
@@ -330,6 +349,7 @@ function AddCandidate() {
               <div className="col-lg-6">
                 <div className="inputCandidate">
                   <TextField
+                   autoComplete="off"
                     required="required"
                     variant="outlined"
                     size="small"
@@ -350,19 +370,29 @@ function AddCandidate() {
             <div className="row">
               <div className="col-lg-6">
                 <div className="inputCandidate">
-                  <TextField
-                    required="required"
+                <FormControl fullWidth size="small">
+                <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+                <Select
+                sx={{ width: { sm: 200, md: 210 } }}
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={gender}
+                  autoComplete="off"
+                  required="required"
                     variant="outlined"
                     size="small"
-                    type="text"
-                    className="inputcandAdd"
-                    label="gender"
-                    name="gender"
-                    value={gender}
-                    onChange={(e) => setgender(e.target.value)}
-                    onBlur={handleFocusmobileNum}
-                    focused={focused.toString()}
-                  />
+                  label="Gender"
+                  onChange={(e) => setgender(e.target.value)}
+                  onBlur={handleFocusGender}
+                  focused={focused.toString()}
+
+                >
+                  <MenuItem value={"Male"}>Male</MenuItem>
+                  <MenuItem value={"Female"}>Female</MenuItem>
+                  <MenuItem value={"Other"}>Other</MenuItem>
+                  
+                </Select>
+                </FormControl>
                 </div>
                 <span className="error_msg">{formErrorsgender.gender}</span>
               </div>
@@ -370,6 +400,7 @@ function AddCandidate() {
               <div className="col-lg-6">
                 <div className="inputCandidate">
                   <TextField  
+                   autoComplete="off"
                     required="required"
                     variant="outlined"
                     size="small"
@@ -393,10 +424,11 @@ function AddCandidate() {
               <div className="col-lg-6">
                 <div className="inputCandidate">
                   <TextField
+                   autoComplete="off"
                     required="required"
                     variant="outlined"
                     size="small"
-                    type="text"
+                    type="number"
                     className="inputcandAdd"
                     label="year"
                     name="year"
@@ -406,49 +438,83 @@ function AddCandidate() {
                     focused={focused.toString()}
                   />
                 </div>
-                <span className="error_msg">{formErrors.year}</span>
+                <span className="error_msg">{formErrorsbranch.year}</span>
               </div>
 
               <div className="col-lg-6">
                 <div className="inputCandidate">
-                  <TextField
-                    required="required"
-                    variant="outlined"
-                    size="small"
-                    type="text"
-                    className="inputcandAdd"
-                    label="branch"
-                    name="branch"
-                    value={branch}
-                    onChange={(e) => setbranch(e.target.value)}
-                     onBlur={handleFocusemail}
-                     focused={focused.toString()}
-                  />
+                <FormControl fullWidth size="small">
+                <InputLabel id="demo-simple-select-label">Branch</InputLabel>
+                <Select
+                  sx={{ width: { sm: 200, md: 210 } }}
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={branch}
+                  autoComplete="off"
+                  label="Branch"
+                  onChange={(e) => setbranch(e.target.value)}
+                  onBlur={handleFocusBranch}
+                  focused={focused.toString()}
+
+                >
+                  <MenuItem value={"CSE"}>CSE</MenuItem>
+                  <MenuItem value={"CSE(DS)"}>CSE(DS)</MenuItem>
+                  <MenuItem value={"CSE(AI&ML)"}>CSE(AI&ML)</MenuItem>
+                  <MenuItem value={"CS"}>CS</MenuItem>
+                  <MenuItem value={"CS&IT"}>CS&IT</MenuItem>
+                  <MenuItem value={"IT"}>IT</MenuItem>
+                  <MenuItem value={"ECE"}>ECE</MenuItem>
+                  <MenuItem value={"EN"}>EN</MenuItem>
+                  <MenuItem value={"ME"}>ME</MenuItem>
+                  <MenuItem value={"CIVIL"}>CIVIL</MenuItem>
+                </Select>
+                </FormControl>
                 </div>
                 <span className="error_msg messages_err">{formErrorsbranch.branch}</span>
               </div>
             </div>
 
             <div className="row">
-              <div className="col-lg-6"></div>
+              <div className="col-lg-6">      <FormControl fullWidth size="small"
+              className="inputCandidate">
+                <InputLabel id="demo-simple-select-label" className="inputCandidate">Domain</InputLabel>
+                <Select
+                sx={{ width: { sm: 200, md: 210 } }}
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={domain}
+                  className="inputCandidate"
+                  label="Domain"
+                  onChange={(e) => setDomain(e.target.value)}
+                  
+
+                >
+                  <MenuItem value={"Technical"}>Technical</MenuItem>
+                  <MenuItem value={"Manegerial"}>Manegerial</MenuItem>
+                  <MenuItem value={"Designing"}>Designing</MenuItem>
+                  
+                </Select>
+                </FormControl></div>
               <div className="col-lg-6">
                 <div className="inputCandidate">
-                  <TextField
-                    required="required"
-                    variant="outlined"
-                    size="small"
-                    type="boolean"
-                    className="inputcandAdd"
-                    label="isHosteler"
-                    name="isHosteler"
-                    value={isHosteler}
-                    onChange={(e) => setisHosteler(e.target.value)}
-                     onBlur={handleFocusemail}
-                     focused={focused.toString()}
-                  />
+                <FormControl>
+  <FormLabel id="demo-radio-buttons-group-label"
+  value={isHosteler}
+   onChange={(e) => setisHosteler(e.target.value)}>isHosteler</FormLabel>
+  <RadioGroup
+    aria-labelledby="demo-radio-buttons-group-label"
+    defaultValue="false"
+    name="radio-buttons-group"
+    row
+  >
+    <FormControlLabel value="true" control={<Radio />} label="true" />
+    <FormControlLabel value="false" control={<Radio />} label="false" />
+  </RadioGroup>
+</FormControl>
                 </div>
               </div>
             </div>
+        
             <button
               type="button"
               className="btn btnregx buttonPositon"

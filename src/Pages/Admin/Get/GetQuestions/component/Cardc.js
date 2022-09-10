@@ -31,25 +31,26 @@ function Cardc({ques, reload}) {
     )
 
   return (
-    <div className="cardContainer">
-    <div className='edit-Card'>
+    <React.Fragment key = {ques._id}>
+    <div className="cardContainer" key = {ques._id}>
+    <div className='edit-Card' key = {ques._id}>
             <div className="cardElements">
               <p className='question_text'>Question</p>
               <p className="question-field"  >{ques.question}</p>
               <p className='category_text'>Category</p>
               <p className='category' >{ques.category}</p>
               <p className='options_text'>Options</p>
-                
+                {/* {console.log(ques.options[0].Oid.length())} */}
                 {ques.options && ques.options.length?
                     ques.options.map((o)=>(
-                        <>
+                        <React.Fragment key= {o.Oid}>
                         <li key={o.Oid}>
-                        <div className="Gopt-list">
+                        <div className="Gopt-list" >
                         <input type="Checkbox" checked={o.isCorrect} className="Ginput" value={o.value} readOnly name='opt'   />
-                        <span className="Ginputval">{o.value}</span>
+                        <span  className="Ginputval">{o.value}</span>
                         </div>
                         </li>
-                        </>
+                        </React.Fragment>
                     )): null
                 }
                 
@@ -65,6 +66,7 @@ function Cardc({ques, reload}) {
           </div>
         </div>
         </div>
+        </React.Fragment>
   )
 }
 
