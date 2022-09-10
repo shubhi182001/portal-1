@@ -16,11 +16,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 const Login = () => {
-  const handle = useFullScreenHandle();
-
   const [studentNo, setStudentNo] = useState("");
   const [password, setPassword] = useState("");
   const [eye, setEye] = useState(false);
@@ -103,30 +100,36 @@ const Login = () => {
 
   const Submit = async (e) => {
     e.preventDefault();
-    handle.enter();
     localStorage.removeItem("feedback");
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
     // console.log(studentNo, password);
-    const data = {
-      studentNum: +studentNo,
-      password: password,
-    };
-    const result = await axios.post(
-      "https://csiportal.herokuapp.com/login",
-      data
-    );
-    console.log(result.data);
-    localStorage.setItem("cookie", result.data.cookie_token);
-    let admin = result.data.isAdmin;
-    // console.log(admin);
-    if (admin === "true") {
-      validateroute1(routepass, routename);
-    } else {
-      let appeared = result.data.hasAppeared;
-      console.log(appeared);
-      validateroute2(routepass, routename, appeared);
+    if(studentNo && password)
+    {
+      const data = {
+        studentNum: +studentNo,
+        password: password,
+      };
+      const result = await axios.post(
+        "https://csiportal.herokuapp.com/login",
+        data
+      );
+      console.log(result.data);
+      localStorage.setItem("cookie", result.data.cookie_token);
+      let admin = result.data.isAdmin;
+      // console.log(admin);
+      if (admin === "true") {
+        validateroute1(routepass, routename);
+      } else {
+        let appeared = result.data.hasAppeared;
+        console.log(appeared);
+        validateroute2(routepass, routename, appeared);
+      }
     }
+    else{
+      toast.error("complete all fields");
+    }
+   
   };
   const navigate = useNavigate();
   useEffect(() => {
@@ -141,8 +144,6 @@ const Login = () => {
     // eslint-disable-next-line
   }, []);
   return (
-     
-
     <div className="form_body">
       <div className="logo">
         <img src={Logocsi} alt="none" className="logocsi" />
@@ -222,7 +223,6 @@ const Login = () => {
               variant="contained"
               size="medium"
               onClick={Submit}
-
             >
               Login
             </Button>
@@ -234,7 +234,6 @@ const Login = () => {
       </div>
       <ToastContainer />
     </div>
-   
   );
 };
 
