@@ -14,15 +14,13 @@ function Cardr({ quesData }) {
     if(quesData.ansid === 1){
       return "Question Answered"
     }
-    else if(quesData.ansid === 2){
-      return "Not Answered"
+    else if(quesData.ansid === 2 || quesData.ansid=== 5){
+      return "Visited but not Answered"
     }
     else if(quesData.ansid === 3){
       return "Answered and Marked for Review"
     }
-    else if(quesData.ansid === 4){
-      return "Not Answerd and Marked for Review "
-    }
+    
 
   }
   return (
@@ -37,7 +35,7 @@ function Cardr({ quesData }) {
       
     </div>
     <div className="quest-field">
-    <span className="quest-field"  >Answers<div className='bluedetails'>{quesData.userAnswer}</div></span>
+    <span className="quest-field"  >Answer<div className='bluedetails'>{quesData.selectedOpt?quesData.selectedOpt:"N/A"}</div></span>
      
     </div>
     <div className="quest-field">
