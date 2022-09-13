@@ -4,6 +4,7 @@ import "./Sidebar.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../../../../Components/ContextProvider";
+import { TailSpin } from "react-loader-spinner";
 const Sidebar = ({ testques, setShow, setShowques, show }) => {
   const { setOid } = useStateContext();
   const [hours, setHours] = useState("");
@@ -109,27 +110,38 @@ const Sidebar = ({ testques, setShow, setShowques, show }) => {
         <div className={show ? "time_head2" : "time_head1"}>Questions</div>
 
         <div className={show ? "test_btn2" : "test_btn1"}>
-          {sidebarbtn.map((i, index) => (
-            <button
-              className={
-                testques[i - 1].flagMark === 2
-                  ? "sidebar_button"
-                  : testques[i - 1].flagMark === 1
-                  ? "save_next"
-                  : testques[i - 1].flagMark === 3
-                  ? "mark_review"
-                  : testques[i - 1].flagMark === 5
-                  ? "not_answered"
-                  : "not_visited"
-              }
-              key={index}
-              onClick={() => {
-                handleoptions(i);
-              }}
-            >
-              {i}
-            </button>
-          ))}
+          {testques[0] ? (
+            sidebarbtn.map((i, index) => (
+              <button
+                className={
+                  testques[i - 1].ans_flagRes.flag === 2
+                    ? "sidebar_button"
+                    : testques[i - 1].ans_flagRes.flag === 1
+                    ? "save_next"
+                    : testques[i - 1].ans_flagRes.flag === 3
+                    ? "mark_review"
+                    : testques[i - 1].ans_flagRes.flag === 5
+                    ? "not_answered"
+                    : "not_visited"
+                }
+                key={index}
+                onClick={() => {
+                  handleoptions(i);
+                }}
+              >
+                {i}
+              </button>
+            ))
+          ) : (
+            <TailSpin
+              height="80"
+              width="80"
+              color="#db9cff"
+              ariaLabel="tail-spin-loading"
+              radius="1"
+              visible={true}
+            />
+          )}
         </div>
       </div>
       <div className="side_footer">

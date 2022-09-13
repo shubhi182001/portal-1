@@ -12,8 +12,11 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 const Login = () => {
   const [studentNo, setStudentNo] = useState("");
   const [password, setPassword] = useState("");
@@ -70,8 +73,9 @@ const Login = () => {
   };
   const validateroute2 = (routepass, routename, appear) => {
     // console.log(appear);
-    if (routepass === true && routename === true && appear === "true") {
+    if (routepass === true && routename === true && appear === true) {
       // localStorage.setItem('login2', false);
+      toast.error("User already completed the test!!!");
       navigate("/");
     } else if (routepass === true && routename === true && appear === false) {
       // console.log(appear);
@@ -100,25 +104,32 @@ const Login = () => {
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
     // console.log(studentNo, password);
-    const data = {
-      studentNum: +studentNo,
-      password: password,
-    };
-    const result = await axios.post(
-      "https://csiportal.herokuapp.com/login",
-      data
-    );
-    console.log(result.data);
-    localStorage.setItem("cookie", result.data.cookie_token);
-    let admin = result.data.isAdmin;
-    // console.log(admin);
-    if (admin === "true") {
-      validateroute1(routepass, routename);
-    } else {
-      let appeared = result.data.hasAppeared;
-      console.log(appeared);
-      validateroute2(routepass, routename, appeared);
+    if(studentNo && password)
+    {
+      const data = {
+        studentNum: +studentNo,
+        password: password,
+      };
+      const result = await axios.post(
+        "https://csiportal.herokuapp.com/login",
+        data
+      );
+      console.log(result.data);
+      localStorage.setItem("cookie", result.data.cookie_token);
+      let admin = result.data.isAdmin;
+      // console.log(admin);
+      if (admin === "true") {
+        validateroute1(routepass, routename);
+      } else {
+        let appeared = result.data.hasAppeared;
+        console.log(appeared);
+        validateroute2(routepass, routename, appeared);
+      }
     }
+    else{
+      toast.error("complete all fields");
+    }
+   
   };
   const navigate = useNavigate();
   useEffect(() => {
@@ -221,6 +232,7 @@ const Login = () => {
       <div className="img">
         <img src={computers} alt="none" className="computers" />
       </div>
+      <ToastContainer />
     </div>
   );
 };

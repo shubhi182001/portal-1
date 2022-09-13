@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { Button } from "@mui/material";
 import { useStateContext } from "../../../../Components/ContextProvider";
+import { TailSpin } from "react-loader-spinner";
 const QuestionPannel = ({
   testoptions,
   showques,
@@ -42,19 +43,19 @@ const QuestionPannel = ({
     setShowques(1);
   };
 
-  // Mark for review
   const navigate = useNavigate();
 
+  // Mark for review
   const Mark = async () => {
     if (showques < testques.length && oid !== "000") {
-      let qid = testques[showques - 1]._id;
-      let question = testques[showques - 1].question;
+      let qid = testques[showques - 1].quesget._id;
+      let question = testques[showques - 1].quesget.question;
 
-      console.log(qid);
-      console.log(oid);
-      console.log(choice);
-      console.log(question);
-      console.log(showques);
+      // console.log(qid);
+      // console.log(oid);
+      // console.log(choice);
+      // console.log(question);
+      // console.log(showques);
 
       const data = {
         cookie_token: cook,
@@ -64,6 +65,7 @@ const QuestionPannel = ({
         Qid: qid,
         ansid: 3,
       };
+      console.log(data);
 
       await axios
         .put("https://csiportal.herokuapp.com/ans/answer", data)
@@ -82,28 +84,76 @@ const QuestionPannel = ({
         });
       setShowques(showques + 1);
       setOid("000");
-    } else if (testques[showques - 1].selectedOpt) {
-      setShowques(showques + 1);
-    } else if (oid === "000") {
-      toast.error("Select an option");
-    } else {
-      let qid = testques[showques - 1]._id;
-      let question = testques[showques - 1].question;
+    } else if (
+      showques < testques.length &&
+      oid === "000" &&
+      testques[showques - 1].ans_flagRes.setopt
+    ) {
+      let qid = testques[showques - 1].quesget._id;
+      let question = testques[showques - 1].quesget.question;
+      let Options = testques[showques - 1].quesget.options;
+      let selectedOpt = testques[showques - 1].ans_flagRes.setopt;
 
-      console.log(qid);
-      console.log(oid);
-      console.log(choice);
-      console.log(question);
-      console.log(showques);
+      let OptionId;
+
+      OptionId = Options.filter((option) => option.value === selectedOpt);
+      // console.log(Options, selectedOpt, OptionId[0].Oid);
 
       const data = {
         cookie_token: cook,
         question: question,
         category: choice,
-        userAnswer: oid,
+        userAnswer: OptionId[0].Oid,
         Qid: qid,
         ansid: 3,
       };
+      // console.log(data);
+
+      await axios
+        .put("https://csiportal.herokuapp.com/ans/answer", data)
+        .then((res) => {
+          console.log(res.data);
+          isVerified = res.data.isVerified;
+          if (isVerified === false) {
+            localStorage.removeItem("instruct");
+            localStorage.removeItem("login2");
+            localStorage.removeItem("cookie");
+            navigate("/");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      setShowques(showques + 1);
+      setOid("000");
+    } else if (oid === "000" && !testques[showques - 1].ans_flagRes.setopt) {
+      toast.error("Select an option");
+    } else {
+      let qid = testques[showques - 1].quesget._id;
+      let question = testques[showques - 1].quesget.question;
+      let data, OptionId;
+      if (testques[showques - 1].ans_flagRes.setopt && oid === "000") {
+        OptionId = testques[showques - 1].quesget.options.filter(
+          (option) => option.value === testques[showques - 1].ans_flagRes.setopt
+        );
+        data = {
+          cookie_token: cook,
+          question: question,
+          category: choice,
+          userAnswer: OptionId[0].Oid,
+          Qid: qid,
+          ansid: 3,
+        };
+      } else if (testques[showques - 1].ans_flagRes.setopt && oid !== "000") {
+        data = {
+          cookie_token: cook,
+          question: question,
+          category: choice,
+          userAnswer: oid,
+          Qid: qid,
+          ansid: 3,
+        };
+      }
 
       await axios
         .put("https://csiportal.herokuapp.com/ans/answer", data)
@@ -142,15 +192,15 @@ const QuestionPannel = ({
   const Next = async () => {
     if (showques < testques.length) {
       if (oid !== "000") {
-        let qid = testques[showques - 1]._id;
-        let question = testques[showques - 1].question;
+        let qid = testques[showques - 1].quesget._id;
+        let question = testques[showques - 1].quesget.question;
         const data = {
           cookie_token: cook,
           question: question,
           category: choice,
           userAnswer: oid,
           Qid: qid,
-          ansid: oid === "000" ? 5 : 1,
+          ansid: 1,
         };
         await axios
           .put("https://csiportal.herokuapp.com/ans/answer", data)
@@ -168,22 +218,62 @@ const QuestionPannel = ({
             console.log(err);
           });
         setShowques(showques + 1);
-        console.log(qid);
-        console.log(oid);
-        console.log(choice);
-        console.log(question);
-        console.log(showques);
+        // console.log(qid);
+        // console.log(oid);
+        // console.log(choice);
+        // console.log(question);
+        // console.log(showques);
         setOid("000");
       } else if (oid === "000") {
         if (
-          testques[showques - 1].flagMark === 5 ||
-          testques[showques - 1].flagMark === 1 ||
-          testques[showques - 1].flagMark === 3
+          testques[showques - 1].ans_flagRes.setopt &&
+          testques[showques - 1].ans_flagRes.flag === 3
+        ) {
+          let qid = testques[showques - 1].quesget._id;
+          let question = testques[showques - 1].quesget.question;
+          let data, OptionId;
+          OptionId = testques[showques - 1].quesget.options.filter(
+            (option) =>
+              option.value === testques[showques - 1].ans_flagRes.setopt
+          );
+          data = {
+            cookie_token: cook,
+            question: question,
+            category: choice,
+            userAnswer: OptionId[0].Oid,
+            Qid: qid,
+            ansid: 1,
+          };
+          await axios
+            .put("https://csiportal.herokuapp.com/ans/answer", data)
+            .then((res) => {
+              console.log(res.data);
+              isVerified = res.data.isVerified;
+              if (isVerified === false) {
+                localStorage.removeItem("instruct");
+                localStorage.removeItem("login2");
+                localStorage.removeItem("cookie");
+                navigate("/");
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          setShowques(showques + 1);
+          // console.log(qid);
+          // console.log(oid);
+          // console.log(choice);
+          // console.log(question);
+          // console.log(showques);
+          setOid("000");
+        } else if (
+          testques[showques - 1].ans_flagRes.flag === 5 ||
+          testques[showques - 1].ans_flagRes.flag === 1
         ) {
           setShowques(showques + 1);
         } else {
-          let qid = testques[showques - 1]._id;
-          let question = testques[showques - 1].question;
+          let qid = testques[showques - 1].quesget._id;
+          let question = testques[showques - 1].quesget.question;
           const data = {
             cookie_token: cook,
             question: question,
@@ -208,18 +298,18 @@ const QuestionPannel = ({
               console.log(err);
             });
           setShowques(showques + 1);
-          console.log(qid);
-          console.log(oid);
-          console.log(choice);
-          console.log(question);
-          console.log(showques);
+          // console.log(qid);
+          // console.log(oid);
+          // console.log(choice);
+          // console.log(question);
+          // console.log(showques);
           setOid("000");
         }
       }
     } else {
       if (oid !== "000") {
-        let qid = testques[showques - 1]._id;
-        let question = testques[showques - 1].question;
+        let qid = testques[showques - 1].quesget._id;
+        let question = testques[showques - 1].quesget.question;
         const data = {
           cookie_token: cook,
           question: question,
@@ -243,11 +333,11 @@ const QuestionPannel = ({
           .catch((err) => {
             console.log(err);
           });
-        console.log(qid);
-        console.log(oid);
-        console.log(choice);
-        console.log(question);
-        console.log(showques);
+        // console.log(qid);
+        // console.log(oid);
+        // console.log(choice);
+        // console.log(question);
+        // console.log(showques);
         setOid("000");
         setShowques(1);
         setChoice(
@@ -265,9 +355,8 @@ const QuestionPannel = ({
         );
       } else if (oid === "000") {
         if (
-          testques[showques - 1].flagMark === 5 ||
-          testques[showques - 1].flagMark === 1 ||
-          testques[showques - 1].flagMark === 3
+          testques[showques - 1].ans_flagRes.flag === 5 ||
+          testques[showques - 1].ans_flagRes.flag === 1
         ) {
           setShowques(1);
           setChoice(
@@ -284,16 +373,36 @@ const QuestionPannel = ({
               : "HTML"
           );
         } else {
-          let qid = testques[showques - 1]._id;
-          let question = testques[showques - 1].question;
-          const data = {
-            cookie_token: cook,
-            question: question,
-            category: choice,
-            userAnswer: oid,
-            Qid: qid,
-            ansid: oid === "000" ? 5 : 1,
-          };
+          let qid = testques[showques - 1].quesget._id;
+          let question = testques[showques - 1].quesget.question;
+          let data, OptionId;
+
+          if (
+            testques[showques - 1].ans_flagRes.setopt &&
+            testques[showques - 1].ans_flagRes.flag === 3
+          ) {
+            OptionId = testques[showques - 1].quesget.options.filter(
+              (option) =>
+                option.value === testques[showques - 1].ans_flagRes.setopt
+            );
+            data = {
+              cookie_token: cook,
+              question: question,
+              category: choice,
+              userAnswer: OptionId[0].Oid,
+              Qid: qid,
+              ansid: 1,
+            };
+          } else {
+            data = {
+              cookie_token: cook,
+              question: question,
+              category: choice,
+              userAnswer: oid,
+              Qid: qid,
+              ansid: oid === "000" ? 5 : 1,
+            };
+          }
           await axios
             .put("https://csiportal.herokuapp.com/ans/answer", data)
             .then((res) => {
@@ -309,11 +418,11 @@ const QuestionPannel = ({
             .catch((err) => {
               console.log(err);
             });
-          console.log(qid);
-          console.log(oid);
-          console.log(choice);
-          console.log(question);
-          console.log(showques);
+          // console.log(qid);
+          // console.log(oid);
+          // console.log(choice);
+          // console.log(question);
+          // console.log(showques);
           setOid("000");
           setShowques(1);
           setChoice(
@@ -385,7 +494,20 @@ const QuestionPannel = ({
           <div className="question_sec">
             <h1>Question {showques}.</h1>
             <hr />
-            <h2>{testques[showques - 1].question}</h2>
+            <h2>
+              {testques[0] ? (
+                testques[showques - 1].quesget.question
+              ) : (
+                <TailSpin
+                  height="80"
+                  width="80"
+                  color="#db9cff"
+                  ariaLabel="tail-spin-loading"
+                  radius="1"
+                  visible={true}
+                />
+              )}
+            </h2>
             <div className="testbtn">
               {testoptions &&
                 testoptions.map((option, index) => (
@@ -396,7 +518,8 @@ const QuestionPannel = ({
                     <input
                       type="radio"
                       defaultChecked={
-                        testques[showques - 1].selectedOpt === option.value
+                        testques[showques - 1].ans_flagRes.setopt ===
+                        option.value
                           ? true
                           : false
                       }
@@ -407,7 +530,9 @@ const QuestionPannel = ({
                       name="btn"
                     />
 
-                    <label>{testques[showques - 1].options[index].value}</label>
+                    <label>
+                      {testques[showques - 1].quesget.options[index].value}
+                    </label>
                   </div>
                 ))}
             </div>

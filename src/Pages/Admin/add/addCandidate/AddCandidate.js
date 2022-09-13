@@ -3,6 +3,14 @@ import "./Addcandidate.css";
 import "../../../User/Login/Login.css";
 import axios from "axios";
 import Navbar from "../../navbar/Navbar";
+import Radio from "@mui/material/Radio";
+import { FormControl } from "@mui/material";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from "@mui/material/FormLabel";
+import MenuItem from "@mui/material/MenuItem";
+import RadioGroup from "@mui/material/RadioGroup/RadioGroup";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import Ellipse from "../../../../Images/User/Ellipse.svg"
 import Group from "../../../../Images/User/Group.svg"
@@ -14,7 +22,7 @@ function AddCandidate() {
   const [rollNum, setrollNum] = useState("");
   const [mobileNum, setmobileNum] = useState("");
   const [email, setemail] = useState("");
- 
+  const [domain, setDomain] = useState("");
   const [branch, setbranch] = useState("");
   const [year, setyear] = useState("");
   const [gender, setgender] = useState("");
@@ -121,6 +129,7 @@ function AddCandidate() {
         branch: branch,
         gender: gender,
         isHosteler: Boolean(isHosteler),
+        domain: domain
 
         // ReCAPTCHA
       };
@@ -155,7 +164,7 @@ function AddCandidate() {
         branch &&
         year &&
         studentNum &&
-        isHosteler
+        isHosteler && domain
       )
     ) {
       window.alert("Enter Data in all Fields");
@@ -167,7 +176,7 @@ function AddCandidate() {
 
   const validateemail = (value) => {
     const errors = {};
-    let regex = new RegExp("[a-z0-9]+@");
+    let regex = new RegExp("[a-z0-9]+@akgec.ac.in");
 
     if (!value) {
       errors.email = "email is required!";
@@ -273,6 +282,7 @@ function AddCandidate() {
 
                 <div className="inputCandidate">
                   <TextField
+                   autoComplete="off"
                     required="required"
                     variant="outlined"
                     size="small"
@@ -295,6 +305,7 @@ function AddCandidate() {
               <div className="col-lg-6">
                 <div className="inputCandidate">
                   <TextField
+                   autoComplete="off"
                     required="required"
                     variant="outlined"
                     size="small"
@@ -318,6 +329,7 @@ function AddCandidate() {
               <div className="col-lg-6">
                 <div className="inputCandidate">
                   <TextField
+                   autoComplete="off"
                     required="required"
                     variant="outlined"
                     size="small"
@@ -337,6 +349,7 @@ function AddCandidate() {
               <div className="col-lg-6">
                 <div className="inputCandidate">
                   <TextField
+                   autoComplete="off"
                     required="required"
                     variant="outlined"
                     size="small"
@@ -357,19 +370,29 @@ function AddCandidate() {
             <div className="row">
               <div className="col-lg-6">
                 <div className="inputCandidate">
-                  <TextField
-                    required="required"
+                <FormControl fullWidth size="small">
+                <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+                <Select
+                sx={{ width: { sm: 200, md: 210 } }}
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={gender}
+                  autoComplete="off"
+                  required="required"
                     variant="outlined"
                     size="small"
-                    type="text"
-                    className="inputcandAdd"
-                    label="gender"
-                    name="gender"
-                    value={gender}
-                    onChange={(e) => setgender(e.target.value)}
-                    onBlur={handleFocusGender}
-                    focused={focused.toString()}
-                  />
+                  label="Gender"
+                  onChange={(e) => setgender(e.target.value)}
+                  onBlur={handleFocusGender}
+                  focused={focused.toString()}
+
+                >
+                  <MenuItem value={"Male"}>Male</MenuItem>
+                  <MenuItem value={"Female"}>Female</MenuItem>
+                  <MenuItem value={"Other"}>Other</MenuItem>
+                  
+                </Select>
+                </FormControl>
                 </div>
                 <span className="error_msg">{formErrorsgender.gender}</span>
               </div>
@@ -377,6 +400,7 @@ function AddCandidate() {
               <div className="col-lg-6">
                 <div className="inputCandidate">
                   <TextField  
+                   autoComplete="off"
                     required="required"
                     variant="outlined"
                     size="small"
@@ -400,10 +424,11 @@ function AddCandidate() {
               <div className="col-lg-6">
                 <div className="inputCandidate">
                   <TextField
+                   autoComplete="off"
                     required="required"
                     variant="outlined"
                     size="small"
-                    type="text"
+                    type="number"
                     className="inputcandAdd"
                     label="year"
                     name="year"
@@ -418,44 +443,78 @@ function AddCandidate() {
 
               <div className="col-lg-6">
                 <div className="inputCandidate">
-                  <TextField
-                    required="required"
-                    variant="outlined"
-                    size="small"
-                    type="text"
-                    className="inputcandAdd"
-                    label="branch"
-                    name="branch"
-                    value={branch}
-                    onChange={(e) => setbranch(e.target.value)}
-                     onBlur={handleFocusBranch}
-                     focused={focused.toString()}
-                  />
+                <FormControl fullWidth size="small">
+                <InputLabel id="demo-simple-select-label">Branch</InputLabel>
+                <Select
+                  sx={{ width: { sm: 200, md: 210 } }}
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={branch}
+                  autoComplete="off"
+                  label="Branch"
+                  onChange={(e) => setbranch(e.target.value)}
+                  onBlur={handleFocusBranch}
+                  focused={focused.toString()}
+
+                >
+                  <MenuItem value={"CSE"}>CSE</MenuItem>
+                  <MenuItem value={"CSE(DS)"}>CSE(DS)</MenuItem>
+                  <MenuItem value={"CSE(AI&ML)"}>CSE(AI&ML)</MenuItem>
+                  <MenuItem value={"CS"}>CS</MenuItem>
+                  <MenuItem value={"CS&IT"}>CS&IT</MenuItem>
+                  <MenuItem value={"IT"}>IT</MenuItem>
+                  <MenuItem value={"ECE"}>ECE</MenuItem>
+                  <MenuItem value={"EN"}>EN</MenuItem>
+                  <MenuItem value={"ME"}>ME</MenuItem>
+                  <MenuItem value={"CIVIL"}>CIVIL</MenuItem>
+                </Select>
+                </FormControl>
                 </div>
                 <span className="error_msg messages_err">{formErrorsbranch.branch}</span>
               </div>
             </div>
 
             <div className="row">
-              <div className="col-lg-6"></div>
+              <div className="col-lg-6">      <FormControl fullWidth size="small"
+              className="inputCandidate">
+                <InputLabel id="demo-simple-select-label" className="inputCandidate">Domain</InputLabel>
+                <Select
+                sx={{ width: { sm: 200, md: 210 } }}
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={domain}
+                  className="inputCandidate"
+                  label="Domain"
+                  onChange={(e) => setDomain(e.target.value)}
+                  
+
+                >
+                  <MenuItem value={"Technical"}>Technical</MenuItem>
+                  <MenuItem value={"Manegerial"}>Manegerial</MenuItem>
+                  <MenuItem value={"Designing"}>Designing</MenuItem>
+                  
+                </Select>
+                </FormControl></div>
               <div className="col-lg-6">
                 <div className="inputCandidate">
-                  <TextField
-                    required="required"
-                    variant="outlined"
-                    size="small"
-                    type="boolean"
-                    className="inputcandAdd"
-                    label="isHosteler"
-                    name="isHosteler"
-                    value={isHosteler}
-                    onChange={(e) => setisHosteler(e.target.value)}
-                     onBlur={handleFocusemail}
-                     focused={focused.toString()}
-                  />
+                <FormControl>
+  <FormLabel id="demo-radio-buttons-group-label"
+  value={isHosteler}
+   onChange={(e) => setisHosteler(e.target.value)}>isHosteler</FormLabel>
+  <RadioGroup
+    aria-labelledby="demo-radio-buttons-group-label"
+    defaultValue="false"
+    name="radio-buttons-group"
+    row
+  >
+    <FormControlLabel value="true" control={<Radio />} label="true" />
+    <FormControlLabel value="false" control={<Radio />} label="false" />
+  </RadioGroup>
+</FormControl>
                 </div>
               </div>
             </div>
+        
             <button
               type="button"
               className="btn btnregx buttonPositon"
