@@ -7,7 +7,7 @@ import "./Test.css";
 const Test = () => {
   const [show, setShow] = useState(false); // for modal
   const [choice, setChoice] = useState("HTML"); // cataegory
-  const [testques, setTestques] = useState([""]); // setting whole array of question
+  const [testques, setTestques] = useState({}); // setting whole array of question
   const [showques, setShowques] = useState(1); // question iterator
   const [testoptions, setTestOptions] = useState(); //setting the options
   const cook = localStorage.getItem("cookie");
@@ -19,18 +19,18 @@ const Test = () => {
 
   useEffect(() => {
     choiceques();
- 
+
     // eslint-disable-next-line
   }, [choice, showques]);
 
   const url = `https://csiportal.herokuapp.com/question/shuffle/${choice}`;
   const choiceques = async () => {
-    const data = await axios.get(url,{
+    const data = await axios.put(url,{
       cookie_token:cook,
     });
     console.log(data);
     setTestques(data.data.result);
-    setTestOptions(data.data.result[showques - 1].options);
+    setTestOptions(data.data.result[showques - 1].quesget.options);
   };
 
   return (
