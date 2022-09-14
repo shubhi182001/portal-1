@@ -1,7 +1,15 @@
 import React from 'react'
 const Cardl = ({ ckc}) => {
   
+
+    function changeFormat (date){
+        const newLoginTime=new Date(date);
+        const newLoginTime2=newLoginTime.toLocaleTimeString();
+        return newLoginTime2;
+    }
+
     return (
+
         <>
             <div className="detailscard">
                 <div className='detailsdisplay'>
@@ -28,7 +36,7 @@ const Cardl = ({ ckc}) => {
                         <li className='bluedetails'>{ckc.rollNum}</li>
                         <li className='bluedetails'>{ckc.mobileNum}</li>
                         <li className='bluedetails'>{ckc.branch}</li>
-                        <li className='bluedetails'>{ckc.loginAt}</li>
+                        <li className='bluedetails'>{ckc.loginAt? changeFormat(ckc.loginAt):"null"}</li>
                         <li className='bluedetails'>{ckc.lang}</li>
 
                     </ul>

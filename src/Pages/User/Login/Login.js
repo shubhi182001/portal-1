@@ -16,6 +16,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 const Login = () => {
   const [studentNo, setStudentNo] = useState("");
   const [password, setPassword] = useState("");
@@ -103,25 +104,32 @@ const Login = () => {
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
     // console.log(studentNo, password);
-    const data = {
-      studentNum: +studentNo,
-      password: password,
-    };
-    const result = await axios.post(
-      "https://csiportal.herokuapp.com/login",
-      data
-    );
-    console.log(result.data);
-    localStorage.setItem("cookie", result.data.cookie_token);
-    let admin = result.data.isAdmin;
-    // console.log(admin);
-    if (admin === "true") {
-      validateroute1(routepass, routename);
-    } else {
-      let appeared = result.data.hasAppeared;
-      console.log(appeared);
-      validateroute2(routepass, routename, appeared);
+    if(studentNo && password)
+    {
+      const data = {
+        studentNum: +studentNo,
+        password: password,
+      };
+      const result = await axios.post(
+        "https://csiportal.herokuapp.com/login",
+        data
+      );
+      console.log(result.data);
+      localStorage.setItem("cookie", result.data.cookie_token);
+      let admin = result.data.isAdmin;
+      // console.log(admin);
+      if (admin === "true") {
+        validateroute1(routepass, routename);
+      } else {
+        let appeared = result.data.hasAppeared;
+        console.log(appeared);
+        validateroute2(routepass, routename, appeared);
+      }
     }
+    else{
+      toast.error("complete all fields");
+    }
+   
   };
   const navigate = useNavigate();
   useEffect(() => {

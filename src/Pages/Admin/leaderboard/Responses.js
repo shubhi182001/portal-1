@@ -7,16 +7,50 @@ import "./response.css"
 // import { style } from '@mui/system'
 // import axios from 'axios'
 import Cardr from '../leaderboard/Cardr'
+import axios from 'axios'
+import { useEffect } from 'react'
 
 function Responses() {
     // const navigate = useNavigate();
     const {state} = useLocation();
     // const [Details, setDetails] = useState(state.post_result);
-    const [seeAnswer] = useState(state.post_result);
+    // const [seeAnswer] = useState(state.post_result);
     
-   const event1=state.post_loginAt;
-   const newLoginTime=new Date(event1);
-   const newLoginTime2=newLoginTime.toLocaleTimeString();
+
+    function changeFormat (date){
+        const newLoginTime=new Date(date);
+        const newLoginTime2=newLoginTime.toLocaleTimeString();
+        return newLoginTime2;
+    }
+    
+
+//    const event1=state.post_loginAt;
+//    const newLoginTime=new Date(event1);
+//    const newLoginTime2=newLoginTime.toLocaleTimeString();
+
+    const[uresponse, setUresponse] = useState([]);
+    const[user, setUser] = useState({});
+
+   const data = {
+    userId:state.post_id
+   };
+    const url = "https://csiportal.herokuapp.com/fetchanswer";
+    const getResponse = () =>{
+        axios.put(url,data).then((res) => {
+            console.log(res);
+            setUser(res.data);
+            setUresponse(res.data.AnswerRes);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    }
+
+    useEffect(()=>{
+        getResponse();
+    },[])
+
+
     return (
         <>
             <div className="admin-main">
@@ -25,7 +59,6 @@ function Responses() {
                     <h1 className='response_text'>Response</h1>
                 </div>
                 <div className='container_of_data'>
-                    {/* <Card className="container_of_data"> */}
                     <div className='upper_div'>
                         <div >
                             <li className='info'>Name</li>
@@ -36,18 +69,19 @@ function Responses() {
                             <li className='info'>End Time</li>
                         </div>
                         <ul>
-                            <li className='bluedetails'>{state.post_name}</li>
-                            <li className='bluedetails'>{state.post_studentnum}</li>
-                            <li className='bluedetails'>{state.post_branch}</li>
-                            <li className='bluedetails'>{state.post_userNumCount}</li>
-                            <li className='bluedetails'>{newLoginTime2}</li>
-                            <li className='bluedetails'>{state.post_logoutAt}</li>
+                            <li className='bluedetails'>{user? user.name:""}</li>
+                            <li className='bluedetails'>{user? user.studentNum:""}</li>
+                            <li className='bluedetails'>{user? user.Branch:"" }</li>
+                            <li className='bluedetails'>{user? user.score:""}</li>
+                            <li className='bluedetails'>{user? changeFormat(user.stTime):""}</li>
+                            <li className='bluedetails'>{user? user.enTime:""}</li>
                         </ul>
                     </div>
                     <div className='lower_div'> 
-                        {seeAnswer.map((p) =>
+                        {uresponse? 
+                        (uresponse.map((p) =>
                             (<Cardr className="getCard" key={p._id} quesData={p}/>)
-                        )}
+                        )):""}
                     </div>  
                 </div>
             </div>
