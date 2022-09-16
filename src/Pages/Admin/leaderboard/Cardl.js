@@ -9,13 +9,13 @@ const Cardl = ({ ckc}) => {
         navigate('/responses', {
             state: {
                 post_id: ckc._id,
-                post_name: ckc.name,
-                post_branch: ckc.branch,
-                post_studentnum: ckc.studentNum,
-                post_result: ckc.results,
-                post_loginAt: ckc.loginAt,
-                post_logoutAt: ckc.logoutAt,
-                post_userNumCount: ckc.userNumCount.TotalNum,
+                // post_name: ckc.name,
+                // post_branch: ckc.branch,
+                // post_studentnum: ckc.studentNum,
+                // post_result: ckc.results,
+                // post_loginAt: ckc.loginAt,
+                // post_logoutAt: ckc.logoutAt,
+                // post_userNumCount: ckc.userNumCount.TotalNum,
 
                 // post_studentnum: ckc.studentNum,
                 // post_score: ckc.score
@@ -39,7 +39,7 @@ const Cardl = ({ ckc}) => {
                         <li className='info'>Language</li>
 
                     </ul>
-                    </div>
+                    </div>  
                     <ul>
                         <li className='bluedetails'>{ckc.name} </li>
                         <li className='bluedetails'>{ckc.studentNum}</li>

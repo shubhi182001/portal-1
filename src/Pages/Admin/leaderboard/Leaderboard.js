@@ -59,9 +59,6 @@ const Leaderboard = () => {
             (<Cardl className="getCard" key={p._id} ckc ={p} />)
             ):null
           }
-       
-        
-             
         </div>
       </div>
     </>
