@@ -48,6 +48,7 @@ function Responses() {
 
     useEffect(()=>{
         getResponse();
+        // eslint-disable-next-line
     },[])
 
 
