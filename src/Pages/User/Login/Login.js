@@ -33,7 +33,7 @@ const Login = () => {
 
   const validateStudentNo = (value) => {
     let error;
-    const regex = /^[2]{1}[1]{1}[1,2,3,4,0]{1}[0,1,2,3,5,6]{1}[0-9]{3,4}$/;
+    const regex = /^[0-9]{7,8}$/;
     if (!value) {
       error = "Student Number is required";
       setErrorStudentType(true);
@@ -53,7 +53,7 @@ const Login = () => {
   };
   const validatePassword = (value) => {
     let error;
-    const regex = /^[A-Za-z]{3,}[@][2]{1}[1]{1}[1,2,3,4,0]{1}[0,1,2,3,5,6]{1}[0-9]{3,4}$$/;
+    const regex = /^[A-Za-z]{3,}[@][0-9]{7,8}$/;
     if (!value) {
       error = "Password is required";
       setPasswordErrorType(true);

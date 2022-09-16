@@ -8,6 +8,7 @@
   height: 100vh;
   display: flex;
   justify-content: center;
+  /* background-position: 100% 100%; */
   align-items: center;
 }
 .feedback_form {

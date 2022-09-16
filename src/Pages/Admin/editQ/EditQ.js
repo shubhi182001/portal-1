@@ -54,7 +54,7 @@ function EditQ() {
       }
    
 
-      const url = `https://csiportal.herokuapp.com/question/${state.post_id}`
+      const url = `https://exam-portal.cyclic.app/question/${state.post_id}`
       const handleUpload = (e) =>{
         e.preventDefault();
 
