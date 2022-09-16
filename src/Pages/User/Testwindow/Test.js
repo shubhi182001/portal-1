@@ -23,7 +23,7 @@ const Test = () => {
     // eslint-disable-next-line
   }, [choice, showques]);
 
-  const url = `https://csiportal.herokuapp.com/question/shuffle/${choice}`;
+  const url = `https://exam-portal.cyclic.app/question/shuffle/${choice}`;
   const choiceques = async () => {
     const data = await axios.put(url,{
       cookie_token:cook,

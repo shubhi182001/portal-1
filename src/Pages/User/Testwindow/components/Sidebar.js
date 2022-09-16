@@ -23,7 +23,7 @@ const Sidebar = ({ testques, setShow, setShowques, show }) => {
   const timer = () => {
     interval = setInterval(() => {
       axios
-        .post("https://csiportal.herokuapp.com/logintime", datacookie)
+        .post("https://exam-portal.cyclic.app/logintime", datacookie)
         .then((res) => {
           st = new Date(res.data.loginAt).getTime();
         })

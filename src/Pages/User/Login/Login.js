@@ -29,38 +29,45 @@ const Login = () => {
   const [studentPasswordError, setStudentPasswordError] = useState("");
   const [routepass, setRoutepass] = useState(false);
   const [routename, setRoutename] = useState(false);
+  const [credential, setCredential] = useState(true);
 
   const validateStudentNo = (value) => {
     let error;
-    const regex = /^[0-9]{7}$/;
+    const regex = /^[2]{1}[1]{1}[1,2,3,4,0]{1}[0,1,2,3,5,6]{1}[0-9]{3,4}$/;
     if (!value) {
       error = "Student Number is required";
       setErrorStudentType(true);
       setRoutename(false);
+      setCredential(false);
     } else if (!regex.test(value)) {
       error = "Student number is incorrect";
       setErrorStudentType(true);
       setRoutename(false);
+      setCredential(false);
     } else {
       setErrorStudentType(false);
       setRoutename(true);
+      setCredential(true);
     }
     return error;
   };
   const validatePassword = (value) => {
     let error;
-    const regex = /^[A-Za-z]{3,}[@][0-9]{7}$/;
+    const regex = /^[A-Za-z]{3,}[@][2]{1}[1]{1}[1,2,3,4,0]{1}[0,1,2,3,5,6]{1}[0-9]{3,4}$$/;
     if (!value) {
       error = "Password is required";
       setPasswordErrorType(true);
       setRoutepass(false);
+      setCredential(false);
     } else if (!regex.test(value)) {
       error = "Password is incorrect";
       setPasswordErrorType(true);
       setRoutepass(false);
+      setCredential(false);
     } else {
       setPasswordErrorType(false);
       setRoutepass(true);
+      setCredential(true);
     }
     return error;
   };
@@ -104,14 +111,13 @@ const Login = () => {
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
     // console.log(studentNo, password);
-    if(studentNo && password)
-    {
+    if (credential) {
       const data = {
         studentNum: +studentNo,
         password: password,
       };
       const result = await axios.post(
-        "https://csiportal.herokuapp.com/login",
+        "https://exam-portal.cyclic.app/login",
         data
       );
       console.log(result.data);
@@ -125,11 +131,9 @@ const Login = () => {
         console.log(appeared);
         validateroute2(routepass, routename, appeared);
       }
+    } else {
+      toast.error("Invalid Details");
     }
-    else{
-      toast.error("complete all fields");
-    }
-   
   };
   const navigate = useNavigate();
   useEffect(() => {
