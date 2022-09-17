@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { TailSpin } from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +31,7 @@ const Login = () => {
   const [routepass, setRoutepass] = useState(false);
   const [routename, setRoutename] = useState(false);
   const [credential, setCredential] = useState(true);
-
+  const [loader,setLoader]=useState(false);
   const validateStudentNo = (value) => {
     let error;
     const regex = /^[0-9]{7,8}$/;
@@ -104,8 +105,32 @@ const Login = () => {
     setEye(!eye);
     setVisibleIcon(!visibleIcon);
   };
+  // const load = () => {
+  //   <TailSpin
+  //                 height="80"
+  //                 width="80"
+  //                 color="#db9cff"
+  //                 ariaLabel="tail-spin-loading"
+  //                 radius="1"
+  //                 visible={true}
+  //               />
+  // }
+  // const load = () => {
+  //    if(loader===true){
 
-  const Submit = async (e) => {
+  //      <TailSpin
+  //                    height="80"
+  //                    width="80"
+  //                    color="#db9cff"
+  //                    ariaLabel="tail-spin-loading"
+  //                    radius="1"
+  //                    visible={true}
+  //                  />
+  //    }
+  // }
+
+  const Submit = (e) => {
+    setLoader(true);
     e.preventDefault();
     localStorage.removeItem("feedback");
     setStudentPasswordError(validatePassword(password));
@@ -116,23 +141,39 @@ const Login = () => {
         studentNum: +studentNo,
         password: password,
       };
-      const result = await axios.post(
+
+     axios.post(
         "https://exam-portal.cyclic.app/login",
         data
-      );
-      console.log(result.data);
-      localStorage.setItem("cookie", result.data.cookie_token);
-      let admin = result.data.isAdmin;
-      // console.log(admin);
-      if (admin === "true") {
-        validateroute1(routepass, routename);
-      } else {
-        let appeared = result.data.hasAppeared;
-        console.log(appeared);
-        validateroute2(routepass, routename, appeared);
-      }
-    } else {
+      )
+      .then((res) =>{
+        console.log(res.data);
+        localStorage.setItem("cookie", res.data.cookie_token);
+        let admin = res.data.isAdmin;
+        // console.log(admin);
+        if (admin === "true") 
+        {
+          validateroute1(routepass, routename);
+        } else {
+          let appeared = res.data.hasAppeared;
+          console.log(appeared);
+          validateroute2(routepass, routename, appeared);
+        }
+        setLoader(false);
+      })
+      .catch((err)=>{
+        setLoader(false);
+        // toast.error("Error");
+       toast.error("Invalid Credentials");
+
+      })      
+      
+    } 
+    else {
       toast.error("Invalid Details");
+      
+      setLoader(false);
+ 
     }
   };
   const navigate = useNavigate();
@@ -226,9 +267,20 @@ const Login = () => {
               className="btn"
               variant="contained"
               size="medium"
-              onClick={Submit}
+              // onClick= {()=>{Submit();load();}}
+              onClick = {Submit}
             >
-              Login
+              {loader ? (
+                <TailSpin
+                height="20"
+                width="20"
+                color="white"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                visible={true}
+              />
+              ): "Login"}
+             
             </Button>
           </div>
         </div>
