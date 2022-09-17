@@ -17,21 +17,44 @@ const Test = () => {
   // Not visited -> 2 border -> blue, background ->white
   // not answered -> 5 red
 
-  useEffect(() => {
-    choiceques();
-
-    // eslint-disable-next-line
-  }, [choice, showques]);
-
-  const url = `https://exam-portal.cyclic.app/question/shuffle/${choice}`;
+  const url = `https://csiportal.herokuapp.com/question/shuffle/${choice}`;
   const choiceques = async () => {
     const data = await axios.put(url,{
       cookie_token:cook,
     });
     console.log(data);
     setTestques(data.data.result);
-    setTestOptions(data.data.result[showques - 1].quesget.options);
+    setTestOptions(data.data.result[showques - 1].options);
   };
+  useEffect(() => {
+    choiceques();
+    axios
+    .put("https://csiportal.herokuapp.com/question/flags/${choice}", {
+      cookie_token:cook,
+    })
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+    // eslint-disable-next-line
+  }, [choice]);
+
+  useEffect(() => {
+    axios
+      .put("https://csiportal.herokuapp.com/question/flags/${choice}", {
+        cookie_token:cook,
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [showques]);
+
+
 
   return (
     <>

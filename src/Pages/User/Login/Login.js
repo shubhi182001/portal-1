@@ -31,7 +31,7 @@ const Login = () => {
   const [routepass, setRoutepass] = useState(false);
   const [routename, setRoutename] = useState(false);
   const [credential, setCredential] = useState(true);
-  const [loader,setLoader]=useState(false);
+  const [loader, setLoader] = useState(false);
   const validateStudentNo = (value) => {
     let error;
     const regex = /^[0-9]{7,8}$/;
@@ -142,38 +142,31 @@ const Login = () => {
         password: password,
       };
 
-     axios.post(
-        "https://exam-portal.cyclic.app/login",
-        data
-      )
-      .then((res) =>{
-        console.log(res.data);
-        localStorage.setItem("cookie", res.data.cookie_token);
-        let admin = res.data.isAdmin;
-        // console.log(admin);
-        if (admin === "true") 
-        {
-          validateroute1(routepass, routename);
-        } else {
-          let appeared = res.data.hasAppeared;
-          console.log(appeared);
-          validateroute2(routepass, routename, appeared);
-        }
-        setLoader(false);
-      })
-      .catch((err)=>{
-        setLoader(false);
-        // toast.error("Error");
-       toast.error("Invalid Credentials");
-
-      })      
-      
-    } 
-    else {
+      axios
+        .post("https://exam-portal.cyclic.app/login", data)
+        .then((res) => {
+          console.log(res.data);
+          localStorage.setItem("cookie", res.data.cookie_token);
+          let admin = res.data.isAdmin;
+          // console.log(admin);
+          if (admin === "true") {
+            validateroute1(routepass, routename);
+          } else {
+            let appeared = res.data.hasAppeared;
+            console.log(appeared);
+            validateroute2(routepass, routename, appeared);
+          }
+          setLoader(false);
+        })
+        .catch((err) => {
+          setLoader(false);
+          // toast.error("Error");
+          toast.error("Invalid Credentials");
+        });
+    } else {
       toast.error("Invalid Details");
-      
+
       setLoader(false);
- 
     }
   };
   const navigate = useNavigate();
@@ -268,19 +261,20 @@ const Login = () => {
               variant="contained"
               size="medium"
               // onClick= {()=>{Submit();load();}}
-              onClick = {Submit}
+              onClick={Submit}
             >
               {loader ? (
                 <TailSpin
-                height="20"
-                width="20"
-                color="white"
-                ariaLabel="tail-spin-loading"
-                radius="1"
-                visible={true}
-              />
-              ): "Login"}
-             
+                  height="20"
+                  width="20"
+                  color="white"
+                  ariaLabel="tail-spin-loading"
+                  radius="1"
+                  visible={true}
+                />
+              ) : (
+                "Login"
+              )}
             </Button>
           </div>
         </div>

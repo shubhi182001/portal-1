@@ -136,6 +136,13 @@
   grid-template-columns: repeat(4, auto);
   margin-left: 3rem;
 }
+.loader {
+  height: 30vh;
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .test_btn2 {
   padding: 10px;
   display: grid;

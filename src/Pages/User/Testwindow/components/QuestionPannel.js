@@ -22,14 +22,16 @@ const QuestionPannel = ({
 
   const cook = localStorage.getItem("cookie");
 
+
   const [chosenlang, setChosenlang] = useState("");
+
 
   useEffect(() => {
     const lang = {
       cookie_token: cook,
     };
     axios
-      .post("https://exam-portal.cyclic.app/langselected", lang)
+      .post("https://csiportal.herokuapp.com/langselected", lang)
       .then((res) => {
         setChosenlang(res.data.lang);
       })
@@ -68,7 +70,7 @@ const QuestionPannel = ({
       console.log(data);
 
       await axios
-        .put("https://exam-portal.cyclic.app/ans/answer", data)
+        .put("https://csiportal.herokuapp.com/ans/answer", data)
         .then((res) => {
           console.log(res.data);
           isVerified = res.data.isVerified;
@@ -110,7 +112,7 @@ const QuestionPannel = ({
       // console.log(data);
 
       await axios
-        .put("https://exam-portal.cyclic.app/ans/answer", data)
+        .put("https://csiportal.herokuapp.com/ans/answer", data)
         .then((res) => {
           console.log(res.data);
           isVerified = res.data.isVerified;
@@ -156,7 +158,7 @@ const QuestionPannel = ({
       }
 
       await axios
-        .put("https://exam-portal.cyclic.app/ans/answer", data)
+        .put("https://csiportal.herokuapp.com/ans/answer", data)
         .then((res) => {
           console.log(res.data);
           isVerified = res.data.isVerified;
@@ -203,7 +205,7 @@ const QuestionPannel = ({
           ansid: 1,
         };
         await axios
-          .put("https://exam-portal.cyclic.app/ans/answer", data)
+          .put("https://csiportal.herokuapp.com/ans/answer", data)
           .then((res) => {
             console.log(res.data);
             isVerified = res.data.isVerified;
@@ -245,7 +247,7 @@ const QuestionPannel = ({
             ansid: 1,
           };
           await axios
-            .put("https://exam-portal.cyclic.app/ans/answer", data)
+            .put("https://csiportal.herokuapp.com/ans/answer", data)
             .then((res) => {
               console.log(res.data);
               isVerified = res.data.isVerified;
@@ -283,7 +285,7 @@ const QuestionPannel = ({
             ansid: oid === "000" ? 5 : 1,
           };
           await axios
-            .put("https://exam-portal.cyclic.app/ans/answer", data)
+            .put("https://csiportal.herokuapp.com/ans/answer", data)
             .then((res) => {
               console.log(res.data);
               isVerified = res.data.isVerified;
@@ -319,7 +321,7 @@ const QuestionPannel = ({
           ansid: oid === "000" ? 5 : 1,
         };
         await axios
-          .put("https://exam-portal.cyclic.app/ans/answer", data)
+          .put("https://csiportal.herokuapp.com/ans/answer", data)
           .then((res) => {
             console.log(res.data);
             isVerified = res.data.isVerified;
@@ -404,7 +406,7 @@ const QuestionPannel = ({
             };
           }
           await axios
-            .put("https://exam-portal.cyclic.app/ans/answer", data)
+            .put("https://csiportal.herokuapp.com/ans/answer", data)
             .then((res) => {
               console.log(res.data);
               isVerified = res.data.isVerified;
@@ -496,16 +498,24 @@ const QuestionPannel = ({
             <hr />
             <h2>
               {testques[0] ? (
-                testques[showques - 1].quesget.question
+                testques[showques - 1].question
               ) : (
-                <TailSpin
-                  height="80"
-                  width="80"
-                  color="#db9cff"
-                  ariaLabel="tail-spin-loading"
-                  radius="1"
-                  visible={true}
-                />
+                <div
+                  style={{
+                    display: "flex",
+                    alignItem: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <TailSpin
+                    height="80"
+                    width="80"
+                    color="#db9cff"
+                    ariaLabel="tail-spin-loading"
+                    radius="1"
+                    visible={true}
+                  />
+                </div>
               )}
             </h2>
             <div className="testbtn">
@@ -518,7 +528,7 @@ const QuestionPannel = ({
                     <input
                       type="radio"
                       defaultChecked={
-                        testques[showques - 1].ans_flagRes.setopt ===
+                        testques[showques - 1].setopt ===
                         option.value
                           ? true
                           : false
@@ -531,7 +541,7 @@ const QuestionPannel = ({
                     />
 
                     <label>
-                      {testques[showques - 1].quesget.options[index].value}
+                      {testques[showques - 1].options[index].value}
                     </label>
                   </div>
                 ))}
