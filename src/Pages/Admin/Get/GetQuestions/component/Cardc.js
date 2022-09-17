@@ -20,7 +20,7 @@ function Cardc({ques, reload}) {
        
 
     // console.log(ques);
-    const url = `https://exam-portal.cyclic.app/question/${ques._id}`;
+    const url = `https://csiportal.herokuapp.com/question/${ques._id}`;
     const deleteQuestion = () => (
         axios.delete(url)
         .then(()=>{
@@ -36,7 +36,7 @@ function Cardc({ques, reload}) {
     <div className='edit-Card' key = {ques._id}>
             <div className="cardElements">
               <p className='question_text'>Question</p>
-              <p className="question-field"  >{ques.question}</p>
+              <p className="question-field" style={{whiteSpace:'pre-wrap',overflowWrap:'break-word'}} >{ques.question}</p>
               <p className='category_text'>Category</p>
               <p className='category' >{ques.category}</p>
               <p className='options_text'>Options</p>

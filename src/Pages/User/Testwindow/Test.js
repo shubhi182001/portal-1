@@ -11,28 +11,31 @@ const Test = () => {
   const [showques, setShowques] = useState(1); // question iterator
   const [testoptions, setTestOptions] = useState(); //setting the options
   const cook = localStorage.getItem("cookie");
+  const [flag, setFlag] = useState(); // setting whole array of question
+
   // const [ansid, setAnsid] = useState("2"); //flags for question :
   // save and next -> 1 green
   //Review -> 3 blue
   // Not visited -> 2 border -> blue, background ->white
   // not answered -> 5 red
 
-  useEffect(() => {
-    choiceques();
-
-    // eslint-disable-next-line
-  }, [choice, showques]);
-
-  const url = `https://exam-portal.cyclic.app/question/shuffle/${choice}`;
+  
+  const url = `https://csiportal.herokuapp.com/question/shuffle/${choice}`;
   const choiceques = async () => {
-    const data = await axios.put(url,{
-      cookie_token:cook,
+    const data = await axios.put(url, {
+      cookie_token: cook,
     });
     console.log(data);
     setTestques(data.data.result);
-    setTestOptions(data.data.result[showques - 1].quesget.options);
+    setTestOptions(data.data.result[showques - 1].options);
   };
+  useEffect(() => {
+    choiceques();
+    
+    // eslint-disable-next-line
+  }, [choice,showques]);
 
+ 
   return (
     <>
       {show ? (
@@ -49,6 +52,7 @@ const Test = () => {
               setShow={setShow}
               show={show}
               setTestques={setTestques}
+              flag={flag}
             />
 
             <Sidebar
@@ -58,6 +62,7 @@ const Test = () => {
               choice={choice}
               setShow={setShow}
               show={show}
+              flag={flag}
             />
             <Modal setShow={setShow} />
           </div>
@@ -71,6 +76,7 @@ const Test = () => {
             testques={testques}
             choice={choice}
             setChoice={setChoice}
+            flag={flag}
           />
           <Sidebar
             showques={showques}
@@ -78,6 +84,7 @@ const Test = () => {
             testques={testques}
             choice={choice}
             setShow={setShow}
+            flag={flag}
           />
         </div>
       )}

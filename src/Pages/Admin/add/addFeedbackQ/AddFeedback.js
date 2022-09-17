@@ -31,7 +31,7 @@ const AddFeedback = () => {
     }
     console.log(questionFeedback)
     if (questionFeedback && Object.keys(feedbackErrors).length === 0) {
-      axios.post('https://exam-portal.cyclic.app/addfeedback', questionFeedback)
+      axios.post('https://csiportal.herokuapp.com/addfeedback', questionFeedback)
         .then((res) => {
           console.log(res)
           console.log(res.data)

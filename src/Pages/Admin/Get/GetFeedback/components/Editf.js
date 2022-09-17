@@ -34,7 +34,7 @@ function Editf() {
     //     ))
     //   })
 
-      const url = `https://exam-portal.cyclic.app/feedback/${state.post_id}`
+      const url = `https://csiportal.herokuapp.com/feedback/${state.post_id}`
       const handleUpload = (e) =>{
         e.preventDefault();
         if(question){

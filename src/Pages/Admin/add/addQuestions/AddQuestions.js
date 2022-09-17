@@ -75,7 +75,7 @@ const AddQuestions = () => {
         console.log(questionData)
         if (questionData.question && questionData.category && options.length === 4 && check()) {
             axios.post(
-                'https://exam-portal.cyclic.app/question/addquestion', questionData)
+                'https://csiportal.herokuapp.com/question/addquestion', questionData)
                 .then((res) => {
                     console.log(res);
                     console.log(res.data);
@@ -154,7 +154,7 @@ const AddQuestions = () => {
                     <div className='white-container'>
                         <div className="question">
                             <p>Question</p>
-                            <textarea name="ques" value={question} required id="question-here" onChange={handleQuestion}></textarea>
+                            <textarea style={{whiteSpace:'pre-wrap',overflowWrap:'break-word'}} name="ques" value={question} required id="question-here" onChange={handleQuestion}></textarea>
                             {question.length === 0 ? <p className='add-ques-error'>{questionerrors.ques}</p> : null}
                         </div>
 

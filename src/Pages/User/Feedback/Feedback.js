@@ -48,7 +48,7 @@ const Feedback = () => {
       console.log(feedbackData);
       axios
         .post(
-          "https://exam-portal.cyclic.app/response/feedanswer",
+          "https://csiportal.herokuapp.com/response/feedanswer",
           feedbackData
         )
         .then((res) => {
@@ -68,7 +68,7 @@ const Feedback = () => {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get("https://exam-portal.cyclic.app/feed/seefeedbackques")
+      .get("https://csiportal.herokuapp.com/feed/seefeedbackques")
       .then((res) => {
         // console.log(res.data);
         setQues(res.data);
