@@ -11,7 +11,7 @@ const Test = () => {
   const [showques, setShowques] = useState(1); // question iterator
   const [testoptions, setTestOptions] = useState(); //setting the options
   const cook = localStorage.getItem("cookie");
-  const [flag, setFlag] = useState(); // setting whole array of question
+  const [loader, setLoader] = useState(true); // setting whole array of question
 
   // const [ansid, setAnsid] = useState("2"); //flags for question :
   // save and next -> 1 green
@@ -19,7 +19,6 @@ const Test = () => {
   // Not visited -> 2 border -> blue, background ->white
   // not answered -> 5 red
 
-  
   const url = `https://csiportal.herokuapp.com/question/shuffle/${choice}`;
   const choiceques = async () => {
     const data = await axios.put(url, {
@@ -27,15 +26,20 @@ const Test = () => {
     });
     console.log(data);
     setTestques(data.data.result);
-    setTestOptions(data.data.result[showques - 1].options);
+    setTestOptions(data.data.result[showques - 1].quesget.options);
   };
   useEffect(() => {
     choiceques();
-    
-    // eslint-disable-next-line
-  }, [choice,showques]);
 
- 
+    // eslint-disable-next-line
+  }, [showques]);
+  useEffect(() => {
+    setLoader(false);
+    choiceques();
+
+    // eslint-disable-next-line
+  }, [choice]);
+
   return (
     <>
       {show ? (
@@ -52,7 +56,7 @@ const Test = () => {
               setShow={setShow}
               show={show}
               setTestques={setTestques}
-              flag={flag}
+              loader={loader}
             />
 
             <Sidebar
@@ -62,7 +66,7 @@ const Test = () => {
               choice={choice}
               setShow={setShow}
               show={show}
-              flag={flag}
+              loader={loader}
             />
             <Modal setShow={setShow} />
           </div>
@@ -76,7 +80,6 @@ const Test = () => {
             testques={testques}
             choice={choice}
             setChoice={setChoice}
-            flag={flag}
           />
           <Sidebar
             showques={showques}
@@ -84,7 +87,6 @@ const Test = () => {
             testques={testques}
             choice={choice}
             setShow={setShow}
-            flag={flag}
           />
         </div>
       )}

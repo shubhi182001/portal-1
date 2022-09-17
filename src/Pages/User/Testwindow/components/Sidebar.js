@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../../../../Components/ContextProvider";
 import { TailSpin } from "react-loader-spinner";
-const Sidebar = ({ testques, setShow, setShowques, show,flag,showques }) => {
+const Sidebar = ({ testques, setShow, setShowques, show,loader,showques }) => {
   const { setOid } = useStateContext();
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
@@ -123,20 +123,20 @@ const Sidebar = ({ testques, setShow, setShowques, show,flag,showques }) => {
         <div
           className={show ? "test_btn2" : testques[0] ? "test_btn1" : "loader"}
         >
-          {testques[0] ? (
+          {(testques[0]) ? (
             sidebarbtn.map((i, index) => (
               <button
-                className={flag ?
-                   (flag[showques-1].flag === 2
+                className={
+                   testques[index].ans_flagRes.flag === 2
                     ? "sidebar_button"
-                    : flag[showques-1].flag === 1
+                    : testques[index].ans_flagRes.flag === 1
                     ? "save_next"
-                    : flag[showques-1].flag === 3
+                    : testques[index].ans_flagRes.flag === 3
                     ? "mark_review"
-                    : flag[showques-1].flag === 5
+                    : testques[index].ans_flagRes.flag === 5
                     ? "not_answered"
-                    : "not_visited")
-                    :" "
+                    : "not_visited"
+                    
                 }
                  
                 
