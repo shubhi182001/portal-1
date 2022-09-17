@@ -12,13 +12,13 @@ const Leaderboard = () => {
   // const [getq, setGetq] = useState([]);
   const [udata, setUData] = useState([]);
   const [search, setSearch] = useState(" ");
-  const url = "https://exam-portal.cyclic.app/leaderboard";
-  const getAllCandidates = () => {
-    axios.get(url)
+  const url = "https://csiportal.herokuapp.com/leaderboard";
+  const getAllCandidates = async () => {
+   await  axios.get(url)
       .then((res) => { 
         
-        setUData(res.data);   
-        console.log(res);
+        setUData(res.data);
+        // console.log(res.data);
         // console.log(res.data.name);
       })
       .catch(error => console.log(error));
@@ -45,12 +45,14 @@ const Leaderboard = () => {
           </div>
         </div>
         <div className="getq">
-          {udata && udata.length ?
+          {udata[0] ?
             udata.filter((p) => {
               if (search === " ") {
                 return p
-              } else if (p.name.toLowerCase().includes(search.toLowerCase())) {
+              } else if (p.name?.toLowerCase().includes(search.toLowerCase())) {
                 return p
+              }else if(p.studentNum?.toString().includes(search)){
+                  return p
               }
               return false
             }).map((p) =>

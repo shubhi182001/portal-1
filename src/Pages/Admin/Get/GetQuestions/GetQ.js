@@ -12,7 +12,7 @@ const GetQ = () => {
   const [search, setSearch] = useState(" ");
 
 
-  const url = "https://exam-portal.cyclic.app/question/seequestion";
+  const url = "https://csiportal.herokuapp.com/question/seequestion";
   const getAllQuestions = () => {
     axios.get(url)
       .then((res) => {
