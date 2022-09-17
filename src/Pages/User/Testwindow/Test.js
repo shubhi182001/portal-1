@@ -11,6 +11,8 @@ const Test = () => {
   const [showques, setShowques] = useState(1); // question iterator
   const [testoptions, setTestOptions] = useState(); //setting the options
   const cook = localStorage.getItem("cookie");
+  const [flag, setFlag] = useState(); // setting whole array of question
+
   // const [ansid, setAnsid] = useState("2"); //flags for question :
   // save and next -> 1 green
   //Review -> 3 blue
@@ -19,8 +21,8 @@ const Test = () => {
 
   const url = `https://csiportal.herokuapp.com/question/shuffle/${choice}`;
   const choiceques = async () => {
-    const data = await axios.put(url,{
-      cookie_token:cook,
+    const data = await axios.put(url, {
+      cookie_token: cook,
     });
     console.log(data);
     setTestques(data.data.result);
@@ -29,32 +31,33 @@ const Test = () => {
   useEffect(() => {
     choiceques();
     axios
-    .put("https://csiportal.herokuapp.com/question/flags/${choice}", {
-      cookie_token:cook,
-    })
-    .then((res) => {
-      console.log(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      .put(`https://csiportal.herokuapp.com/question/flags/${choice}`, {
+        cookie_token: cook,
+      })
+      .then((res) => {
+        console.log(res.data.result);
+        setFlag(res.data.result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     // eslint-disable-next-line
   }, [choice]);
 
   useEffect(() => {
     axios
-      .put("https://csiportal.herokuapp.com/question/flags/${choice}", {
-        cookie_token:cook,
+      .put(`https://csiportal.herokuapp.com/question/flags/${choice}`, {
+        cookie_token: cook,
       })
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data.result);
+        setFlag(res.data.result);
       })
       .catch((err) => {
         console.log(err);
       });
+      // eslint-disable-next-line
   }, [showques]);
-
-
 
   return (
     <>
@@ -72,6 +75,7 @@ const Test = () => {
               setShow={setShow}
               show={show}
               setTestques={setTestques}
+              flag={flag}
             />
 
             <Sidebar
@@ -81,6 +85,7 @@ const Test = () => {
               choice={choice}
               setShow={setShow}
               show={show}
+              flag={flag}
             />
             <Modal setShow={setShow} />
           </div>
@@ -94,6 +99,7 @@ const Test = () => {
             testques={testques}
             choice={choice}
             setChoice={setChoice}
+            flag={flag}
           />
           <Sidebar
             showques={showques}
@@ -101,6 +107,7 @@ const Test = () => {
             testques={testques}
             choice={choice}
             setShow={setShow}
+            flag={flag}
           />
         </div>
       )}

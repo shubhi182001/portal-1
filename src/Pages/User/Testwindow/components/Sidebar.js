@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../../../../Components/ContextProvider";
 import { TailSpin } from "react-loader-spinner";
-const Sidebar = ({ testques, setShow, setShowques, show }) => {
+const Sidebar = ({ testques, setShow, setShowques, show,flag,showques }) => {
   const { setOid } = useStateContext();
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
@@ -52,7 +52,8 @@ const Sidebar = ({ testques, setShow, setShowques, show }) => {
           const value = {
             cookie_token: usercookie,
           };
-          const result = await axios.patch(
+          // eslint-disable-next-line
+          const submit = await axios.patch(
             "https://csiportal.herokuapp.com/quesansdata",
             value
           );
@@ -125,7 +126,18 @@ const Sidebar = ({ testques, setShow, setShowques, show }) => {
           {testques[0] ? (
             sidebarbtn.map((i, index) => (
               <button
-                className="save_next"
+                className={flag ?
+                   (flag[showques-1].flag === 2
+                    ? "sidebar_button"
+                    : flag[showques-1].flag === 1
+                    ? "save_next"
+                    : flag[showques-1].flag === 3
+                    ? "mark_review"
+                    : flag[showques-1].flag === 5
+                    ? "not_answered"
+                    : "not_visited")
+                    :" "
+                }
                  
                 
                 key={index}
