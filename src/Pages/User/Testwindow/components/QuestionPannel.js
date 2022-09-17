@@ -16,6 +16,7 @@ const QuestionPannel = ({
   choice,
   setShowques,
   show,
+  flag
 }) => {
   const { oid, setOid } = useStateContext();
   let isVerified;
@@ -50,8 +51,8 @@ const QuestionPannel = ({
   // Mark for review
   const Mark = async () => {
     if (showques < testques.length && oid !== "000") {
-      let qid = testques[showques - 1].quesget._id;
-      let question = testques[showques - 1].quesget.question;
+      let qid = testques[showques - 1]._id;
+      let question = testques[showques - 1].question;
 
       // console.log(qid);
       // console.log(oid);
@@ -89,12 +90,12 @@ const QuestionPannel = ({
     } else if (
       showques < testques.length &&
       oid === "000" &&
-      testques[showques - 1].ans_flagRes.setopt
+      flag[showques - 1].setopt
     ) {
-      let qid = testques[showques - 1].quesget._id;
-      let question = testques[showques - 1].quesget.question;
-      let Options = testques[showques - 1].quesget.options;
-      let selectedOpt = testques[showques - 1].ans_flagRes.setopt;
+      let qid = testques[showques - 1]._id;
+      let question = testques[showques - 1].question;
+      let Options = testques[showques - 1].options;
+      let selectedOpt = testques[showques - 1].setopt;
 
       let OptionId;
 
@@ -128,15 +129,15 @@ const QuestionPannel = ({
         });
       setShowques(showques + 1);
       setOid("000");
-    } else if (oid === "000" && !testques[showques - 1].ans_flagRes.setopt) {
+    } else if (oid === "000" && !flag[showques - 1].setopt) {
       toast.error("Select an option");
     } else {
-      let qid = testques[showques - 1].quesget._id;
-      let question = testques[showques - 1].quesget.question;
+      let qid = testques[showques - 1]._id;
+      let question = testques[showques - 1].question;
       let data, OptionId;
-      if (testques[showques - 1].ans_flagRes.setopt && oid === "000") {
-        OptionId = testques[showques - 1].quesget.options.filter(
-          (option) => option.value === testques[showques - 1].ans_flagRes.setopt
+      if (flag[showques - 1].setopt && oid === "000") {
+        OptionId = testques[showques - 1].options.filter(
+          (option) => option.value === flag[showques - 1].setopt
         );
         data = {
           cookie_token: cook,
@@ -146,7 +147,7 @@ const QuestionPannel = ({
           Qid: qid,
           ansid: 3,
         };
-      } else if (testques[showques - 1].ans_flagRes.setopt && oid !== "000") {
+      } else if (flag[showques - 1].setopt && oid !== "000") {
         data = {
           cookie_token: cook,
           question: question,
@@ -194,8 +195,8 @@ const QuestionPannel = ({
   const Next = async () => {
     if (showques < testques.length) {
       if (oid !== "000") {
-        let qid = testques[showques - 1].quesget._id;
-        let question = testques[showques - 1].quesget.question;
+        let qid = testques[showques - 1]._id;
+        let question = testques[showques - 1].question;
         const data = {
           cookie_token: cook,
           question: question,
@@ -228,15 +229,15 @@ const QuestionPannel = ({
         setOid("000");
       } else if (oid === "000") {
         if (
-          testques[showques - 1].ans_flagRes.setopt &&
-          testques[showques - 1].ans_flagRes.flag === 3
+          flag[showques - 1].setopt &&
+          flag[showques - 1].flag === 3
         ) {
-          let qid = testques[showques - 1].quesget._id;
-          let question = testques[showques - 1].quesget.question;
+          let qid = testques[showques - 1]._id;
+          let question = testques[showques - 1].question;
           let data, OptionId;
-          OptionId = testques[showques - 1].quesget.options.filter(
+          OptionId = testques[showques - 1].options.filter(
             (option) =>
-              option.value === testques[showques - 1].ans_flagRes.setopt
+              option.value === flag[showques - 1].setopt
           );
           data = {
             cookie_token: cook,
@@ -269,13 +270,13 @@ const QuestionPannel = ({
           // console.log(showques);
           setOid("000");
         } else if (
-          testques[showques - 1].ans_flagRes.flag === 5 ||
-          testques[showques - 1].ans_flagRes.flag === 1
+          flag[showques - 1].flag.flag === 5 ||
+          flag[showques - 1].flag.flag === 1
         ) {
           setShowques(showques + 1);
         } else {
-          let qid = testques[showques - 1].quesget._id;
-          let question = testques[showques - 1].quesget.question;
+          let qid = testques[showques - 1]._id;
+          let question = testques[showques - 1].question;
           const data = {
             cookie_token: cook,
             question: question,
@@ -310,8 +311,8 @@ const QuestionPannel = ({
       }
     } else {
       if (oid !== "000") {
-        let qid = testques[showques - 1].quesget._id;
-        let question = testques[showques - 1].quesget.question;
+        let qid = testques[showques - 1]._id;
+        let question = testques[showques - 1].question;
         const data = {
           cookie_token: cook,
           question: question,
@@ -357,8 +358,8 @@ const QuestionPannel = ({
         );
       } else if (oid === "000") {
         if (
-          testques[showques - 1].ans_flagRes.flag === 5 ||
-          testques[showques - 1].ans_flagRes.flag === 1
+          flag[showques - 1].flag  === 5 ||
+          flag[showques - 1].flag  === 1
         ) {
           setShowques(1);
           setChoice(
@@ -375,17 +376,17 @@ const QuestionPannel = ({
               : "HTML"
           );
         } else {
-          let qid = testques[showques - 1].quesget._id;
-          let question = testques[showques - 1].quesget.question;
+          let qid = testques[showques - 1]._id;
+          let question = testques[showques - 1].question;
           let data, OptionId;
 
           if (
-            testques[showques - 1].ans_flagRes.setopt &&
-            testques[showques - 1].ans_flagRes.flag === 3
+            flag[showques - 1].setopt &&
+            flag[showques - 1].flag  === 3
           ) {
-            OptionId = testques[showques - 1].quesget.options.filter(
+            OptionId = testques[showques - 1].options.filter(
               (option) =>
-                option.value === testques[showques - 1].ans_flagRes.setopt
+                option.value === flag[showques - 1].setopt
             );
             data = {
               cookie_token: cook,
@@ -528,7 +529,7 @@ const QuestionPannel = ({
                     <input
                       type="radio"
                       defaultChecked={
-                        testques[showques - 1].setopt ===
+                        flag?.setopt ===
                         option.value
                           ? true
                           : false
