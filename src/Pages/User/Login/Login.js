@@ -117,7 +117,7 @@ const Login = () => {
         password: password,
       };
       const result = await axios.post(
-        "https://exam-portal.cyclic.app/login",
+        "https://csiportal.herokuapp.com/login",
         data
       );
       console.log(result.data);

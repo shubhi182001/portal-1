@@ -13,48 +13,58 @@ const Sidebar = ({ testques, setShow, setShowques, show }) => {
   const usercookie = localStorage.getItem("cookie");
   let st,
     result,
-    limit = 7200000;
+    limit = 3600000;
   const datacookie = {
     cookie_token: usercookie,
   };
 
   let d,
     interval = useRef();
-  const timer = () => {
-    interval = setInterval(() => {
-      axios
-        .post("https://exam-portal.cyclic.app/logintime", datacookie)
-        .then((res) => {
-          st = new Date(res.data.loginAt).getTime();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      axios
-        .get("https://worldtimeapi.org/api/timezone/Asia/Kolkata")
-        .then((res) => {
-          d = new Date(res.data.datetime).getTime();
-          result = limit - (d - st);
-          if (result) {
-            const rhours = Math.floor(result / (1000 * 60 * 60));
-            const rminutes = Math.floor(
-              (result % (1000 * 60 * 60)) / (1000 * 60)
-            );
-            const rseconds = Math.floor((result % (1000 * 60)) / 1000);
-            if (result < 0) {
-              clearInterval(interval.current);
-              localStorage.setItem("testpage", "true");
-              navigate("/feedback");
-            } else {
-              setHours(rhours);
-              setMinutes(rminutes);
-              setSeconds(rseconds);
-            }
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+  const timer = async () => {
+    axios
+      .post("https://csiportal.herokuapp.com/logintime", datacookie)
+      .then((res) => {
+        st = new Date(res.data.loginAt).getTime();
+        // console.log(st);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    interval = setInterval(async () => {
+      // axios
+      //   .post("https://exam-portal.cyclic.app/logintime", datacookie)
+      //   .then((res) => {
+      //     st = new Date(res.data.loginAt).getTime();
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+
+      d = new Date().getTime();
+      result = limit - (d - st);
+      if (result) {
+        const rhours = Math.floor(result / (1000 * 60 * 60));
+        const rminutes = Math.floor((result % (1000 * 60 * 60)) / (1000 * 60));
+        const rseconds = Math.floor((result % (1000 * 60)) / 1000);
+        if (result < 0) {
+          clearInterval(interval.current);
+          const value = {
+            cookie_token: usercookie,
+          };
+          const result = await axios.patch(
+            "https://csiportal.herokuapp.com/quesansdata",
+            value
+          );
+          localStorage.setItem("testpage", "true");
+
+          navigate("/feedback");
+        } else {
+          setHours(rhours);
+          setMinutes(rminutes);
+          setSeconds(rseconds);
+        }
+      }
     }, 1000);
   };
 
@@ -109,21 +119,15 @@ const Sidebar = ({ testques, setShow, setShowques, show }) => {
         </div>
         <div className={show ? "time_head2" : "time_head1"}>Questions</div>
 
-        <div className={show ? "test_btn2" : "test_btn1"}>
+        <div
+          className={show ? "test_btn2" : testques[0] ? "test_btn1" : "loader"}
+        >
           {testques[0] ? (
             sidebarbtn.map((i, index) => (
               <button
-                className={
-                  testques[i - 1].ans_flagRes.flag === 2
-                    ? "sidebar_button"
-                    : testques[i - 1].ans_flagRes.flag === 1
-                    ? "save_next"
-                    : testques[i - 1].ans_flagRes.flag === 3
-                    ? "mark_review"
-                    : testques[i - 1].ans_flagRes.flag === 5
-                    ? "not_answered"
-                    : "not_visited"
-                }
+                className="save_next"
+                 
+                
                 key={index}
                 onClick={() => {
                   handleoptions(i);
@@ -133,14 +137,16 @@ const Sidebar = ({ testques, setShow, setShowques, show }) => {
               </button>
             ))
           ) : (
-            <TailSpin
-              height="80"
-              width="80"
-              color="#db9cff"
-              ariaLabel="tail-spin-loading"
-              radius="1"
-              visible={true}
-            />
+            <div>
+              <TailSpin
+                height="80"
+                width="80"
+                color="#db9cff"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                visible={true}
+              />
+            </div>
           )}
         </div>
       </div>

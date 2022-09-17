@@ -35,7 +35,7 @@ const Instruction = () => {
       toast.error("Select any language first");
     } else {
       const result = await axios.patch(
-        "https://exam-portal.cyclic.app/instruction",
+        "https://csiportal.herokuapp.com/instruction",
 
         {
           cookie_token: cook,
