@@ -7,7 +7,7 @@ const GetCandidate = () => {
   const [data,setData]=useState([]);
  
   const[search, setSearch] = useState(" ");
-const url = "https://csiportal.herokuapp.com/candidate";
+const url = "https://accessfre.herokuapp.com/candidate";
 const getAllCandidates = () => {
   axios.get(url)
   .then((res)=> {

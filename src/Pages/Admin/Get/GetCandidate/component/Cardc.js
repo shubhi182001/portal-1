@@ -20,7 +20,7 @@ function Cardc({key,ques, reload}) {
        
 
     // console.log(ques);
-    const url = `https://csiportal.herokuapp.com/question/${ques._id}`;
+    const url = `https://accessfre.herokuapp.com/question/${ques._id}`;
     const deleteQuestion = () => (
         axios.delete(url)
         .then(()=>{
