@@ -12,7 +12,7 @@ const Leaderboard = () => {
   // const [getq, setGetq] = useState([]);
   const [udata, setUData] = useState([]);
   const [search, setSearch] = useState(" ");
-  const url = "https://exam-portal.cyclic.app/leaderboard";
+  const url = "https://csiportal.herokuapp.com/leaderboard";
   const getAllCandidates = () => {
     axios.get(url)
       .then((res) => { 

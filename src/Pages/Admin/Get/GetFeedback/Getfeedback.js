@@ -9,7 +9,7 @@ function Getfeedback() {
   const[search, setSearch] = useState(" ");
 
 
-  const url = "https://exam-portal.cyclic.app/feed/seefeedbackques";
+  const url = "https://csiportal.herokuapp.com/feed/seefeedbackques";
   const getAllQuestions = () => {
     axios.get(url)
     .then((res)=> {

@@ -75,7 +75,7 @@ const AddQuestions = () => {
         console.log(questionData)
         if (questionData.question && questionData.category && options.length === 4 && check()) {
             axios.post(
-                'https://exam-portal.cyclic.app/question/addquestion', questionData)
+                'https://csiportal.herokuapp.com/question/addquestion', questionData)
                 .then((res) => {
                     console.log(res);
                     console.log(res.data);
