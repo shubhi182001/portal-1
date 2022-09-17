@@ -73,7 +73,6 @@ const Sidebar = ({ testques, setShow, setShowques, show }) => {
   for (let i = 1; i <= testques.length; i++) {
     sidebarbtn.push(i);
   }
-    // eslint-disable-next-line
   
   const Submit = async (e) => {
     e.preventDefault();
