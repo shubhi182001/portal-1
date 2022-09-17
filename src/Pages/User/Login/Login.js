@@ -143,7 +143,7 @@ const Login = () => {
       };
 
       axios
-        .post("https://exam-portal.cyclic.app/login", data)
+        .post("https://csiportal.herokuapp.com/login", data)
         .then((res) => {
           console.log(res.data);
           localStorage.setItem("cookie", res.data.cookie_token);
