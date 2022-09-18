@@ -36,13 +36,13 @@ useEffect(()=>{
           </div>
         </div>
         <div className="getq">
-          {data && data.length ?
+          {data[0] ?
             data.filter((p) => {
               if (search === " ") {
                 return p
-              } else if (p.name.toLowerCase().includes(search.toLowerCase())) {
+              } else if (p.name?.toLowerCase().includes(search.toLowerCase())) {
                 return p
-              }else if(p.studentNum.toString().includes(search)){
+              }else if(p.studentNum?.toString().includes(search)){
                 return p
             }
             return false
