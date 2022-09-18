@@ -41,21 +41,34 @@ const Instruction = () => {
     if (chosenlang === " ") {
       toast.error("Select any language first");
     } else {
-      const result = await axios.patch(
-        "https://accessfre.herokuapp.com/instruction",
+      await axios
+        .patch(
+          "https://accessfre.herokuapp.com/instruction",
 
-        {
-          cookie_token: cook,
-          lang: chosenlang,
-        }
-      );
-      if (result.data.isVerified === true) {
-        localStorage.setItem("instruct", true);
-        navigate("/testwindow");
-      } else if (result.data.isVerified === false) {
-        localStorage.removeItem("instruct");
-        navigate("/");
-      }
+          {
+            cookie_token: cook,
+            lang: chosenlang,
+          }
+        )
+        .then((data) => {
+          if (data.data.isVerified === true) {
+            localStorage.setItem("instruct", true);
+            navigate("/testwindow");
+
+          // } else if (
+          //   data.data.isVerified === false ||
+          //   !data.data.isVerified
+          // ) {
+            
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          localStorage.removeItem("login2");
+          localStorage.removeItem("cook");
+
+            navigate("/");
+        });
     }
   };
 
