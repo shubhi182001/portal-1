@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom"
 
 function Cardf({ques, reload}) {
     const navigate = useNavigate();
-    const url = `https://csiportal.herokuapp.com/feedback/${ques._id}`;
+    const url = `https://accessfre.herokuapp.com/feedback/${ques._id}`;
     const deleteQuestion = () => (
         axios.delete(url)
         .then(()=>{

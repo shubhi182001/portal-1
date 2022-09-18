@@ -15,7 +15,7 @@ function Homepage() {
     current_active_users: 0,
     total_attendees: 0,
   });
-  const url = "https://csiportal.herokuapp.com/admin/total";
+  const url = "https://accessfre.herokuapp.com/admin/total";
   const getData = () => {
     axios
       .get(url)

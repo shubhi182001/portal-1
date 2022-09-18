@@ -139,7 +139,7 @@ function AddCandidate() {
       // const token = await reRef.current.executeAsync();
 
       axios
-        .post("https://csiportal.herokuapp.com/register", newEntry)
+        .post("https://accessfre.herokuapp.com/register", newEntry)
         .then((res) => {
           console.log(res.data);
           if (res.status === 200) {

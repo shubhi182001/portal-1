@@ -34,7 +34,7 @@ function Responses() {
    const data = {
     userId:state.post_id
    };
-    const url = "https://csiportal.herokuapp.com/fetchanswer";
+    const url = "https://accessfre.herokuapp.com/fetchanswer";
     const getResponse = () =>{
         axios.put(url,data).then((res) => {
             console.log(res);

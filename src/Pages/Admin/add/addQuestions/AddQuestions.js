@@ -75,7 +75,7 @@ const AddQuestions = () => {
         console.log(questionData)
         if (questionData.question && questionData.category && options.length === 4 && check()) {
             axios.post(
-                'https://csiportal.herokuapp.com/question/addquestion', questionData)
+                'https://accessfre.herokuapp.com/question/addquestion', questionData)
                 .then((res) => {
                     console.log(res);
                     console.log(res.data);

@@ -20,7 +20,7 @@ const Cardl = ({ ckc}) => {
                 // post_studentnum: ckc.studentNum,
                 // post_score: ckc.score
 
-            }
+            } 
             
         });
     }
