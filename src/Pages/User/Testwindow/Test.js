@@ -4,42 +4,63 @@ import QuestionPannel from "./components/QuestionPannel";
 import axios from "axios";
 import Modal from "./.././Modal/Modal";
 import "./Test.css";
+import { useStateContext } from "../../../Components/ContextProvider";
+
 const Test = () => {
   const [show, setShow] = useState(false); // for modal
   const [choice, setChoice] = useState("HTML"); // cataegory
   const [testques, setTestques] = useState({}); // setting whole array of question
   const [showques, setShowques] = useState(1); // question iterator
   const [testoptions, setTestOptions] = useState(); //setting the options
-  const cook = localStorage.getItem("cookie");
-  const [loader, setLoader] = useState(true); // setting whole array of question
+  const cookie = localStorage.getItem("cookie");
+  const { setLoader } = useStateContext();
 
-  // const [ansid, setAnsid] = useState("2"); //flags for question :
-  // save and next -> 1 green
-  //Review -> 3 blue
-  // Not visited -> 2 border -> blue, background ->white
-  // not answered -> 5 red
-
-  const url = `https://csiportal.herokuapp.com/question/shuffle/${choice}`;
-  const choiceques = async () => {
-    const data = await axios.put(url, {
-      cookie_token: cook,
-    });
-    console.log(data);
-    setTestques(data.data.result);
-    setTestOptions(data.data.result[showques - 1].quesget.options);
-  };
-  useEffect(() => {
-    choiceques();
-
-    // eslint-disable-next-line
-  }, [showques]);
-  useEffect(() => {
+  
+  const url = `https://accessfre.herokuapp.com/question/user-answers/${choice}`;
+  const categoryquestion = async () => {
     setLoader(false);
-    choiceques();
+    await axios
+      .put(url, {
+        cookie_token: cookie,
+      })
+      .then((data) => {
+        console.log(data);
+        setTestques(data.data);
+        setTestOptions(data.data[showques - 1].options);
+        setLoader(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const question = async () => {
+    await axios
+      .put(url, {
+        cookie_token: cookie,
+      })
+      .then((data) => {
+        console.log(data);
+        setTestques(data.data);
+        setTestOptions(data.data[showques - 1].options);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
+
+  useEffect(() => {
+    categoryquestion();
+    // console.log(testques);
 
     // eslint-disable-next-line
   }, [choice]);
 
+  useEffect(() => {
+   question();
+    // eslint-disable-next-line
+  }, [showques]);
   return (
     <>
       {show ? (
@@ -56,7 +77,6 @@ const Test = () => {
               setShow={setShow}
               show={show}
               setTestques={setTestques}
-              loader={loader}
             />
 
             <Sidebar
@@ -66,7 +86,6 @@ const Test = () => {
               choice={choice}
               setShow={setShow}
               show={show}
-              loader={loader}
             />
             <Modal setShow={setShow} />
           </div>

@@ -4,12 +4,22 @@ import "./Sidebar.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../../../../Components/ContextProvider";
-import { TailSpin } from "react-loader-spinner";
-const Sidebar = ({ testques, setShow, setShowques, show,loader,showques }) => {
-  const { setOid } = useStateContext();
+// import { TailSpin } from "react-loader-spinner";
+import Loader from "../../../../Components/Loader/Loader";
+const Sidebar = ({
+  testques,
+  setShow,
+  setShowques,
+  show,
+  showques,
+  choice,
+}) => {
+  const { loader, setOid } = useStateContext();
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
   const [seconds, setSeconds] = useState("");
+  const [flag, setFlag] = useState([]);
+
   const usercookie = localStorage.getItem("cookie");
   let st,
     result,
@@ -22,7 +32,7 @@ const Sidebar = ({ testques, setShow, setShowques, show,loader,showques }) => {
     interval = useRef();
   const timer = async () => {
     axios
-      .post("https://csiportal.herokuapp.com/logintime", datacookie)
+      .post("https://accessfre.herokuapp.com/logintime", datacookie)
       .then((res) => {
         st = new Date(res.data.loginAt).getTime();
         // console.log(st);
@@ -54,7 +64,7 @@ const Sidebar = ({ testques, setShow, setShowques, show,loader,showques }) => {
           };
           // eslint-disable-next-line
           const submit = await axios.patch(
-            "https://csiportal.herokuapp.com/quesansdata",
+            "https://accessfre.herokuapp.com/quesansdata",
             value
           );
           localStorage.setItem("testpage", "true");
@@ -73,7 +83,7 @@ const Sidebar = ({ testques, setShow, setShowques, show,loader,showques }) => {
   for (let i = 1; i <= testques.length; i++) {
     sidebarbtn.push(i);
   }
-  
+
   const Submit = async (e) => {
     e.preventDefault();
     setShow(true);
@@ -120,26 +130,28 @@ const Sidebar = ({ testques, setShow, setShowques, show,loader,showques }) => {
         </div>
         <div className={show ? "time_head2" : "time_head1"}>Questions</div>
 
-        <div
-          className={show ? "test_btn2" : testques[0] ? "test_btn1" : "loader"}
-        >
-          {(testques[0]) ? (
+        <div className={show ? "test_btn2" : testques ? "test_btn1" : "loader"}>
+          {loader ? (
             sidebarbtn.map((i, index) => (
               <button
                 className={
-                   testques[index].ans_flagRes.flag === 2
+                  testques[index].ansid === 2
                     ? "sidebar_button"
-                    : testques[index].ans_flagRes.flag === 1
+                    : testques[index].ansid === 1
                     ? "save_next"
-                    : testques[index].ans_flagRes.flag === 3
+                    : testques[index].ansid === 3
                     ? "mark_review"
-                    : testques[index].ans_flagRes.flag === 5
+                    : testques[index].ansid === 5
                     ? "not_answered"
                     : "not_visited"
-                    
                 }
-                 
-                
+                // className={
+                //   flag.filter((val) => {
+                //     val.Qid === testques[testques.map((val,index)=>{return index})]._id;
+                //   })[0].ansid === 1
+                //     ? "save_next"
+                //     : "not_visited"
+                // }
                 key={index}
                 onClick={() => {
                   handleoptions(i);
@@ -149,16 +161,7 @@ const Sidebar = ({ testques, setShow, setShowques, show,loader,showques }) => {
               </button>
             ))
           ) : (
-            <div>
-              <TailSpin
-                height="80"
-                width="80"
-                color="#db9cff"
-                ariaLabel="tail-spin-loading"
-                radius="1"
-                visible={true}
-              />
-            </div>
+            <Loader height="80" width="80" color="#db9cff" />
           )}
         </div>
       </div>

@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { Button } from "@mui/material";
 import { useStateContext } from "../../../../Components/ContextProvider";
-import { TailSpin } from "react-loader-spinner";
+import Loader from "../../../../Components/Loader/Loader";
 const QuestionPannel = ({
   testoptions,
   showques,
@@ -16,16 +16,15 @@ const QuestionPannel = ({
   choice,
   setShowques,
   show,
-  loader
 }) => {
-  const { oid, setOid } = useStateContext();
+  const { loader, oid, setOid } = useStateContext();
   let isVerified;
 
   const cook = localStorage.getItem("cookie");
 
-
   const [chosenlang, setChosenlang] = useState("");
-
+  const [loading, setLoading] = useState(false);
+  const [loading1, setLoading1] = useState(false);
 
   useEffect(() => {
     const lang = {
@@ -41,6 +40,45 @@ const QuestionPannel = ({
       });
   }, [cook]);
 
+  const saveCall = (data) => {
+    setLoading(true);
+    axios
+      .put("https://accessfre.herokuapp.com/ans/set-answer", data)
+      .then((res) => {
+        console.log(res.data);
+        setLoading(false);
+        isVerified = res.data.isVerified;
+        if (isVerified === false) {
+          localStorage.removeItem("instruct");
+          localStorage.removeItem("login2");
+          localStorage.removeItem("cookie");
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const markCall = (data) => {
+    setLoading1(true);
+    axios
+      .put("https://accessfre.herokuapp.com/ans/set-answer", data)
+      .then((res) => {
+        console.log(res.data);
+        setLoading1(false);
+        isVerified = res.data.isVerified;
+        if (isVerified === false) {
+          localStorage.removeItem("instruct");
+          localStorage.removeItem("login2");
+          localStorage.removeItem("cookie");
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const handleactive = (val) => {
     setChoice(val);
     setShowques(1);
@@ -51,14 +89,8 @@ const QuestionPannel = ({
   // Mark for review
   const Mark = async () => {
     if (showques < testques.length && oid !== "000") {
-      let qid = testques[showques - 1].quesget._id;
-      let question = testques[showques - 1].quesget.question;
-
-      // console.log(qid);
-      // console.log(oid);
-      // console.log(choice);
-      // console.log(question);
-      // console.log(showques);
+      let qid = testques[showques - 1]._id;
+      let question = testques[showques - 1].question;
 
       const data = {
         cookie_token: cook,
@@ -68,39 +100,24 @@ const QuestionPannel = ({
         Qid: qid,
         ansid: 3,
       };
-      console.log(data);
+    console.log(data);
 
-      await axios
-        .put("https://accessfre.herokuapp.com/ans/answer", data)
-        .then((res) => {
-          console.log(res.data);
-          isVerified = res.data.isVerified;
-          if (isVerified === false) {
-            localStorage.removeItem("instruct");
-            localStorage.removeItem("login2");
-            localStorage.removeItem("cookie");
-            navigate("/");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      markCall(data);
       setShowques(showques + 1);
       setOid("000");
     } else if (
       showques < testques.length &&
       oid === "000" &&
-      testques[showques - 1].ans_flagRes.setopt
+      testques[showques - 1].userAnswer !== -1
     ) {
-      let qid = testques[showques - 1].quesget._id;
-      let question = testques[showques - 1].quesget.question;
-      let Options = testques[showques - 1].quesget.options;
-      let selectedOpt =testques[showques - 1].ans_flagRes.setopt;
+      let qid = testques[showques - 1]._id;
+      let question = testques[showques - 1].question;
+      let Options = testques[showques - 1].options;
+      let selectedOpt = testques[showques - 1].userAnswer;
 
       let OptionId;
 
-      OptionId = Options.filter((option) => option.value === selectedOpt);
-      // console.log(Options, selectedOpt, OptionId[0].Oid);
+      OptionId = Options.filter((option) => option.Oid === selectedOpt);
 
       const data = {
         cookie_token: cook,
@@ -110,34 +127,22 @@ const QuestionPannel = ({
         Qid: qid,
         ansid: 3,
       };
-      // console.log(data);
+      console.log(data);
 
-      await axios
-        .put("https://accessfre.herokuapp.com/ans/answer", data)
-        .then((res) => {
-          console.log(res.data);
-          isVerified = res.data.isVerified;
-          if (isVerified === false) {
-            localStorage.removeItem("instruct");
-            localStorage.removeItem("login2");
-            localStorage.removeItem("cookie");
-            navigate("/");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      markCall(data);
+
       setShowques(showques + 1);
+
       setOid("000");
-    } else if (oid === "000" && !testques[showques - 1].ans_flagRes.setopt) {
+    } else if (oid === "000" && testques[showques - 1].userAnswer === -1) {
       toast.error("Select an option");
     } else {
-      let qid = testques[showques - 1].quesget._id;
-      let question = testques[showques - 1].quesget.question;
+      let qid = testques[showques - 1]._id;
+      let question = testques[showques - 1].question;
       let data, OptionId;
-      if (testques[showques - 1].ans_flagRes.setopt && oid === "000") {
-        OptionId = testques[showques - 1].quesget.options.filter(
-          (option) => option.value === testques[showques - 1].ans_flagRes.setopt
+      if (testques[showques - 1].userAnswer !== -1 && oid === "000") {
+        OptionId = testques[showques - 1].options.filter(
+          (option) => option.Oid === testques[showques - 1].userAnswer
         );
         data = {
           cookie_token: cook,
@@ -147,7 +152,7 @@ const QuestionPannel = ({
           Qid: qid,
           ansid: 3,
         };
-      } else if (testques[showques - 1].ans_flagRes.setopt && oid !== "000") {
+      } else if (testques[showques - 1].userAnswer !== -1 && oid !== "000") {
         data = {
           cookie_token: cook,
           question: question,
@@ -157,24 +162,14 @@ const QuestionPannel = ({
           ansid: 3,
         };
       }
+    console.log(data);
 
-      await axios
-        .put("https://accessfre.herokuapp.com/ans/answer", data)
-        .then((res) => {
-          console.log(res.data);
-          isVerified = res.data.isVerified;
-          if (isVerified === false) {
-            localStorage.removeItem("instruct");
-            localStorage.removeItem("login2");
-            localStorage.removeItem("cookie");
-            navigate("/");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+
+      markCall(data);
+
       setOid("000");
       setShowques(1);
+
       setChoice(
         choice === "HTML"
           ? "SQL"
@@ -195,8 +190,8 @@ const QuestionPannel = ({
   const Next = async () => {
     if (showques < testques.length) {
       if (oid !== "000") {
-        let qid = testques[showques - 1].quesget._id;
-        let question = testques[showques - 1].quesget.question;
+        let qid = testques[showques - 1]._id;
+        let question = testques[showques - 1].question;
         const data = {
           cookie_token: cook,
           question: question,
@@ -205,39 +200,23 @@ const QuestionPannel = ({
           Qid: qid,
           ansid: 1,
         };
-        await axios
-          .put("https://accessfre.herokuapp.com/ans/answer", data)
-          .then((res) => {
-            console.log(res.data);
-            isVerified = res.data.isVerified;
-            if (isVerified === false) {
-              localStorage.removeItem("instruct");
-              localStorage.removeItem("login2");
-              localStorage.removeItem("cookie");
-              navigate("/");
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        console.log(data);
+
+        saveCall(data);
+
         setShowques(showques + 1);
-        // console.log(qid);
-        // console.log(oid);
-        // console.log(choice);
-        // console.log(question);
-        // console.log(showques);
+
         setOid("000");
       } else if (oid === "000") {
         if (
-          testques[showques - 1].ans_flagRes.setopt &&
-          testques[showques - 1].ans_flagRes.flag === 3
+          testques[showques - 1].userAnswer !== -1 &&
+          testques[showques - 1].ansid === 3
         ) {
-          let qid = testques[showques - 1].quesget._id;
-          let question = testques[showques - 1].quesget.question;
+          let qid = testques[showques - 1]._id;
+          let question = testques[showques - 1].question;
           let data, OptionId;
-          OptionId = testques[showques - 1].quesget.options.filter(
-            (option) =>
-              option.value ===  testques[showques - 1].ans_flagRes.setopt
+          OptionId = testques[showques - 1].options.filter(
+            (option) => option.Oid === testques[showques - 1].userAnswer
           );
           data = {
             cookie_token: cook,
@@ -247,36 +226,21 @@ const QuestionPannel = ({
             Qid: qid,
             ansid: 1,
           };
-          await axios
-            .put("https://accessfre.herokuapp.com/ans/answer", data)
-            .then((res) => {
-              console.log(res.data);
-              isVerified = res.data.isVerified;
-              if (isVerified === false) {
-                localStorage.removeItem("instruct");
-                localStorage.removeItem("login2");
-                localStorage.removeItem("cookie");
-                navigate("/");
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          console.log(data);
+
+          saveCall(data);
+
           setShowques(showques + 1);
-          // console.log(qid);
-          // console.log(oid);
-          // console.log(choice);
-          // console.log(question);
-          // console.log(showques);
+
           setOid("000");
         } else if (
-          testques[showques - 1].ans_flagRes.flag === 5 ||
-          testques[showques - 1].ans_flagRes.flag === 1
+          testques[showques - 1].ansid === 5 ||
+          testques[showques - 1].ansid === 1
         ) {
           setShowques(showques + 1);
         } else {
-          let qid = testques[showques - 1].quesget._id;
-          let question = testques[showques - 1].quesget.question;
+          let qid = testques[showques - 1]._id;
+          let question = testques[showques - 1].question;
           const data = {
             cookie_token: cook,
             question: question,
@@ -285,34 +249,19 @@ const QuestionPannel = ({
             Qid: qid,
             ansid: oid === "000" ? 5 : 1,
           };
-          await axios
-            .put("https://accessfre.herokuapp.com/ans/answer", data)
-            .then((res) => {
-              console.log(res.data);
-              isVerified = res.data.isVerified;
-              if (isVerified === false) {
-                localStorage.removeItem("instruct");
-                localStorage.removeItem("login2");
-                localStorage.removeItem("cookie");
-                navigate("/");
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          console.log(data);
+
+          saveCall(data);
+
           setShowques(showques + 1);
-          // console.log(qid);
-          // console.log(oid);
-          // console.log(choice);
-          // console.log(question);
-          // console.log(showques);
+
           setOid("000");
         }
       }
     } else {
       if (oid !== "000") {
-        let qid = testques[showques - 1].quesget._id;
-        let question = testques[showques - 1].quesget.question;
+        let qid = testques[showques - 1]._id;
+        let question = testques[showques - 1].question;
         const data = {
           cookie_token: cook,
           question: question,
@@ -321,27 +270,12 @@ const QuestionPannel = ({
           Qid: qid,
           ansid: oid === "000" ? 5 : 1,
         };
-        await axios
-          .put("https://accessfre.herokuapp.com/ans/answer", data)
-          .then((res) => {
-            console.log(res.data);
-            isVerified = res.data.isVerified;
-            if (isVerified === false) {
-              localStorage.removeItem("instruct");
-              localStorage.removeItem("login2");
-              localStorage.removeItem("cookie");
-              navigate("/");
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-        // console.log(qid);
-        // console.log(oid);
-        // console.log(choice);
-        // console.log(question);
-        // console.log(showques);
+        console.log(data);
+
+        saveCall(data);
+
         setOid("000");
+
         setShowques(1);
         setChoice(
           choice === "HTML"
@@ -358,10 +292,11 @@ const QuestionPannel = ({
         );
       } else if (oid === "000") {
         if (
-          testques[showques - 1].ans_flagRes.flag  === 5 ||
-          testques[showques - 1].ans_flagRes.flag  === 1
+          testques[showques - 1].ansid === 5 ||
+          testques[showques - 1].ansid === 1
         ) {
           setShowques(1);
+
           setChoice(
             choice === "HTML"
               ? "SQL"
@@ -376,17 +311,16 @@ const QuestionPannel = ({
               : "HTML"
           );
         } else {
-          let qid = testques[showques - 1].quesget._id;
-          let question = testques[showques - 1].quesget.question;
+          let qid = testques[showques - 1]._id;
+          let question = testques[showques - 1].question;
           let data, OptionId;
 
           if (
-            testques[showques - 1].ans_flagRes.setopt &&
-              testques[showques - 1].ans_flagRes.flag  === 3
+            testques[showques - 1].userAnswer !== -1 &&
+            testques[showques - 1].ansid === 3
           ) {
-            OptionId =  testques[showques - 1].quesget.options.filter(
-              (option) =>
-                option.value ===  testques[showques - 1].ans_flagRes.setopt
+            OptionId = testques[showques - 1].options.filter(
+              (option) => option.value === testques[showques - 1].userAnswer
             );
             data = {
               cookie_token: cook,
@@ -406,28 +340,14 @@ const QuestionPannel = ({
               ansid: oid === "000" ? 5 : 1,
             };
           }
-          await axios
-            .put("https://accessfre.herokuapp.com/ans/answer", data)
-            .then((res) => {
-              console.log(res.data);
-              isVerified = res.data.isVerified;
-              if (isVerified === false) {
-                localStorage.removeItem("instruct");
-                localStorage.removeItem("login2");
-                localStorage.removeItem("cookie");
-                navigate("/");
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-          // console.log(qid);
-          // console.log(oid);
-          // console.log(choice);
-          // console.log(question);
-          // console.log(showques);
+          console.log(data);
+
+          saveCall(data);
+
           setOid("000");
+
           setShowques(1);
+
           setChoice(
             choice === "HTML"
               ? "SQL"
@@ -497,65 +417,60 @@ const QuestionPannel = ({
           <div className="question_sec">
             <h1>Question {showques}.</h1>
             <hr />
-            <h2>
-              {(testques[0]||loader) ? (
-                testques[showques - 1].quesget.question
-              ) : (
-                <div
-                  style={{
-                    display: "flex",
-                    alignItem: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <TailSpin
-                    height="80"
-                    width="80"
-                    color="#db9cff"
-                    ariaLabel="tail-spin-loading"
-                    radius="1"
-                    visible={true}
-                  />
-                </div>
-              )}
-            </h2>
-            <div className="testbtn">
-              {testoptions &&
-                testoptions.map((option, index) => (
-                  <div
-                    className={show ? "que_options2" : "que_options1"}
-                    key={option.Oid}
-                  >
-                    <input
-                      type="radio"
-                      defaultChecked={
-                        testques[showques - 1].ans_flagRes.setopt ===
-                        option.value
-                          ? true
-                          : false
-                      }
-                      onClick={() => {
-                        setOid(option.Oid);
-                      }}
-                      value={option.value}
-                      name="btn"
-                    />
+            {loader ? (
+              <>
+                <h1>{testques && testques[showques - 1].question}</h1>
+                <div className="testbtn">
+                  {testoptions
+                    ? testoptions.map((option, index) => (
+                        <div
+                          className={show ? "que_options2" : "que_options1"}
+                          key={option.Oid}
+                        >
+                          <input
+                            type="radio"
+                            defaultChecked={
+                              testques[showques - 1].userAnswer === option.Oid
+                                ? true
+                                : false
+                            }
+                            onClick={() => {
+                              setOid(option.Oid);
+                            }}
+                            value={option.value}
+                            name="btn"
+                          />
 
-                    <label>
-                      {testques[showques - 1].quesget.options[index].value}
-                    </label>
-                  </div>
-                ))}
-            </div>
+                          <label>
+                            {testques[showques - 1].options[index].value}
+                          </label>
+                        </div>
+                      ))
+                    : ""}
+                </div>
+              </>
+            ) : (
+              <div className="MainLoader">
+                <Loader height="80" width="80" color="#db9cff" />
+              </div>
+            )}
           </div>
         </div>
         <div className={show ? "footer2" : "footer1"}>
           <div className="foot_btn">
             <Button onClick={Mark} id="mfr">
-              Mark for Review
+              {loading1 ? (
+                <Loader height="20" width="20" color="white" />
+              ) : (
+                "Mark for Review"
+              )}
             </Button>
             <Button id="s_n" onClick={Next}>
-              Save & Next
+              {loading ? (
+                <Loader height="20" width="20" color="white" />
+              ) : (
+                "save & next"
+              )}
             </Button>
           </div>
           <div className="colors">

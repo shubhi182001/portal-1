@@ -82,6 +82,12 @@
   opacity: 0.4;
 }
 
+.MainLoader{
+display: flex;
+align-items: center;
+justify-content: center;
+height: 300px;
+}
 .dividerbtn {
   width: 175px;
   height: 41px;
@@ -125,17 +131,18 @@
 #divide5 {
   border-radius: 0px 15px 5px 0px;
 }
+.question_sec {
+  padding: 30px;
+  margin-top: 20px;
+  margin-left: 20px;
+  height: fit-content;
+}
 .question_sec h1 {
   font-style: normal;
   font-weight: 700;
   font-size: 22px;
   margin-left: 25px;
   margin-bottom: 5px;
-}
-.question_sec {
-  padding: 30px;
-  margin-top: 20px;
-  margin-left: 20px;
 }
 .question_sec h2 {
   margin-left: 25px;

@@ -17,8 +17,8 @@ const Instruction = () => {
     if (instruct) {
       navigate("/testwindow");
     }
-    // eslint-disable-next-line  
-  },[]);
+    // eslint-disable-next-line
+  }, []);
 
   const handlelangchoice = (val) => {
     setChosenlang(val);
@@ -26,7 +26,7 @@ const Instruction = () => {
 
   const cook = localStorage.getItem("cookie");
   // const choiceques = async () => {
-  //   const data = await axios.put(`https://csiportal.herokuapp.com/question/shuffle/HTML`, {
+  //   const data = await axios.put(`https://accessfre.herokuapp.com/question/shuffle/HTML`, {
   //     cookie_token: cook,
   //   });
   //   console.log(data);
@@ -38,8 +38,7 @@ const Instruction = () => {
   const chkvalidate = async (e) => {
     e.preventDefault();
 
-    if (chosenlang === " ")
-     {
+    if (chosenlang === " ") {
       toast.error("Select any language first");
     } else {
       const result = await axios.patch(
@@ -50,8 +49,7 @@ const Instruction = () => {
           lang: chosenlang,
         }
       );
-      if (result.data.isVerified === true)
-      {
+      if (result.data.isVerified === true) {
         localStorage.setItem("instruct", true);
         navigate("/testwindow");
       } else if (result.data.isVerified === false) {
@@ -60,7 +58,6 @@ const Instruction = () => {
       }
     }
   };
-
 
   return (
     <div className="instructions">
