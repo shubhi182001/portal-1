@@ -39,21 +39,50 @@ const Sidebar = ({
       });
 
     interval = setInterval(async () => {
-      // axios;
-      // axios
-      //   .get("https://worldtimeapi.org/api/timezone/Asia/Kolkata")
-      //   .then((res) => {
-      //     d = new Date().getTime();
+      axios
+        .get("https://worldtimeapi.org/api/timezone/Asia/Kolkata")
+        .then((res) => {
+          d = new Date().getTime();
+          result = limit - (d - st);
+          if (result) {
+            const rhours = Math.floor(result / (1000 * 60 * 60));
+            const rminutes = Math.floor(
+              (result % (1000 * 60 * 60)) / (1000 * 60)
+            );
+            const rseconds = Math.floor((result % (1000 * 60)) / 1000);
+            if (result < 0) {
+              clearInterval(interval.current);
+              localStorage.setItem("testpage", "true");
+              navigate("/feedback");
+            } else {
+              setHours(rhours);
+              setMinutes(rminutes);
+              setSeconds(rseconds);
+            }
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      // d = new Date().getTime();
       //     result = limit - (d - st);
       //     if (result) {
       //       const rhours = Math.floor(result / (1000 * 60 * 60));
-      //       const rminutes = Math.floor(
-      //         (result % (1000 * 60 * 60)) / (1000 * 60)
-      //       );
+      //       const rminutes = Math.floor((result % (1000 * 60 * 60)) / (1000 * 60));
       //       const rseconds = Math.floor((result % (1000 * 60)) / 1000);
       //       if (result < 0) {
       //         clearInterval(interval.current);
+      //         const value = {
+      //           cookie_token: usercookie,
+      //         };
+      //         // eslint-disable-next-line
+      //         const submit = await axios.patch(
+      //           "https://accessfre.herokuapp.com/quesansdata",
+      //           value
+      //         );
       //         localStorage.setItem("testpage", "true");
+
       //         navigate("/feedback");
       //       } else {
       //         setHours(rhours);
@@ -61,36 +90,6 @@ const Sidebar = ({
       //         setSeconds(rseconds);
       //       }
       //     }
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
-
-      d = new Date().getTime();
-      result = limit - (d - st);
-      if (result) {
-        const rhours = Math.floor(result / (1000 * 60 * 60));
-        const rminutes = Math.floor((result % (1000 * 60 * 60)) / (1000 * 60));
-        const rseconds = Math.floor((result % (1000 * 60)) / 1000);
-        if (result < 0) {
-          clearInterval(interval.current);
-          const value = {
-            cookie_token: usercookie,
-          };
-          // eslint-disable-next-line
-          const submit = await axios.patch(
-            "https://accessfre.herokuapp.com/quesansdata",
-            value
-          );
-          localStorage.setItem("testpage", "true");
-
-          navigate("/feedback");
-        } else {
-          setHours(rhours);
-          setMinutes(rminutes);
-          setSeconds(rseconds);
-        }
-      }
     }, 1000);
   };
 
