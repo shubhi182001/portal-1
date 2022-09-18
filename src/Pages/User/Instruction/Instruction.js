@@ -8,7 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 import "./Instruction.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 const Instruction = () => {
   const navigate = useNavigate();
   const [chosenlang, setChosenlang] = useState("");
@@ -26,23 +25,33 @@ const Instruction = () => {
   };
 
   const cook = localStorage.getItem("cookie");
+  // const choiceques = async () => {
+  //   const data = await axios.put(`https://csiportal.herokuapp.com/question/shuffle/HTML`, {
+  //     cookie_token: cook,
+  //   });
+  //   console.log(data);
+  //   // setTestques(data.data.result);
+  //   // setTestOptions(data.data.result[showques - 1].options);
+  // };
 
   // button functionality for selected language [save and next]
   const chkvalidate = async (e) => {
     e.preventDefault();
 
-    if (chosenlang === "") {
+    if (chosenlang === " ")
+     {
       toast.error("Select any language first");
     } else {
       const result = await axios.patch(
-        "https://csiportal.herokuapp.com/instruction",
+        "https://accessfre.herokuapp.com/instruction",
 
         {
           cookie_token: cook,
           lang: chosenlang,
         }
       );
-      if (result.data.isVerified === true) {
+      if (result.data.isVerified === true)
+      {
         localStorage.setItem("instruct", true);
         navigate("/testwindow");
       } else if (result.data.isVerified === false) {
@@ -51,6 +60,7 @@ const Instruction = () => {
       }
     }
   };
+
 
   return (
     <div className="instructions">
@@ -153,6 +163,7 @@ const Instruction = () => {
         <div className="start_exam">
           <Button
             onClick={chkvalidate}
+            // onClick= {()=>{chkvalidate();choiceques();}}
             endIcon={<ArrowForwardIcon />}
             sx={{ fontSize: 20, width: 250, marginBottom: 5, height: 50 }}
             color="success"

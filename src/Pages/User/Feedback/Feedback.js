@@ -48,7 +48,7 @@ const Feedback = () => {
       console.log(feedbackData);
       axios
         .post(
-          "https://csiportal.herokuapp.com/response/feedanswer",
+          "https://accessfre.herokuapp.com/response/feedanswer",
           feedbackData
         )
         .then((res) => {
@@ -68,7 +68,7 @@ const Feedback = () => {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get("https://csiportal.herokuapp.com/feed/seefeedbackques")
+      .get("https://accessfre.herokuapp.com/feed/seefeedbackques")
       .then((res) => {
         // console.log(res.data);
         setQues(res.data);

@@ -23,7 +23,8 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 45vh;
+  height: fit-content;
+  padding-bottom: 1rem;
   /* width: 25%; */
   min-width: 25%;
   box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.15);
@@ -33,10 +34,19 @@
   column-gap: 2rem;
   animation: fadein 2s ease;
   animation-iteration-count: 1;
+  position: relative;
+}
+
+.all_input_fields{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: unset;
+  margin-top: 3rem;
 }
 
 .admin_icon {
-  top: 26%;
+  top: -12%;
   height: 70px;
   width: 60px;
   transform: scale(1.5);
@@ -44,7 +54,7 @@
 }
 
 .admin_group {
-  top: 25%;
+  top: -15%;
   height: 80px;
   width: 60px;
   transform: scale(0.8);
@@ -98,10 +108,15 @@
   width: 140px;
   display: flex;
 }
+.captcha{
+transform: scale(0.8);
+transform-origin: 1 0;
+margin-bottom: 0.2rem;
+}
 
 .img {
   margin-right: -7rem;
-  margin-bottom: 14rem;
+  margin-bottom: 8rem;
   animation: fadein 2s ease;
   animation-iteration-count: 1;
 }

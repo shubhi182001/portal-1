@@ -32,7 +32,7 @@ const QuestionPannel = ({
       cookie_token: cook,
     };
     axios
-      .post("https://csiportal.herokuapp.com/langselected", lang)
+      .post("https://accessfre.herokuapp.com/langselected", lang)
       .then((res) => {
         setChosenlang(res.data.lang);
       })
@@ -71,7 +71,7 @@ const QuestionPannel = ({
       console.log(data);
 
       await axios
-        .put("https://csiportal.herokuapp.com/ans/answer", data)
+        .put("https://accessfre.herokuapp.com/ans/answer", data)
         .then((res) => {
           console.log(res.data);
           isVerified = res.data.isVerified;
@@ -113,7 +113,7 @@ const QuestionPannel = ({
       // console.log(data);
 
       await axios
-        .put("https://csiportal.herokuapp.com/ans/answer", data)
+        .put("https://accessfre.herokuapp.com/ans/answer", data)
         .then((res) => {
           console.log(res.data);
           isVerified = res.data.isVerified;
@@ -159,7 +159,7 @@ const QuestionPannel = ({
       }
 
       await axios
-        .put("https://csiportal.herokuapp.com/ans/answer", data)
+        .put("https://accessfre.herokuapp.com/ans/answer", data)
         .then((res) => {
           console.log(res.data);
           isVerified = res.data.isVerified;
@@ -206,7 +206,7 @@ const QuestionPannel = ({
           ansid: 1,
         };
         await axios
-          .put("https://csiportal.herokuapp.com/ans/answer", data)
+          .put("https://accessfre.herokuapp.com/ans/answer", data)
           .then((res) => {
             console.log(res.data);
             isVerified = res.data.isVerified;
@@ -248,7 +248,7 @@ const QuestionPannel = ({
             ansid: 1,
           };
           await axios
-            .put("https://csiportal.herokuapp.com/ans/answer", data)
+            .put("https://accessfre.herokuapp.com/ans/answer", data)
             .then((res) => {
               console.log(res.data);
               isVerified = res.data.isVerified;
@@ -286,7 +286,7 @@ const QuestionPannel = ({
             ansid: oid === "000" ? 5 : 1,
           };
           await axios
-            .put("https://csiportal.herokuapp.com/ans/answer", data)
+            .put("https://accessfre.herokuapp.com/ans/answer", data)
             .then((res) => {
               console.log(res.data);
               isVerified = res.data.isVerified;
@@ -322,7 +322,7 @@ const QuestionPannel = ({
           ansid: oid === "000" ? 5 : 1,
         };
         await axios
-          .put("https://csiportal.herokuapp.com/ans/answer", data)
+          .put("https://accessfre.herokuapp.com/ans/answer", data)
           .then((res) => {
             console.log(res.data);
             isVerified = res.data.isVerified;
@@ -407,7 +407,7 @@ const QuestionPannel = ({
             };
           }
           await axios
-            .put("https://csiportal.herokuapp.com/ans/answer", data)
+            .put("https://accessfre.herokuapp.com/ans/answer", data)
             .then((res) => {
               console.log(res.data);
               isVerified = res.data.isVerified;

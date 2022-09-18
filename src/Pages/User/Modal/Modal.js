@@ -13,7 +13,7 @@ const Modal = ({ setShow }) => {
       cookie_token: cook,
     };
     const result = await axios.patch(
-      "https://csiportal.herokuapp.com/quesansdata",
+      "https://accessfre.herokuapp.com/quesansdata",
       value
     );
     if (result.data.isVerified === true) {

@@ -17,6 +17,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Login = () => {
   const [studentNo, setStudentNo] = useState("");
@@ -32,6 +33,7 @@ const Login = () => {
   const [routename, setRoutename] = useState(false);
   const [credential, setCredential] = useState(true);
   const [loader, setLoader] = useState(false);
+  const [flag, setFlag] = useState("0");
   const validateStudentNo = (value) => {
     let error;
     const regex = /^[0-9]{7,8}$/;
@@ -72,10 +74,19 @@ const Login = () => {
     }
     return error;
   };
+  function onChangeCaptcha(value) {
+    if (value) {
+      setFlag("1");
+      // console.log(flag);
+    } else {
+      setFlag("0");
+      // console.log(flag);
+      toast.error("Captcha Required!!!");
+    }
+  }
   const validateroute1 = (routepass, routename) => {
     if (routepass === true && routename === true) {
       localStorage.setItem("login1", true);
-
       navigate("/homepage");
     }
   };
@@ -88,7 +99,6 @@ const Login = () => {
     } else if (routepass === true && routename === true && appear === false) {
       // console.log(appear);
       localStorage.setItem("login2", true);
-
       navigate("/instructions");
     }
   };
@@ -133,40 +143,50 @@ const Login = () => {
     setLoader(true);
     e.preventDefault();
     localStorage.removeItem("feedback");
+
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
-    // console.log(studentNo, password);
-    if (credential) {
-      const data = {
-        studentNum: +studentNo,
-        password: password,
-      };
+// eslint-disable-next-line
+    {
+      // console.log(studentNo, password);
+      if (credential && flag === "1") {
+        const data = {
+          studentNum: +studentNo,
+          password: password,
+        };
 
-      axios
-        .post("https://csiportal.herokuapp.com/login", data)
-        .then((res) => {
-          console.log(res.data);
-          localStorage.setItem("cookie", res.data.cookie_token);
-          let admin = res.data.isAdmin;
-          // console.log(admin);
-          if (admin === "true") {
-            validateroute1(routepass, routename);
-          } else {
-            let appeared = res.data.hasAppeared;
-            console.log(appeared);
-            validateroute2(routepass, routename, appeared);
-          }
-          setLoader(false);
-        })
-        .catch((err) => {
-          setLoader(false);
-          // toast.error("Error");
-          toast.error("Invalid Credentials");
-        });
-    } else {
-      toast.error("Invalid Details");
-
-      setLoader(false);
+        axios
+          .post("https://accessfre.herokuapp.com/login", data)
+          .then((res) => {
+            if (flag === "1") {
+              console.log(res.data);
+              localStorage.setItem("cookie", res.data.cookie_token);
+              let admin = res.data.isAdmin;
+              // console.log(admin);
+              if (admin === "true") {
+                validateroute1(routepass, routename);
+              } else {
+                let appeared = res.data.hasAppeared;
+                console.log(appeared);
+                validateroute2(routepass, routename, appeared);
+              }
+              setLoader(false);
+            }
+          })
+          .catch((err) => {
+            setLoader(false);
+            // toast.error("Error");
+            toast.error("Invalid Credentials");
+          });
+      } else {
+        if (!studentNo && !password && !credential)
+        {toast.error("Invalid Details");}
+        
+        else if (flag === "0") {
+          toast.error("captcha required");
+        }
+        setLoader(false);
+      }
     }
   };
   const navigate = useNavigate();
@@ -189,6 +209,7 @@ const Login = () => {
       <form className="form_container">
         <img src={Ellipse} alt="ellipse" className="admin_icon" />
         <img src={Group} alt="group" className="admin_group" />
+       <div className="all_input_fields">
         <div className="icon_container">
           <div className="icon">
             <p className="bars"></p>
@@ -254,6 +275,13 @@ const Login = () => {
             <span>{studentPasswordError}</span>
           </div>
         </div>
+            <div className="captcha_container">
+              <ReCAPTCHA
+                className="captcha"
+                sitekey="6LfN3dohAAAAAP8su8BdsG4GPeHhmYqd6x-edMlJ"
+                onChange={onChangeCaptcha}
+              />
+            </div>
         <div className="icon_container2">
           <div className="button_container">
             <Button
@@ -277,6 +305,7 @@ const Login = () => {
               )}
             </Button>
           </div>
+        </div>
         </div>
       </form>
       <div className="img">
