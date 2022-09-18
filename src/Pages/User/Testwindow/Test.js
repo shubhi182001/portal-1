@@ -19,7 +19,7 @@ const Test = () => {
   // Not visited -> 2 border -> blue, background ->white
   // not answered -> 5 red
 
-  const url = `https://csiportal.herokuapp.com/question/shuffle/${choice}`;
+  const url = `https://accessfre.herokuapp.com/question/shuffle/${choice}`;
   const choiceques = async () => {
     const data = await axios.put(url, {
       cookie_token: cook,

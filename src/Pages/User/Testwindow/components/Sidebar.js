@@ -5,7 +5,14 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../../../../Components/ContextProvider";
 import { TailSpin } from "react-loader-spinner";
-const Sidebar = ({ testques, setShow, setShowques, show,loader,showques }) => {
+const Sidebar = ({
+  testques,
+  setShow,
+  setShowques,
+  show,
+  loader,
+  showques,
+}) => {
   const { setOid } = useStateContext();
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
@@ -22,7 +29,7 @@ const Sidebar = ({ testques, setShow, setShowques, show,loader,showques }) => {
     interval = useRef();
   const timer = async () => {
     axios
-      .post("https://csiportal.herokuapp.com/logintime", datacookie)
+      .post("https://accessfre.herokuapp.com/logintime", datacookie)
       .then((res) => {
         st = new Date(res.data.loginAt).getTime();
         // console.log(st);
@@ -32,10 +39,28 @@ const Sidebar = ({ testques, setShow, setShowques, show,loader,showques }) => {
       });
 
     interval = setInterval(async () => {
+      // axios;
       // axios
-      //   .post("https://exam-portal.cyclic.app/logintime", datacookie)
+      //   .get("https://worldtimeapi.org/api/timezone/Asia/Kolkata")
       //   .then((res) => {
-      //     st = new Date(res.data.loginAt).getTime();
+      //     d = new Date().getTime();
+      //     result = limit - (d - st);
+      //     if (result) {
+      //       const rhours = Math.floor(result / (1000 * 60 * 60));
+      //       const rminutes = Math.floor(
+      //         (result % (1000 * 60 * 60)) / (1000 * 60)
+      //       );
+      //       const rseconds = Math.floor((result % (1000 * 60)) / 1000);
+      //       if (result < 0) {
+      //         clearInterval(interval.current);
+      //         localStorage.setItem("testpage", "true");
+      //         navigate("/feedback");
+      //       } else {
+      //         setHours(rhours);
+      //         setMinutes(rminutes);
+      //         setSeconds(rseconds);
+      //       }
+      //     }
       //   })
       //   .catch((err) => {
       //     console.log(err);
@@ -54,7 +79,7 @@ const Sidebar = ({ testques, setShow, setShowques, show,loader,showques }) => {
           };
           // eslint-disable-next-line
           const submit = await axios.patch(
-            "https://csiportal.herokuapp.com/quesansdata",
+            "https://accessfre.herokuapp.com/quesansdata",
             value
           );
           localStorage.setItem("testpage", "true");
@@ -73,7 +98,7 @@ const Sidebar = ({ testques, setShow, setShowques, show,loader,showques }) => {
   for (let i = 1; i <= testques.length; i++) {
     sidebarbtn.push(i);
   }
-  
+
   const Submit = async (e) => {
     e.preventDefault();
     setShow(true);
@@ -123,11 +148,11 @@ const Sidebar = ({ testques, setShow, setShowques, show,loader,showques }) => {
         <div
           className={show ? "test_btn2" : testques[0] ? "test_btn1" : "loader"}
         >
-          {(testques[0]) ? (
+          {testques[0] ? (
             sidebarbtn.map((i, index) => (
               <button
                 className={
-                   testques[index].ans_flagRes.flag === 2
+                  testques[index].ans_flagRes.flag === 2
                     ? "sidebar_button"
                     : testques[index].ans_flagRes.flag === 1
                     ? "save_next"
@@ -136,10 +161,7 @@ const Sidebar = ({ testques, setShow, setShowques, show,loader,showques }) => {
                     : testques[index].ans_flagRes.flag === 5
                     ? "not_answered"
                     : "not_visited"
-                    
                 }
-                 
-                
                 key={index}
                 onClick={() => {
                   handleoptions(i);
