@@ -18,7 +18,6 @@ const Sidebar = ({
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
   const [seconds, setSeconds] = useState("");
-  const [flag, setFlag] = useState([]);
 
   const usercookie = localStorage.getItem("cookie");
   let st,
@@ -42,14 +41,31 @@ const Sidebar = ({
       });
 
     interval = setInterval(async () => {
-      // axios
-      //   .post("https://exam-portal.cyclic.app/logintime", datacookie)
-      //   .then((res) => {
-      //     st = new Date(res.data.loginAt).getTime();
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
+      axios
+        .get("https://worldtimeapi.org/api/timezone/Asia/Kolkata")
+        .then((res) => {
+          d = new Date().getTime();
+          result = limit - (d - st);
+          if (result) {
+            const rhours = Math.floor(result / (1000 * 60 * 60));
+            const rminutes = Math.floor(
+              (result % (1000 * 60 * 60)) / (1000 * 60)
+            );
+            const rseconds = Math.floor((result % (1000 * 60)) / 1000);
+            if (result < 0) {
+              clearInterval(interval.current);
+              localStorage.setItem("testpage", "true");
+              navigate("/feedback");
+            } else {
+              setHours(rhours);
+              setMinutes(rminutes);
+              setSeconds(rseconds);
+            }
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
       d = new Date().getTime();
       result = limit - (d - st);
@@ -63,14 +79,18 @@ const Sidebar = ({
             cookie_token: usercookie,
           };
           // eslint-disable-next-line
-          const submit = await axios.patch(
+           await axios.patch(
             "https://accessfre.herokuapp.com/quesansdata",
             value
-          );
+          ).then((res)=>{
+               console.log(res)
+          }).catch((err)=>{
+            console.log(err);
+          });
           localStorage.setItem("testpage", "true");
 
-          navigate("/feedback");
-        } else {
+        }
+        else {
           setHours(rhours);
           setMinutes(rminutes);
           setSeconds(rseconds);
@@ -130,7 +150,7 @@ const Sidebar = ({
         </div>
         <div className={show ? "time_head2" : "time_head1"}>Questions</div>
 
-        <div className={show ? "test_btn2" : testques ? "test_btn1" : "loader"}>
+        <div className={show ? "test_btn2" : loader ? "test_btn1" : "loader"}>
           {loader ? (
             sidebarbtn.map((i, index) => (
               <button
@@ -161,7 +181,8 @@ const Sidebar = ({
               </button>
             ))
           ) : (
-            <Loader height="80" width="80" color="#db9cff" />
+
+              <Loader height="80" width="80" color="#db9cff" />
           )}
         </div>
       </div>

@@ -77,10 +77,8 @@ const Login = () => {
   function onChangeCaptcha(value) {
     if (value) {
       setFlag("1");
-      // console.log(flag);
     } else {
       setFlag("0");
-      // console.log(flag);
       toast.error("Captcha Required!!!");
     }
   }
@@ -91,13 +89,10 @@ const Login = () => {
     }
   };
   const validateroute2 = (routepass, routename, appear) => {
-    // console.log(appear);
     if (routepass === true && routename === true && appear === true) {
-      // localStorage.setItem('login2', false);
       toast.error("User already completed the test!!!");
       navigate("/");
     } else if (routepass === true && routename === true && appear === false) {
-      // console.log(appear);
       localStorage.setItem("login2", true);
       navigate("/instructions");
     }
@@ -115,29 +110,6 @@ const Login = () => {
     setEye(!eye);
     setVisibleIcon(!visibleIcon);
   };
-  // const load = () => {
-  //   <TailSpin
-  //                 height="80"
-  //                 width="80"
-  //                 color="#db9cff"
-  //                 ariaLabel="tail-spin-loading"
-  //                 radius="1"
-  //                 visible={true}
-  //               />
-  // }
-  // const load = () => {
-  //    if(loader===true){
-
-  //      <TailSpin
-  //                    height="80"
-  //                    width="80"
-  //                    color="#db9cff"
-  //                    ariaLabel="tail-spin-loading"
-  //                    radius="1"
-  //                    visible={true}
-  //                  />
-  //    }
-  // }
 
   const Submit = (e) => {
     setLoader(true);
@@ -146,9 +118,8 @@ const Login = () => {
 
     setStudentPasswordError(validatePassword(password));
     setStudentNumberError(validateStudentNo(studentNo));
-// eslint-disable-next-line
+    // eslint-disable-next-line
     {
-      // console.log(studentNo, password);
       if (credential && flag === "1") {
         const data = {
           studentNum: +studentNo,
@@ -162,8 +133,7 @@ const Login = () => {
               console.log(res.data);
               localStorage.setItem("cookie", res.data.cookie_token);
               let admin = res.data.isAdmin;
-              // console.log(admin);
-              if (admin === true) {
+              if (admin === 'true') {
                 validateroute1(routepass, routename);
               } else {
                 let appeared = res.data.hasAppeared;
@@ -175,14 +145,12 @@ const Login = () => {
           })
           .catch((err) => {
             setLoader(false);
-            // toast.error("Error");
             toast.error("Invalid Credentials");
           });
       } else {
-        if (!studentNo && !password && !credential)
-        {toast.error("Invalid Details");}
-        
-        else if (flag === "0") {
+        if (!studentNo && !password && !credential) {
+          toast.error("Invalid Details");
+        } else if (flag === "0") {
           toast.error("captcha required");
         }
         setLoader(false);
@@ -209,103 +177,103 @@ const Login = () => {
       <form className="form_container">
         <img src={Ellipse} alt="ellipse" className="admin_icon" />
         <img src={Group} alt="group" className="admin_group" />
-       <div className="all_input_fields">
-        <div className="icon_container">
-          <div className="icon">
-            <p className="bars"></p>
-            <TagIcon />
-          </div>
-          <TextField
-            autoComplete="off"
-            label="Student No."
-            variant="outlined"
-            size="small"
-            className="input_field"
-            type="text"
-            name="studentNum"
-            error={errorStudentType ? true : false}
-            onBlur={studentFocus}
-            focused={focused.tostring}
-            value={studentNo}
-            onChange={(e) => setStudentNo(e.target.value)}
-            inputProps={{ style: { fontSize: 15 } }} // font size of input text
-            InputLabelProps={{ style: { fontSize: 15 } }} // font size of input label
-          />
-        </div>
-        <div className="errormsg_container">
-          <div className="errormsg">
-            <span>{studentNumberError}</span>
-          </div>
-        </div>
-        <div className="icon_container">
-          <div className="icon">
-            <p className="bars"></p>
-            <LockOutlinedIcon />
-          </div>
-          <TextField
-            autoComplete="off"
-            my={10}
-            label="Password"
-            name="password"
-            variant="outlined"
-            size="small"
-            className="input_field"
-            error={PasswordErrorType ? true : false}
-            onBlur={passwordFocus}
-            focused={focused.tostring}
-            type={eye ? "text" : "password"}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            // font size of input text
-            InputLabelProps={{ style: { fontSize: 15 } }} // font size of input label
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton onClick={seen}>
-                    {visibleIcon ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-              style: { fontSize: 15 },
-            }}
-          />
-        </div>
-        <div className="errormsg_container">
-          <div className="errormsg">
-            <span>{studentPasswordError}</span>
-          </div>
-        </div>
-            <div className="captcha_container">
-              <ReCAPTCHA
-                className="captcha"
-                sitekey="6LfN3dohAAAAAP8su8BdsG4GPeHhmYqd6x-edMlJ"
-                onChange={onChangeCaptcha}
-              />
+        <div className="all_input_fields">
+          <div className="icon_container">
+            <div className="icon">
+              <p className="bars"></p>
+              <TagIcon />
             </div>
-        <div className="icon_container2">
-          <div className="button_container">
-            <Button
-              className="btn"
-              variant="contained"
-              size="medium"
-              // onClick= {()=>{Submit();load();}}
-              onClick={Submit}
-            >
-              {loader ? (
-                <TailSpin
-                  height="20"
-                  width="20"
-                  color="white"
-                  ariaLabel="tail-spin-loading"
-                  radius="1"
-                  visible={true}
-                />
-              ) : (
-                "Login"
-              )}
-            </Button>
+            <TextField
+              autoComplete="off"
+              label="Student No."
+              variant="outlined"
+              size="small"
+              className="input_field"
+              type="text"
+              name="studentNum"
+              error={errorStudentType ? true : false}
+              onBlur={studentFocus}
+              focused={focused.tostring}
+              value={studentNo}
+              onChange={(e) => setStudentNo(e.target.value)}
+              inputProps={{ style: { fontSize: 15 } }} // font size of input text
+              InputLabelProps={{ style: { fontSize: 15 } }} // font size of input label
+            />
           </div>
-        </div>
+          <div className="errormsg_container">
+            <div className="errormsg">
+              <span>{studentNumberError}</span>
+            </div>
+          </div>
+          <div className="icon_container">
+            <div className="icon">
+              <p className="bars"></p>
+              <LockOutlinedIcon />
+            </div>
+            <TextField
+              autoComplete="off"
+              my={10}
+              label="Password"
+              name="password"
+              variant="outlined"
+              size="small"
+              className="input_field"
+              error={PasswordErrorType ? true : false}
+              onBlur={passwordFocus}
+              focused={focused.tostring}
+              type={eye ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              // font size of input text
+              InputLabelProps={{ style: { fontSize: 15 } }} // font size of input label
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={seen}>
+                      {visibleIcon ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+                style: { fontSize: 15 },
+              }}
+            />
+          </div>
+          <div className="errormsg_container">
+            <div className="errormsg">
+              <span>{studentPasswordError}</span>
+            </div>
+          </div>
+          <div className="captcha_container">
+            <ReCAPTCHA
+              className="captcha"
+              sitekey="6LfN3dohAAAAAP8su8BdsG4GPeHhmYqd6x-edMlJ"
+              onChange={onChangeCaptcha}
+            />
+          </div>
+          <div className="icon_container2">
+            <div className="button_container">
+              <Button
+                className="btn"
+                variant="contained"
+                size="medium"
+                // onClick= {()=>{Submit();load();}}
+                onClick={Submit}
+              >
+                {loader ? (
+                  <TailSpin
+                    height="20"
+                    width="20"
+                    color="white"
+                    ariaLabel="tail-spin-loading"
+                    radius="1"
+                    visible={true}
+                  />
+                ) : (
+                  "Login"
+                )}
+              </Button>
+            </div>
+          </div>
         </div>
       </form>
       <div className="img">
