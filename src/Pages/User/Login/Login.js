@@ -163,7 +163,7 @@ const Login = () => {
               localStorage.setItem("cookie", res.data.cookie_token);
               let admin = res.data.isAdmin;
               // console.log(admin);
-              if (admin === "true") {
+              if (admin === true) {
                 validateroute1(routepass, routename);
               } else {
                 let appeared = res.data.hasAppeared;
