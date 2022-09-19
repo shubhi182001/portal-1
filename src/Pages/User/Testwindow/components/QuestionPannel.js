@@ -25,6 +25,7 @@ const QuestionPannel = ({
   const [chosenlang, setChosenlang] = useState("");
   const [loading, setLoading] = useState(false);
   const [loading1, setLoading1] = useState(false);
+  // eslint-disable-next-line
   const [data, setData] = useState("");
 
   useEffect(() => {
@@ -125,7 +126,7 @@ const QuestionPannel = ({
           let question = testques[showques - 1].question;
           let option = testques[showques - 1].options;
           let optionId = option.filter(
-            (val) => val.Oid == testques[showques - 1].userAnswer
+            (val) => val.Oid === +(testques[showques - 1].userAnswer)
           );
           console.log(optionId);
           const data = {
@@ -203,7 +204,7 @@ const QuestionPannel = ({
           let question = testques[showques - 1].question;
           let option = testques[showques - 1].options;
           let optionId = option.filter(
-            (val) => val.Oid == testques[showques - 1].userAnswer
+            (val) => val.Oid === +(testques[showques - 1].userAnswer)
           );
           console.log(optionId);
           const data = {
