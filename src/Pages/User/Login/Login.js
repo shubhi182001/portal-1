@@ -130,14 +130,14 @@ const Login = () => {
           .post("https://accessfre.herokuapp.com/login", data)
           .then((res) => {
             if (flag === "1") {
-              console.log(res.data);
+              // console.log(res.data);
               localStorage.setItem("cookie", res.data.cookie_token);
               let admin = res.data.isAdmin;
-              if (admin === "true") {
+              if (admin === true) {
                 validateroute1(routepass, routename);
               } else {
                 let appeared = res.data.hasAppeared;
-                console.log(appeared);
+                // console.log(appeared);
                 validateroute2(routepass, routename, appeared);
               }
               setLoader(false);

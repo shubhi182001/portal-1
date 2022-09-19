@@ -52,7 +52,7 @@ const Feedback = () => {
           feedbackData
         )
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           setPostData([]);
         })
         .catch((err) => {
@@ -63,7 +63,8 @@ const Feedback = () => {
         localStorage.removeItem('login2', true);
         localStorage.removeItem('instruct', true);
         localStorage.removeItem('feedback', true);
-    } else console.log("rejected");
+    } else 
+    console.log("rejected");
   };
   const navigate = useNavigate();
   useEffect(() => {
