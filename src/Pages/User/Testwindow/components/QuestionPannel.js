@@ -25,6 +25,7 @@ const QuestionPannel = ({
   const [chosenlang, setChosenlang] = useState("");
   const [loading, setLoading] = useState(false);
   const [loading1, setLoading1] = useState(false);
+  const [data, setData] = useState("");
 
   useEffect(() => {
     const lang = {
@@ -46,6 +47,7 @@ const QuestionPannel = ({
       .put("https://accessfre.herokuapp.com/ans/set-answer", data)
       .then((res) => {
         console.log(res.data);
+        setData(res.data);
         setLoading(false);
         isVerified = res.data.isVerified;
         if (isVerified === false) {
@@ -65,7 +67,9 @@ const QuestionPannel = ({
       .put("https://accessfre.herokuapp.com/ans/set-answer", data)
       .then((res) => {
         console.log(res.data);
+        setData(res.data);
         setLoading1(false);
+
         isVerified = res.data.isVerified;
         if (isVerified === false) {
           localStorage.removeItem("instruct");
@@ -88,72 +92,13 @@ const QuestionPannel = ({
 
   // Mark for review
   const Mark = async () => {
-    if (showques < testques.length && oid !== "000") {
-      let qid = testques[showques - 1]._id;
-      let question = testques[showques - 1].question;
+    if (showques < testques.length) {
+      // selected
+      if (oid !== "000") {
+        let qid = testques[showques - 1]._id;
+        let question = testques[showques - 1].question;
 
-      const data = {
-        cookie_token: cook,
-        question: question,
-        category: choice,
-        userAnswer: oid,
-        Qid: qid,
-        ansid: 3,
-      };
-    console.log(data);
-
-      markCall(data);
-      setShowques(showques + 1);
-      setOid("000");
-    } else if (
-      showques < testques.length &&
-      oid === "000" &&
-      testques[showques - 1].userAnswer !== -1
-    ) {
-      let qid = testques[showques - 1]._id;
-      let question = testques[showques - 1].question;
-      let Options = testques[showques - 1].options;
-      let selectedOpt = testques[showques - 1].userAnswer;
-
-      let OptionId;
-
-      OptionId = Options.filter((option) => option.Oid === selectedOpt);
-
-      const data = {
-        cookie_token: cook,
-        question: question,
-        category: choice,
-        userAnswer: OptionId[0].Oid,
-        Qid: qid,
-        ansid: 3,
-      };
-      console.log(data);
-
-      markCall(data);
-
-      setShowques(showques + 1);
-
-      setOid("000");
-    } else if (oid === "000" && testques[showques - 1].userAnswer === -1) {
-      toast.error("Select an option");
-    } else {
-      let qid = testques[showques - 1]._id;
-      let question = testques[showques - 1].question;
-      let data, OptionId;
-      if (testques[showques - 1].userAnswer !== -1 && oid === "000") {
-        OptionId = testques[showques - 1].options.filter(
-          (option) => option.Oid === testques[showques - 1].userAnswer
-        );
-        data = {
-          cookie_token: cook,
-          question: question,
-          category: choice,
-          userAnswer: OptionId[0].Oid,
-          Qid: qid,
-          ansid: 3,
-        };
-      } else if (testques[showques - 1].userAnswer !== -1 && oid !== "000") {
-        data = {
+        const data = {
           cookie_token: cook,
           question: question,
           category: choice,
@@ -161,28 +106,146 @@ const QuestionPannel = ({
           Qid: qid,
           ansid: 3,
         };
+        console.log(data);
+
+        markCall(data);
+        if (data !== "") {
+          setShowques(showques + 1);
+          setOid("000");
+        }
       }
-    console.log(data);
+      // not selected
+      else if (oid === "000") {
+        // marked {saved , marked}
+        if (
+          +testques[showques - 1].userAnswer !== -1 &&
+          +testques[showques - 1].userAnswer !== 0
+        ) {
+          let qid = testques[showques - 1]._id;
+          let question = testques[showques - 1].question;
+          let option = testques[showques - 1].options;
+          let optionId = option.filter(
+            (val) => val.Oid == testques[showques - 1].userAnswer
+          );
+          console.log(optionId);
+          const data = {
+            cookie_token: cook,
+            question: question,
+            category: choice,
+            userAnswer: optionId[0].Oid,
+            Qid: qid,
+            ansid: 3,
+          };
+          console.log(data);
 
+          markCall(data);
+          if (data !== "") {
+            setShowques(showques + 1);
+            setOid("000");
+          }
+        }
+        // white and unanswered
+        else if (
+          +testques[showques - 1].userAnswer === -1 &&
+          testques[showques - 1].ansid === 2
+        ) {
+          toast.error("select an option");
+        }
+        // red
+        else if (
+          +testques[showques - 1].userAnswer === 0 &&
+          testques[showques - 1].ansid === 5
+        ) {
+          toast.error("select an option");
+        }
+      }
+    }
+    // last question
+    else {
+      if (oid !== "000") {
+        let qid = testques[showques - 1]._id;
+        let question = testques[showques - 1].question;
 
-      markCall(data);
+        const data = {
+          cookie_token: cook,
+          question: question,
+          category: choice,
+          userAnswer: oid,
+          Qid: qid,
+          ansid: 3,
+        };
+        console.log(data);
 
-      setOid("000");
-      setShowques(1);
+        markCall(data);
+        if (data !== "") {
+          setShowques(1);
+          setOid("000");
+        }
+        setChoice(
+          choice === "HTML"
+            ? "SQL"
+            : choice === "SQL"
+            ? "CSS"
+            : choice === "CSS"
+            ? "APTITUDE"
+            : choice === "APTITUDE"
+            ? chosenlang
+            : choice === chosenlang
+            ? "HTML"
+            : "HTML"
+        );
+      } else if (oid === "000") {
+        if (
+          +testques[showques - 1].userAnswer !== -1 &&
+          +testques[showques - 1].userAnswer !== 0
+        ) {
+          let qid = testques[showques - 1]._id;
+          let question = testques[showques - 1].question;
+          let option = testques[showques - 1].options;
+          let optionId = option.filter(
+            (val) => val.Oid == testques[showques - 1].userAnswer
+          );
+          console.log(optionId);
+          const data = {
+            cookie_token: cook,
+            question: question,
+            category: choice,
+            userAnswer: optionId[0].Oid,
+            Qid: qid,
+            ansid: 3,
+          };
+          console.log(data);
 
-      setChoice(
-        choice === "HTML"
-          ? "SQL"
-          : choice === "SQL"
-          ? "CSS"
-          : choice === "CSS"
-          ? "APTITUDE"
-          : choice === "APTITUDE"
-          ? chosenlang
-          : choice === chosenlang
-          ? "HTML"
-          : "HTML"
-      );
+          markCall(data);
+          if (data !== "") {
+            setShowques(1);
+            setOid("000");
+            setChoice(
+              choice === "HTML"
+                ? "SQL"
+                : choice === "SQL"
+                ? "CSS"
+                : choice === "CSS"
+                ? "APTITUDE"
+                : choice === "APTITUDE"
+                ? chosenlang
+                : choice === chosenlang
+                ? "HTML"
+                : "HTML"
+            );
+          }
+        } else if (
+          +testques[showques - 1].userAnswer === -1 &&
+          testques[showques - 1].ansid === 2
+        ) {
+          toast.error("select an option");
+        } else if (
+          +testques[showques - 1].userAnswer === 0 &&
+          testques[showques - 1].ansid === 5
+        ) {
+          toast.error("select an option");
+        }
+      }
     }
   };
 
@@ -204,9 +267,10 @@ const QuestionPannel = ({
 
         saveCall(data);
 
-        setShowques(showques + 1);
-
-        setOid("000");
+        if (data !== "") {
+          setShowques(showques + 1);
+          setOid("000");
+        }
       } else if (oid === "000") {
         if (
           testques[showques - 1].userAnswer !== -1 &&
@@ -230,15 +294,22 @@ const QuestionPannel = ({
 
           saveCall(data);
 
-          setShowques(showques + 1);
-
-          setOid("000");
+          if (data !== "") {
+            setShowques(showques + 1);
+            setOid("000");
+          }
         } else if (
           testques[showques - 1].ansid === 5 ||
           testques[showques - 1].ansid === 1
         ) {
           setShowques(showques + 1);
-        } else {
+        } 
+        // else if (
+        //   testques[showques - 1].ansid === 2 
+        // ) {
+        //   toast.error("select an option");
+        // } 
+        else {
           let qid = testques[showques - 1]._id;
           let question = testques[showques - 1].question;
           const data = {
@@ -252,10 +323,10 @@ const QuestionPannel = ({
           console.log(data);
 
           saveCall(data);
-
-          setShowques(showques + 1);
-
-          setOid("000");
+          if (data !== "") {
+            setShowques(showques + 1);
+            setOid("000");
+          }
         }
       }
     } else {
@@ -274,9 +345,10 @@ const QuestionPannel = ({
 
         saveCall(data);
 
-        setOid("000");
-
-        setShowques(1);
+        if (data !== "") {
+          setShowques(showques + 1);
+          setOid("000");
+        }
         setChoice(
           choice === "HTML"
             ? "SQL"
@@ -295,7 +367,8 @@ const QuestionPannel = ({
           testques[showques - 1].ansid === 5 ||
           testques[showques - 1].ansid === 1
         ) {
-          setShowques(1);
+          setShowques( 1);
+          setOid("000");
 
           setChoice(
             choice === "HTML"
@@ -320,8 +393,9 @@ const QuestionPannel = ({
             testques[showques - 1].ansid === 3
           ) {
             OptionId = testques[showques - 1].options.filter(
-              (option) => option.value === testques[showques - 1].userAnswer
+              (option) => option.Oid === +(testques[showques - 1].userAnswer)
             );
+            console.log(OptionId)
             data = {
               cookie_token: cook,
               question: question,
@@ -343,24 +417,23 @@ const QuestionPannel = ({
           console.log(data);
 
           saveCall(data);
-
-          setOid("000");
-
-          setShowques(1);
-
-          setChoice(
-            choice === "HTML"
-              ? "SQL"
-              : choice === "SQL"
-              ? "CSS"
-              : choice === "CSS"
-              ? "APTITUDE"
-              : choice === "APTITUDE"
-              ? chosenlang
-              : choice === chosenlang
-              ? "HTML"
-              : "HTML"
-          );
+          if (data !== "") {
+            setShowques(1);
+            setOid("000");
+            setChoice(
+              choice === "HTML"
+                ? "SQL"
+                : choice === "SQL"
+                ? "CSS"
+                : choice === "CSS"
+                ? "APTITUDE"
+                : choice === "APTITUDE"
+                ? chosenlang
+                : choice === chosenlang
+                ? "HTML"
+                : "HTML"
+            );
+          }
         }
       }
     }
@@ -419,7 +492,7 @@ const QuestionPannel = ({
             <hr />
             {loader ? (
               <>
-                <h1>{testques && testques[showques - 1].question}</h1>
+                <h1>{testques && testques[showques - 1]?.question}</h1>
                 <div className="testbtn">
                   {testoptions
                     ? testoptions.map((option, index) => (
@@ -430,7 +503,7 @@ const QuestionPannel = ({
                           <input
                             type="radio"
                             defaultChecked={
-                              testques[showques - 1].userAnswer === option.Oid
+                              +testques[showques - 1]?.userAnswer === option.Oid
                                 ? true
                                 : false
                             }

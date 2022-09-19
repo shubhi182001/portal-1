@@ -15,11 +15,10 @@ const Test = () => {
   const cookie = localStorage.getItem("cookie");
   const { setLoader } = useStateContext();
 
-  
   const url = `https://accessfre.herokuapp.com/question/user-answers/${choice}`;
-  const categoryquestion = async () => {
+  const categoryquestion = () => {
     setLoader(false);
-    await axios
+    axios
       .put(url, {
         cookie_token: cookie,
       })
@@ -33,8 +32,8 @@ const Test = () => {
         console.log(err);
       });
   };
-  const question = async () => {
-    await axios
+  const question = () => {
+    axios
       .put(url, {
         cookie_token: cookie,
       })
@@ -48,8 +47,6 @@ const Test = () => {
       });
   };
 
-
-
   useEffect(() => {
     categoryquestion();
     // console.log(testques);
@@ -58,7 +55,9 @@ const Test = () => {
   }, [choice]);
 
   useEffect(() => {
-   question();
+    setTimeout(() => {
+      question();
+    }, 600);
     // eslint-disable-next-line
   }, [showques]);
   return (
