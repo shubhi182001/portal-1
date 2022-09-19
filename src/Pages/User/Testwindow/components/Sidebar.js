@@ -26,78 +26,110 @@ const Sidebar = ({
   const datacookie = {
     cookie_token: usercookie,
   };
-
+  
   let d,
-    interval = useRef();
-  const timer = async () => {
-    axios
-      .post("https://accessfre.herokuapp.com/logintime", datacookie)
-      .then((res) => {
-        st = new Date(res.data.loginAt).getTime();
-        // console.log(st);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  interval = useRef();
+const timer = () => {
 
-    interval = setInterval(async () => {
-      axios
-        .get("https://worldtimeapi.org/api/timezone/Asia/Kolkata")
-        .then((res) => {
-          d = new Date().getTime();
-          result = limit - (d - st);
-          if (result) {
-            const rhours = Math.floor(result / (1000 * 60 * 60));
-            const rminutes = Math.floor(
-              (result % (1000 * 60 * 60)) / (1000 * 60)
-            );
-            const rseconds = Math.floor((result % (1000 * 60)) / 1000);
-            if (result < 0) {
-              clearInterval(interval.current);
-              localStorage.setItem("testpage", "true");
-              navigate("/feedback");
-            } else {
-              setHours(rhours);
-              setMinutes(rminutes);
-              setSeconds(rseconds);
-            }
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+  axios
+  .post("https://exam-portal.cyclic.app/logintime", datacookie)
+  .then((res) => {
+    st = new Date(res.data.loginAt).getTime();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+  interval = setInterval(() => {
+
 
       d = new Date().getTime();
       result = limit - (d - st);
       if (result) {
         const rhours = Math.floor(result / (1000 * 60 * 60));
-        const rminutes = Math.floor((result % (1000 * 60 * 60)) / (1000 * 60));
+        const rminutes = Math.floor(
+          (result % (1000 * 60 * 60)) / (1000 * 60)
+        );
         const rseconds = Math.floor((result % (1000 * 60)) / 1000);
         if (result < 0) {
           clearInterval(interval.current);
           const value = {
-            cookie_token: usercookie,
-          };
-          // eslint-disable-next-line
-           await axios.patch(
-            "https://accessfre.herokuapp.com/quesansdata",
-            value
-          ).then((res)=>{
-               console.log(res)
-          }).catch((err)=>{
-            console.log(err);
-          });
+                cookie_token: usercookie,
+              };
+              // eslint-disable-next-line
+              const result = axios.patch(
+                "https://accessfre.herokuapp.com/quesansdata",
+                value
+              ).then((res)=>{
+                   console.log(res)
+              }).catch((err)=>{
+                console.log(err);
+              });
+
+
+
+
           localStorage.setItem("testpage", "true");
 
-        }
-        else {
+          navigate("/feedback");
+        } else {
           setHours(rhours);
           setMinutes(rminutes);
           setSeconds(rseconds);
         }
       }
-    }, 1000);
-  };
+
+
+
+
+
+
+//     axios
+//       .get("https://worldtimeapi.org/api/timezone/Asia/Kolkata")
+//       .then((res) => {
+          //  console.log(res);
+//         d = new Date().getTime();
+//         result = limit - (d - st);
+//         if (result) {
+//           const rhours = Math.floor(result / (1000 * 60 * 60));
+//           const rminutes = Math.floor(
+//             (result % (1000 * 60 * 60)) / (1000 * 60)
+//           );
+//           const rseconds = Math.floor((result % (1000 * 60)) / 1000);
+//           if (result < 0) {
+//             clearInterval(interval.current);
+//             const value = {
+//                         cookie_token: usercookie,
+//                       };
+//                       // eslint-disable-next-line
+//                       const result = axios.patch(
+//                         "https://accessfre.herokuapp.com/quesansdata",
+//                         value
+//                       ).then((res)=>{
+//                            console.log(res)
+//                       }).catch((err)=>{
+//                         console.log(err);
+//                       });
+
+//             localStorage.setItem("testpage", "true");
+//             navigate("/feedback");
+//           } else {
+//             setHours(rhours);
+//             setMinutes(rminutes);
+//             setSeconds(rseconds);
+//           }
+//         }
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+
+  }, 1000);
+};
+
+
+
+
 
   let sidebarbtn = [];
   for (let i = 1; i <= testques.length; i++) {
