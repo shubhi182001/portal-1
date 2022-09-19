@@ -61,7 +61,7 @@ const timer = () => {
                 "https://accessfre.herokuapp.com/quesansdata",
                 value
               ).then((res)=>{
-                   console.log(res)
+                  //  console.log(res)
               }).catch((err)=>{
                 console.log(err);
               });

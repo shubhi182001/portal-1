@@ -47,7 +47,7 @@ const QuestionPannel = ({
     axios
       .put("https://accessfre.herokuapp.com/ans/set-answer", data)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setData(res.data);
         setLoading(false);
         isVerified = res.data.isVerified;
@@ -67,7 +67,7 @@ const QuestionPannel = ({
     axios
       .put("https://accessfre.herokuapp.com/ans/set-answer", data)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setData(res.data);
         setLoading1(false);
 
@@ -107,7 +107,7 @@ const QuestionPannel = ({
           Qid: qid,
           ansid: 3,
         };
-        console.log(data);
+        // console.log(data);
 
         markCall(data);
         if (data !== "") {
@@ -126,9 +126,9 @@ const QuestionPannel = ({
           let question = testques[showques - 1].question;
           let option = testques[showques - 1].options;
           let optionId = option.filter(
-            (val) => val.Oid === +(testques[showques - 1].userAnswer)
+            (val) => val.Oid === +testques[showques - 1].userAnswer
           );
-          console.log(optionId);
+          // console.log(optionId);
           const data = {
             cookie_token: cook,
             question: question,
@@ -137,7 +137,7 @@ const QuestionPannel = ({
             Qid: qid,
             ansid: 3,
           };
-          console.log(data);
+          // console.log(data);
 
           markCall(data);
           if (data !== "") {
@@ -175,7 +175,7 @@ const QuestionPannel = ({
           Qid: qid,
           ansid: 3,
         };
-        console.log(data);
+        // console.log(data);
 
         markCall(data);
         if (data !== "") {
@@ -204,9 +204,9 @@ const QuestionPannel = ({
           let question = testques[showques - 1].question;
           let option = testques[showques - 1].options;
           let optionId = option.filter(
-            (val) => val.Oid === +(testques[showques - 1].userAnswer)
+            (val) => val.Oid === +testques[showques - 1].userAnswer
           );
-          console.log(optionId);
+          // console.log(optionId);
           const data = {
             cookie_token: cook,
             question: question,
@@ -215,7 +215,7 @@ const QuestionPannel = ({
             Qid: qid,
             ansid: 3,
           };
-          console.log(data);
+          // console.log(data);
 
           markCall(data);
           if (data !== "") {
@@ -264,7 +264,7 @@ const QuestionPannel = ({
           Qid: qid,
           ansid: 1,
         };
-        console.log(data);
+        // console.log(data);
 
         saveCall(data);
 
@@ -291,7 +291,7 @@ const QuestionPannel = ({
             Qid: qid,
             ansid: 1,
           };
-          console.log(data);
+          // console.log(data);
 
           saveCall(data);
 
@@ -304,12 +304,12 @@ const QuestionPannel = ({
           testques[showques - 1].ansid === 1
         ) {
           setShowques(showques + 1);
-        } 
+        }
         // else if (
-        //   testques[showques - 1].ansid === 2 
+        //   testques[showques - 1].ansid === 2
         // ) {
         //   toast.error("select an option");
-        // } 
+        // }
         else {
           let qid = testques[showques - 1]._id;
           let question = testques[showques - 1].question;
@@ -321,7 +321,7 @@ const QuestionPannel = ({
             Qid: qid,
             ansid: oid === "000" ? 5 : 1,
           };
-          console.log(data);
+          // console.log(data);
 
           saveCall(data);
           if (data !== "") {
@@ -342,7 +342,7 @@ const QuestionPannel = ({
           Qid: qid,
           ansid: oid === "000" ? 5 : 1,
         };
-        console.log(data);
+        // console.log(data);
 
         saveCall(data);
 
@@ -368,7 +368,7 @@ const QuestionPannel = ({
           testques[showques - 1].ansid === 5 ||
           testques[showques - 1].ansid === 1
         ) {
-          setShowques( 1);
+          setShowques(1);
           setOid("000");
 
           setChoice(
@@ -394,9 +394,9 @@ const QuestionPannel = ({
             testques[showques - 1].ansid === 3
           ) {
             OptionId = testques[showques - 1].options.filter(
-              (option) => option.Oid === +(testques[showques - 1].userAnswer)
+              (option) => option.Oid === +testques[showques - 1].userAnswer
             );
-            console.log(OptionId)
+            // console.log(OptionId)
             data = {
               cookie_token: cook,
               question: question,
@@ -415,7 +415,7 @@ const QuestionPannel = ({
               ansid: oid === "000" ? 5 : 1,
             };
           }
-          console.log(data);
+          // console.log(data);
 
           saveCall(data);
           if (data !== "") {

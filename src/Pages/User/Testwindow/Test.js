@@ -23,7 +23,7 @@ const Test = () => {
         cookie_token: cookie,
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setTestques(data.data);
         setTestOptions(data.data[showques - 1].options);
         setLoader(true);
@@ -38,7 +38,7 @@ const Test = () => {
         cookie_token: cookie,
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setTestques(data.data);
         setTestOptions(data.data[showques - 1].options);
       })

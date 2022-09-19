@@ -45,7 +45,7 @@ const Feedback = () => {
         response: postData,
         feedtext: TextArea,
       };
-      console.log(feedbackData);
+      // console.log(feedbackData);
       axios
         .post(
           "https://accessfre.herokuapp.com/response/feedanswer",
