@@ -137,21 +137,21 @@ const timer = () => {
   }
 
   //New score count api Added
-  const cookie = {
-    cookie_token: usercookie,
-  };
+  // const cookie = {
+  //   cookie_token: usercookie,
+  // };
   const Submit = async (e) => {
     e.preventDefault();
     setShow(true);
     
-    axios
-  .post("https://accessfre.herokuapp.com/score", cookie)
-  .then((res) => {
-    console.log(res);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  //   axios
+  // .post("https://accessfre.herokuapp.com/score", cookie)
+  // .then((res) => {
+  //   console.log(res);
+  // })
+  // .catch((err) => {
+  //   console.log(err);
+  // });
   };
 
   //Api ends
