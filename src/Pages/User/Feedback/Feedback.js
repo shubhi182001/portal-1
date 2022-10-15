@@ -47,10 +47,7 @@ const Feedback = () => {
       };
       console.log(feedbackData);
       axios
-        .post(
-          "https://accessfre.herokuapp.com/response/feedanswer",
-          feedbackData
-        )
+        .post(`${process.env.REACT_APP_URL}/response/feedanswer`, feedbackData)
         .then((res) => {
           console.log(res);
           setPostData([]);
@@ -58,17 +55,17 @@ const Feedback = () => {
         .catch((err) => {
           console.log(err);
         });
-        localStorage.setItem('feedback', true);
-        navigate('/thankyou')
-        localStorage.removeItem('login2', true);
-        localStorage.removeItem('instruct', true);
-        localStorage.removeItem('feedback', true);
+      localStorage.setItem("feedback", true);
+      navigate("/thankyou");
+      localStorage.removeItem("login2", true);
+      localStorage.removeItem("instruct", true);
+      localStorage.removeItem("feedback", true);
     } else console.log("rejected");
   };
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get("https://accessfre.herokuapp.com/feed/seefeedbackques")
+      .get(`${process.env.REACT_APP_URL}/feed/seefeedbackques`)
       .then((res) => {
         // console.log(res.data);
         setQues(res.data);

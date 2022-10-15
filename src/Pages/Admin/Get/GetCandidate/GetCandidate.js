@@ -7,7 +7,7 @@ const GetCandidate = () => {
   const [data,setData]=useState([]);
  
   const[search, setSearch] = useState(" ");
-const url = "https://accessfre.herokuapp.com/candidate";
+const url = `${process.env.REACT_APP_URL}/candidate`;
 const getAllCandidates = () => {
   axios.get(url)
   .then((res)=> {
@@ -19,6 +19,7 @@ const getAllCandidates = () => {
 useEffect(()=>{
   
   getAllCandidates();
+  // eslint-disable-next-line
 },[])
 
 

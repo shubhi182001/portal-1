@@ -127,7 +127,7 @@ const Login = () => {
         };
 
         axios
-          .post("https://accessfre.herokuapp.com/login", data)
+          .post(`${process.env.REACT_APP_URL}/login`, data)
           .then((res) => {
             if (flag === "1") {
               console.log(res.data);

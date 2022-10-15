@@ -34,7 +34,7 @@ function Editf() {
     //     ))
     //   })
 
-      const url = `https://accessfre.herokuapp.com/feedback/${state.post_id}`
+      const url = `${process.env.REACT_APP_URL}/feedback/${state.post_id}`
       const handleUpload = (e) =>{
         e.preventDefault();
         if(question){

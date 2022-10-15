@@ -33,7 +33,7 @@ const QuestionPannel = ({
       cookie_token: cook,
     };
     axios
-      .post("https://accessfre.herokuapp.com/langselected", lang)
+      .post(`${process.env.REACT_APP_URL}/langselected`, lang)
       .then((res) => {
         setChosenlang(res.data.lang);
       })
@@ -45,7 +45,7 @@ const QuestionPannel = ({
   const saveCall = (data) => {
     setLoading(true);
     axios
-      .put("https://accessfre.herokuapp.com/ans/set-answer", data)
+      .put(`${process.env.REACT_APP_URL}/ans/set-answer`, data)
       .then((res) => {
         console.log(res.data);
         setData(res.data);
@@ -65,7 +65,7 @@ const QuestionPannel = ({
   const markCall = (data) => {
     setLoading1(true);
     axios
-      .put("https://accessfre.herokuapp.com/ans/set-answer", data)
+      .put(`${process.env.REACT_APP_URL}/ans/set-answer`, data)
       .then((res) => {
         console.log(res.data);
         setData(res.data);

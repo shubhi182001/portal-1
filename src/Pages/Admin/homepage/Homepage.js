@@ -15,7 +15,7 @@ function Homepage() {
     current_active_users: 0,
     total_attendees: 0,
   });
-  const url = "https://accessfre.herokuapp.com/admin/total";
+  const url = `${process.env.REACT_APP_URL}/admin/total`;
   const getData = () => {
     axios
       .get(url)
@@ -32,6 +32,7 @@ function Homepage() {
     // setInterval(()=>{
     //   window.location.reload();
     // },1000);
+    // eslint-disable-next-line
   }, []);
 
   return (

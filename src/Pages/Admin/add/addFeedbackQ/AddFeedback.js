@@ -31,7 +31,7 @@ const AddFeedback = () => {
     }
     console.log(questionFeedback)
     if (questionFeedback && Object.keys(feedbackErrors).length === 0) {
-      axios.post('https://accessfre.herokuapp.com/addfeedback', questionFeedback)
+      axios.post(`${process.env.REACT_APP_URL}/addfeedback`, questionFeedback)
         .then((res) => {
           console.log(res)
           console.log(res.data)

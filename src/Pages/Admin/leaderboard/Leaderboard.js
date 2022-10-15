@@ -12,7 +12,7 @@ const Leaderboard = () => {
   // const [getq, setGetq] = useState([]);
   const [udata, setUData] = useState([]);
   const [search, setSearch] = useState(" ");
-  const url = "https://accessfre.herokuapp.com/leaderboard";
+  const url = `${process.env.REACT_APP_URL}/leaderboard`;
   const getAllCandidates = async () => {
    await  axios.get(url)
       .then((res) => { 
@@ -26,6 +26,7 @@ const Leaderboard = () => {
   useEffect(() => {
 
     getAllCandidates();
+    // eslint-disable-next-line
   }, [])
 
 

@@ -15,7 +15,7 @@ const Test = () => {
   const cookie = localStorage.getItem("cookie");
   const { setLoader } = useStateContext();
 
-  const url = `https://accessfre.herokuapp.com/question/user-answers/${choice}`;
+  const url = `${process.env.REACT_APP_URL}/question/user-answers/${choice}`;
   const categoryquestion = () => {
     setLoader(false);
     axios

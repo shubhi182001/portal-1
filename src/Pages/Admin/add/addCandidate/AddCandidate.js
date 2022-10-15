@@ -139,7 +139,7 @@ function AddCandidate() {
       // const token = await reRef.current.executeAsync();
 
       axios
-        .post("https://accessfre.herokuapp.com/register", newEntry)
+        .post(`${process.env.REACT_APP_URL}/register`, newEntry)
         .then((res) => {
           console.log(res.data);
           if (res.status === 200) {

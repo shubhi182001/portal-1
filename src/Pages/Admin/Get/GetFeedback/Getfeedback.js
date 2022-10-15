@@ -9,7 +9,7 @@ function Getfeedback() {
   const[search, setSearch] = useState(" ");
 
 
-  const url = "https://accessfre.herokuapp.com/feed/seefeedbackques";
+  const url = `${process.env.REACT_APP_URL}/feed/seefeedbackques`;
   const getAllQuestions = () => {
     axios.get(url)
     .then((res)=> {
@@ -20,6 +20,7 @@ function Getfeedback() {
   }
   useEffect(()=>{
     getAllQuestions();
+    // eslint-disable-next-line
   },[])
 
 

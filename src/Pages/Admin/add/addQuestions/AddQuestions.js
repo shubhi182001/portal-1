@@ -75,7 +75,7 @@ const AddQuestions = () => {
         console.log(questionData)
         if (questionData.question && questionData.category && options.length === 4 && check()) {
             axios.post(
-                'https://accessfre.herokuapp.com/question/addquestion', questionData)
+                `${process.env.REACT_APP_URL}/question/addquestion`, questionData)
                 .then((res) => {
                     console.log(res);
                     console.log(res.data);

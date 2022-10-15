@@ -12,7 +12,7 @@ const GetQ = () => {
   const [search, setSearch] = useState(" ");
 
 
-  const url = "https://accessfre.herokuapp.com/question/seequestion";
+  const url = `${process.env.REACT_APP_URL}/question/seequestion`;
   const getAllQuestions = () => {
     axios.get(url)
       .then((res) => {
@@ -25,6 +25,7 @@ const GetQ = () => {
   useEffect(() => {
 
     getAllQuestions();
+    // eslint-disable-next-line
   }, [])
 
 

@@ -43,7 +43,7 @@ const Instruction = () => {
     } else {
       await axios
         .patch(
-          "https://accessfre.herokuapp.com/instruction",
+          `${process.env.REACT_APP_URL}/instruction`,
 
           {
             cookie_token: cook,
@@ -55,11 +55,10 @@ const Instruction = () => {
             localStorage.setItem("instruct", true);
             navigate("/testwindow");
 
-          // } else if (
-          //   data.data.isVerified === false ||
-          //   !data.data.isVerified
-          // ) {
-            
+            // } else if (
+            //   data.data.isVerified === false ||
+            //   !data.data.isVerified
+            // ) {
           }
         })
         .catch((err) => {
@@ -67,7 +66,7 @@ const Instruction = () => {
           localStorage.removeItem("login2");
           localStorage.removeItem("cook");
 
-            navigate("/");
+          navigate("/");
         });
     }
   };

@@ -54,7 +54,7 @@ function EditQ() {
       }
    
 
-      const url = `https://accessfre.herokuapp.com/question/${state.post_id}`
+      const url = `${process.env.REACT_APP_URL}/question/${state.post_id}`
       const handleUpload = (e) =>{
         e.preventDefault();
 

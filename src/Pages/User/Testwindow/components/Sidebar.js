@@ -30,9 +30,9 @@ const Sidebar = ({
   let d,
   interval = useRef();
 const timer = () => {
-
+const url = `${process.env.REACT_APP_URL}/logintime` ;
   axios
-  .post("https://exam-portal.cyclic.app/logintime", datacookie)
+  .post(url, datacookie)
   .then((res) => {
     st = new Date(res.data.loginAt).getTime();
   })
