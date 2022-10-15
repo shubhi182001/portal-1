@@ -12,11 +12,12 @@ const Modal = ({ setShow }) => {
     const value = {
       cookie_token: cook,
     };
-    const result = await axios.patch(
-      "https://accessfre.herokuapp.com/quesansdata",
+    const result = await axios.post(
+      "https://accessfre.herokuapp.com/score",
       value
     );
-    if (result.data.isVerified === true) {
+    console.log(result);
+    if (result.data.message === 'User score saved successfully') {
       localStorage.setItem("testpage", "true");
       navigate("/feedback");
     } else {

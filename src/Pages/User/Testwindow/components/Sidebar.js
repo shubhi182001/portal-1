@@ -61,7 +61,7 @@ const url = `${process.env.REACT_APP_URL}/logintime` ;
                 "https://accessfre.herokuapp.com/quesansdata",
                 value
               ).then((res)=>{
-                   console.log(res)
+                  //  console.log(res)
               }).catch((err)=>{
                 console.log(err);
               });
@@ -84,45 +84,45 @@ const url = `${process.env.REACT_APP_URL}/logintime` ;
 
 
 
-//     axios
-//       .get("https://worldtimeapi.org/api/timezone/Asia/Kolkata")
-//       .then((res) => {
-          //  console.log(res);
-//         d = new Date().getTime();
-//         result = limit - (d - st);
-//         if (result) {
-//           const rhours = Math.floor(result / (1000 * 60 * 60));
-//           const rminutes = Math.floor(
-//             (result % (1000 * 60 * 60)) / (1000 * 60)
-//           );
-//           const rseconds = Math.floor((result % (1000 * 60)) / 1000);
-//           if (result < 0) {
-//             clearInterval(interval.current);
-//             const value = {
-//                         cookie_token: usercookie,
-//                       };
-//                       // eslint-disable-next-line
-//                       const result = axios.patch(
-//                         "https://accessfre.herokuapp.com/quesansdata",
-//                         value
-//                       ).then((res)=>{
-//                            console.log(res)
-//                       }).catch((err)=>{
-//                         console.log(err);
-//                       });
+    // axios
+    //   .get("https://worldtimeapi.org/api/timezone/Asia/Kolkata")
+    //   .then((res) => {
+    //        console.log(res);
+    //     d = new Date().getTime();
+    //     result = limit - (d - st);
+    //     if (result) {
+    //       const rhours = Math.floor(result / (1000 * 60 * 60));
+    //       const rminutes = Math.floor(
+    //         (result % (1000 * 60 * 60)) / (1000 * 60)
+    //       );
+    //       const rseconds = Math.floor((result % (1000 * 60)) / 1000);
+    //       if (result < 0) {
+    //         clearInterval(interval.current);
+    //         const value = {
+    //                     cookie_token: usercookie,
+    //                   };
+    //                   // eslint-disable-next-line
+    //                   const result = axios.patch(
+    //                     "https://accessfre.herokuapp.com/quesansdata",
+    //                     value
+    //                   ).then((res)=>{
+    //                        console.log(res)
+    //                   }).catch((err)=>{
+    //                     console.log(err);
+    //                   });
 
-//             localStorage.setItem("testpage", "true");
-//             navigate("/feedback");
-//           } else {
-//             setHours(rhours);
-//             setMinutes(rminutes);
-//             setSeconds(rseconds);
-//           }
-//         }
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
+    //         localStorage.setItem("testpage", "true");
+    //         navigate("/feedback");
+    //       } else {
+    //         setHours(rhours);
+    //         setMinutes(rminutes);
+    //         setSeconds(rseconds);
+    //       }
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
 
   }, 1000);
 };
@@ -136,11 +136,25 @@ const url = `${process.env.REACT_APP_URL}/logintime` ;
     sidebarbtn.push(i);
   }
 
+  //New score count api Added
+  // const cookie = {
+  //   cookie_token: usercookie,
+  // };
   const Submit = async (e) => {
     e.preventDefault();
     setShow(true);
+    
+  //   axios
+  // .post("https://accessfre.herokuapp.com/score", cookie)
+  // .then((res) => {
+  //   console.log(res);
+  // })
+  // .catch((err) => {
+  //   console.log(err);
+  // });
   };
 
+  //Api ends
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -45,11 +45,11 @@ const Feedback = () => {
         response: postData,
         feedtext: TextArea,
       };
-      console.log(feedbackData);
+      // console.log(feedbackData);
       axios
         .post(`${process.env.REACT_APP_URL}/response/feedanswer`, feedbackData)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           setPostData([]);
         })
         .catch((err) => {

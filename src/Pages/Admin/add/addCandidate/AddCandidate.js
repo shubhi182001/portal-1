@@ -141,13 +141,13 @@ function AddCandidate() {
       axios
         .post(`${process.env.REACT_APP_URL}/register`, newEntry)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.status === 200) {
            window.alert("user added successfully");
           }
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
 
           window.alert("Invalid Credentials or user already exists!!!");
         });
