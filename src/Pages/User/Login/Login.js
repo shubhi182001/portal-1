@@ -125,8 +125,8 @@ const Login = () => {
           studentNum: +studentNo,
           password: password,
         };
-          const url = `${process.env.REACT_APP_URL}/login`;
-          console.log(url);
+        const url = `${process.env.REACT_APP_URL}/login`;
+        console.log(url);
         axios
           .post(url, data)
           .then((res) => {
@@ -247,11 +247,9 @@ const Login = () => {
           <div className="captcha_container">
             <ReCAPTCHA
               className="captcha"
-              sitekey="6LeR19IiAAAAAHHtJTd8RhE13PFCnEWJdha9aEhy"
+              sitekey="6LdgCNMiAAAAAN82iZHHw4ZALEIMwHIEkx1nGXiM"
               onChange={onChangeCaptcha}
             />
-            {/* site key : 6LeR19IiAAAAAHHtJTd8RhE13PFCnEWJdha9aEhy */}
-            {/* secret key : 6LeR19IiAAAAAOVz4jmJhLeP_Bo1eNr6C-LWs_WS */}
           </div>
           <div className="icon_container2">
             <div className="button_container">
