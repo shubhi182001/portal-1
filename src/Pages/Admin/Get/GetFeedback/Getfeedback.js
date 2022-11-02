@@ -14,7 +14,7 @@ function Getfeedback() {
     axios.get(url)
     .then((res)=> {
       setGetq(res);
-      console.log(res);
+      // console.log(res);
     })
     .catch(error => console.log(error));
   }

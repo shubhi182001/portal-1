@@ -37,7 +37,7 @@ function Responses() {
     const url = "https://accessfre.herokuapp.com/fetchanswer";
     const getResponse = () =>{
         axios.put(url,data).then((res) => {
-            console.log(res);
+            // console.log(res);
             setUser(res.data);
             setUresponse(res.data.AnswerRes);
         })

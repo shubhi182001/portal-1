@@ -516,7 +516,7 @@ const QuestionPannel = ({
                           />
 
                           <label>
-                            {testques[showques - 1].options[index].value}
+                            {testques[showques - 1]?.options[index].value}
                           </label>
                         </div>
                       ))

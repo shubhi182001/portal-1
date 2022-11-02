@@ -20,7 +20,7 @@ function Homepage() {
     axios
       .get(url)
       .then((res) => {
-        console.log(res.data.result);
+        // console.log(res.data.result);
         setData(res.data.result);
       })
       .catch((err) => console.log(err));

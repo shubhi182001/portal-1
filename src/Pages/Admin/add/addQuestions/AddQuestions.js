@@ -77,8 +77,8 @@ const AddQuestions = () => {
             axios.post(
                 `${process.env.REACT_APP_URL}/question/addquestion`, questionData)
                 .then((res) => {
-                    console.log(res);
-                    console.log(res.data);
+                    // console.log(res);
+                    // console.log(res.data);
                     setQuestion('');
                     setChosenlang(' ');
                     setOptions([])
