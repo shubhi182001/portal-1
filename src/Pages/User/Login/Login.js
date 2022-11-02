@@ -125,12 +125,13 @@ const Login = () => {
           studentNum: +studentNo,
           password: password,
         };
-
+          const url = `${process.env.REACT_APP_URL}/login`;
+          console.log(url);
         axios
-          .post(`${process.env.REACT_APP_URL}/login`, data)
+          .post(url, data)
           .then((res) => {
             if (flag === "1") {
-              // console.log(res.data);
+              console.log(res.data);
               localStorage.setItem("cookie", res.data.cookie_token);
               let admin = res.data.isAdmin;
               if (admin === true) {
@@ -246,9 +247,11 @@ const Login = () => {
           <div className="captcha_container">
             <ReCAPTCHA
               className="captcha"
-              sitekey="6LfN3dohAAAAAP8su8BdsG4GPeHhmYqd6x-edMlJ"
+              sitekey="6LeR19IiAAAAAHHtJTd8RhE13PFCnEWJdha9aEhy"
               onChange={onChangeCaptcha}
             />
+            {/* site key : 6LeR19IiAAAAAHHtJTd8RhE13PFCnEWJdha9aEhy */}
+            {/* secret key : 6LeR19IiAAAAAOVz4jmJhLeP_Bo1eNr6C-LWs_WS */}
           </div>
           <div className="icon_container2">
             <div className="button_container">
