@@ -268,10 +268,10 @@ const QuestionPannel = ({
 
         saveCall(data);
 
-        if (data !== "") {
+        // if (data !== "") {
           setShowques(showques + 1);
           setOid("000");
-        }
+        // }
       } else if (oid === "000") {
         if (
           testques[showques - 1].userAnswer !== -1 &&
@@ -295,10 +295,10 @@ const QuestionPannel = ({
 
           saveCall(data);
 
-          if (data !== "") {
+          // if (data !== "") {
             setShowques(showques + 1);
             setOid("000");
-          }
+          // }
         } else if (
           testques[showques - 1].ansid === 5 ||
           testques[showques - 1].ansid === 1
@@ -324,10 +324,10 @@ const QuestionPannel = ({
           // console.log(data);
 
           saveCall(data);
-          if (data !== "") {
+          // if (data !== "") {
             setShowques(showques + 1);
             setOid("000");
-          }
+          // }
         }
       }
     } else {
@@ -346,10 +346,10 @@ const QuestionPannel = ({
 
         saveCall(data);
 
-        if (data !== "") {
-          setShowques(showques + 1);
+        // if (data !== "") {
+          setShowques(1);
           setOid("000");
-        }
+        // }
         setChoice(
           choice === "HTML"
             ? "SQL"
@@ -418,7 +418,7 @@ const QuestionPannel = ({
           // console.log(data);
 
           saveCall(data);
-          if (data !== "") {
+          // if (data !== "") {
             setShowques(1);
             setOid("000");
             setChoice(
@@ -434,7 +434,7 @@ const QuestionPannel = ({
                 ? "HTML"
                 : "HTML"
             );
-          }
+          // }
         }
       }
     }
