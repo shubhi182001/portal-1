@@ -126,12 +126,12 @@ const Login = () => {
           password: password,
         };
         const url = `${process.env.REACT_APP_URL}/login`;
-        // console.log(url);
+        console.log(url);
         axios
           .post(url, data)
           .then((res) => {
             if (flag === "1") {
-              // console.log(res.data);
+              console.log(res.data);
               localStorage.setItem("cookie", res.data.cookie_token);
               let admin = res.data.isAdmin;
               if (admin === true) {

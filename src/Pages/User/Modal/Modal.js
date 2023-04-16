@@ -13,7 +13,7 @@ const Modal = ({ setShow }) => {
       cookie_token: cook,
     };
     const result = await axios.post(
-      "https://accessfre.herokuapp.com/score",
+      `${process.env.REACT_APP_URL}/score`,
       value
     );
     console.log(result);
