@@ -141,8 +141,7 @@ function AddCandidate() {
       axios
         .post(`${process.env.REACT_APP_URL}/register`, newEntry)
         .then((res) => {
-          // console.log(res.data);
-          if (res.status === 200) {
+          if (res.status === 201) {
            window.alert("user added successfully");
           }
         })
