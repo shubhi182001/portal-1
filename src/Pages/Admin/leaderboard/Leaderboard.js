@@ -16,7 +16,7 @@ const Leaderboard = () => {
   const getAllCandidates = async () => {
    await  axios.get(url)
       .then((res) => { 
-        
+        console.log(res.data);
         setUData(res.data);
         // console.log(res.data);
         // console.log(res.data.name);

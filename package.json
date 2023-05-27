@@ -32,7 +32,7 @@
     "react-scripts": "^5.0.1"
   },
   "scripts": {
-    "dev":"vite",
+    "dev": "vite",
     "start": "react-scripts  start",
     "build": "react-scripts  build",
     "test": "react-scripts test",

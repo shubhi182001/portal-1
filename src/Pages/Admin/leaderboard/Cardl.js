@@ -24,6 +24,7 @@ const Cardl = ({ ckc}) => {
             
         });
     }
+    console.log(ckc)
     // const studentDetail = ['Name', 'StudentNo', 'Branch', 'Score', 'language'];
     // const showDetails = studentDetail.map((info => <li key={studentDetail}>{info}</li>))
     return (
