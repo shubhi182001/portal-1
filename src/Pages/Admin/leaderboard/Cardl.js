@@ -24,6 +24,7 @@ const Cardl = ({ ckc}) => {
             
         });
     }
+    console.log(ckc)
     // const studentDetail = ['Name', 'StudentNo', 'Branch', 'Score', 'language'];
     // const showDetails = studentDetail.map((info => <li key={studentDetail}>{info}</li>))
     return (
@@ -44,7 +45,7 @@ const Cardl = ({ ckc}) => {
                         <li className='bluedetails'>{ckc.name} </li>
                         <li className='bluedetails'>{ckc.studentNum}</li>
                         <li className='bluedetails'>{ckc.branch}</li>
-                        <li className='bluedetails'>{ckc.userNumCount.TotalNum}</li>
+                        <li className='bluedetails'>{ckc.userNumCount ?ckc.userNumCount:"No score" }</li>
                         <li className='bluedetails'>{ckc.lang}</li>
 
                     </ul>
@@ -59,7 +60,7 @@ const Cardl = ({ ckc}) => {
                         <button className='fetch-answers-btn'
                             onClick={openResponse}>Fetch Answers</button>
                     </div>
-                </div>
+                </div> 
 
             </div>
                 <hr className="Hr" />

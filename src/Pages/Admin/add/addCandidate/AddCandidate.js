@@ -134,7 +134,7 @@ function AddCandidate() {
         // ReCAPTCHA
       };
       if (checkStatus === true && checkStatusAll === true) {
-        console.log(newEntry);
+        console.log("newEntry",newEntry);
       }
       // const token = await reRef.current.executeAsync();
 
