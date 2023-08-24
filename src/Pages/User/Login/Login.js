@@ -171,7 +171,15 @@ const Login = () => {
     // eslint-disable-next-line
   }, []);
   return (
+    <>    
+    <div className="pagee">
+      
+
+
+
+
     <div className="form_body">
+
       <div className="logo">
         <img src={Logocsi} alt="none" className="logocsi" />
       </div>
@@ -281,7 +289,17 @@ const Login = () => {
         <img src={computers} alt="none" className="computers" />
       </div>
       <ToastContainer />
+      
     </div>
+    <div className="banner-cred">
+        <p> <span style={{fontWeight:"800", color:"black", marginRight:"6px"}}> Admin Demo Credentials:</span> </p>
+       <span style={{fontWeight:"600", color:"black", marginRight:"6px"}}>Student No. :</span> 2001212
+       <span style={{fontWeight:"600", color:"black", marginRight:"6px" , marginLeft:"6px"}}>Password :</span> Csi@2001212
+
+      </div>
+    
+    </div>
+    </>
   );
 };
 
